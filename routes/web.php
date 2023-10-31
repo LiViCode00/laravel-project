@@ -40,5 +40,7 @@ Route::prefix('posts')->name('posts.')->group(function () {
     Route::get('/', [PostController::class,'index'])->name('view');
     Route::get('/posts-detail' , [PostController::class,'postDetail'])->name('postDetail');
 });
+okkkkkkkkkk
+
 
 
