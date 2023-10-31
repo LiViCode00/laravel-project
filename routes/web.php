@@ -50,23 +50,4 @@ Route::prefix('posts')->name('posts.')->group(function () {
     Route::get('/posts-detail' , [PostController::class,'postDetail'])->name('postDetail');
 });
 
-<<<<<<< HEAD
-Route::prefix('admin')->group(function () {
-        Route::get('/' , function(){
-            return view('layouts.backend.backend');
-        });
-});
-Route::prefix('admin')->group(function () {
-        Route::get('/' , function(){
-            return view('layouts.backend.backend');
-        });
-});
-
-test 3
-
-okkkk tets4
-
-
-=======
->>>>>>> 47a9fdfc6574882f5518a331adb1886bc3d36d61
 
