@@ -62,6 +62,12 @@ Route::prefix('admin')->group(function () {
             return view('layouts.backend.backend');
         });
 });
+<<<<<<< HEAD
 test pulll
+=======
+
+test 3
+
+>>>>>>> 8be8fb719f0bcef7eca21c215caf901d1d6a66c5
 
 
