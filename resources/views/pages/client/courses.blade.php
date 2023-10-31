@@ -53,7 +53,7 @@
                                         <li><i class="fa fa-star"></i></li>
                                     </ul>
                                     <span>(20 Reviws)</span>
-                                    <a href="courses-singel.html">
+                                    <a href={{ route('courses.courseDetail') }}>
                                         <h4>Learn basis javascirpt from start for beginner</h4>
                                     </a>
                                     <div class="course-teacher">
@@ -96,7 +96,7 @@
                                         <li><i class="fa fa-star"></i></li>
                                     </ul>
                                     <span>(20 Reviws)</span>
-                                    <a href="courses-singel.html">
+                                    <a href={{ route('courses.courseDetail') }}>
                                         <h4>Learn basis javascirpt from start for beginner</h4>
                                     </a>
                                     <div class="course-teacher">
@@ -139,7 +139,7 @@
                                         <li><i class="fa fa-star"></i></li>
                                     </ul>
                                     <span>(20 Reviws)</span>
-                                    <a href="courses-singel.html">
+                                    <a href={{ route('courses.courseDetail') }}>
                                         <h4>Learn basis javascirpt from start for beginner</h4>
                                     </a>
                                     <div class="course-teacher">
@@ -184,7 +184,7 @@
                                         <li><i class="fa fa-star"></i></li>
                                     </ul>
                                     <span>(20 Reviws)</span>
-                                    <a href="courses-singel.html">
+                                    <a href={{ route('courses.courseDetail') }}>
                                         <h4>Learn basis javascirpt from start for beginner</h4>
                                     </a>
                                     <div class="course-teacher">
@@ -229,7 +229,7 @@
                                         <li><i class="fa fa-star"></i></li>
                                     </ul>
                                     <span>(20 Reviws)</span>
-                                    <a href="courses-singel.html">
+                                    <a href={{ route('courses.courseDetail') }}>
                                         <h4>Learn basis javascirpt from start for beginner</h4>
                                     </a>
                                     <div class="course-teacher">
@@ -274,7 +274,7 @@
                                         <li><i class="fa fa-star"></i></li>
                                     </ul>
                                     <span>(20 Reviws)</span>
-                                    <a href="courses-singel.html">
+                                    <a href={{ route('courses.courseDetail') }}>
                                         <h4>Learn basis javascirpt from start for beginner</h4>
                                     </a>
                                     <div class="course-teacher">

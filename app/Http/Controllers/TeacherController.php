@@ -10,7 +10,7 @@ class TeacherController extends Controller
         return view("pages.client.teachers");
     }
 
-    public function courseDetail(){
+    public function teacherDetail(){
         return view("pages.client.teacher-detail");
 
 

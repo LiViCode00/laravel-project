@@ -10,7 +10,7 @@ class PostController extends Controller
         return view("pages.client.posts");
     }
 
-    public function courseDetail(){
+    public function postDetail(){
         return view("pages.client.post-detail");
 
 

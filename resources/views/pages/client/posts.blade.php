@@ -12,7 +12,7 @@ Bài viết
                        <img src="{{asset('client/images/blog/b-1.jpg')}}" alt="Blog">
                    </div>
                    <div class="blog-cont">
-                       <a href="blog-singel.html"><h3>Few tips for get better results in examination</h3></a>
+                       <a href={{ route('posts.postDetail') }}><h3>Few tips for get better results in examination</h3></a>
                        <ul>
                            <li><a href="#"><i class="fa fa-calendar"></i>25 Dec 2018</a></li>
                            <li><a href="#"><i class="fa fa-user"></i>Mark anthem</a></li>
@@ -26,7 +26,7 @@ Bài viết
                        <img src="{{asset('client/images/blog/b-2.jpg')}}" alt="Blog">
                    </div>
                    <div class="blog-cont">
-                       <a href="blog-singel.html"><h3>Few tips for get better results in examination</h3></a>
+                       <a href={{ route('posts.postDetail') }}><h3>Few tips for get better results in examination</h3></a>
                        <ul>
                            <li><a href="#"><i class="fa fa-calendar"></i>25 Dec 2018</a></li>
                            <li><a href="#"><i class="fa fa-user"></i>Mark anthem</a></li>
