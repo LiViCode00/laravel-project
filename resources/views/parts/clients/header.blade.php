@@ -1,9 +1,7 @@
-
-
 <header id="header-part">
-       
-   
-    
+
+
+
     <div class="header-logo-support pt-20 pb-20">
         <div class="container-fluid">
             <div class="row">
@@ -18,35 +16,61 @@
 
                 <div class="col-lg-4 col-md-8  d-none d-sm-block">
                     <div class="search_box">
-                        <input type="text" name="" id="" placeholder="Tìm kiếm khóa học, bài viết, video ...">
+                        <input type="text" name="" id=""
+                            placeholder="Tìm kiếm khóa học, bài viết, video ...">
                         <i class="fa fa-search" aria-hidden="true"></i>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-4 col-12">
-                    <div class="support-button float-right d-flex">
-                        
-                        <div class="button float-left">
-                            <a href='{{ route('login') }}' class="main-btn">Đăng nhập</a>
+                <div class="col-lg-4 col-md-4 col-12 d-flex justify-content-end align-items-center">
+
+                    @guest
+                        @if (Route::has('login'))
+                            <div class="button float-left">
+                                <a href='{{ route('login') }}' class="main-btn">Đăng nhập</a>
+                            </div>
+                        @endif
+
+                        @if (Route::has('register'))
+                            <div class="button float-left">
+                                <a href="{{ route('register') }}" class="main-btn">Đăng ký</a>
+                            </div>
+                        @endif
+                    @else
+                        <div class="d-flex justify-content-between align-items-center">
+                          <i class="fa fa-shopping-cart cart-shop" aria-hidden="true"></i>
+                            <p id='showBoxButton' class="auth-user" href="">
+                                {{ Auth::user()->name }}
+
+                                <i class="fa fa-caret-down" aria-hidden="true"></i>
+                            </p>
+                            <ul id="hiddenBox" class="user-detail">
+                                <div>
+                                    <a href="">Thông tin cá nhân</a>
+                                    <a href="">Viết blog</a>
+                                    <a href="">Bài viết của tôi</a>
+                                    <a class="logout-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                   document.getElementById('logout-form').submit();">
+                                        {{ __('Đăng xuất') }}
+                                    </a>
+                                </div>
+                            </ul>
                         </div>
-                        <div class="button float-left">
-                            <a href="#" class="main-btn">Đăng ký</a>
-                        </div>
-                    </div>
+                
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+
+                    @endguest
+
+                   
                 </div>
-                {{--icon gio hang}}
-                {{-- <div class="col-lg-2 col-md-2 col-sm-3 col-4">
-                    <div class="right-icon text-right">
-                        <ul>
-                            <li><a href="#" id="search"><i class="fa fa-search"></i></a></li>
-                            <li><a href="#"><i class="fa fa-shopping-bag"></i><span>0</span></a></li>
-                        </ul>
-                    </div> <!-- right icon -->
-                </div> --}}
+               
             </div> <!-- row -->
         </div> <!-- container -->
     </div> <!-- header logo support -->
-    
+
     {{-- <div class="navigation">
         <div class="container">
             <div class="row">
@@ -121,5 +145,27 @@
             </div> <!-- row -->
         </div> <!-- container -->
     </div> --}}
-    
+
 </header>
+
+
+<script>
+    let isBoxVisible = false;
+    
+    document.getElementById('showBoxButton').addEventListener('click', function(event) {
+        if (isBoxVisible) {
+            document.getElementById('hiddenBox').style.display = 'none';
+        } else {
+            document.getElementById('hiddenBox').style.display = 'block';
+        }
+        isBoxVisible = !isBoxVisible; // Chuyển đổi trạng thái
+        event.stopPropagation(); // Ngăn sự kiện click từ việc lan truyền đến body
+    });
+    
+    document.body.addEventListener('click', function() {
+        if (isBoxVisible) {
+            document.getElementById('hiddenBox').style.display = 'none';
+            isBoxVisible = false; // Cập nhật trạng thái
+        }
+    });
+    </script>

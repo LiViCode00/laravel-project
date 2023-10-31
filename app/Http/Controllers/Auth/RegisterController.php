@@ -52,8 +52,24 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
+            'password' => ['required', 'string', 'min:6', 'confirmed'],
+        ],
+        [
+            'required' => ':attribute bắt buộc phải nhập.',
+            'email'=>':attribute không đúng định dạng.',
+            'string' => ':attribute phải là kí tự.',
+            'min'=>':attribute phải có ít nhất :min kí tự.',
+            'max'=>':attribute nhiều nhất ít nhất :max kí tự.',
+            'unique'=> ':attribute đã tồn tại.',
+            'confirmed'=>':attribute không khớp.'
+
+        ],
+        [
+            'name' => 'Họ và tên',
+            'email'=> 'Email',
+            'password'=> 'Mật khẩu'
+        ]
+    );
     }
 
     /**
