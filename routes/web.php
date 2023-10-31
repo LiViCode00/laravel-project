@@ -49,27 +49,5 @@ Route::prefix('posts')->name('posts.')->group(function () {
     Route::get('/', [PostController::class,'index'])->name('view');
     Route::get('/posts-detail' , [PostController::class,'postDetail'])->name('postDetail');
 });
-okkkkkkkkkk;
 
-
-Route::prefix('admin')->group(function () {
-        Route::get('/' , function(){
-            return view('layouts.backend.backend');
-        });
-});
-Route::prefix('admin')->group(function () {
-        Route::get('/' , function(){
-            return view('layouts.backend.backend');
-        });
-});
-<<<<<<< HEAD
-test pulll
-=======
-
-test 3
-
->>>>>>> 8be8fb719f0bcef7eca21c215caf901d1d6a66c5
-
-
-vi test
 
