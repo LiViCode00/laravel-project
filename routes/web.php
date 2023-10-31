@@ -71,3 +71,5 @@ test 3
 >>>>>>> 8be8fb719f0bcef7eca21c215caf901d1d6a66c5
 
 
+vi test
+
