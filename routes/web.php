@@ -55,5 +55,11 @@ Route::prefix('admin')->group(function () {
             return view('layouts.backend.backend');
         });
 });
+Route::prefix('admin')->group(function () {
+        Route::get('/' , function(){
+            return view('layouts.backend.backend');
+        });
+});
+
 
 
