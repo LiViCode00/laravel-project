@@ -50,4 +50,10 @@ Route::prefix('posts')->name('posts.')->group(function () {
     Route::get('/posts-detail' , [PostController::class,'postDetail'])->name('postDetail');
 });
 
+Route::prefix('admin')->group(function () {
+        Route::get('' , function(){
+            return view('layouts.backend.backend');
+        });
+});
+
 
