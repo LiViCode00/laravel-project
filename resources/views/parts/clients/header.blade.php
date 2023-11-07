@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-lg-4 d-none d-xl-block">
                     <div class="logo">
-                        <a class="d-flex justify-content-center align-items-center" href={{ route('home') }}>
+                        <a class="d-flex justify-content-center align-items-center" href="{{ route('home') }}">
                             <i class="fa fa-code" aria-hidden="true"></i>
                             <h2>LiVi<span>Code</span></h2>
                         </a>

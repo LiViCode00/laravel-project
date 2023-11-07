@@ -1,28 +1,19 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Course;
 use Illuminate\Http\Request;
+
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
+    private $courses;
+    public function __construct(){
+        $this->courses = Course::paginate(10);
+    }
+    
     public function index()
     {
-        return view('pages.client.home');
+        return view('pages.client.home', ['courses' => $this->courses]);
     }
 }

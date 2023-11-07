@@ -12,7 +12,7 @@
     <title>@yield('title')</title>
     
     <!--====== Favicon Icon ======-->
-    <link rel="shortcut icon" href="{{asset('images/favicon.png')}}" type="image/png">
+    <link rel="shortcut icon" href="{{asset('client/images/favicon.png')}}" type="image/png">
 
     <!--====== Slick css ======-->
     <link rel="stylesheet" href="{{asset('client/css/slick.css')}}">
