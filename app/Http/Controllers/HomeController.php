@@ -7,14 +7,16 @@ use Illuminate\Http\Request;
 
 
 class HomeController extends Controller
+
+
 {
-<<<<<<< HEAD
+
     private $coursesForFree;
-    public function __construct(){
+    public function __construct() {
         $this->coursesForFree = Course::getCoursesForFree();
     }
-    
-=======
+
+
     /**
      * Create a new controller instance.
      *
@@ -30,9 +32,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    private $courses;
-     
->>>>>>> 9398c49b74c13a84c015c41b9cd7fa3887b8b546
+    
     public function index()
 
     {

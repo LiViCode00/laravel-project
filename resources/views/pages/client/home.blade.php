@@ -72,7 +72,7 @@
                     </div>
                 </div> <!-- row -->
                 <div class="row mt-30">
-                    @foreach ($courses as $course)
+                    @foreach ($coursesFree as $course)
                         <div class="col-lg-3 col-md-6">
                             <div class="singel-course">
 
