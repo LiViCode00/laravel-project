@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
 {
     public function index(){
-        return view("pages.client.courses");
+        $courses = Course::layDanhSach();
+        return view("pages.client.courses", ['courses' => $courses]);
     }
 
     public function courseDetail(){
