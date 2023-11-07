@@ -46,9 +46,10 @@
                             </p>
                             <ul id="hiddenBox" class="user-detail">
                                 <div>
-                                    <a href="">Thông tin cá nhân</a>
+                                    <a href={{ route('user.view-profile', ['user'=> Auth::user()]) }}>Thông tin cá nhân</a>
                                     <a href="">Viết blog</a>
                                     <a href="">Bài viết của tôi</a>
+                                    <a href="">Khóa học của tôi</a>
                                     <a class="logout-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                    document.getElementById('logout-form').submit();">

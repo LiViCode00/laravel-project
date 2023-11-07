@@ -5,8 +5,11 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
+
 
 Auth::routes();
 
@@ -42,6 +45,14 @@ Route::prefix('admin')->group(function () {
         });
 });
 
+Route::prefix('user')->name('user.')->group(function () {
+        Route::get('/edit/{user}' , [UserController::class,'viewProfile'])->name('view-profile');
+        Route::post('/edit/{user}' , [UserController::class,'editProfile'])->name('edit-profile');
+    
+});
+
 include('admin.php');
+
+
 
 

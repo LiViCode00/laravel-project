@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Admin;
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -16,7 +17,7 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-        Admin::create([
+        Admin::updateOrCreate([
             "name"=> "NL Admin",
             "email"=> "admin@gmail.com",
             "password"=> Hash::make("123456"),

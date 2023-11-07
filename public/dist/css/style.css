@@ -1,0 +1,20 @@
+.wrapper-profile{
+    background: white;
+    padding: 40px;
+    margin: 40px;
+    box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.09);
+    border-radius: 6px;
+}
+
+.form-group{
+    margin: 10px 0px;
+}
+
+.notice{
+    padding: 16px;
+}
+.alert-success {
+    color: #155724 !important;
+    background-color: #d4edda !important;
+    border-color: #c3e6cb !important;
+}
