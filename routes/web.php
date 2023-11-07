@@ -42,4 +42,6 @@ Route::prefix('admin')->group(function () {
         });
 });
 
+include('admin.php');
+
 

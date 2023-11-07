@@ -54,7 +54,7 @@ LiViCode - Học lập trình trực tuyến
    
     <!--====== COURSE PART START ======-->
     
-    <section id="course-part" class="pt-60 pb-20 gray-bg">
+    {{-- <section id="course-part" class="pt-60 pb-20 gray-bg">
         <div class="container container-edit">
             <div class="row">
                 <div class="col-lg-12">
@@ -66,14 +66,16 @@ LiViCode - Học lập trình trực tuyến
                 </div>
             </div> <!-- row -->
             <div class="row mt-30">
+                
+               // @foreach($courses as $key =>$course)
                 <div class="col-lg-3 col-md-6">
                     <div class="singel-course">
                         <div class="thum">
                             <div class="image">
-                                <img src="{{asset('client/images/course/cu-1.jpg')}}" alt="Course">
+                                <img src="{{asset($course->image_path)}}" alt="Course">
                             </div>
                             <div class="price">
-                                <span>Free</span>
+                                <span>{{ $course->price}}</span>
                             </div>
                         </div>
                         <div class="cont">
@@ -85,7 +87,7 @@ LiViCode - Học lập trình trực tuyến
                                 <li><i class="fa fa-star"></i></li>
                             </ul>
                             <span>(20 Reviws)</span>
-                            <a href={{ route('courses.courseDetail') }}><h4>Learn basis javascirpt from start for beginner</h4></a>
+                            <a href="{{ route('courses.courseDetail') }}"><h4> {{$course->name}}</h4></a>
                             <div class="course-teacher">
                                 <div class="thum">
                                     <a href="#"><img src="{{asset('client/images/course/teacher/t-1.jpg')}}" alt="teacher"></a>
@@ -101,10 +103,12 @@ LiViCode - Học lập trình trực tuyến
                                 </div>
                             </div>
                         </div>
-                    </div> <!-- singel course -->
+                    </div> 
+                    @endforeach
+                    <!-- singel course -->
                 </div>
                 
-                <div class="col-lg-3 col-md-6">
+                <!-- <div class="col-lg-3 col-md-6">
                     <div class="singel-course">
                         <div class="thum">
                             <div class="image">
@@ -214,7 +218,7 @@ LiViCode - Học lập trình trực tuyến
                             </div>
                         </div>
                     </div> <!-- singel course -->
-                </div>
+                </div> -->
             </div> <!-- course slied -->
         </div> <!-- container container-edit -->
     </section>
@@ -381,7 +385,7 @@ LiViCode - Học lập trình trực tuyến
                 </div>
             </div> <!-- course slied -->
         </div> <!-- container container-edit -->
-    </section>
+    </section> --}}
 
   
     <!--====== COURSE PART ENDS ======-->
