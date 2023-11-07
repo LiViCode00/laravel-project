@@ -30,10 +30,11 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    private $courses = Course::paginate(10);
+    private $courses;
      
 >>>>>>> 9398c49b74c13a84c015c41b9cd7fa3887b8b546
     public function index()
+
     {
         return view('pages.client.home', ['coursesFree' => $this->coursesForFree]);
     }
