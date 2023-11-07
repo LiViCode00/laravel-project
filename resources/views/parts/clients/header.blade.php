@@ -8,7 +8,7 @@
                 <div class="col-lg-4 d-none d-xl-block">
                     <div class="logo">
                         <a class="d-flex justify-content-center align-items-center" href="{{ route('home') }}">
-                            <i class="fa fa-code" aria-hidden="true"></i>
+                            <img src="" alt="">
                             <h2>LiVi<span>Code</span></h2>
                         </a>
                     </div>
@@ -27,7 +27,7 @@
                     @guest
                         @if (Route::has('login'))
                             <div class="button float-left">
-                                <a href='{{ route('login') }}' class="main-btn">Đăng nhập</a>
+                                <a href="{{ route('login') }}" class="main-btn">Đăng nhập</a>
                             </div>
                         @endif
 

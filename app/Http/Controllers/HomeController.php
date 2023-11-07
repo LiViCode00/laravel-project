@@ -7,13 +7,13 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    private $courses;
+    private $coursesForFree;
     public function __construct(){
-        $this->courses = Course::paginate(10);
+        $this->coursesForFree = Course::getCoursesForFree();
     }
     
     public function index()
     {
-        return view('pages.client.home', ['courses' => $this->courses]);
+        return view('pages.client.home', ['coursesFree' => $this->coursesForFree]);
     }
 }

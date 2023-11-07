@@ -67,7 +67,7 @@ LiViCode - Học lập trình trực tuyến
             </div> <!-- row -->
             <div class="row mt-30">
                 
-            @foreach($courses as $key =>$course)
+            @foreach($coursesFree as $key =>$course)
                 <div class="col-lg-3 col-md-6">
                     <div class="singel-course">
                     
@@ -76,7 +76,7 @@ LiViCode - Học lập trình trực tuyến
                                 <img src="{{asset($course->image_path)}}" alt="Course">
                             </div>
                             <div class="price">
-                                <span>{{ number_format( $course->price, 0, '', '.')}}</span>
+                                <span>Free</span>
                             </div>
                         </div>
                         <div class="cont">
@@ -87,7 +87,7 @@ LiViCode - Học lập trình trực tuyến
                                 <li><i class="fa fa-star"></i></li>
                                 <li><i class="fa fa-star"></i></li>
                             </ul>
-                            <span>(20 Reviws)</span>
+                            <span>(20 Reviews)</span>
                             <a href="{{ route('courses.courseDetail') }}"><h4> {{$course->name}}</h4></a>
                             <div class="course-teacher">
                                 <div class="thum">
