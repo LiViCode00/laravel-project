@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Course;
 use Illuminate\Http\Request;
+
 
 
 class HomeController extends Controller
@@ -22,10 +23,10 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-   // private $courses = App\Models\Course::paginate(10);
+    private $courses = Course::paginate(10);
      
     public function index()
     {
-        return view('pages.client.home');
+        return view('pages.client.home', ['courses' => $this->courses]);
     }
 }

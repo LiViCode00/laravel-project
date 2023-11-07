@@ -21,7 +21,7 @@ class CourseSeeder extends Seeder
             [
                 "name" => 'Mobile App Development with Flutter & Dart (iOS and Android)',
                 "detail" => 'The Complete iOS and Android Mobile App Development Course with Flutter and Dart (2022).',
-                "image_path" => 'client/images/course/course-1.png',
+                "image_path" => 'client/images/course/cu-1.jpg',
                 "price" => '1000000',
                 "sale_price" => '8990000',
                 "teacher_id" => '1',
@@ -30,7 +30,7 @@ class CourseSeeder extends Seeder
             [
                 "name" => 'Oracle Java Certification - Pass the Associate 1Z0-808 Exam.',
                 "detail" => 'This course will help you learn the steps to becoming an Oracle Certified Associate (OCA) and get a higher paying job!',
-                "image_path" => 'client/images/course/course-2.png',
+                "image_path" => 'client/images/course/cu-2.jpg',
                 "price" => '100',
                 "sale_price" => '89',
                 "teacher_id" => '2',
@@ -40,5 +40,7 @@ class CourseSeeder extends Seeder
         foreach ($courses as $course) {
             Course::updateOrCreate($course);
         }
+
+
     }
 }

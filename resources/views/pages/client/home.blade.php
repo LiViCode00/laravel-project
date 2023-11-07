@@ -66,16 +66,15 @@ LiViCode - Học lập trình trực tuyến
                 </div>
             </div> <!-- row -->
             <div class="row mt-30">
-                
-               // @foreach($courses as $key =>$course)
                 <div class="col-lg-3 col-md-6">
                     <div class="singel-course">
+                    
                         <div class="thum">
                             <div class="image">
                                 <img src="{{asset($course->image_path)}}" alt="Course">
                             </div>
                             <div class="price">
-                                <span>{{ $course->price}}</span>
+                                <span>Free</span>
                             </div>
                         </div>
                         <div class="cont">
@@ -103,10 +102,9 @@ LiViCode - Học lập trình trực tuyến
                                 </div>
                             </div>
                         </div>
-                    </div> 
-                    @endforeach
-                    <!-- singel course -->
+                    </div> <!-- singel course -->
                 </div>
+            @endforeach 
                 
                 <!-- <div class="col-lg-3 col-md-6">
                     <div class="singel-course">
@@ -144,7 +142,7 @@ LiViCode - Học lập trình trực tuyến
                             </div>
                         </div>
                     </div> <!-- singel course -->
-                </div>
+                <!-- </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="singel-course">
                         <div class="thum">
@@ -181,7 +179,7 @@ LiViCode - Học lập trình trực tuyến
                             </div>
                         </div>
                     </div> <!-- singel course -->
-                </div>
+                <!-- </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="singel-course">
                         <div class="thum">
@@ -218,7 +216,7 @@ LiViCode - Học lập trình trực tuyến
                             </div>
                         </div>
                     </div> <!-- singel course -->
-                </div> -->
+                </div>
             </div> <!-- course slied -->
         </div> <!-- container container-edit -->
     </section>
