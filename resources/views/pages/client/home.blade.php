@@ -54,7 +54,7 @@ LiViCode - Học lập trình trực tuyến
    
     <!--====== COURSE PART START ======-->
     
-    <section id="course-part" class="pt-60 pb-20 gray-bg">
+    {{-- <section id="course-part" class="pt-60 pb-20 gray-bg">
         <div class="container container-edit">
             <div class="row">
                 <div class="col-lg-12">
@@ -66,8 +66,11 @@ LiViCode - Học lập trình trực tuyến
                 </div>
             </div> <!-- row -->
             <div class="row mt-30">
+<<<<<<< HEAD
                 
             @foreach($coursesFree as $key =>$course)
+=======
+>>>>>>> 9398c49b74c13a84c015c41b9cd7fa3887b8b546
                 <div class="col-lg-3 col-md-6">
                     <div class="singel-course">
                     
@@ -103,10 +106,8 @@ LiViCode - Học lập trình trực tuyến
                                     </div>
                                 </div>
                             </div>
-                           
-                        </div>   
-                    </div>  
-                    <!-- singel course -->
+                        </div>
+                    </div> <!-- singel course -->
                 </div>
             @endforeach 
                 
@@ -220,7 +221,7 @@ LiViCode - Học lập trình trực tuyến
                             </div>
                         </div>
                     </div> <!-- singel course -->
-                <!-- </div>   -->
+                </div>
             </div> <!-- course slied -->
         </div> <!-- container container-edit -->
     </section>
@@ -387,7 +388,7 @@ LiViCode - Học lập trình trực tuyến
                 </div>
             </div> <!-- course slied -->
         </div> <!-- container container-edit -->
-    </section>
+    </section> --}}
 
   
     <!--====== COURSE PART ENDS ======-->
