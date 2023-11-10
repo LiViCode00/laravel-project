@@ -11,7 +11,13 @@ class AdminController extends Controller
 {
     public function viewProfile(){
 
-        return view("pages.backend.profile");
+        if (Auth::guard('admin')->user()) {
+            return view("pages.backend.profile");
+        } else {
+            return redirect()->route("admin.login");
+        }
+
+      
     }
     public function editProfile(Admin $admin, Request $request){
        
