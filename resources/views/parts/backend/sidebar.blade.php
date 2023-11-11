@@ -11,18 +11,7 @@
             </div>
         </div>
 
-        <!-- SidebarSearch Form -->
-        <div class="form-inline">
-            <div class="input-group" data-widget="sidebar-search">
-                <input class="form-control form-control-sidebar" type="search" placeholder="Search"
-                    aria-label="Search">
-                <div class="input-group-append">
-                    <button class="btn btn-sidebar">
-                        <i class="fas fa-search fa-fw"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
+        
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
@@ -32,18 +21,66 @@
                with font-awesome or any other icon font library -->
                <li class="nav-item">
                 <a href="pages/widgets.html" class="nav-link">
-                  <i class="nav-icon fas fa-th"></i>
+                  <i class="nav-icon fa fa-home" aria-hidden="true"></i>
                   <p>
-                    Widgets
-                    <span class="right badge badge-danger">New</span>
+                      Tổng quan
                   </p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href= "" class="nav-link">
+                 <i class="nav-icon fa fa-bars" aria-hidden="true"></i>
+                  <p>
+                    Danh mục
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="{{ route('admin.category.list') }}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Danh sách</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ route('admin.category.add') }}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Thêm mới</p>
+                    </a>
+                  </li>
+                  
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a href= "" class="nav-link">
                   <i class="nav-icon fas fa-user"></i>
                   <p>
-                    Quản lý người dùng
+                    Người dùng
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href={{ route('admin.user.list') }} class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Danh sách</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href={{ route('admin.user.add') }} class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Thêm mới</p>
+                    </a>
+                  </li>
+                  
+                  
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                 <i class="nav-icon fa fa-book" aria-hidden="true"></i>
+                  <p>
+                    Khóa học
                     <i class="fas fa-angle-left right"></i>
                   </p>
                 </a>
@@ -51,56 +88,40 @@
                   <li class="nav-item">
                     <a href="pages/forms/general.html" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
-                      <p>General Elements</p>
+                      <p>Danh sách</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="pages/forms/advanced.html" class="nav-link">
+                    <a href="pages/forms/general.html" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
-                      <p>Advanced Elements</p>
+                      <p>Thêm mới</p>
                     </a>
                   </li>
-                  <li class="nav-item">
-                    <a href="pages/forms/editors.html" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Editors</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="pages/forms/validation.html" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Validation</p>
-                    </a>
-                  </li>
+                  
                 </ul>
               </li>
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-pencil"></i>
                   <p>
-                    Quản lý khóa học
+                    Giảng viên
                     <i class="fas fa-angle-left right"></i>
                   </p>
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="pages/tables/simple.html" class="nav-link">
+                    <a href="pages/forms/general.html" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
-                      <p>Simple Tables</p>
+                      <p>Danh sách</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="pages/tables/data.html" class="nav-link">
+                    <a href="pages/forms/general.html" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
-                      <p>DataTables</p>
+                      <p>Thêm mới</p>
                     </a>
                   </li>
-                  <li class="nav-item">
-                    <a href="pages/tables/jsgrid.html" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>jsGrid</p>
-                    </a>
-                  </li>
+                  
                 </ul>
               </li>
 

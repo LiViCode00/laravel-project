@@ -4,9 +4,6 @@
 @endsection
 
 
-@section('content_title')
-    Thông tin cá nhân
-@endsection
 
 @section('content')
     <section class="bg-light">
@@ -67,7 +64,7 @@
 
 
                                                         <div class="form-group col-md-12">
-                                                            <button class="btn btn-theme" type="submit">Cập nhật</button>
+                                                            <button style="background: #e9ecef" class="btn btn-theme" type="submit">Cập nhật</button>
                                                         </div>
                                                     </div>
                                                 </div>

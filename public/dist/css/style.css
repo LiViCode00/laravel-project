@@ -18,3 +18,31 @@
     background-color: #d4edda !important;
     border-color: #c3e6cb !important;
 }
+.alert-danger {
+    color: #721c24  !important;
+    background-color: #f8d7da  !important;
+    border-color: #f5c6cb  !important;
+}
+
+.form-wrapper{
+    padding: 40px;
+    background: white;
+    margin: 0 40px;
+}
+
+@media (max-width: 576px) {
+    .form-wrapper{
+        margin: 10px;
+    }
+}
+.card-header {
+    position: relative;
+}
+.action-header{
+    position: absolute;
+    right: 20px;
+}
+
+form label{
+    margin: 0 !important;
+}
