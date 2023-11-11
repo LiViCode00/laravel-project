@@ -393,8 +393,36 @@ $(function() {
         enabled:true
       }
     });
+
+
     
-    
+    $(document).ready(function() {
+      $(window).scroll(function() {
+        var sidebar = $('.sidebar');
+        var footer = $('.footer-top');
+        
+        var sidebarHeight = sidebar.outerHeight();
+        var footerOffset = footer.offset().top;
+        var windowHeight = $(window).height();
+        var scrollTop = $(window).scrollTop();
+        
+        if (scrollTop + windowHeight >= footerOffset) {
+          sidebar.css({
+            'position': 'absolute',
+            'bottom': 'auto',
+            'z-index' : '10',
+            'top': footerOffset - sidebarHeight
+          });
+        } else {
+          sidebar.css({
+            'position': 'fixed',
+            'bottom': 'auto',
+            'top': '0',
+            'z-index' : '2'
+          });
+        }
+      });
+    });
     
     
     

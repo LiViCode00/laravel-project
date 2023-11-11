@@ -1,34 +1,34 @@
 @extends('layouts.clients.client')
 @section('title')
-    Chi tiet khoa hoc
+    Chi tiết khóa học
 @endsection
 
 @section('content')
-<section id="corses-singel" class="pt-40 pb-120 gray-bg">
+<section id="corses-singel" class="pt-40 pb-120">
     <div class="container container-edit">
         <div class="row">
             <div class="col-lg-8">
                 <div class="corses-singel-left mt-30">
                     <div class="title">
-                        <h3>Learn basis javascirpt from start for beginner</h3>
+                        <h3>{{$course->name}}</h3>
                     </div> <!-- title -->
                     <div class="course-terms">
                         <ul>
                             <li>
                                 <div class="teacher-name">
                                     <div class="thum">
-                                        <img src="{{asset('client/images/course/teacher/t-1.jpg')}}" alt="Teacher">
+                                        <img src="/{{$course->teacher_img}}" alt="Teacher">
                                     </div>
                                     <div class="name">
                                         <span>Teacher</span>
-                                        <h6>Mark anthem</h6>
+                                        <h6>{{$course->teacher_name}}</h6>
                                     </div>
                                 </div>
                             </li>
                             <li>
                                 <div class="course-category">
                                     <span>Category</span>
-                                    <h6>Programaming </h6>
+                                    <h6>{{$course->cate_name}} </h6>
                                 </div>
                             </li>
                             <li>
@@ -40,7 +40,7 @@
                                         <li><a href="#"><i class="fa fa-star"></i></a></li>
                                         <li><a href="#"><i class="fa fa-star"></i></a></li>
                                         <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                        <li class="rating">(20 Reviws)</li>
+                                        <li class="rating">(20 Reviews)</li>
                                     </ul>
                                 </div>
                             </li>
@@ -48,13 +48,13 @@
                     </div> <!-- course terms -->
                     
                     <div class="corses-singel-image pt-50">
-                        <img src="{{asset('client/images/course/cu-1.jpg')}}" alt="Courses">
+                        <img src="/{{$course->image_path}}" alt="Courses">
                     </div> <!-- corses singel image -->
                     
                     <div class="corses-tab mt-30">
                         <ul class="nav nav-justified" id="myTab" role="tablist">
                             <li class="nav-item">
-                                <a class="active" id="overview-tab" data-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">Overview</a>
+                                <a class="active" id="overview-tab" data-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true" style="border-top-left-radius: 20px;">Overview</a>
                             </li>
                             <li class="nav-item">
                                 <a id="curriculam-tab" data-toggle="tab" href="#curriculam" role="tab" aria-controls="curriculam" aria-selected="false">Curriculam</a>
@@ -63,7 +63,7 @@
                                 <a id="instructor-tab" data-toggle="tab" href="#instructor" role="tab" aria-controls="instructor" aria-selected="false">Instructor</a>
                             </li>
                             <li class="nav-item">
-                                <a id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Reviews</a>
+                                <a id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false" style="border-top-right-radius: 20px;">Reviews</a>
                             </li>
                         </ul>
                         
@@ -71,12 +71,16 @@
                             <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
                                 <div class="overview-description">
                                     <div class="singel-description pt-40">
-                                        <h6>Course Summery</h6>
-                                        <p>Lorem ipsum gravida nibh vel velit auctor aliquetn sollicitudirem quibibendum auci elit cons equat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus .</p>
+                                        <h6>Tóm tắt khoá học</h6>
+                                        <p>{{$course->detail}}</p>
                                     </div>
                                     <div class="singel-description pt-40">
-                                        <h6>Requrements</h6>
-                                        <p>Lorem ipsum gravida nibh vel velit auctor aliquetn sollicitudirem quibibendum auci elit cons equat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus .</p>
+                                        <h6>Bạn sẽ học được gì? </h6>
+                                        <p><span>	&#10004;</span>Hiểu chi tiết về các khái niệm cơ bản trong "{{$course->name}}"</p>
+                                        <p><span>	&#10004;</span>Tự tin khi phỏng vấn với kiến thức vững chắc</p>
+                                        <p><span>	&#10004;</span>Xây dựng được website đầu tiên</p>
+                                        <p><span>	&#10004;</span>Nhận chứng chỉ khóa học do LiViCode cấp</p>
+                                        <p><span>	&#10004;</span>Xây dựng được website đầu tiên kết hợp với  {{$course->name}}</p>
                                     </div>
                                 </div> <!-- overview description -->
                             </div>
@@ -220,10 +224,10 @@
                                 <div class="instructor-cont">
                                     <div class="instructor-author">
                                         <div class="author-thum">
-                                            <img src="{{asset('client/images/instructor/i-1.jpg')}}" alt="Instructor">
+                                            <img src="/{{$course->teacher_img}}" alt="Instructor">
                                         </div>
                                         <div class="author-name">
-                                            <a href="#"><h5>Sumon Hasan</h5></a>
+                                            <a href="#"><h5>{{$course->teacher_name}}</h5></a>
                                             <span>Senior WordPress Developer</span>
                                             <ul class="social">
                                                 <li><a href="#"><i class="fa fa-facebook-f"></i></a></li>
@@ -234,7 +238,10 @@
                                         </div>
                                     </div>
                                     <div class="instructor-description pt-25">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus fuga ratione molestiae unde provident quibusdam sunt, doloremque. Error omnis mollitia, ex dolor sequi. Et, quibusdam excepturi. Animi assumenda, consequuntur dolorum odio sit inventore aliquid, optio fugiat alias. Veritatis minima, dicta quam repudiandae repellat non sit, distinctio, impedit, expedita tempora numquam?</p>
+                                    <?php $sentences = explode('<br><br>', $course->teacher_des); ?>
+                                        @foreach($sentences as $sentence)
+                                        <p class="mb-3"><span class="tick">&#10004;</span> {{ $sentence }}</p>
+                                        @endforeach
                                     </div>
                                 </div> <!-- instructor cont -->
                             </div>

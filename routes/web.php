@@ -5,8 +5,11 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
+
 
 Auth::routes();
 
@@ -23,7 +26,7 @@ Route::get('/register' , function(){
 
 Route::prefix('courses')->name('courses.')->group(function () {
     Route::get('/', [CourseController::class,'index'])->name('view');
-    Route::get('/course-detail' , [CourseController::class,'courseDetail'])->name('courseDetail');
+    Route::get('/course-detail/{id}' , [CourseController::class,'courseDetail'])->name('courseDetail');
 });
 
 Route::prefix('teachers')->name('teachers.')->group(function () {
@@ -41,5 +44,15 @@ Route::prefix('admin')->group(function () {
             return view('layouts.backend.backend');
         });
 });
+
+Route::prefix('user')->name('user.')->group(function () {
+        Route::get('/edit/{user}' , [UserController::class,'viewProfile'])->name('view-profile');
+        Route::post('/edit/{user}' , [UserController::class,'editProfile'])->name('edit-profile');
+    
+});
+
+include('admin.php');
+
+
 
 

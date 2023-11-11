@@ -54,7 +54,7 @@
         <div class="col-xl-edit d-none d-xl-block">
             @include('parts.clients.sidebar')
         </div>
-        <div class=" col-sm-12 col-xl-edit2">
+        <div style="min-height: calc(100vh - 60px)" class=" col-sm-12 col-xl-edit2">
             @yield('content')
         </div>
     </div>

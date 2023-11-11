@@ -18,49 +18,49 @@ class CourseSeeder extends Seeder
     public function run()
     {
         $courses = [
-            [
-                "name" => 'Mobile App Development with Flutter & Dart (iOS and Android)',
-                "detail" => 'The Complete iOS and Android Mobile App Development Course with Flutter and Dart (2022).',
+            [   
+                "name" => 'HTML and CSS for beginer',
+                "detail" => 'This course is designed for beginners who want to learn HTML and CSS. It covers the basics of HTML tags, CSS selectors, and styling web pages.',
                 "image_path" => 'client/images/course/cu-1.jpg',
                 "price" => '1000000',
-                "sale_price" => '8990000',
+                "sale_price" => '899000',
                 "teacher_id" => '1',
                 "category_id" => '2'
             ],
-            [
-                "name" => 'Oracle Java Certification.',
-                "detail" => 'This course will help you learn the steps to becoming an Oracle Certified Associate (OCA) and get a higher paying job!',
+            [    
+                "name" => 'C++ from basic to advanced',
+                "detail" => 'This course will help you learn the steps to improve argorithm and structure in C++',
                 "image_path" => 'client/images/course/cu-2.jpg',
-                "price" => '100',
-                "sale_price" => '89',
+                "price" => '1500000',
+                "sale_price" => '900000',
                 "teacher_id" => '2',
                 "category_id" => '6'
             ],
 
-            [
+            [   
                 "name" => 'Web Development with JavaScript and Node.js',
-                "detail" => 'Learn to build robust and scalable web applications using JavaScript and Node.js, a popular web development stack.',
+                "detail" => 'Learn to build robust and scalable web applications using JavaScript.This is a popular web development stack.',
                 "image_path" => 'client/images/course/cu-3.jpg',
-                "price" => '150',
+                "price" => '1700000',
                 "sale_price" => '0',
-                "teacher_id" => '3',
+                "teacher_id" => '1',
                 "category_id" => '1'
             ],
-            [
-                "name" => 'Python for Data Science and Machine Learning',
-                "detail" => 'Master the essential skills of data science and machine learning using Python, one of the most popular programming languages in the field.',
+            [    
+                "name" => 'NodeJS And ExpressJS',
+                "detail" => 'Learn to how to use NodeJS And ExpressJS and built the project',
                 "image_path" => 'client/images/course/cu-4.jpg',
-                "price" => '200',
-                "sale_price" => '160',
-                "teacher_id" => '3',
+                "price" => '2000000',
+                "sale_price" => '1200000',
+                "teacher_id" => '2',
                 "category_id" => '3'
             ],
-            [
+            [    
                 "name" => 'Mastering React.js for Frontend Web Development',
                 "detail" => 'Learn to build fast and efficient web applications with React.js, a popular JavaScript library for building user interfaces.',
                 "image_path" => 'client/images/course/cu-5.jpg',
                 "price" => '0',
-                "sale_price" => '150',
+                "sale_price" => '0',
                 "teacher_id" => '2',
                 "category_id" => '1'
             ]
@@ -70,7 +70,5 @@ class CourseSeeder extends Seeder
         foreach ($courses as $course) {
             Course::updateOrCreate($course);
         }
-
-
     }
 }

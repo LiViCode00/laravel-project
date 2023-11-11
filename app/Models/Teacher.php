@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Teacher extends Model
 {
     use HasFactory;
+
+    protected $table = 'teachers';
+
+    public function courses()
+    {
+        return $this->hasMany(Course::class);
+    }
+
+    public static function getTeachersAtHome(){
+        return self::take(4)->get();
+    }
 }
