@@ -22,6 +22,7 @@ return new class extends Migration
             $table->integer('group_id')->unsigned()->default(0);
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

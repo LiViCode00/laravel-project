@@ -37,13 +37,13 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="pages/forms/general.html" class="nav-link">
+                    <a href="{{ route('admin.category.list') }}" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Danh sách</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="pages/forms/general.html" class="nav-link">
+                    <a href="{{ route('admin.category.add') }}" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Thêm mới</p>
                     </a>

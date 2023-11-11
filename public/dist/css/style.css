@@ -38,7 +38,11 @@
 .card-header {
     position: relative;
 }
-.card-header a{
+.action-header{
     position: absolute;
     right: 20px;
+}
+
+form label{
+    margin: 0 !important;
 }

@@ -17,10 +17,21 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-        Admin::updateOrCreate([
-            "name"=> "NL Admin",
-            "email"=> "admin@gmail.com",
-            "password"=> Hash::make("123456"),
-        ]);
+
+        $admins = [
+            [
+                "name" => "Nhat Linh Admin",
+                "email" => "admin@gmail.com",
+                "password" => Hash::make("123456"),
+            ],
+            [
+                "name" => "Admin",
+                "email" => "admin01@gmail.com",
+                "password" => Hash::make("123456"),
+            ]
+        ];
+        foreach ($admins as $admin) {
+            Admin::updateOrCreate($admin);
+        }
     }
 }
