@@ -393,12 +393,62 @@ $(function() {
         enabled:true
       }
     });
+
+//  sidebar
     
+    $(document).ready(function() {
+      $(window).scroll(function() {
+        var sidebar = $('.sidebar');
+        var footer = $('.footer-top');
+        
+        var sidebarHeight = sidebar.outerHeight();
+        var footerOffset = footer.offset().top;
+        var windowHeight = $(window).height();
+        var scrollTop = $(window).scrollTop();
+        
+        if (scrollTop + windowHeight >= footerOffset) {
+          sidebar.css({
+            'position': 'absolute',
+            'bottom': 'auto',
+            'z-index' : '10',
+            'top': footerOffset - sidebarHeight
+          });
+        } else {
+          sidebar.css({
+            'position': 'fixed',
+            'bottom': 'auto',
+            'top': '0',
+            'z-index' : '2'
+          });
+        }
+      });
+    });
+
+
+    // hanh dong chuyen trang tren course cua thanh sidebar
+
+
+    const links = document.querySelectorAll('.cate-list .cate-item');
     
+    links.forEach(link => {
+        link.addEventListener('click', (event) => {
+            event.preventDefault(); // Ngăn chặn hành vi mặc định của liên kết
     
+            // Loại bỏ class 'item-background' từ tất cả các liên kết
+            links.forEach(l => l.classList.remove('item-background'));
     
+            // Thêm class 'item-background' cho liên kết được click
+            link.classList.add('item-background');
     
-    
+            const href = link.getAttribute('href');
+            // Chuyển hướng đến trang mới
+            window.location.href = href;
+        });
+    });
+
+
+   
+
     
     
     

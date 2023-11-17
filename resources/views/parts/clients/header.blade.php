@@ -1,15 +1,12 @@
-<header id="header-part">
-
-
-
-    <div class="header-logo-support pt-20 pb-20">
-        <div class="container-fluid">
+<header id="header-part" class="border-bottom">
+    <div class="header-logo-support pt-3 pb-4">
+        <div class="container-fluid "> 
             <div class="row">
                 <div class="col-lg-4 d-none d-xl-block">
                     <div class="logo">
                         <a class="d-flex justify-content-center align-items-center" href="{{ route('home') }}">
-                            <img src="" alt="">
-                            <h2>LiVi<span>Code</span></h2>
+                            <img class="logo mx-3" src="/client/images/logo.png" alt="logo">
+                            <h6 class="content-logo">LiVi<span>Code</span></h6>
                         </a>
                     </div>
                 </div>
@@ -26,8 +23,8 @@
 
                     @guest
                         @if (Route::has('login'))
-                            <div class="button float-left">
-                                <a href="{{ route('login') }}" class="main-btn">Đăng nhập</a>
+                            <div class=" button float-left">
+                                <a href="{{ route('login') }}" class="login-btn mr-2 my-1">Đăng nhập</a>
                             </div>
                         @endif
 
@@ -46,7 +43,6 @@
                             </p>
                             <ul id="hiddenBox" class="user-detail">
                                 <div>
-                                    <a href={{ route('user.view-profile', ['user'=> Auth::user()]) }}>Thông tin cá nhân</a>
                                     <a href="">Viết blog</a>
                                     <a href="">Bài viết của tôi</a>
                                     <a href="">Khóa học của tôi</a>

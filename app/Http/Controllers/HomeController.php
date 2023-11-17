@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Models\Course;
+use App\Models\Post;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 
 
@@ -10,10 +12,17 @@ class HomeController extends Controller
 
 
 {
-
     private $coursesForFree;
+    private $paidCourse;
+    private $teacherAtHome;
+    private $postAtHome;
+    private $courseCate;
+    
     public function __construct() {
         $this->coursesForFree = Course::getCoursesForFree();
+        $this->paidCourse = Course::getPaidCourse();
+        $this->teacherAtHome = Teacher::getTeachersAtHome();
+        $this->postAtHome = Post::getPostsAtHome();
     }
 
 
@@ -36,6 +45,12 @@ class HomeController extends Controller
     public function index()
 
     {
-        return view('pages.client.home', ['coursesFree' => $this->coursesForFree]);
+        return view('pages.client.home', [
+            'coursesFree' => $this->coursesForFree,
+            'coursePaid' => $this->paidCourse,
+            'teachers' => $this->teacherAtHome,
+            'posts' => $this->postAtHome,
+            
+        ]);
     }
 }
