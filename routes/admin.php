@@ -22,12 +22,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         Route::get('/logout', [LoginController::class, 'logout']);
 
-        Route::get('/edit/{admin}', [AdminController::class, 'viewProfile'])->name('view-profile');
+        Route::get('/edit/{admin}', [AdminController::class, 'viewProfile'])->middleware('auth:admin')->name('view-profile');
 
-        Route::post('/edit/{admin}', [AdminController::class, 'editProfile'])->name('edit-profile');
+        Route::post('/edit/{admin}', [AdminController::class, 'editProfile'])->middleware('auth:admin')->name('edit-profile');
 
 
-        Route::prefix('user')->name('user.')->group(function () {
+        Route::prefix('user')->middleware('auth:admin')->name('user.')->group(function () {
                 Route::get('/add', [UserController::class, 'add'])->name('add');
               
                 Route::post('/add', [UserController::class, 'postAdd'])->name('post-add');
@@ -52,14 +52,14 @@ Route::prefix('admin')->name('admin.')->group(function () {
               });
         
         
-        Route::prefix('category')->name('category.')->group(function () {
+        Route::prefix('category')->middleware('auth:admin')->name('category.')->group(function () {
                 Route::get('/add', [CategoryController::class, 'add'])->name('add');
 
                 Route::post('/add', [CategoryController::class, 'postAdd'])->name('post-add');
 
                 Route::get('/list', [CategoryController::class, 'listCategory'])->name('list');
 
-                Route::get('/profile/{category}', [CategoryController::class, 'profile'])->name('profile');
+                Route::get('/view/{category}', [CategoryController::class, 'view'])->name('view');
 
                 Route::get('/edit/{category}', [CategoryController::class, 'edit'])->name('edit');
 

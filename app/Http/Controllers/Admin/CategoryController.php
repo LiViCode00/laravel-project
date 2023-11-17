@@ -43,9 +43,10 @@ class CategoryController extends Controller
         return view("pages.backend.categories.list", compact("categories"));
     }
 
-    public function profile(Category $category)
+    public function view(Category $category)
     {
-        return view("pages.backend.categories.profile");
+        $courses= $category->courses()->paginate(6);
+        return view("pages.backend.categories.courses-list",compact(["category","courses"]));
     }
 
 
