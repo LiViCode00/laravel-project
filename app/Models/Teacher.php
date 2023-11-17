@@ -4,12 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+<<<<<<< HEAD
 use Illuminate\Support\Facades\DB;
+=======
+use Illuminate\Database\Eloquent\Relations\HasMany;
+>>>>>>> a78391d907f695b439e3f10debbcf1e9b0a28ab7
 
 class Teacher extends Model
 {
     use HasFactory;
 
+<<<<<<< HEAD
     protected $table = 'teachers';
 
     public function courses()
@@ -42,4 +47,9 @@ class Teacher extends Model
 
         return $teacher;
     }
+=======
+    public function courses(): HasMany{
+        return $this->hasMany(Course::class);
+    }
+>>>>>>> a78391d907f695b439e3f10debbcf1e9b0a28ab7
 }

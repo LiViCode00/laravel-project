@@ -1,6 +1,6 @@
 @extends('layouts.backend.backend')
 @section('page_title')
-    Danh sách danh mục
+    Danh sách khóa học
 @endsection
 
 
@@ -14,10 +14,8 @@
         @endif
 
         <div class="d-flex align-items-center card-header">
-            <h3 class="card-title">Danh sách danh mục</h3>
-            <div class="action-header">
-                <a href='{{ route('admin.category.add') }}'> <button class="btn btn-primary">Thêm mới</button></a>
-            </div>
+            <h3 class="card-title">Danh sách khóa học</h3>
+            
         </div>
 
         <!-- /.card-header -->
@@ -43,50 +41,50 @@
                                         aria-sort="ascending" style="">
                                         ID</th>
                                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
-                                        colspan="1" aria-label="Browser: activate to sort column ascending">Tên danh mục
+                                        colspan="1" aria-label="Browser: activate to sort column ascending">Tên khóa học
                                     </th>
                                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
-                                    colspan="1" aria-label="Browser: activate to sort column ascending">Tạo bởi</th>
+                                        colspan="1" aria-label="Browser: activate to sort column ascending">Hình ảnh</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
+                                        colspan="1" aria-label="CSS grade: activate to sort column ascending"
+                                        style="">Giáo viên</th>
                                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
                                         colspan="1" aria-label="Engine version: activate to sort column ascending">
-                                        Created at</th>
+                                        Mô tả</th>
                                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
                                         colspan="1" aria-label="CSS grade: activate to sort column ascending"
-                                        style="">Updated at</th>
+                                        style="">Giá bán</th>
                                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
                                         colspan="1" aria-label="CSS grade: activate to sort column ascending"
-                                        style="">Hành động</th>
-                                    
+                                        style="">Khuyến mãi</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
+                                        colspan="1" aria-label="CSS grade: activate to sort column ascending"
+                                        style="">Trạng thái</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
+                                        colspan="1" aria-label="CSS grade: activate to sort column ascending"
+                                        style="">Tài liệu</th>
+                                   
+
+
+
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($categories as $category)
+                                @foreach ($courses as $course)
                                     <tr class=''>
 
                                         <td class="sorting_1 dtr-control" tabindex="0" style="">
-
-                                            {{ $category->id }}
+                                            {{ $course->id }}
                                         </td>
-                                        <td class="">{{ $category->name }}</td>
-                                        <td>{{$category->admin->name}}</td>
-                                        <td style="">{{ $category->created_at }}</td>
-                                        <td style="">{{ $category->updated_at }}</td>
-                                        <td>
-
-                                            <a href='{{ route('admin.category.view', ['category' => $category]) }}'><button
-                                                    class="btn btn-primary btn-sm">Xem</button></a>
-                                            <a href='{{ route('admin.category.edit', ['category' => $category]) }}'> <button
-                                                    class="btn btn-info btn-sm">Sửa</button></a>
-                                            <a href='{{ route('admin.category.delete', ['category' => $category]) }}'>
-                                                <button onclick="return confirmDelete()"
-                                                    class="btn btn-danger btn-sm">Xóa</button>
-                                            </a>
-
-                                        </td>
-                                       
-
-
-
+                                        <td class="">{{ $course->name }}</td>
+                                        <td>{{ $course->image_path }}</td>
+                                        <td>{{ $course->teacher->name }}</td>
+                                        <td>{{ $course->detail }}</td>
+                                        <td>{{ $course->price }}</td>
+                                        <td style="">{{ $course->sale_price }}</td>
+                                        <td style="">{{ $course->status }}</td>
+                                        <td style="">{{ $course->is_document }}</td>
+                                     
                                     </tr>
                                 @endforeach
 
@@ -99,17 +97,17 @@
 
                     <div class="col-sm-12 col-md-5">
                         <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">Hiển thị
-                            {{ $categories->firstItem() }} - {{ $categories->lastItem() }} / {{ $categories->total() }}
-                            danh mục.
+                            {{ $courses->firstItem() }} - {{ $courses->lastItem() }} / {{ $courses->total() }}
+                            khóa học.
                         </div>
                     </div>
-                    {!! $categories->links() !!}
+                    {!! $courses->links() !!}
                 </div>
             </div>
         </div>
         <!-- /.card-body -->
     </div>
-   
+  
 @endsection
 
 <script>

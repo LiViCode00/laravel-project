@@ -4,13 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+<<<<<<< HEAD
 use Illuminate\Support\Facades\DB;
+=======
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+>>>>>>> a78391d907f695b439e3f10debbcf1e9b0a28ab7
 
 class Course extends Model
 {
     use HasFactory;
     protected $table = 'courses';
 
+<<<<<<< HEAD
     public function teacher()
     {
         return $this->belongsTo(Teacher::class);
@@ -24,6 +29,13 @@ class Course extends Model
         ->paginate($perPage);
 
         return $courses;
+=======
+    public function category(): BelongsTo{
+     return $this->belongsTo(Category::class);
+    }
+    public function teacher(): BelongsTo{
+     return $this->belongsTo(Teacher::class);
+>>>>>>> a78391d907f695b439e3f10debbcf1e9b0a28ab7
     }
 
    public static function getCoursesForFree(){
