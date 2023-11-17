@@ -394,7 +394,7 @@ $(function() {
       }
     });
 
-
+//  sidebar
     
     $(document).ready(function() {
       $(window).scroll(function() {
@@ -423,10 +423,32 @@ $(function() {
         }
       });
     });
+
+
+    // hanh dong chuyen trang tren course cua thanh sidebar
+
+
+    const links = document.querySelectorAll('.cate-list .cate-item');
     
+    links.forEach(link => {
+        link.addEventListener('click', (event) => {
+            event.preventDefault(); // Ngăn chặn hành vi mặc định của liên kết
     
+            // Loại bỏ class 'item-background' từ tất cả các liên kết
+            links.forEach(l => l.classList.remove('item-background'));
     
+            // Thêm class 'item-background' cho liên kết được click
+            link.classList.add('item-background');
     
+            const href = link.getAttribute('href');
+            // Chuyển hướng đến trang mới
+            window.location.href = href;
+        });
+    });
+
+
+   
+
     
     
     

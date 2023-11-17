@@ -54,16 +54,16 @@
                     <div class="corses-tab mt-30">
                         <ul class="nav nav-justified" id="myTab" role="tablist">
                             <li class="nav-item">
-                                <a class="active" id="overview-tab" data-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true" style="border-top-left-radius: 20px;">Overview</a>
+                                <a class="active" id="overview-tab" data-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true" style="border-top-left-radius: 20px;">Tổng quan</a>
                             </li>
                             <li class="nav-item">
-                                <a id="curriculam-tab" data-toggle="tab" href="#curriculam" role="tab" aria-controls="curriculam" aria-selected="false">Curriculam</a>
+                                <a id="curriculam-tab" data-toggle="tab" href="#curriculam" role="tab" aria-controls="curriculam" aria-selected="false">Chương trình học</a>
                             </li>
                             <li class="nav-item">
-                                <a id="instructor-tab" data-toggle="tab" href="#instructor" role="tab" aria-controls="instructor" aria-selected="false">Instructor</a>
+                                <a id="instructor-tab" data-toggle="tab" href="#instructor" role="tab" aria-controls="instructor" aria-selected="false">Người hướng dẫn</a>
                             </li>
                             <li class="nav-item">
-                                <a id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false" style="border-top-right-radius: 20px;">Reviews</a>
+                                <a id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false" style="border-top-right-radius: 20px;">Đánh giá</a>
                             </li>
                         </ul>
                         
@@ -87,136 +87,54 @@
                             <div class="tab-pane fade" id="curriculam" role="tabpanel" aria-labelledby="curriculam-tab">
                                 <div class="curriculam-cont">
                                     <div class="title">
-                                        <h6>Learn basis javascirpt Lecture Started</h6>
+                                        <h6>Dưới đây là tất cả lessons của khóa học này</h6>
                                     </div>
                                     <div class="accordion" id="accordionExample">
-                                        <div class="card">
-                                            <div class="card-header" id="headingOne">
-                                                <a href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                    <ul>
-                                                        <li><i class="fa fa-file-o"></i></li>
-                                                        <li><span class="lecture">Lecture 1.1</span></li>
-                                                        <li><span class="head">What is javascirpt</span></li>
-                                                        <li><span class="time d-none d-md-block"><i class="fa fa-clock-o"></i> <span> 00.30.00</span></span></li>
-                                                    </ul>
-                                                </a>
-                                            </div>
 
-                                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                                                <div class="card-body">
-                                                    <p>Ut quis scelerisque risus, et viverra nisi. Phasellus ultricies luctus augue, eget maximus felis laoreet quis. Maecenasbibendum tempor eros.</p>
+                                        @for ($i = 0; $i < count($lessons); $i++)
+                                            @if ($i ==0)
+                                                <div class="card">
+                                                    <div class="card-header" id="">
+                                                        <a href="#" class="collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="headingOne">
+                                                            <ul>
+                                                                <li><i class="fa fa-file-o"></i></li>
+                                                                <li><span class="lecture">Lecture {{$i+1}}.</span></li>
+                                                                <li><span class="head">{{$lessons[$i]->name}}</span></li>
+                                                                <li><span class="time d-none d-md-block"><i class="fa fa-clock-o"></i> <span> {{number_format($lessons[$i]->durations, 2, '.', '')}}</span></span></li>
+                                                            </ul>
+                                                        </a>
+                                                    </div>
+
+                                                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                                        <div class="card-body pt-3">
+                                                            <p>{{$lessons[$i]->description}}</p>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div>
+                                            
                                         
-                                        <div class="card">
-                                            <div class="card-header" id="headingTow">
-                                                <a href="#" data-toggle="collapse" class="collapsed" data-target="#collapseTow" aria-expanded="true" aria-controls="collapseTow">
-                                                    <ul>
-                                                        <li><i class="fa fa-file-o"></i></li>
-                                                        <li><span class="lecture">Lecture 1.2</span></li>
-                                                        <li><span class="head">What is javascirpt</span></li>
-                                                        <li><span class="time d-none d-md-block"><i class="fa fa-clock-o"></i> <span> 00.30.00</span></span></li>
-                                                    </ul>
-                                                </a>
-                                            </div>
+                                            @else
+                                                <div class="card">
+                                                    <div class="card-header" id="headingTow">
+                                                        <a href="#" data-toggle="collapse" class="collapsed" data-target="#collapseTow" aria-expanded="true" aria-controls="collapseTow">
+                                                            <ul>
+                                                                <li><i class="fa fa-file-o"></i></li>
+                                                                <li><span class="lecture">Lecture {{$i+1}},</span></li>
+                                                                <li><span class="head">{{$lessons[$i]->name}}</span></li>
+                                                                <li><span class="time d-none d-md-block"><i class="fa fa-clock-o"></i> <span> {{number_format($lessons[$i]->durations, 2, '.', '')}}</span></span></li>
+                                                            </ul>
+                                                        </a>
+                                                    </div>
 
-                                            <div id="collapseTow" class="collapse" aria-labelledby="headingTow" data-parent="#accordionExample">
-                                                <div class="card-body">
-                                                    <p>Ut quis scelerisque risus, et viverra nisi. Phasellus ultricies luctus augue, eget maximus felis laoreet quis. Maecenasbibendum tempor eros.</p>
+                                                    <div id="collapseTow" class="collapse" aria-labelledby="headingTow" data-parent="#accordionExample">
+                                                        <div class="card-body">
+                                                            <p>{{$lessons[$i]->description}}</p>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="card">
-                                            <div class="card-header" id="headingThree">
-                                                <a href="#" data-toggle="collapse" class="collapsed" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                                    <ul>
-                                                        <li><i class="fa fa-file-o"></i></li>
-                                                        <li><span class="lecture">Lecture 1.3</span></li>
-                                                        <li><span class="head">What is javascirpt</span></li>
-                                                        <li><span class="time d-none d-md-block"><i class="fa fa-clock-o"></i> <span> 00.30.00</span></span></li>
-                                                    </ul>
-                                                </a>
-                                            </div>
-                                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                                                <div class="card-body">
-                                                    <p>Ut quis scelerisque risus, et viverra nisi. Phasellus ultricies luctus augue, eget maximus felis laoreet quis. Maecenasbibendum tempor eros.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="card">
-                                            <div class="card-header" id="headingFore">
-                                                <a href="#" data-toggle="collapse" class="collapsed" data-target="#collapseFore" aria-expanded="false" aria-controls="collapseFore">
-                                                    <ul>
-                                                        <li><i class="fa fa-file-o"></i></li>
-                                                        <li><span class="lecture">Lecture 1.4</span></li>
-                                                        <li><span class="head">What is javascirpt</span></li>
-                                                        <li><span class="time d-none d-md-block"><i class="fa fa-clock-o"></i> <span> 00.30.00</span></span></li>
-                                                    </ul>
-                                                </a>
-                                            </div>
-                                            <div id="collapseFore" class="collapse" aria-labelledby="headingFore" data-parent="#accordionExample">
-                                                <div class="card-body">
-                                                    <p>Ut quis scelerisque risus, et viverra nisi. Phasellus ultricies luctus augue, eget maximus felis laoreet quis. Maecenasbibendum tempor eros.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="card">
-                                            <div class="card-header" id="headingFive">
-                                                <a href="#" data-toggle="collapse" class="collapsed" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                                                    <ul>
-                                                        <li><i class="fa fa-file-o"></i></li>
-                                                        <li><span class="lecture">Lecture 1.5</span></li>
-                                                        <li><span class="head">What is javascirpt</span></li>
-                                                        <li><span class="time d-none d-md-block"><i class="fa fa-clock-o"></i> <span> 00.30.00</span></span></li>
-                                                    </ul>
-                                                </a>
-                                            </div>
-                                            <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
-                                                <div class="card-body">
-                                                    <p>Ut quis scelerisque risus, et viverra nisi. Phasellus ultricies luctus augue, eget maximus felis laoreet quis. Maecenasbibendum tempor eros.</p>
-                                                </div>
-                                            </div>
-                                        </div>
+                                                @endif
+                                        @endfor
                                         
-                                        <div class="card">
-                                            <div class="card-header" id="headingSix">
-                                                <a href="#" data-toggle="collapse" class="collapsed" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                                                    <ul>
-                                                        <li><i class="fa fa-file-o"></i></li>
-                                                        <li><span class="lecture">Lecture 1.6</span></li>
-                                                        <li><span class="head">What is javascirpt</span></li>
-                                                        <li><span class="time d-none d-md-block"><i class="fa fa-clock-o"></i> <span> 00.30.00</span></span></li>
-                                                    </ul>
-                                                </a>
-                                            </div>
-                                            <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionExample">
-                                                <div class="card-body">
-                                                    <p>Ut quis scelerisque risus, et viverra nisi. Phasellus ultricies luctus augue, eget maximus felis laoreet quis. Maecenasbibendum tempor eros.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="card">
-                                            <div class="card-header" id="headingSeven">
-                                                <a href="#" data-toggle="collapse" class="collapsed" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
-                                                    <ul>
-                                                        <li><i class="fa fa-file-o"></i></li>
-                                                        <li><span class="lecture">Lecture 1.7</span></li>
-                                                        <li><span class="head">What is javascirpt</span></li>
-                                                        <li><span class="time d-none d-md-block"><i class="fa fa-clock-o"></i> <span> 00.30.00</span></span></li>
-                                                    </ul>
-                                                </a>
-                                            </div>
-                                            <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordionExample">
-                                                <div class="card-body">
-                                                    <p>Ut quis scelerisque risus, et viverra nisi. Phasellus ultricies luctus augue, eget maximus felis laoreet quis. Maecenasbibendum tempor eros.</p>
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div> <!-- curriculam cont -->
                             </div>
@@ -238,7 +156,7 @@
                                         </div>
                                     </div>
                                     <div class="instructor-description pt-25">
-                                    <?php $sentences = explode('<br><br>', $course->teacher_des); ?>
+                                        <?php $sentences = explode('<br><br>', $course->teacher_des); ?>
                                         @foreach($sentences as $sentence)
                                         <p class="mb-3"><span class="tick">&#10004;</span> {{ $sentence }}</p>
                                         @endforeach
@@ -248,9 +166,11 @@
                             <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
                                 <div class="reviews-cont">
                                     <div class="title">
-                                        <h6>Student Reviews</h6>
+                                        <h6>Đánh giá</h6>
                                     </div>
                                     <ul>
+
+                                        @foreach ($reviews as $review)
                                        <li>
                                            <div class="singel-reviews">
                                                 <div class="reviews-author">
@@ -258,12 +178,12 @@
                                                         <img src="{{asset('client/images/review/r-1.jpg')}}" alt="Reviews">
                                                     </div>
                                                     <div class="author-name">
-                                                        <h6>Bobby Aktar</h6>
+                                                        <h6>{{$review->user_name}}</h6>
                                                         <span>April 03, 2019</span>
                                                     </div>
                                                 </div>
                                                 <div class="reviews-description pt-20">
-                                                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which.</p>
+                                                    <p>{{$review->comment}}</p>
                                                     <div class="rating">
                                                         <ul>
                                                             <li><i class="fa fa-star"></i></li>
@@ -277,68 +197,43 @@
                                                 </div>
                                             </div> <!-- singel reviews -->
                                        </li>
-                                       <li>
-                                           <div class="singel-reviews">
-                                                <div class="reviews-author">
-                                                    <div class="author-thum">
-                                                        <img src="{{asset('client/images/review/r-2.jpg')}}" alt="Reviews">
-                                                    </div>
-                                                    <div class="author-name">
-                                                        <h6>Humayun Ahmed</h6>
-                                                        <span>April 13, 2019</span>
-                                                    </div>
-                                                </div>
-                                                <div class="reviews-description pt-20">
-                                                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which.</p>
-                                                    <div class="rating">
-                                                        <ul>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                        </ul>
-                                                        <span>/ 5 Star</span>
-                                                    </div>
-                                                </div>
-                                            </div> <!-- singel reviews -->
-                                       </li>
-                                       <li>
-                                           <div class="singel-reviews">
-                                                <div class="reviews-author">
-                                                    <div class="author-thum">
-                                                        <img src="{{asset('client/images/review/r-3.jpg')}}" alt="Reviews">
-                                                    </div>
-                                                    <div class="author-name">
-                                                        <h6>Tania Aktar</h6>
-                                                        <span>April 20, 2019</span>
-                                                    </div>
-                                                </div>
-                                                <div class="reviews-description pt-20">
-                                                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which.</p>
-                                                    <div class="rating">
-                                                        <ul>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                        </ul>
-                                                        <span>/ 5 Star</span>
-                                                    </div>
-                                                </div>
-                                            </div> <!-- singel reviews -->
-                                       </li>
+                                       @endforeach
+
+                                       <div class="row">
+                                            <div class="col-lg-12">
+                                                <nav class="courses-pagination mt-50">
+                                                    <ul class="pagination justify-content-center">
+                                                        <li class="page-item">
+                                                            <a href="{{$reviews->previousPageUrl()}}" aria-label="Previous">
+                                                                <i class="fa fa-angle-left"></i>
+                                                            </a>
+                                                        </li>
+                                                        <li class="page-item"><a class="{{ $reviews->currentPage() == 1 ? 'active' : '' }}" href="{{$reviews->url(1)}}">1</a></li>
+
+                                                        @for ($i = 2; $i <= $reviews->lastPage(); $i++)
+                                                            <li class="page-item">
+                                                                <a href="{{ $reviews->url($i) }}" class="{{ $reviews->currentPage() == $i ? 'active' : '' }}">{{ $i }}</a>
+                                                            </li>
+                                                        @endfor
+                                                        <li class="page-item">
+                                                            <a href="{{$reviews->nextPageUrl()}}" aria-label="Next">
+                                                                <i class="fa fa-angle-right"></i>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </nav> <!-- courses pagination -->
+                                            </div>
+                                        </div> <!-- row -->
                                     </ul>
                                     <div class="title pt-15">
-                                        <h6>Leave A Comment</h6>
+                                        <h6>Hãy để lại comment</h6>
                                     </div>
                                     <div class="reviews-form">
                                         <form action="#">
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-singel">
-                                                        <input type="text" placeholder="Fast name">
+                                                        <input type="text" placeholder="Frist name">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -385,57 +280,42 @@
                     <div class="col-lg-12 col-md-6">
                         <div class="course-features mt-30">
                            <h4>Course Features </h4>
-                            <ul>
+                            <ul class="mb-3">
                                 <li><i class="fa fa-clock-o"></i>Duaration : <span>10 Hours</span></li>
                                 <li><i class="fa fa-clone"></i>Leactures : <span>09</span></li>
                                 <li><i class="fa fa-beer"></i>Quizzes :  <span>05</span></li>
                                 <li><i class="fa fa-user-o"></i>Students :  <span>100</span></li>
                             </ul>
-                            <div class="price-button pt-10">
-                                <span>Price : <b>$25</b></span>
-                                <a href="#" class="main-btn">Enroll Now</a>
+                            <div class="price-button pt-10 pb-3 d-flex justify-content-center align-items-center">
+                                <span>Price : <b><del>
+                                        {{number_format($course->price, 0, '', '.') }} đ </del> 
+                                        {{number_format($course->sale_price, 0, '', '.')}} đ
+                                </b></span> 
+                               
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <a href="#" class="main-btn pr-4">Đăng ký</a>
                             </div>
                         </div> <!-- course features -->
                     </div>
                     <div class="col-lg-12 col-md-6">
                         <div class="You-makelike mt-30">
-                            <h4>You make like </h4> 
+                            <h4>Có thể bạn thích </h4> 
+                            
+                            @foreach ($courseLatest as $course)
                             <div class="singel-makelike mt-20">
                                 <div class="image">
-                                    <img src="{{asset('client/images/your-make/y-1.jpg')}}" alt="Image">
-                                </div>
+                                    <a href="{{ route('courses.courseDetail', ['id' => $course->id]) }}">
+                                        <img src="/{{$course->image_path}}" alt="Image">
+                                    </a>
+                                </div> 
+                            </div>
+                            <div class="d-flex justify-content-center align-items-center mb-5 mt-3">
                                 <div class="cont">
-                                    <a href="#"><h4>Introduction to machine languages</h4></a>
-                                    <ul>
-                                        <li><a href="#"><i class="fa fa-user"></i>31</a></li>
-                                        <li>$50</li>
-                                    </ul>
+                                    <a href="{{ route('courses.courseDetail', ['id' => $course->id]) }}"><h4 class="youMakeLike-course-name">{{$course->name}}</h4></a>
                                 </div>
                             </div>
-                            <div class="singel-makelike mt-20">
-                                <div class="image">
-                                    <img src="{{asset('client/images/your-make/y-1.jpg')}}" alt="Image">
-                                </div>
-                                <div class="cont">
-                                    <a href="#"><h4>How to build a basis game with java </h4></a>
-                                    <ul>
-                                        <li><a href="#"><i class="fa fa-user"></i>31</a></li>
-                                        <li>$50</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="singel-makelike mt-20">
-                                <div class="image">
-                                    <img src="{{asset('client/images/your-make/y-1.jpg')}}" alt="Image">
-                                </div>
-                                <div class="cont">
-                                    <a href="#"><h4>Basic accounting from primary</h4></a>
-                                    <ul>
-                                        <li><a href="#"><i class="fa fa-user"></i>31</a></li>
-                                        <li>$50</li>
-                                    </ul>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -445,17 +325,23 @@
             <div class="col-lg-8">
                 <div class="releted-courses pt-95">
                     <div class="title">
-                        <h3>Releted Courses</h3>
+                        <h3 style="color: orangered;">Các khóa học có liên quan </h3>
                     </div>
                     <div class="row">
+
+                        @foreach($coursesCate as $course)
                         <div class="col-md-6">
                             <div class="singel-course mt-30">
                                 <div class="thum">
                                     <div class="image">
-                                        <img src="{{asset('client/images/course/cu-2.jpg')}}" alt="Course">
+                                        <img src="/{{$course->image_path}}" alt="Course">
                                     </div>
                                     <div class="price">
-                                        <span>Free</span>
+                                        @if($course->sale_price == 0)
+                                            <span>Free</span>
+                                        @else
+                                            <span><del>{{ number_format($course->price, 0, '', '.') }} đ</del> {{ number_format($course->sale_price, 0, '', '.') }} đ</span>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="cont">
@@ -466,15 +352,15 @@
                                         <li><i class="fa fa-star"></i></li>
                                         <li><i class="fa fa-star"></i></li>
                                     </ul>
-                                    <span>(20 Reviws)</span>
-                                    <a href="courses-singel.html"><h4>Learn basis javascirpt from start for beginner</h4></a>
+                                    <span>(20 Reviews)</span>
+                                    <a href="{{ route('courses.courseDetail', ['id' => $course->id]) }}"><h4>{{$course->name}}</h4></a>
                                     <div class="course-teacher">
                                         <div class="thum">
-                                            <a href="#"><img src="{{asset('client/images/course/teacher/t-2.jpg')}}" alt="teacher"></a>
+                                            <a href="#"><img src="/{{$course->teacher_img}}" alt="teacher"></a>
                                         </div>
                                         <div class="name">
                                             <a href="#">
-                                                <h6>Mark anthem</h6>
+                                                <h6>{{$course->teacher_name}}</h6>
                                             </a>
                                             <div class="admin">
                                                 <ul>
@@ -488,46 +374,7 @@
                                 </div>
                             </div> <!-- singel course -->
                         </div>
-                        <div class="col-md-6">
-                            <div class="singel-course mt-30">
-                                <div class="thum">
-                                    <div class="image">
-                                        <img src="{{asset('client/images/course/cu-1.jpg')}}" alt="Course">
-                                    </div>
-                                    <div class="price">
-                                        <span>Free</span>
-                                    </div>
-                                </div>
-                                <div class="cont">
-                                    <ul>
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                    </ul>
-                                    <span>(20 Reviws)</span>
-                                    <a href="courses-singel.html"><h4>Learn basis javascirpt from start for beginner</h4></a>
-                                    <div class="course-teacher">
-                                        <div class="thum">
-                                            <a href="#"><img src="{{asset('client/images/course/teacher/t-3.jpg')}}" alt="teacher"></a>
-                                        </div>
-                                        <div class="name">
-                                            <a href="#">
-                                                <h6>Mark anthem</h6>
-                                            </a>
-                                            <div class="admin">
-                                                <ul>
-                                                    <li><a href="#"><i class="fa fa-user"></i><span>31</span></a></li>
-                                                    <li><a href="#"><i class="fa fa-heart"></i><span>10</span></a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> <!-- singel course -->
-                        </div>
+                        @endforeach
                     </div> <!-- row -->
                 </div> <!-- releted courses -->
             </div>

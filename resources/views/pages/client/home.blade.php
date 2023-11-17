@@ -189,7 +189,6 @@
                 <div class="row">
                     <div class="col-lg-5">
                         <div class="section-title mt-50 pb-10">
-
                             <h3>Giảng viên</h3>
                         </div> <!-- section title -->
                         <div class="teachers-cont">
@@ -213,7 +212,7 @@
                                             <img src="{{ $teacher->image_path }}" alt="Teachers">
                                         </div>
                                         <div class="cont">
-                                            <a href="{{ route('teachers.teacherDetail')}}">
+                                            <a href="{{ route('teachers.teacherDetail', ['id' => $teacher->id] )}}">
                                                 <h6>{{$teacher->name}}</h6>
                                             </a>
                                             <span>Vice chencelor</span>

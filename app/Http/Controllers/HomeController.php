@@ -16,6 +16,7 @@ class HomeController extends Controller
     private $paidCourse;
     private $teacherAtHome;
     private $postAtHome;
+    private $courseCate;
     
     public function __construct() {
         $this->coursesForFree = Course::getCoursesForFree();
@@ -48,7 +49,8 @@ class HomeController extends Controller
             'coursesFree' => $this->coursesForFree,
             'coursePaid' => $this->paidCourse,
             'teachers' => $this->teacherAtHome,
-            'posts' => $this->postAtHome
+            'posts' => $this->postAtHome,
+            
         ]);
     }
 }

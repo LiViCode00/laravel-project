@@ -1,6 +1,6 @@
 @extends('layouts.clients.client')
 @section('title')
-    Chi tiet Giao vien
+    Chi tiết giáo viên
 @endsection
 
 @section('content')
@@ -10,11 +10,11 @@
                 <div class="col-lg-4 col-md-8">
                     <div class="teachers-left mt-50">
                         <div class="hero">
-                            <img src="{{ asset('client/client/images/teachers/t-1.jpg') }}" alt="Teachers">
+                            <img src="/{{ $teacher->image_path }}" alt="Teachers">
                         </div>
                         <div class="name">
-                            <h6>Mark alen</h6>
-                            <span>Vice chencelor</span>
+                            <h6 class="pb-1">{{$teacher->name}}</h6>
+                            <span>Phần mềm máy tính</span>
                         </div>
                         <div class="social">
                             <ul>
@@ -25,12 +25,11 @@
                             </ul>
                         </div>
                         <div class="description">
-                            <p>Gravida nibh vel velit auctor aliquetn sollicitudirem quibibendum auci elit cons equat
-                                ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate..</p>
+                            <p>Là một kỹ sư phần mềm với kiến thức và kỹ năng chuyên sâu, có khả năng truyền đạt thông tin một cách rõ ràng và hỗ trợ sinh viên hiểu rõ về các vấn đề phức tạp của công nghệ.</p>
                         </div>
                     </div> <!-- teachers left -->
                 </div>
-                <div class="col-lg-8">
+                <div class="col-lg-8 pt-2">
                     <div class="teachers-right mt-50">
                         <ul class="nav nav-justified" id="myTab" role="tablist">
                             <li class="nav-item">
@@ -51,43 +50,51 @@
                                 aria-labelledby="dashboard-tab">
                                 <div class="dashboard-cont">
                                     <div class="singel-dashboard pt-40">
-                                        <h5>About</h5>
-                                        <p>Lorem ipsum gravida nibh vel velit auctor aliquetn sollicitudirem quibibendum
-                                            auci elit cons equat ipsutis sem nibh id elit. Duis sed odio sit amet nibh
-                                            vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus .
+                                        <h5>Giới thiệu tổng quan</h5>
+                                        <p>
+                                            Chào các bạn! Mình tên là {{$teacher->name}}  và là một lập trình viên full-stack với đam mê mãnh liệt đối với việc lập trình, 
+                                            mình đã cống hiến cho sự nghiệp của bản thân bằng cách nắm vững các công nghệ và khung làm việc khác nhau để xây dựng các ứng dụng mạnh mẽ 
+                                            và có thể mở rộng.
                                         </p>
                                     </div> <!-- singel dashboard -->
                                     <div class="singel-dashboard pt-40">
-                                        <h5>Acchivments</h5>
-                                        <p>Lorem ipsum gravida nibh vel velit auctor aliquetn sollicitudirem quibibendum
-                                            auci elit cons equat ipsutis sem nibh id elit. Duis sed odio sit amet nibh
-                                            vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus .
-                                        </p>
+                                        <h5>Thành tựu đạt được</h5>
+                                        <div class="instructor-description pt-25">
+                                            <?php $sentences = explode('<br><br>', $teacher->description); ?>
+                                            @foreach($sentences as $sentence)
+                                            <p class="mb-3"><span class="tick">&#10004;</span> {{ $sentence }}</p>
+                                            @endforeach
+                                        </div>
                                     </div> <!-- singel dashboard -->
                                     <div class="singel-dashboard pt-40">
-                                        <h5>My Objective</h5>
-                                        <p>Lorem ipsum gravida nibh vel velit auctor aliquetn sollicitudirem quibibendum
-                                            auci elit cons equat ipsutis sem nibh id elit. Duis sed odio sit amet nibh
-                                            vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus .
-                                        </p>
+                                        <h5>Mục tiêu trong tương lai </h5>
+                                        <p><span class="tick">&#10004;</span>Liên tục cập nhật kiến thức và kỹ năng chuyên môn.</p>
+                                        <p><span class="tick">&#10004;</span>Phát triển kỹ năng mềm và tư duy sáng tạo cho học viên.</p>
+                                        <p><span class="tick">&#10004;</span>Tạo môi trường học tập động lực và sáng tạo.</p>
+                                        <p><span class="tick">&#10004;</span>Phát triển kỹ năng mềm và tư duy sáng tạo cho học viên.</p>
                                     </div> <!-- singel dashboard -->
                                 </div> <!-- dashboard cont -->
                             </div>
                             <div class="tab-pane fade" id="courses" role="tabpanel" aria-labelledby="courses-tab">
                                 <div class="courses-cont pt-20">
                                     <div class="row">
+                                        @foreach($coursesByTeacher as $course)
                                         <div class="col-md-6">
                                             <div class="singel-course mt-30">
                                                 <div class="thum">
                                                     <div class="image">
-                                                        <img src="{{ asset('client/images/course/cu-2.jpg') }}"
+                                                        <img src="/{{ $course->image_path }}"
                                                             alt="Course">
                                                     </div>
                                                     <div class="price">
-                                                        <span>$10</span>
+                                                        @if($course->sale_price == 0)
+                                                            <span>Free</span>
+                                                        @else
+                                                            <span><del>{{ number_format($course->price, 0, '', '.') }} đ</del> {{ number_format($course->sale_price, 0, '', '.') }} đ</span>
+                                                        @endif
                                                     </div>
                                                 </div>
-                                                <div class="cont border">
+                                                <div class="cont">
                                                     <ul>
                                                         <li><i class="fa fa-star"></i></li>
                                                         <li><i class="fa fa-star"></i></li>
@@ -97,17 +104,17 @@
                                                     </ul>
                                                     <span>(20 Reviws)</span>
                                                     <a href="#">
-                                                        <h4>Learn basis javascirpt from start for beginner</h4>
+                                                        <h4>{{$course->name}}</h4>
                                                     </a>
                                                     <div class="course-teacher">
                                                         <div class="thum">
                                                             <a href="#"><img
-                                                                    src="{{ asset('client/images/course/teacher/t-2.jpg') }}"
+                                                                    src="/{{ $course->teacher_img }}"
                                                                     alt="teacher"></a>
                                                         </div>
                                                         <div class="name">
                                                             <a href="#">
-                                                                <h6>Mark anthem</h6>
+                                                                <h6>{{$course->teacher_name}}</h6>
                                                             </a>
                                                             <div class="admin">
                                                                 <ul>
@@ -124,54 +131,10 @@
                                                 </div>
                                             </div> <!-- singel course -->
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="singel-course mt-30">
-                                                <div class="thum">
-                                                    <div class="image">
-                                                        <img src="{{ asset('client/images/course/cu-3.jpg') }}"
-                                                            alt="Course">
-                                                    </div>
-                                                    <div class="price">
-                                                        <span>$30</span>
-                                                    </div>
-                                                </div>
-                                                <div class="cont border">
-                                                    <ul>
-                                                        <li><i class="fa fa-star"></i></li>
-                                                        <li><i class="fa fa-star"></i></li>
-                                                        <li><i class="fa fa-star"></i></li>
-                                                        <li><i class="fa fa-star"></i></li>
-                                                        <li><i class="fa fa-star"></i></li>
-                                                    </ul>
-                                                    <span>(20 Reviws)</span>
-                                                    <a href="#">
-                                                        <h4>Learn basis javascirpt from start for beginner</h4>
-                                                    </a>
-                                                    <div class="course-teacher">
-                                                        <div class="thum">
-                                                            <a href="#"><img
-                                                                    src="{{ asset('client/images/course/teacher/t-2.jpg') }}"
-                                                                    alt="teacher"></a>
-                                                        </div>
-                                                        <div class="name">
-                                                            <a href="#">
-                                                                <h6>Mark anthem</h6>
-                                                            </a>
-                                                            <div class="admin">
-                                                                <ul>
-                                                                    <li><a href="#"><i
-                                                                                class="fa fa-user"></i><span>31</span></a>
-                                                                    </li>
-                                                                    <li><a href="#"><i
-                                                                                class="fa fa-heart"></i><span>10</span></a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div> <!-- singel course -->
-                                        </div>
+                                        @endforeach
+                                        
+                                       
+                                        
                                     </div> <!-- row -->
                                 </div> <!-- courses cont -->
                             </div>

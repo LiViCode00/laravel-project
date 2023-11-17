@@ -18,7 +18,10 @@ return new class extends Migration
             $table->string('comment')->nullable();
             $table->float('stars')->default(0);
             $table->integer('user_id')->unsigned();
+            $table->integer('lesson_id')->unsigned();
             $table->timestamps();
+
+            $table->foreign('lesson_id')->references('id')->on('lessons')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
