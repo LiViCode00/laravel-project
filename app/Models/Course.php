@@ -4,22 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-<<<<<<< HEAD
 use Illuminate\Support\Facades\DB;
-=======
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
->>>>>>> a78391d907f695b439e3f10debbcf1e9b0a28ab7
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Course extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
     protected $table = 'courses';
 
-<<<<<<< HEAD
-    public function teacher()
-    {
-        return $this->belongsTo(Teacher::class);
-    }
+   
 
     public static function getCoursePaginated($perPage){
         $courses = DB::table('courses')
@@ -29,14 +23,14 @@ class Course extends Model
         ->paginate($perPage);
 
         return $courses;
-=======
+    }
     public function category(): BelongsTo{
      return $this->belongsTo(Category::class);
     }
     public function teacher(): BelongsTo{
      return $this->belongsTo(Teacher::class);
->>>>>>> a78391d907f695b439e3f10debbcf1e9b0a28ab7
     }
+   
 
    public static function getCoursesForFree(){
       $courses = Course::join('teachers', 'courses.teacher_id', '=', 'teachers.id')
@@ -99,3 +93,5 @@ class Course extends Model
         return $lessons;
     }
 }
+
+

@@ -11,7 +11,7 @@
         @if (session('error'))
            <div class="alert alert-danger">{{session('error')}}</div>
         @endif
-        <form action={{ route('admin.user.post-edit', ['user'=>$user]) }} method="post">
+        <form action={{ route('admin.user.post-edit', ['user'=>$user]) }} method="post" enctype="multipart/form-data">
             @csrf
             <h4 style="text-align: center;margin-bottom: 20px">Thông tin người dùng</h4>
             <div class="form-row">
@@ -51,6 +51,16 @@
                     <span style="color: red">{{ $message }}</span>
                 @enderror
 
+                </div>
+
+                <div class="form-group col-12 col-md-6">
+                    <label for="">Hình ảnh</label>
+                    <br>
+
+                    <input type="file" name="image" accept="image/*">
+                    @error('image')
+                        <span style="color: red">{{ $message }}</span>
+                    @enderror
                 </div>
                 <button style="margin: 30px 6px" class="btn btn-primary " type="submit">Cập nhật người dùng</button>
             </div>

@@ -86,7 +86,7 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="pages/forms/general.html" class="nav-link">
+                    <a href={{ route('admin.course.list') }} class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Danh sách</p>
                     </a>
@@ -110,13 +110,13 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="pages/forms/general.html" class="nav-link">
+                    <a href={{ route('admin.teacher.list') }} class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Danh sách</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="pages/forms/general.html" class="nav-link">
+                    <a href={{ route('admin.teacher.add') }} class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Thêm mới</p>
                     </a>

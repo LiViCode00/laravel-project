@@ -1,4 +1,4 @@
-@extends('layouts.clients.client')
+{{-- @extends('layouts.clients.client')
 @section('title')
     Giáo viên
 @endsection
@@ -12,7 +12,7 @@
            <div class="col-lg-3 col-sm-6">
                <div class="singel-teachers mt-30 text-center">
                     <div class="image">
-                        <img src="/{{$teacher->image_path}}" alt="Teachers">
+                        <img src="{{asset('storage/'.$teacher->image_path)}}" alt="Teachers">
                     </div>
                     <div class="cont">
                         <a href="{{ route('teachers.teacherDetail',  ['id' => $teacher->id] )}}"><h6>{{$teacher->name}}</h6></a>
@@ -51,4 +51,4 @@
         </div>  <!-- row -->
     </div> <!--  container-edit -->
 </section>
-@endsection
+@endsection --}}

@@ -24,6 +24,7 @@ class UserController extends Controller
                 "name" => "required|string",
                 'email' => 'required|string|email|unique:users',
                 'password' => 'required|string|min:6',
+                'image' => 'required|image',
                 'group' => ['required', 'integer', function ($attribute, $value, $fail) {
                     if ($value === '0') return $fail('Vui lòng chọn nhóm');
                 }]
@@ -33,15 +34,29 @@ class UserController extends Controller
                 'email' => ':attribute không đúng định dạng.',
                 'string' => ':attribute phải là kí tự.',
                 'min' => ':attribute phải có ít nhất :min kí tự.',
-                'unique' => ':attribute đã tồn tại'
+                'unique' => ':attribute đã tồn tại',
+                'image' => 'File không hợp lệ. Vui lòng thử lại'
             ],
             [
                 'name' => 'Họ tên',
                 'email' => 'Email',
                 'password' => 'Mật khẩu',
-                'group' => "Nhóm"
+                'group' => "Nhóm",
+                "image"=>' Hình ảnh'
             ]
         );
+
+       
+        if ($request->has('image')) {
+            if ($request->group == 1) {
+                $folder = 'admins';
+            } else if ($request->group == 2) {
+                $folder = 'teachers';
+            } else if ($request->group == 3) {
+                $folder = 'students';
+            }
+            $imagePath = $request->file('image')->store('img/'.$folder, 'public');
+        }
 
 
         $user = new User();
@@ -49,6 +64,7 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->group_id = $request->group;
+        $user->image_path = $imagePath;
         $user->save();
         return redirect()->route("admin.user.list")->with("success", "Thêm người dùng thành công");
     }
@@ -92,13 +108,24 @@ class UserController extends Controller
                 'name' => 'Họ tên',
                 'email' => 'Email',
                 'password' => 'Mật khẩu',
-                'group' => "Nhóm"
+                'group' => "Nhóm",
+                "image"=>' Hình ảnh'
             ]
         );
+     
+        if ($request->has('image')) {
+            if ($request->group == 1) {
+                $folder = 'admins';
+            } else if ($request->group == 2) {
+                $folder = 'teachers';
+            } else if ($request->group == 3) {
+                $folder = 'students';
+            }
+            $imagePath = $request->file('image')->store('img/'.$folder, 'public');
+            $user->image_path = $imagePath;
+        }
 
         $user->name = $request->name;
-        // $user->email = $request->email;
-        // $user->password = $request->password;
         $user->group_id = $request->group;
         $user->save();
         return redirect()->route("admin.user.list")->with("success", "Cập nhật người dùng thành công");
@@ -157,23 +184,22 @@ class UserController extends Controller
                 $users = $groupModel->users()->paginate(6);
             } else {
                 $users = $groupModel->users()
-                ->where(function ($query) use ($search_key) {
-                    $query->where('name', 'LIKE', '%' . $search_key . '%')
-                        ->orWhere('email', 'LIKE', '%' . $search_key . '%');
-                })
-                ->paginate(6);
+                    ->where(function ($query) use ($search_key) {
+                        $query->where('name', 'LIKE', '%' . $search_key . '%')
+                            ->orWhere('email', 'LIKE', '%' . $search_key . '%');
+                    })
+                    ->paginate(6);
             }
             return view('pages.backend.user.list', compact('users', 'groups', 'groupModel'));
         } else {
             if ($search_key != '') {
                 $users = User::where('name', 'LIKE', '%' . $search_key . '%')
-                ->orWhere('name', 'LIKE', '%' . $search_key . '%')
-                ->paginate(6);
+                    ->orWhere('name', 'LIKE', '%' . $search_key . '%')
+                    ->paginate(6);
                 return view('pages.backend.user.list', compact('users', 'groups', 'groupModel'));
             } else {
                 return back()->with('error', "Vui lòng nhập key tìm kiếm hoặc chọn nhóm!");
             }
-            
         }
     }
 }

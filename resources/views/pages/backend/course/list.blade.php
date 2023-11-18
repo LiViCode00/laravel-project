@@ -1,9 +1,15 @@
 @extends('layouts.backend.backend')
 @section('page_title')
-    Danh sách người dùng
+    Danh sách khóa học
 @endsection
 
-
+{{-- <html>
+    <link rel="stylesheet" href="{{asset('plugins/fontawesome-free/css/all.min.css')}}">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="{{asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="{{asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
+</html> --}}
 
 @section('content')
     <div class="card">
@@ -15,9 +21,9 @@
         @endif
 
         <div class="d-flex align-items-center card-header">
-            <h3 class="card-title">Danh sách người dùng</h3>
+            <h3 class="card-title">Danh sách khóa học</h3>
             <div class="action-header">
-                <a href={{ route('admin.user.add') }}> <button class="btn btn-primary">Thêm mới</button></a>
+                <a href={{ route('admin.course.add') }}> <button class="btn btn-primary">Thêm mới</button></a>
             </div>
         </div>
 
@@ -28,20 +34,20 @@
 
                     <div class="col-sm-12 col-md-8">
                         <div id="example1_filter" class=" dataTables_filter">
-                           <form action="{{route('admin.user.find-user')}}" method="POST" class="d-flex align-items-center">
+                           <form action="{{route('admin.course.find-course')}}" method="POST" class="d-flex align-items-center">
                             @csrf
                                 <label class="d-flex justify-content-center align-items-center">
                                     Search:
                                     <input name="search_key" style="margin: 0 8px" type="search" class="form-control form-control-sm"
                                         placeholder="" aria-controls="example1" value="{{old('search_key')}}">
                                    
-                                    <select name="group" style="margin: 0 8px" class="form-select form-control form-control-sm"
+                                    <select name="category" style="margin: 0 8px" class="form-select form-control form-control-sm"
                                         aria-label="Default select example">
-                                        <option value=0 {{ old('group') == 0 ? 'selected' : '' }}>Nhóm</option>
-                                        @if ($groups)
-                                            @foreach ($groups as $item)
+                                        <option value=0 {{ old('category') == 0 ? 'selected' : '' }}>Danh mục</option>
+                                        @if ($categories)
+                                            @foreach ($categories as $item)
                                                 <option value={{ $item->id }}
-                                                    {{ old('group') == $item->id ? 'selected' : '' }}>{{ $item->name }}
+                                                    {{ old('category') == $item->id ? 'selected' : '' }}>{{ $item->name }}
                                                 </option>
                                             @endforeach
                                         @endif
@@ -64,66 +70,70 @@
                                         colspan="1" aria-label="Rendering engine: activate to sort column descending"
                                         aria-sort="ascending" style="">
                                         ID</th>
-                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
-                                        colspan="1" aria-label="Browser: activate to sort column ascending">Họ tên</th>
-                                    <th style="width: 10%" class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
+                                    <th style="width: 20%" class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
+                                        colspan="1" aria-label="Browser: activate to sort column ascending">Tên khóa học</th>
+                                    <th style="width: 15%" class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
                                         colspan="1" aria-label="Browser: activate to sort column ascending">Hình ảnh</th>
                                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
-                                        colspan="1" aria-label="Browser: activate to sort column ascending">Nhóm</th>
-                                    <th style="width: 15%" class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
                                         colspan="1" aria-label="Platform(s): activate to sort column ascending"
-                                        style="">Email</th>
+                                        style="">Danh mục</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
+                                        colspan="1" aria-label="Platform(s): activate to sort column ascending"
+                                        style="">Giáo viên</th>
+                                   
                                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
                                         colspan="1" aria-label="Engine version: activate to sort column ascending">
-                                        Created at</th>
+                                       Giá</th>
                                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
                                         colspan="1" aria-label="CSS grade: activate to sort column ascending"
-                                        style="">Updated at</th>
+                                        style="">Giá khuyến mãi</th>
                                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
                                         colspan="1" aria-label="CSS grade: activate to sort column ascending"
                                         style="">Hành động</th>
+                                    
+                                  
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($users as $user)
+                                @foreach ($courses as $course)
                                     <tr class=''>
 
                                         <td class="sorting_1 dtr-control" tabindex="0" style="">
 
-                                            {{ $user->id }}
+                                            {{ $course->id }}
                                         </td>
-                                        <td class="">{{ $user->name }}</td>
-                                        <td class="">
-                                            <img style="width: 100%" src="{{asset('storage/'.$user->image_path)}}" alt="">
-                                        </td>
+                                        <td class="">{{ $course->name }}</td>
 
                                         <td style="">
-                                            {{ $user->group->name }}
+                                            <img style="width: 100%" src='/{{$course->image_path}}' alt="">
+                
                                         </td>
-                                        <td>{{ $user->email }}</td>
+                                        <td>{{ $course->category->name }}</td>
 
-                                        <td style="">{{ $user->created_at }}</td>
-                                        <td style="">{{ $user->updated_at }}</td>
+                                        <td style="">{{ $course->teacher->name }}</td>
+                                      
+                                        <td style="">{{ $course->price }}</td>
+                                        <td style="">{{ $course->sale_price }}</td>
                                         <td>
-                                            @if ($user->trashed())
+                                            @if ($course->trashed())
                                                 <a href=>
-                                                    <a href='{{ route('admin.user.restore', $user->id) }}'>
+                                                    <a href='{{ route('admin.course.restore', $course->id) }}'>
                                                         <button onclick="return confirmRestore()"
                                                             class="btn btn-success btn-sm">Khôi phục</button>
                                                     </a>
-                                                    <a href='{{ route('admin.user.force-delete', $user->id) }}'>
+                                                    <a href='{{ route('admin.course.force-delete', $course->id) }}'>
                                                         <button onclick="return confirmDelete()"
                                                             class="btn btn-warning btn-sm">Xóa vĩnh viễn</button>
                                                     </a>
 
                                                 </a>
                                             @else
-                                                <a href='{{ route('admin.user.profile', ['user' => $user]) }}'><button
+                                                <a href='{{ route('admin.course.detail', ['course' => $course]) }}'><button
                                                         class="btn btn-primary btn-sm">Xem</button></a>
-                                                <a href='{{ route('admin.user.edit', ['user' => $user]) }}'> <button
+                                                <a href='{{ route('admin.course.edit', ['course' => $course]) }}'> <button
                                                         class="btn btn-info btn-sm">Sửa</button></a>
 
-                                                <a href='{{ route('admin.user.delete', ['user' => $user]) }}'>
+                                                <a href='{{ route('admin.course.delete', ['course' => $course]) }}'>
                                                     <button onclick="return confirmDelete()"
                                                         class="btn btn-danger btn-sm">Xóa</button>
                                                 </a>
@@ -144,19 +154,19 @@
 
                     <div class="col-sm-12 col-md-5">
                         <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">Hiển thị
-                            {{ $users->firstItem() }} - {{ $users->lastItem() }} / {{ $users->total() }} người dùng.
+                            {{ $courses->firstItem() }} - {{ $courses->lastItem() }} / {{ $courses->total() }} người dùng.
                         </div>
                     </div>
-                    {!! $users->links() !!}
+                    {!! $courses->links() !!}
                 </div>
             </div>
         </div>
         <!-- /.card-body -->
     </div>
-    {{-- @foreach ($users as $user)
-            {{ $user->name }}
+    {{-- @foreach ($courses as $course)
+            {{ $course->name }}
         @endforeach
-        {!! $users->links() !!} --}}
+        {!! $courses->links() !!} --}}
 @endsection
 
 <script>

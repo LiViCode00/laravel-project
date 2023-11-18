@@ -2,36 +2,45 @@
 
 namespace Database\Seeders;
 
-use App\Models\Admin;
-use GuzzleHttp\Psr7\Request;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Admin;
+use App\Models\User;
 
 class AdminSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
-
         $admins = [
             [
                 "name" => "Nhat Linh Admin",
                 "email" => "admin@gmail.com",
-                "password" => Hash::make("123456"),
+                'password'=>"123456",
+                "group_id" => 1
             ],
             [
                 "name" => "Admin",
                 "email" => "admin01@gmail.com",
-                "password" => Hash::make("123456"),
+                'password'=>"123456",
+                "group_id" => 1
             ]
         ];
-        foreach ($admins as $admin) {
-            Admin::updateOrCreate($admin);
+        
+        foreach ($admins as $adminData) {
+            $adminData['password'] = Hash::make($adminData['password']);
+            $user = User::updateOrCreate([
+                'email' => $adminData['email']
+            ], $adminData);
+
+            Admin::updateOrCreate(
+                ['user_id' => $user->id],
+                [
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'password' => $user->password,
+                    'user_id' => $user->id
+                ]
+            );
         }
     }
 }

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('password')->nullable();
             $table->string('address')->nullable();
             $table->tinyInteger('status')->default(1);
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
         });
     }

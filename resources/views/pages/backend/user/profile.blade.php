@@ -17,7 +17,9 @@
           <!-- Profile Image -->
           <div style="margin-top: 12px; margin-left: 6px" class="card card-primary card-outline">
             <div class="card-body box-profile">
-              
+              <div class="text-center">
+                <img class="profile-user-img img-fluid img-circle" src="{{asset('storage/'.$user->image_path)}}" alt="User profile picture">
+              </div>
 
               <h3 class="profile-username text-center">{{$user->name}}</h3>
 
@@ -41,7 +43,7 @@
           <!-- /.card -->
         </div>
         <!-- /.col -->
-        <div class="col-md-9">
+        <div style="margin-top: 12px" class="col-md-9">
           <div class="card">
           
               <ul style="padding: 8px" class="nav nav-pills">

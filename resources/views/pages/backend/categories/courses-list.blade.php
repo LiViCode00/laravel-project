@@ -14,7 +14,7 @@
         @endif
 
         <div class="d-flex align-items-center card-header">
-            <h3 class="card-title">Danh sách khóa học</h3>
+            <h3 class="card-title">Danh sách khóa học {{$category->name}}</h3>
             
         </div>
 
@@ -40,33 +40,22 @@
                                         colspan="1" aria-label="Rendering engine: activate to sort column descending"
                                         aria-sort="ascending" style="">
                                         ID</th>
-                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
-                                        colspan="1" aria-label="Browser: activate to sort column ascending">Tên khóa học
-                                    </th>
-                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
+                                    <th style="width: 20%" class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
+                                        colspan="1" aria-label="Browser: activate to sort column ascending">Tên khóa học</th>
+                                    <th style="width: 15%" class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
                                         colspan="1" aria-label="Browser: activate to sort column ascending">Hình ảnh</th>
+                                  
                                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
-                                        colspan="1" aria-label="CSS grade: activate to sort column ascending"
+                                        colspan="1" aria-label="Platform(s): activate to sort column ascending"
                                         style="">Giáo viên</th>
+                                   
                                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
                                         colspan="1" aria-label="Engine version: activate to sort column ascending">
-                                        Mô tả</th>
+                                       Giá</th>
                                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
                                         colspan="1" aria-label="CSS grade: activate to sort column ascending"
-                                        style="">Giá bán</th>
-                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
-                                        colspan="1" aria-label="CSS grade: activate to sort column ascending"
-                                        style="">Khuyến mãi</th>
-                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
-                                        colspan="1" aria-label="CSS grade: activate to sort column ascending"
-                                        style="">Trạng thái</th>
-                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
-                                        colspan="1" aria-label="CSS grade: activate to sort column ascending"
-                                        style="">Tài liệu</th>
-                                   
-
-
-
+                                        style="">Giá khuyến mãi</th>
+                
                                 </tr>
                             </thead>
                             <tbody>
@@ -77,13 +66,14 @@
                                             {{ $course->id }}
                                         </td>
                                         <td class="">{{ $course->name }}</td>
-                                        <td>{{ $course->image_path }}</td>
+                                        <td>
+                                            <img style="width: 100%" src="/{{ $course->image_path }}" alt="">
+                                        </td>
                                         <td>{{ $course->teacher->name }}</td>
-                                        <td>{{ $course->detail }}</td>
+                                       
                                         <td>{{ $course->price }}</td>
                                         <td style="">{{ $course->sale_price }}</td>
-                                        <td style="">{{ $course->status }}</td>
-                                        <td style="">{{ $course->is_document }}</td>
+                                        
                                      
                                     </tr>
                                 @endforeach
