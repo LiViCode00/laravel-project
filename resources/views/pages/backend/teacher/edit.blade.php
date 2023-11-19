@@ -23,22 +23,6 @@
                     @enderror
                 </div>
                 <div class="form-group col-12 col-md-6">
-                    <label for="">Email</label>
-                    <input readonly type="text" name="email" id="" class="form-control"
-                        value='{{ $teacher->email ?? old('email') }}'>
-                    @error('email')
-                        <span style="color: red">{{ $message }}</span>
-                    @enderror
-                </div>
-                <div class="form-group col-12 col-md-6">
-                    <label for="">Password</label>
-                    <input readonly type="password" name="password" id="" class="form-control"
-                        value=''>
-                    @error('password')
-                        <span style="color: red">{{ $message }}</span>
-                    @enderror
-                </div>
-                <div class="form-group col-12 col-md-6">
                     <label for="">Mô tả</label>
                     <textarea rows="5" type="textarea" name="description" id="" class="form-control"
                     

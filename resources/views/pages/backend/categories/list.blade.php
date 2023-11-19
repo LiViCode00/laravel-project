@@ -68,7 +68,7 @@
                                             {{ $category->id }}
                                         </td>
                                         <td class="">{{ $category->name }}</td>
-                                        <td>{{$category->admin->name}}</td>
+                                        <td>{{$category->user->name}}</td>
                                         <td style="">{{ $category->created_at }}</td>
                                         <td style="">{{ $category->updated_at }}</td>
                                         <td>

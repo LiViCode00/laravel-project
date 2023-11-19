@@ -14,22 +14,22 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('admin')->name('admin.')->group(function () {
 
 
-        Route::get('/', [HomeController::class, 'index'])->middleware('auth:admin')->name('dashboard');
+        Route::get('/', [HomeController::class, 'index'])->middleware('auth')->name('dashboard');
 
-        Route::get('/login', [LoginController::class, 'showFormLogin'])->middleware('guest:admin')->name('login');
+        Route::get('/login', [LoginController::class, 'showFormLogin'])->middleware('guest')->name('login');
 
-        Route::post('/login', [LoginController::class, 'login'])->middleware('guest:admin')->name('postLogin');
+        Route::post('/login', [LoginController::class, 'login'])->middleware('guest')->name('postLogin');
 
         Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
         Route::get('/logout', [LoginController::class, 'logout']);
 
-        Route::get('/edit/{admin}', [AdminController::class, 'viewProfile'])->middleware('auth:admin')->name('view-profile');
+        Route::get('/edit/{id}', [AdminController::class, 'viewProfile'])->middleware('auth')->name('view-profile');
 
-        Route::post('/edit/{admin}', [AdminController::class, 'editProfile'])->middleware('auth:admin')->name('edit-profile');
+        Route::post('/edit/{id}', [AdminController::class, 'editProfile'])->middleware('auth')->name('edit-profile');
 
 
-        Route::prefix('user')->middleware('auth:admin')->name('user.')->group(function () {
+        Route::prefix('user')->middleware('auth')->name('user.')->group(function () {
                 Route::get('/add', [UserController::class, 'add'])->name('add');
               
                 Route::post('/add', [UserController::class, 'postAdd'])->name('post-add');
@@ -54,7 +54,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
               });
         
         
-        Route::prefix('category')->middleware('auth:admin')->name('category.')->group(function () {
+        Route::prefix('category')->middleware('auth')->name('category.')->group(function () {
                 Route::get('/add', [CategoryController::class, 'add'])->name('add');
 
                 Route::post('/add', [CategoryController::class, 'postAdd'])->name('post-add');
@@ -73,7 +73,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         });
 
 
-        Route::prefix('course')->middleware('auth:admin')->name('course.')->group(function () {
+        Route::prefix('course')->middleware('auth')->name('course.')->group(function () {
                 Route::get('/add', [CourseController::class, 'add'])->name('add');
 
                 Route::post('/add', [CourseController::class, 'postAdd'])->name('post-add');
@@ -100,7 +100,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         });
 
         
-        Route::prefix('teacher')->middleware('auth:admin')->name('teacher.')->group(function () {
+        Route::prefix('teacher')->middleware('auth')->name('teacher.')->group(function () {
                 Route::get('/add', [TeacherController::class, 'add'])->name('add');
               
                 Route::post('/add', [TeacherController::class, 'postAdd'])->name('post-add');

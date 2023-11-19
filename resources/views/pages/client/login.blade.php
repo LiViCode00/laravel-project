@@ -21,65 +21,70 @@
         <div class="form login">
             <div class="form-content">
                 <header>Chào mừng đến với LiViCode</header>
-                <form method="POST" action="{{ route('login') }}">
-                    @csrf
-                    <div class="field input-field">
-                        <input id="email" type="text" placeholder="Email"
-                            class="input @error('email') is-invalid @enderror" name="email"
-                            value="{{ old('email') }}">
-                        @error('email')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
+                @if (session('msg'))
+                    <div style="text-align: center;font-weight: 600px;margin-top: 10px;color: #3c763d">{{ session('msg') }}</div>
 
-                    <div class="field input-field">
-                        <input type="password" placeholder="Create password"
-                            class="password @error('password') is-invalid @enderror" name="password">
-                        @error('password')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
+          
+            @endif
+            <form method="POST" action="{{ route('student.post-login') }}">
+                @csrf
+                <div class="field input-field">
+                    <input id="email" type="text" placeholder="Email"
+                        class="input @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}">
+                    @error('email')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
 
-                    <div class="form-link">
-                        @if (Route::has('password.request'))
-                        <a href="{{ route('password.request') }}" class="forgot-pass">Quên mật khẩu?</a>
-                        @endif
-                    </div>
-
-                    <div class="field button-field">
-                        <button type="submit" class="btn btn-primary">Đăng nhập</button>
-                    </div>
-                </form>
+                <div class="field input-field">
+                    <input type="password" placeholder="Create password"
+                        class="password @error('password') is-invalid @enderror" name="password">
+                    @error('password')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
 
                 <div class="form-link">
-                    <span>Bạn chưa có tài khoản ? <a href={{ route('register') }} class="link signup-link">Đăng ký</a></span>
+                    @if (Route::has('password.request'))
+                        <a href="{{ route('password.request') }}" class="forgot-pass">Quên mật khẩu?</a>
+                    @endif
                 </div>
-            </div>
 
-            <div class="line"></div>
+                <div class="field button-field">
+                    <button type="submit" class="btn btn-primary">Đăng nhập</button>
+                </div>
+            </form>
 
-            <div class="media-options">
-                <a href="#" class="field facebook">
-                    <i class='bx bxl-facebook facebook-icon'></i>
-                    <span>Đăng nhập với Facebook</span>
-                </a>
+            <div class="form-link">
+                <span>Bạn chưa có tài khoản ? <a href={{ route('register') }} class="link signup-link">Đăng
+                        ký</a></span>
             </div>
+        </div>
 
-            <div class="media-options">
-                <a href="#" class="field google">
-                    <img src="images/google.png" alt="" class="google-img">
-                    <span>Đăng nhập với Google</span>
-                </a>
-            </div>
+        <div class="line"></div>
+
+        <div class="media-options">
+            <a href="#" class="field facebook">
+                <i class='bx bxl-facebook facebook-icon'></i>
+                <span>Đăng nhập với Facebook</span>
+            </a>
+        </div>
+
+        <div class="media-options">
+            <a href="#" class="field google">
+                <img src="images/google.png" alt="" class="google-img">
+                <span>Đăng nhập với Google</span>
+            </a>
+        </div>
 
         </div>
 
-       
-       
+
+
     </section>
 
     <!-- JavaScript -->

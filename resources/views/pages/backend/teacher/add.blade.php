@@ -22,22 +22,7 @@
                         <span style="color: red">{{ $message }}</span>
                     @enderror
                 </div>
-                <div class="form-group col-12 col-md-6">
-                    <label for="">Email</label>
-                    <input type="text" name="email" id="" class="form-control"
-                        value='{{ old('email') }}'>
-                    @error('email')
-                        <span style="color: red">{{ $message }}</span>
-                    @enderror
-                </div>
-                <div class="form-group col-12 col-md-6">
-                    <label for="">Password</label>
-                    <input type="password" name="password" id="" class="form-control"
-                        value='{{ old('password') }}'>
-                    @error('password')
-                        <span style="color: red">{{ $message }}</span>
-                    @enderror
-                </div>
+                
                 <div class="form-group col-12 col-md-6">
                     <label for="">Mô tả</label>
                     <input type="text" name="description" id="" class="form-control"

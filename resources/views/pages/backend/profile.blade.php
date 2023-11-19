@@ -34,7 +34,7 @@
 
                                             <!-- Basic info -->
                                             <form
-                                                action={{ route('admin.edit-profile', ['admin' => Auth::guard('admin')->user()]) }}
+                                                action={{ route('admin.edit-profile',  Auth::user()->id) }}
                                                 method="POST" enctype="multipart/form-data">
                                                 @csrf
                                                 <div class="submit-section">
@@ -43,7 +43,7 @@
                                                             <div class="form-group col-md-12 ">
                                                                 <label>Họ tên</label>
                                                                 <input type="text" name="name" class="form-control"
-                                                                    value='{{ Auth::guard('admin')->user()->name }}'>
+                                                                    value='{{ Auth::user()->name }}'>
 
                                                                 @error('name')
                                                                     <span style="color: red">{{ $message }}</span>
@@ -53,7 +53,7 @@
                                                             <div class="form-group col-md-12 ">
                                                                 <label>Email</label>
                                                                 <input type="text" name="email" class="form-control"
-                                                                    value='{{ Auth::guard('admin')->user()->email }}'
+                                                                    value='{{ Auth::user()->email }}'
                                                                     readonly>
                                                             </div>
 
@@ -66,7 +66,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-12 col-md-6">
-                                                            @if (Auth::guard('admin')->user()->user->image_path != '')
+                                                            @if (Auth::user()->image_path != '')
                                                                 <div
                                                                     class="d-flex flex-column justify-content-center align-items-center">
                                                                     <div
@@ -75,7 +75,7 @@
                                                                         height: 100%;
                                                                         object-fit: cover;
                                                                         object-position: center"
-                                                                            src="{{ asset('storage/' . Auth::guard('admin')->user()->user->image_path) }}"
+                                                                            src="{{ asset('storage/' . Auth::user()->image_path) }}"
                                                                             alt="">
                                                                     </div>
                                                                     <input style="margin-top: 16px; margin-left: 80px" type="file" name="image" accept="image/*">

@@ -21,15 +21,12 @@ class TeacherController extends Controller
         $request->validate(
             [
                 'name' => 'required|string',
-                'email' => 'required|string|email|unique:teachers',
-                'password' => 'required|string|min:6',
                 'description' => 'required|string',
                 'exp' => 'required|numeric',
                 'image' => 'required|image'
             ],
             [
                 'required' => ':attribute bắt buộc phải nhập.',
-                'email' => ':attribute không đúng định dạng.',
                 'min' => ':attribute phải có ít nhất :min kí tự.',
                 'unique' => ':attribute đã tồn tại',
                 'string' => ':attribute phải là kí tự.',
@@ -38,8 +35,6 @@ class TeacherController extends Controller
             ],
             [
                 'name' => 'Họ tên',
-                'email' => 'Email',
-                'password' => 'Mật khẩu',
                 'description' => 'Mô tả',
                 'exp' => 'Kinh nghiệm',
                 'image' => 'Hình ảnh'
@@ -51,24 +46,9 @@ class TeacherController extends Controller
             $imagePath = $request->file('image')->store('img/teachers', 'public');
         }
 
-
-
-        // Tạo người dùng mới và lưu thông tin vào cơ sở dữ liệu
-        $user = new User();
-        $user->name = $request->input('name');
-        $user->email = $request->input('email');
-        $user->password = Hash::make($request->input('password'));
-        $user->image_path = $imagePath;
-        $user->group_id=2;
-        $user->save();
-
-        // Sử dụng id của người dùng mới tạo để tạo bản ghi giáo viên
         $teacher = new Teacher();
-        $teacher->user_id = $user->id;
-        $teacher->name = $user->name;
-        $teacher->email = $user->email;
-        $teacher->password = $user->password;
-        $teacher->image_path = $user->image_path;
+        $teacher->name = $request->input('name');
+        $teacher->image_path = $imagePath;
         $teacher->description = $request->input('description');
         $teacher->exp = $request->input('exp');
         $teacher->save();
@@ -116,24 +96,19 @@ class TeacherController extends Controller
             ]
         );
 
-        $user=$teacher->user;
+      
        
         if ($request->has('image')) {
             $imagePath = $request->file('image')->store('img/teachers', 'public');
             $teacher->image_path = $imagePath;
-            $user->image_path = $imagePath;
         }
 
         // Tạo giáo viên mới và lưu thông tin vào cơ sở dữ liệu
         $teacher->name = $request->input('name');
-        $user->name = $request->input('name');
         $teacher->description = $request->input('description');
         $teacher->exp = $request->input('exp');
-
-
-
         $teacher->save();
-        $user->save();
+      
 
         return redirect()->route('admin.teacher.list')->with('success', 'Cập nhật giáo viên thành công!');
     }

@@ -50,15 +50,9 @@ class UserController extends Controller
             ]
         );
 
-        if ($request->group == 1) {
-            $role = 'admins';
-        } else if ($request->group == 2) {
-            $role = 'teachers';
-        } else if ($request->group == 3) {
-            $role = 'students';
-        }
+        
         if ($request->has('image')) {
-            $imagePath = $request->file('image')->store('img/' . $role, 'public');
+            $imagePath = $request->file('image')->store('img/users', 'public');
         }
 
 
@@ -69,16 +63,6 @@ class UserController extends Controller
         $user->group_id = $request->group;
         $user->image_path = $imagePath;
         $user->save();
-
-        DB::table($role)->insert(
-            [
-                'name' => $user->name,
-                'email' => $user->email,
-                'password' => $user->password,
-                'user_id' => $user->id
-            ]
-        );
-
 
         return redirect()->route("admin.user.list")->with("success", "Thêm người dùng thành công");
     }
@@ -128,96 +112,16 @@ class UserController extends Controller
             ]
         );
 
-        $oldGroup = $user->group_id; 
-        if ($request->group == 1) {
-            $role = 'admins';
-        } else if ($request->group == 2) {
-            $role = 'teachers';
-        } else if ($request->group == 3) {
-            $role = 'students';
-        }
+      
+      
         if ($request->has('image')) {
-            
-            $imagePath = $request->file('image')->store('img/' . $role, 'public');
+            $imagePath = $request->file('image')->store('img/users', 'public');
             $user->image_path = $imagePath;
         }
 
         $user->name = $request->name;
         $user->group_id = $request->group;
         $user->save();
-
-        if($request->group==$user->group->id){
-            if ($request->group == 1) {
-                $admin=$user->admin;
-                $admin->name=$user->name;
-                $admin->save();
-            } else if ($request->group == 2) {
-                $teacher=$user->teacher;
-                $teacher->name=$user->name;
-                $teacher->save();
-            } else if ($request->group == 3) {
-                $student=$user->student;
-                $student->name=$user->name;
-                $student->save();
-            }
-        } else {
-            switch ($request->group) {
-                case 1: // Admins
-                    $admin = new Admin();
-                    $admin->user_id = $user->id;
-                    $admin->name = $user->name;
-                    $admin->email = $user->email;
-                    $admin->password = $user->password;
-              
-                    $admin->save();
-                    break;
-    
-                case 2: // Teachers
-                    $teacher = new Teacher();
-                    $teacher->user_id = $user->id;
-                    $teacher->name = $user->name;
-                    $teacher->email = $user->email;
-                    $teacher->password = $user->password;
-                    // Copy các thông tin khác nếu cần
-                    // ...
-    
-                    $teacher->save();
-                    break;
-    
-                case 3: // Students
-                    $student = new Student();
-                    $student->user_id = $user->id;
-                    $student->name = $user->name;
-                    $student->email = $user->email;
-                    $student->password = $user->password;
-                    // Copy các thông tin khác nếu cần
-                    // ...
-    
-                    $student->save();
-                    break;
-            }
-    
-            // Xóa đối tượng cũ tại nhóm cũ
-            switch ($oldGroup) {
-                case 1:
-                    $user->admin()->delete();
-                    break;
-                case 2:
-                    $user->teacher()->delete();
-                    break;
-                case 3:
-                    $user->student()->delete();
-                    break;
-            }
-
-        }
-
-        
-
-        
-        
-
-       
         return redirect()->route("admin.user.list")->with("success", "Cập nhật người dùng thành công");
     }
 
