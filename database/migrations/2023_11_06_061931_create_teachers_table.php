@@ -16,13 +16,10 @@ return new class extends Migration
         Schema::create('teachers', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->nullable();
-            $table->string('email')->unique();
-            $table->string('password');
             $table->string('description',1000)->nullable();
             $table->float('exp')->default(0);
             $table->string('image_path')->nullable();
             $table->string('slug')->nullable();
-            $table->integer('user_id')->unsigned();
             $table->timestamps();
         });
     }

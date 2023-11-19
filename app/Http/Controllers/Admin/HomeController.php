@@ -18,4 +18,3 @@ public function __construct()
         return view('pages.backend.home');
     }
 }
-

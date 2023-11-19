@@ -5,7 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Group;
 use App\Models\User;
+use App\Models\Admin;
+use App\Models\Teacher;
+use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -42,20 +46,19 @@ class UserController extends Controller
                 'email' => 'Email',
                 'password' => 'Mật khẩu',
                 'group' => "Nhóm",
-                "image"=>' Hình ảnh'
+                "image" => ' Hình ảnh'
             ]
         );
 
-       
+        if ($request->group == 1) {
+            $role = 'admins';
+        } else if ($request->group == 2) {
+            $role = 'teachers';
+        } else if ($request->group == 3) {
+            $role = 'students';
+        }
         if ($request->has('image')) {
-            if ($request->group == 1) {
-                $folder = 'admins';
-            } else if ($request->group == 2) {
-                $folder = 'teachers';
-            } else if ($request->group == 3) {
-                $folder = 'students';
-            }
-            $imagePath = $request->file('image')->store('img/'.$folder, 'public');
+            $imagePath = $request->file('image')->store('img/' . $role, 'public');
         }
 
 
@@ -66,6 +69,17 @@ class UserController extends Controller
         $user->group_id = $request->group;
         $user->image_path = $imagePath;
         $user->save();
+
+        DB::table($role)->insert(
+            [
+                'name' => $user->name,
+                'email' => $user->email,
+                'password' => $user->password,
+                'user_id' => $user->id
+            ]
+        );
+
+
         return redirect()->route("admin.user.list")->with("success", "Thêm người dùng thành công");
     }
 
@@ -102,32 +116,108 @@ class UserController extends Controller
                 'email' => ':attribute không đúng định dạng.',
                 'string' => ':attribute phải là kí tự.',
                 'min' => ':attribute phải có ít nhất :min kí tự.',
-                'unique' => ':attribute đã tồn tại'
+                'unique' => ':attribute đã tồn tại',
+                'image' => 'File không hợp lệ. Vui lòng thử lại'
             ],
             [
                 'name' => 'Họ tên',
                 'email' => 'Email',
                 'password' => 'Mật khẩu',
                 'group' => "Nhóm",
-                "image"=>' Hình ảnh'
+                "image" => ' Hình ảnh'
             ]
         );
-     
+
+        $oldGroup = $user->group_id; 
+        if ($request->group == 1) {
+            $role = 'admins';
+        } else if ($request->group == 2) {
+            $role = 'teachers';
+        } else if ($request->group == 3) {
+            $role = 'students';
+        }
         if ($request->has('image')) {
-            if ($request->group == 1) {
-                $folder = 'admins';
-            } else if ($request->group == 2) {
-                $folder = 'teachers';
-            } else if ($request->group == 3) {
-                $folder = 'students';
-            }
-            $imagePath = $request->file('image')->store('img/'.$folder, 'public');
+            
+            $imagePath = $request->file('image')->store('img/' . $role, 'public');
             $user->image_path = $imagePath;
         }
 
         $user->name = $request->name;
         $user->group_id = $request->group;
         $user->save();
+
+        if($request->group==$user->group->id){
+            if ($request->group == 1) {
+                $admin=$user->admin;
+                $admin->name=$user->name;
+                $admin->save();
+            } else if ($request->group == 2) {
+                $teacher=$user->teacher;
+                $teacher->name=$user->name;
+                $teacher->save();
+            } else if ($request->group == 3) {
+                $student=$user->student;
+                $student->name=$user->name;
+                $student->save();
+            }
+        } else {
+            switch ($request->group) {
+                case 1: // Admins
+                    $admin = new Admin();
+                    $admin->user_id = $user->id;
+                    $admin->name = $user->name;
+                    $admin->email = $user->email;
+                    $admin->password = $user->password;
+              
+                    $admin->save();
+                    break;
+    
+                case 2: // Teachers
+                    $teacher = new Teacher();
+                    $teacher->user_id = $user->id;
+                    $teacher->name = $user->name;
+                    $teacher->email = $user->email;
+                    $teacher->password = $user->password;
+                    // Copy các thông tin khác nếu cần
+                    // ...
+    
+                    $teacher->save();
+                    break;
+    
+                case 3: // Students
+                    $student = new Student();
+                    $student->user_id = $user->id;
+                    $student->name = $user->name;
+                    $student->email = $user->email;
+                    $student->password = $user->password;
+                    // Copy các thông tin khác nếu cần
+                    // ...
+    
+                    $student->save();
+                    break;
+            }
+    
+            // Xóa đối tượng cũ tại nhóm cũ
+            switch ($oldGroup) {
+                case 1:
+                    $user->admin()->delete();
+                    break;
+                case 2:
+                    $user->teacher()->delete();
+                    break;
+                case 3:
+                    $user->student()->delete();
+                    break;
+            }
+
+        }
+
+        
+
+        
+        
+
+       
         return redirect()->route("admin.user.list")->with("success", "Cập nhật người dùng thành công");
     }
 

@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('categories', function (Blueprint $table) {
-            $table->foreign('admin_id')->references('id')->on('admins')->onUpdate('cascade ')->onDelete('cascade ');
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade ')->onDelete('cascade ');
         });
         
     }
@@ -27,7 +27,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('categories', function (Blueprint $table) {
-            $table->dropForeign('categories_admin_id_foreign');
+            $table->dropForeign('categories_user_id_foreign');
         });
     }
 };

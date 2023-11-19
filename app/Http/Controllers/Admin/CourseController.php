@@ -19,6 +19,47 @@ class CourseController extends Controller
     }
     public function postAdd(Request $request)
     {
+
+        $request->validate(
+            [
+                'name'=>'required|string',
+                'image'=>'required|image',
+                'description'=>'required|string',
+                'price'=>'required|numeric',
+                'sale_price'=>'required|numeric',
+                'category' => ['required', 'integer', function ($attribute, $value, $fail) {
+                    if ($value === '0') return $fail('Vui lòng chọn danh mục khóa học');
+                }]
+            ],
+            [
+                'required' => ':attribute bắt buộc phải nhập.',
+                'string' => ':attribute phải là kí tự.',
+                'numeric'=> ':attribute phải là kiểu dữ liệu số',
+                'image' => 'File không hợp lệ. Vui lòng thử lại'
+            ],
+            [
+                'name' => 'Tên khóa học',
+                'description' => 'Mô tả',
+                'price' => 'Giá gốc',
+                'sale_price' => "Giá khuyến mãi",
+                'category' => "Danh mục khóa học",
+                "image"=>' Hình ảnh'
+            ]
+            );
+
+            if ($request->has('image')) {
+                $imagePath = $request->file('image')->store('img/courses', 'public');
+            }
+
+            $course= new Course();
+            $course->name=$request->name;
+            $course->description=$request->description;
+            $course->price=$request->price;
+            $course->sale_price=$request->sale_price;
+            $course->image_path=$imagePath;
+            $course->category_id=$request->category;
+            
+
     }
 
     public function listCourse()

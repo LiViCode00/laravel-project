@@ -116,20 +116,24 @@ class TeacherController extends Controller
             ]
         );
 
-
+        $user=$teacher->user;
+       
         if ($request->has('image')) {
             $imagePath = $request->file('image')->store('img/teachers', 'public');
             $teacher->image_path = $imagePath;
+            $user->image_path = $imagePath;
         }
 
         // Tạo giáo viên mới và lưu thông tin vào cơ sở dữ liệu
         $teacher->name = $request->input('name');
+        $user->name = $request->input('name');
         $teacher->description = $request->input('description');
         $teacher->exp = $request->input('exp');
 
 
 
         $teacher->save();
+        $user->save();
 
         return redirect()->route('admin.teacher.list')->with('success', 'Cập nhật giáo viên thành công!');
     }

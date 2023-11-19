@@ -1083,8 +1083,8 @@ p {
     font-size: 14px;
     border: 1px solid #ccc;
     padding: 0 16px;
-    border-bottom-left-radius: 20px;
-    border-top-left-radius: 20px;
+    border-bottom-left-radius: 30px;
+    border-top-left-radius: 30px;
 }
 .search_box i {
     font-size: 16px;
@@ -1092,8 +1092,8 @@ p {
     border: 2px solid #ccc;
     border-left: white;
     height: 100%;
-    border-bottom-right-radius: 20px;
-    border-top-right-radius: 20px;
+    border-bottom-right-radius: 30px;
+    border-top-right-radius: 30px;
     display: flex;
     align-items: center;
 }
@@ -4627,3 +4627,9 @@ img.logo{
     background-color: rgb(237, 237, 237);
     border-radius: 30px;
 }
+
+/* Ẩn menu con mặc định */
+.hidden {
+    display: none;
+  }
+  

@@ -115,29 +115,17 @@
                                         <td style="">{{ $course->price }}</td>
                                         <td style="">{{ $course->sale_price }}</td>
                                         <td>
-                                            @if ($course->trashed())
-                                                <a href=>
-                                                    <a href='{{ route('admin.course.restore', $course->id) }}'>
-                                                        <button onclick="return confirmRestore()"
-                                                            class="btn btn-success btn-sm">Khôi phục</button>
-                                                    </a>
-                                                    <a href='{{ route('admin.course.force-delete', $course->id) }}'>
-                                                        <button onclick="return confirmDelete()"
-                                                            class="btn btn-warning btn-sm">Xóa vĩnh viễn</button>
-                                                    </a>
-
-                                                </a>
-                                            @else
+                                           
+                                           
                                                 <a href='{{ route('admin.course.detail', ['course' => $course]) }}'><button
-                                                        class="btn btn-primary btn-sm">Xem</button></a>
-                                                <a href='{{ route('admin.course.edit', ['course' => $course]) }}'> <button
-                                                        class="btn btn-info btn-sm">Sửa</button></a>
+                                                        class="btn btn-info btn-sm">Quản lý</button></a>
+                                               
 
                                                 <a href='{{ route('admin.course.delete', ['course' => $course]) }}'>
                                                     <button onclick="return confirmDelete()"
                                                         class="btn btn-danger btn-sm">Xóa</button>
                                                 </a>
-                                            @endif
+                                           
                                         </td>
 
 

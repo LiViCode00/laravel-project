@@ -21,9 +21,7 @@
         <div class="form login">
             <div class="form-content">
                 <header>Đăng nhập ADMIN</header>
-                @if (session('msg'))
-                    <h3 style="color: red; font-size: 16px; margin-top:20px">{{session('msg')}}</h3>
-                @endif
+              
                 <form method="POST" action="{{ route('admin.login') }}">
                     @csrf
                     <div class="field input-field">

@@ -39,12 +39,37 @@
 
                 </div>
                 <div class="form-group col-12 col-md-6">
-                    <label for="">Mật khẩu</label>
-                    <input type="password" name="password" id="" class="form-control" value={{ old('password') }}>
-                    @error('password')
+                    <label for="">Hình ảnh</label>
+                    <br>
+
+                    <input type="file" name="image" accept="image/*">
+                    @error('image')
                         <span style="color: red">{{ $message }}</span>
                     @enderror
                 </div>
+                <div class="form-group col-12 col-md-6">
+                    <label for="">Mô tả</label>
+                   
+                    <textarea rows="8" type="text" name="description" id="" class="form-control" ></textarea>
+                    @error('description')
+                        <span style="color: red">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="form-group col-12 col-md-6">
+                    <label for="">Giá gốc</label>
+                    <input type="text" name="price" id="" class="form-control" value={{ old('name') }}>
+                    @error('price')
+                        <span style="color: red">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="form-group col-12 col-md-6">
+                    <label for="">Giá khuyến mãi</label>
+                    <input type="text" name="sale_price" id="" class="form-control" value={{ old('name') }}>
+                    @error('sale_price')
+                        <span style="color: red">{{ $message }}</span>
+                    @enderror
+                </div>
+               
            
                 <button style="margin: 30px 6px" class="btn btn-primary " type="submit">Thêm khóa học</button>
             </div>

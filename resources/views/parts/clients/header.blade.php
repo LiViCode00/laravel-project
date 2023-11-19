@@ -43,6 +43,7 @@
                             </p>
                             <ul id="hiddenBox" class="user-detail">
                                 <div>
+                                    <a href={{ route('user.view-profile', Auth::user() ) }}>Xem thông tin cá nhân</a>
                                     <a href="">Viết blog</a>
                                     <a href="">Bài viết của tôi</a>
                                     <a href="">Khóa học của tôi</a>

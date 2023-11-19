@@ -109,7 +109,7 @@
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
 
-                <a href="{{ route('admin.view-profile', ['admin' => Auth::guard('admin')->user()]) }}"
+                <a href="{{ route('admin.view-profile',  Auth::user()) }}"
                     class="dropdown-item">
                     Xem hồ sơ
                 </a>
