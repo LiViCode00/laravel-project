@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đăng nhập Admin</title>
+    <title>Đăng nhập hệ thống</title>
 
     <!-- CSS -->
     <link rel="stylesheet" href="{{ asset('client/css/style.css') }}">
@@ -20,7 +20,7 @@
     <section class="container-login forms">
         <div class="form login">
             <div class="form-content">
-                <header>Đăng nhập ADMIN</header>
+                <header>Đăng nhập hệ thống</header>
                 @if (session('msg'))
                     <h3 style="color: red; font-size: 16px; margin-top:20px">{{session('msg')}}</h3>
                 @endif

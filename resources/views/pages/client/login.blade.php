@@ -22,11 +22,11 @@
             <div class="form-content">
                 <header>Chào mừng đến với LiViCode</header>
                 @if (session('msg'))
-                    <div style="text-align: center;font-weight: 600px;margin-top: 10px;color: #3c763d">{{ session('msg') }}</div>
+                    <div style="text-align: center;font-weight: 600px;margin-top: 10px;color: red">{{ session('msg') }}</div>
 
           
             @endif
-            <form method="POST" action="{{ route('student.post-login') }}">
+            <form method="POST" action="{{ route('post-login') }}">
                 @csrf
                 <div class="field input-field">
                     <input id="email" type="text" placeholder="Email"

@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\Hash;
 
 class StudentController extends Controller
 {
+
+    protected function redirectTo() {
+        return '/login'; // Chuyển hướng đến trang dashboard của admin sau khi đăng nhập thành công
+    }
     public function showFormLogin(Request $request)
     {
         return view("pages.client.login");
@@ -44,7 +48,7 @@ class StudentController extends Controller
 
             return redirect()->route('home');
         } else {
-            return redirect()->route('student.login')->with('msg','Đăng nhập không thành công. Vui lòng thử lại.');
+            return redirect()->route('login')->with('msg','Đăng nhập không thành công. Vui lòng thử lại.');
         }
     }
 
@@ -74,7 +78,7 @@ class StudentController extends Controller
             'password' => Hash::make($request->input('password')),
         ]);
     
-        return redirect()->route('student.login')->with('msg','Đăng ký tài khoản thành công.');
+        return redirect()->route('login')->with('msg','Đăng ký tài khoản thành công.');
     }
     
     
@@ -92,7 +96,7 @@ class StudentController extends Controller
 
         return $request->wantsJson()
             ? new JsonResponse([], 204)
-            : redirect('/student/login');
+            : redirect('/login');
     }
 
     protected function guard()
@@ -110,7 +114,7 @@ class StudentController extends Controller
         if (Auth::guard('student')->user()) {
             return view("pages.client.profile");
         } else {
-            return redirect()->route("student.login");
+            return redirect()->route("login");
         }
     }
     public function editProfile($id, Request $request)

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Group;
 use App\Models\category;
 use App\Models\Course;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -15,7 +16,8 @@ class CourseController extends Controller
     public function add()
     {
         $categories = Category::all();
-        return view('pages.backend.course.add',compact("categories"));
+        $teachers=Teacher::all();
+        return view('pages.backend.course.add',compact(["categories","teachers"]));
     }
     public function postAdd(Request $request)
     {
@@ -23,12 +25,15 @@ class CourseController extends Controller
         $request->validate(
             [
                 'name'=>'required|string',
-                'image'=>'required|image',
-                'description'=>'required|string',
+                'image'=>'image',
+                'detail'=>'required|string',
                 'price'=>'required|numeric',
                 'sale_price'=>'required|numeric',
                 'category' => ['required', 'integer', function ($attribute, $value, $fail) {
                     if ($value === '0') return $fail('Vui lòng chọn danh mục khóa học');
+                }],
+                'teacher' => ['required', 'integer', function ($attribute, $value, $fail) {
+                    if ($value === '0') return $fail('Vui lòng chọn giáo viên của khóa học');
                 }]
             ],
             [
@@ -39,11 +44,12 @@ class CourseController extends Controller
             ],
             [
                 'name' => 'Tên khóa học',
-                'description' => 'Mô tả',
+                'detail' => 'Mô tả',
                 'price' => 'Giá gốc',
                 'sale_price' => "Giá khuyến mãi",
                 'category' => "Danh mục khóa học",
-                "image"=>' Hình ảnh'
+                "image"=>' Hình ảnh',
+                'teacher' => "Giáo viên"
             ]
             );
 
@@ -53,11 +59,19 @@ class CourseController extends Controller
 
             $course= new Course();
             $course->name=$request->name;
-            $course->description=$request->description;
+            $course->detail=$request->detail;
             $course->price=$request->price;
             $course->sale_price=$request->sale_price;
             $course->image_path=$imagePath;
             $course->category_id=$request->category;
+            $course->teacher_id=$request->teacher;
+            $course->save();
+
+            return redirect()->route('admin.course.lesson.list',compact('course'));
+
+
+
+           
             
 
     }
@@ -69,9 +83,11 @@ class CourseController extends Controller
         return view("pages.backend.course.list", compact('categories','courses'));
     }
 
-    public function view()
+    public function detail(Course $course)
     {
+        return redirect()->route('admin.course.lesson.list',compact('course'));
     }
+
 
 
     public function edit()

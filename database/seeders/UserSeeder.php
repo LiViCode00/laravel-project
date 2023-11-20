@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
                 "email" => "user@gmail.com",
                 "group_id" => "3",
                 "password" => Hash::make("123456"),
-                 
+
             ],
             [
 
@@ -57,7 +57,15 @@ class UserSeeder extends Seeder
         ];
 
         foreach ($users as $user) {
-            User::updateOrCreate($user);
+            User::updateOrCreate(
+                ['email' => $user['email']],
+                [
+                    'name' => $user['name'],
+                    'email' => $user['email'],
+                    'group_id' => $user['group_id'],
+                    'password' => $user['password'],
+                ]
+            );
         }
     }
 }

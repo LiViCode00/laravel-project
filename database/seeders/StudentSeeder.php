@@ -32,7 +32,11 @@ class StudentSeeder extends Seeder
         foreach ($students as $student) {
            
             Student::updateOrCreate(
-                $student
+                ['email' => $student['email']], // Điều kiện để tìm sinh viên
+                [
+                    'name' => $student['name'],
+                    'password' => $student['password'],
+                ]
             );
         }
     }

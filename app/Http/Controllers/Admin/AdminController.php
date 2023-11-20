@@ -16,7 +16,7 @@ class AdminController extends Controller
         if (Auth::user()) {
             return view("pages.backend.profile");
         } else {
-            return redirect()->route("login");
+            return redirect()->route("admin.login");
         }
 
       

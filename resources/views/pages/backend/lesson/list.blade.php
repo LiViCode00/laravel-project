@@ -1,6 +1,6 @@
 @extends('layouts.backend.backend')
 @section('page_title')
-    Danh sách khóa học
+    Danh sách bài giảng
 @endsection
 
 {{-- <html>
@@ -21,27 +21,30 @@
         @endif
 
         <div class="d-flex align-items-center card-header">
-            <h3 class="card-title">Danh sách khóa học</h3>
+            <h3 class="card-title">Danh sách bài giảng</h3>
             <div class="action-header">
-                <a href={{ route('admin.course.add') }}> <button class="btn btn-primary">Thêm mới</button></a>
+                <a href={{ route('admin.course.lesson.add') }}> <button class="btn btn-primary">Thêm mới</button></a>
             </div>
         </div>
 
         <!-- /.card-header -->
         <div class="card-body">
+            <h2 style="text-align: center;margin-bottom: 12px;font-weight: 500">Khóa học {{ $course->name }}</h2>
             <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
                 <div class="row">
 
                     <div class="col-sm-12 col-md-8">
                         <div id="example1_filter" class=" dataTables_filter">
-                           <form action="{{route('admin.course.find-course')}}" method="POST" class="d-flex align-items-center">
-                            @csrf
+                            <form action="{{ route('admin.course.lesson.find-lesson') }}" method="POST"
+                                class="d-flex align-items-center">
+                                @csrf
                                 <label class="d-flex justify-content-center align-items-center">
                                     Search:
-                                    <input name="search_key" style="margin: 0 8px" type="search" class="form-control form-control-sm"
-                                        placeholder="" aria-controls="example1" value="{{old('search_key')}}">
-                                   
-                                    <select name="category" style="margin: 0 8px" class="form-select form-control form-control-sm"
+                                    <input name="search_key" style="margin: 0 8px" type="search"
+                                        class="form-control form-control-sm" placeholder="" aria-controls="example1"
+                                        value="{{ old('search_key') }}">
+
+                                    {{-- <select name="category" style="margin: 0 8px" class="form-select form-control form-control-sm"
                                         aria-label="Default select example">
                                         <option value=0 {{ old('category') == 0 ? 'selected' : '' }}>Danh mục</option>
                                         @if ($categories)
@@ -51,17 +54,18 @@
                                                 </option>
                                             @endforeach
                                         @endif
-                                    </select>
-                                   
+                                    </select> --}}
+
                                 </label>
                                 <button type="submit" style="margin: 0 8px" class="btn btn-primary btn-sm">Tìm </button>
-                           </form>
+                            </form>
                         </div>
                     </div>
 
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
+
                         <table id="example1" class="table table-bordered table-striped dataTable dtr-inline"
                             aria-describedby="example1_info">
                             <thead>
@@ -70,71 +74,76 @@
                                         colspan="1" aria-label="Rendering engine: activate to sort column descending"
                                         aria-sort="ascending" style="">
                                         ID</th>
-                                    <th style="width: 20%" class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
-                                        colspan="1" aria-label="Browser: activate to sort column ascending">Tên khóa học</th>
-                                    <th style="width: 15%" class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
-                                        colspan="1" aria-label="Browser: activate to sort column ascending">Hình ảnh</th>
+                                    <th style="width: 20%" class="sorting" tabindex="0" aria-controls="example1"
+                                        rowspan="1" colspan="1"
+                                        aria-label="Browser: activate to sort column ascending">Tên bài giảng</th>
                                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
                                         colspan="1" aria-label="Platform(s): activate to sort column ascending"
-                                        style="">Danh mục</th>
+                                        style="">Vị trí</th>
+                                    <th style="width: 15%" class="sorting" tabindex="0" aria-controls="example1"
+                                        rowspan="1" colspan="1"
+                                        aria-label="Browser: activate to sort column ascending">Chi tiết</th>
+
                                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
                                         colspan="1" aria-label="Platform(s): activate to sort column ascending"
-                                        style="">Giáo viên</th>
-                                   
-                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
-                                        colspan="1" aria-label="Platform(s): activate to sort column ascending"
-                                        style="">Số học viên</th>
-                                   
+                                        style="">Thời lượng</th>
+
                                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
                                         colspan="1" aria-label="Engine version: activate to sort column ascending">
-                                       Giá</th>
-                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
-                                        colspan="1" aria-label="CSS grade: activate to sort column ascending"
-                                        style="">Giá khuyến mãi</th>
+                                        Lượt xem</th>
+
                                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
                                         colspan="1" aria-label="CSS grade: activate to sort column ascending"
                                         style="">Hành động</th>
-                                    
-                                  
+
+
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($courses as $course)
+                                @foreach ($lessons as $lesson)
                                     <tr class=''>
 
                                         <td class="sorting_1 dtr-control" tabindex="0" style="">
 
-                                            {{ $course->id }}
+                                            {{ $lesson->id }}
                                         </td>
-                                        <td class="">{{ $course->name }}</td>
+                                        <td class="lesson-cell">
+                                            <p class="lesson" style="font-weight: 600"> {{ $lesson->name }}
+                                            <div class="list-video">
+                                               @foreach ($lesson->videos as $item)
+                                                   <div>
+                                                    
+                                                    <a href="">{{$item->name}}</a>
+                                                   
+                                                   </div>
+                                               @endforeach
+                                            </div>
+                                            </p>
+
+                                        </td>
 
                                         <td style="">
-                                            <img style="width: 100%" src='/{{$course->image_path}}' alt="">
-                
-                                        </td>
-                                        <td>{{ $course->category->name }}</td>
+                                            {{ $lesson->position }}
 
-                                        <td style="">{{ $course->teacher->name }}</td>
-                                        <td style="">
-                                            60
-                                            <a style="margin-left: 10px" href=><button
-                                                class="btn btn-info btn-sm">Xem</button></a>
                                         </td>
-                                      
-                                        <td style="">{{ $course->price }}</td>
-                                        <td style="">{{ $course->sale_price }}</td>
+                                        <td>{{ $lesson->description }}</td>
+
+                                        <td style="">{{ $lesson->durations }}</td>
+
+                                        <td style="">{{ $lesson->views }}</td>
+
                                         <td>
-                                           
-                                           
-                                                <a href='{{ route('admin.course.detail', ['course' => $course]) }}'><button
-                                                        class="btn btn-info btn-sm">Quản lý</button></a>
-                                               
 
-                                                <a href='{{ route('admin.course.delete', ['course' => $course]) }}'>
-                                                    <button onclick="return confirmDelete()"
-                                                        class="btn btn-danger btn-sm">Xóa</button>
-                                                </a>
-                                           
+
+                                            <a href='{{ route('admin.course.lesson.detail', ['lesson' => $lesson]) }}'><button
+                                                    class="btn btn-info btn-sm">Quản lý</button></a>
+
+
+                                            <a href='{{ route('admin.course.lesson.delete', ['lesson' => $lesson]) }}'>
+                                                <button onclick="return confirmDelete()"
+                                                    class="btn btn-danger btn-sm">Xóa</button>
+                                            </a>
+
                                         </td>
 
 
@@ -151,19 +160,19 @@
 
                     <div class="col-sm-12 col-md-5">
                         <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">Hiển thị
-                            {{ $courses->firstItem() }} - {{ $courses->lastItem() }} / {{ $courses->total() }} người dùng.
+                            {{ $lessons->firstItem() }} - {{ $lessons->lastItem() }} / {{ $lessons->total() }} bài giảng.
                         </div>
                     </div>
-                    {!! $courses->links() !!}
+                    {!! $lessons->links() !!}
                 </div>
             </div>
         </div>
         <!-- /.card-body -->
     </div>
-    {{-- @foreach ($courses as $course)
-            {{ $course->name }}
+    {{-- @foreach ($lessons as $lesson)
+            {{ $lesson->name }}
         @endforeach
-        {!! $courses->links() !!} --}}
+        {!! $lessons->links() !!} --}}
 @endsection
 
 <script>
@@ -179,3 +188,22 @@
         return result;
     }
 </script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('.lesson-name-cell').click(function() {
+            const listVideo = $(this).find('.list-video');
+            if (listVideo.is(':hidden')) {
+                listVideo.css('display', 'block').animate({maxHeight: '300px'}, 300);
+            } else {
+                listVideo.animate({maxHeight: '0'}, 300, function() {
+                    $(this).css('display', 'none');
+                });
+            }
+        });
+    });
+</script>
+
+

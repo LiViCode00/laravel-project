@@ -21,7 +21,7 @@
         <div class="form login">
             <div class="form-content">
                 <header>Chào mừng đến với LiViCode</header>
-                <form method="POST" action="{{ route('student.register') }}">
+                <form method="POST" action="{{ route('register') }}">
                     @csrf
                     <div class="field input-field">
                         <input id="email" type="text" placeholder="Họ và tên"

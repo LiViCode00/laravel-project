@@ -36,7 +36,7 @@
                                     <a href="">Viết blog</a>
                                     <a href="">Bài viết của tôi</a>
                                     <a href="">Khóa học của tôi</a>
-                                    <a class="logout-item" href="{{ route('student.logout') }}"
+                                    <a class="logout-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
                                         {{ __('Đăng xuất') }}
@@ -45,7 +45,7 @@
                             </ul>
                         </div>
 
-                        <form id="logout-form" action="{{ route('student.logout') }}" method="POST" class="d-none">
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
                         </form>
                     @else
@@ -53,7 +53,7 @@
                             <a href="{{ route('login') }}" class="login-btn mr-2 my-1">Đăng nhập</a>
                         </div>
                         <div class="button float-left">
-                            <a href="{{ route('student.register') }}" class="main-btn">Đăng ký</a>
+                            <a href="{{ route('register') }}" class="main-btn">Đăng ký</a>
                         </div>
                     @endif
                    

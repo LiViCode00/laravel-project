@@ -363,3 +363,57 @@ form label{
     right: 40px;
     bottom: -12px;
 }
+
+.lesson{
+    cursor: pointer;
+    color: #666666;
+    transition: all 0.3s linear;
+    position: relative;
+}
+
+.lesson:hover{
+    color: #000;
+}
+
+.list-video{
+    display: none;
+    position: absolute;
+}
+
+.lesson-cell {
+    position: relative; /* Cần thiết để xác định vị trí tuyệt đối cho danh sách video */
+}
+.list-video {
+    position: absolute;
+    top: 75%;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    display: none;
+    z-index: 1;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    max-height: 0;
+  
+}
+.lesson-cell:hover .list-video {
+    display: block;
+    max-height: 300px;
+}
+.list-video div{
+    border-bottom: 1px solid #ccc;
+    padding: 6px 20px;
+    color: #727272;
+    font-weight: 500;
+    transition: all 0.3s linear;
+}
+.list-video div:hover{
+   
+    cursor: pointer;
+    color: #000;
+}
+.list-video div a{
+    color: #727272;
+    cursor: pointer;
+}

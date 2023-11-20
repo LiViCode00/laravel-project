@@ -15,12 +15,21 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->middleware('auth:student')->name('home');
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/login', function () {
-    return view('pages.backend.login');
-})->name('login');
+Route::get('/login', [StudentController::class, 'showFormLogin'])->name('login');
+
+Route::post('/login', [StudentController::class, 'login'])->name('post-login');
+
+Route::get('/register', [StudentController::class, 'showFormRegister'])->name('register');
+
+Route::post('/register', [StudentController::class, 'register'])->name('post-register');
+
+Route::post('/logout', [StudentController::class, 'logout'])->name('logout');
+
+Route::get('/logout', [StudentController::class, 'logout']);
+
 
 
 
@@ -49,21 +58,11 @@ Route::prefix('admin')->group(function () {
 
 Route::prefix('student')->name('student.')->group(function () {
 
-    Route::get('/login', [StudentController::class, 'showFormLogin'])->name('login');
-
-    Route::post('/login', [StudentController::class, 'login'])->name('post-login');
-
-    Route::get('/register', [StudentController::class, 'showFormRegister'])->name('register');
-
-    Route::post('/register', [StudentController::class, 'register'])->name('post-register');
-
     Route::get('/edit/{id}', [StudentController::class, 'viewProfile'])->name('view-profile');
 
     Route::post('/edit/{id}', [StudentController::class, 'editProfile'])->name('edit-profile');
 
-    Route::post('/logout', [StudentController::class, 'logout'])->name('logout');
-
-    Route::get('/logout', [StudentController::class, 'logout']);
+  
 });
 
 include('admin.php');

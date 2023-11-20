@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
 
-class AdminAuthenicate extends Middleware
+class StudentAuthenicate extends Middleware
 {
     /**
      * Get the path the user should be redirected to when they are not authenticated.
