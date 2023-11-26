@@ -1,7 +1,7 @@
 @extends('layouts.backend.backend')
 
 @section('page_title')
-    Thêm khóa học
+    Thêm bài giảng
 @endsection
 
 
@@ -13,83 +13,49 @@
         @endif
         <form action={{ route('admin.course.post-add') }} method="post" enctype="multipart/form-data">
             @csrf
-            <h4 style="text-align: center;margin-bottom: 20px">Thông tin khóa học</h4>
+            <h4 style="text-align: center;margin-bottom: 20px">Thông tin bài giảng</h4>
             <div class="form-row">
                 <div class="form-group col-12 col-md-6">
-                    <label for="">Tên khóa học</label>
+                    <label for="">Tên bài giảng</label>
                     <input type="text" name="name" id="" class="form-control" value={{ old('name') }}>
                     @error('name')
                         <span style="color: red">{{ $message }}</span>
                     @enderror
                 </div>
-                <div class="form-group col-16 col-md-3">
-                    <label for="">Danh mục</label>
 
-                    <select class="form-select form-control" name="category" aria-label="Default select example">
-                        <option value=0 {{ old('category') == 0 ? 'selected' : '' }}>Vui lòng chọn danh mục</option>
-                        @if ($categories)
-                            @foreach ($categories as $item)
-                                <option value={{ $item->id }} {{ old('category') == $item->id ? 'selected' : '' }}>
-                                    {{ $item->name }}</option>
-                            @endforeach
-                        @endif
-                    </select>
-                    @error('category')
-                        <span style="color: red">{{ $message }}</span>
-                    @enderror
-
-                </div>
-                <div class="form-group col-16 col-md-3">
-                    <label for="">Giáo viên</label>
-
-                    <select class="form-select form-control" name="teacher" aria-label="Default select example">
-                        <option value=0 {{ old('teacher') == 0 ? 'selected' : '' }}>Vui lòng chọn giáo viên</option>
-                        @if ($teachers)
-                            @foreach ($teachers as $item)
-                                <option value={{ $item->id }} {{ old('teacher') == $item->id ? 'selected' : '' }}>
-                                    {{ $item->name }}</option>
-                            @endforeach
-                        @endif
-                    </select>
-                    @error('teacher')
-                        <span style="color: red">{{ $message }}</span>
-                    @enderror
-
-                </div>
-                <div class="form-group col-12 col-md-6">
-                    <label for="">Hình ảnh</label>
-                    <br>
-
-                    <input type="file" name="image" accept="image/*">
-                    @error('image')
-                        <span style="color: red">{{ $message }}</span>
-                    @enderror
-                </div>
                 <div class="form-group col-12 col-md-6">
                     <label for="">Mô tả</label>
 
-                    <textarea rows="8" type="text" name="detail" id="" class="form-control">{{old('detail')}}</textarea>
+                    <textarea rows="8" type="text" name="detail" id="" class="form-control">{{ old('detail') }}</textarea>
                     @error('detail')
                         <span style="color: red">{{ $message }}</span>
                     @enderror
                 </div>
+
                 <div class="form-group col-12 col-md-6">
-                    <label for="">Giá gốc</label>
-                    <input type="text" name="price" id="" class="form-control" value={{ old('price') }}>
-                    @error('price')
+                    <label for="">Tài liệu</label>
+                    <br>
+
+                    <input type="file" name="doc">
+                    @error('doc')
                         <span style="color: red">{{ $message }}</span>
                     @enderror
                 </div>
+               <br>
                 <div class="form-group col-12 col-md-6">
-                    <label for="">Giá khuyến mãi</label>
-                    <input type="text" name="sale_price" id="" class="form-control" value={{ old('sale_price') }}>
-                    @error('sale_price')
+                    <label for="">Video bài giảng</label>
+                   
+                    <br>
+                    <input type="file" name="videos[]" multiple accept="video/*">
+                    @error('videos.*')
                         <span style="color: red">{{ $message }}</span>
                     @enderror
                 </div>
 
 
-                <button style="margin: 30px 6px" class="btn btn-primary " type="submit">Thêm khóa học</button>
+
+
+                <button style="margin: 30px 6px;" class="btn btn-primary " type="submit">Thêm bài giảng</button>
             </div>
         </form>
     </div>

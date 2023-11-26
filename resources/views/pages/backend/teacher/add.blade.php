@@ -17,21 +17,27 @@
             <div class="form-row">
                 <div class="form-group col-12 col-md-6">
                     <label for="">Họ tên</label>
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
                     <input type="text" name="name" id="" class="form-control" value='{{ old('name') }}'>
+                    </div>
                     @error('name')
                         <span style="color: red">{{ $message }}</span>
                     @enderror
                 </div>
-                
+
                 <div class="form-group col-12 col-md-6">
                     <label for="">Mô tả</label>
-                    <input type="text" name="description" id="" class="form-control"
-                        value='{{ old('description') }}'>
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
+                    <textarea type="text" name="description" id="editor" class="form-control" rows="8">{{ old('description') }}</textarea>
+                    </div>
+
                     @error('description')
                         <span style="color: red">{{ $message }}</span>
                     @enderror
                 </div>
-              
+
                 <div class="form-group col-12 col-md-6">
                     <label for="">Hình ảnh</label>
                     <br>
@@ -44,7 +50,10 @@
 
                 <div class="form-group col-12 col-md-6">
                     <label for="">Kinh nghiệm</label>
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
                     <input type="text" name="exp" id="" class="form-control" value='{{ old('exp') }}'>
+                    </div>
 
                     @error('exp')
                         <span style="color: red">{{ $message }}</span>

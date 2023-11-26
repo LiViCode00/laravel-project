@@ -135,7 +135,7 @@
                                         <td>
 
 
-                                            <a href='{{ route('admin.course.lesson.detail', ['lesson' => $lesson]) }}'><button
+                                            <a href='{{ route('admin.course.lesson.manage', ['lesson' => $lesson]) }}'><button
                                                     class="btn btn-info btn-sm">Quản lý</button></a>
 
 

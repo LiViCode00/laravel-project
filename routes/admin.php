@@ -33,6 +33,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 
         Route::prefix('user')->middleware('auth')->name('user.')->group(function () {
+
+                Route::get('/', [UserController::class, 'listUser'])->name('index');
+
                 Route::get('/add', [UserController::class, 'add'])->name('add');
 
                 Route::post('/add', [UserController::class, 'postAdd'])->name('post-add');
@@ -54,10 +57,22 @@ Route::prefix('admin')->name('admin.')->group(function () {
                 Route::post('/delete-multiple', [UserController::class, 'deleteMultiple'])->name('delete-multiple');
 
                 Route::match(['get', 'post'], '/find-user', [UserController::class, 'findUser'])->name('find-user');
+
+                Route::prefix('post')->name('post.')->group(function () {
+
+                        Route::get('/write', [UserController::class, 'writePost'])->name('write');
+
+                        Route::post('/write', [UserController::class, 'postWritePost'])->name('post-write');
+
+                        Route::get('/my-post', [UserController::class, 'myPost'])->name('my-post');
+                });
         });
 
 
         Route::prefix('category')->middleware('auth')->name('category.')->group(function () {
+
+                Route::get('/', [CategoryController::class, 'listCategory'])->name('index');
+
                 Route::get('/add', [CategoryController::class, 'add'])->name('add');
 
                 Route::post('/add', [CategoryController::class, 'postAdd'])->name('post-add');
@@ -77,11 +92,18 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 
         Route::prefix('course')->middleware('auth')->name('course.')->group(function () {
+
+                Route::get('/', [CourseController::class, 'listCourse'])->name('index');
+
                 Route::get('/add', [CourseController::class, 'add'])->name('add');
 
                 Route::post('/add', [CourseController::class, 'postAdd'])->name('post-add');
 
                 Route::get('/list', [CourseController::class, 'listCourse'])->name('list');
+
+                Route::get('/view/{course}', [CourseController::class, 'view'])->name('view');
+
+                Route::get('/manage/{course}', [CourseController::class, 'manage'])->name('manage');
 
                 Route::get('/detail/{course}', [CourseController::class, 'detail'])->name('detail');
 
@@ -104,31 +126,33 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 
                 Route::prefix('lesson')->middleware('auth')->name('lesson.')->group(function () {
-                        Route::get('/add', [LessonController::class, 'add'])->name('add');
-        
-                        Route::post('/add', [LessonController::class, 'postAdd'])->name('post-add');
-        
-                        Route::get('/{course}/list/', [LessonController::class, 'listLesson'])->name('list');
-        
-                        Route::get('/detail/{lesson}', [LessonController::class, 'detail'])->name('detail');
-        
-                        Route::get('/edit/{lesson}', [LessonController::class, 'edit'])->name('edit');
-        
-                        Route::post('/edit/{lesson}', [LessonController::class, 'postedit'])->name('post-edit');
-        
-                        Route::get('/delete/{lesson}', [LessonController::class, 'delete'])->name('delete');
-        
-                        Route::match(['get', 'post'], '/find-lesson', [LessonController::class, 'findLesson'])->name('find-lesson');
-        
 
+                        Route::get('/add', [LessonController::class, 'add'])->name('add');
+
+                        Route::post('/add', [LessonController::class, 'postAdd'])->name('post-add');
+
+                        Route::get('/{course}/list/', [LessonController::class, 'listLesson'])->name('list');
+
+                        Route::get('/manage/{lesson}', [LessonController::class, 'manage'])->name('manage');
+
+                        Route::get('/edit/{lesson}', [LessonController::class, 'edit'])->name('edit');
+
+                        Route::post('/edit/{lesson}', [LessonController::class, 'postedit'])->name('post-edit');
+
+                        Route::get('/delete/{lesson}', [LessonController::class, 'delete'])->name('delete');
+
+                        Route::match(['get', 'post'], '/find-lesson', [LessonController::class, 'findLesson'])->name('find-lesson');
                 });
         });
 
-        
-      
+
+
 
 
         Route::prefix('teacher')->middleware('auth')->name('teacher.')->group(function () {
+
+                Route::get('/', [TeacherController::class, 'listTeacher'])->name('index');
+
                 Route::get('/add', [TeacherController::class, 'add'])->name('add');
 
                 Route::post('/add', [TeacherController::class, 'postAdd'])->name('post-add');

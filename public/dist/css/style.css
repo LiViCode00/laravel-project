@@ -417,3 +417,11 @@ form label{
     color: #727272;
     cursor: pointer;
 }
+.input-group-prepend span{
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.input-group-prepend input{
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}

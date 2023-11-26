@@ -16,7 +16,7 @@ class LessonController extends Controller
 {
     public function add()
     {
-       
+       return view('pages.backend.lesson.add');
     }
     public function postAdd(Request $request)
     {
@@ -30,7 +30,7 @@ class LessonController extends Controller
         return view('pages.backend.lesson.list',compact(['course','lessons']));
     }
 
-    public function view()
+    public function manage()
     {
     }
 

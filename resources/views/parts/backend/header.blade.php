@@ -113,6 +113,14 @@
                     class="dropdown-item">
                     Xem hồ sơ
                 </a>
+                <a href="{{ route('admin.user.post.write') }}"
+                    class="dropdown-item">
+                    Viết blog
+                </a>
+                <a href="{{ route('admin.user.post.my-post') }}"
+                    class="dropdown-item">
+                   Bài viết của tôi
+                </a>
 
                 <div class="dropdown-divider"></div>
                 <a href={{ route('admin.logout') }} class="dropdown-item"

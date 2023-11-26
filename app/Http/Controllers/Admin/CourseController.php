@@ -70,10 +70,6 @@ class CourseController extends Controller
             return redirect()->route('admin.course.lesson.list',compact('course'));
 
 
-
-           
-            
-
     }
 
     public function listCourse()
@@ -83,9 +79,14 @@ class CourseController extends Controller
         return view("pages.backend.course.list", compact('categories','courses'));
     }
 
-    public function detail(Course $course)
+    public function manage(Course $course)
     {
         return redirect()->route('admin.course.lesson.list',compact('course'));
+    }
+
+ 
+    public function detail(Course $course){
+        
     }
 
 

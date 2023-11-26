@@ -4,11 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Group;
+use App\Models\Post;
 use App\Models\User;
 use App\Models\Admin;
+use App\Models\Category;
 use App\Models\Teacher;
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
@@ -195,5 +198,43 @@ class UserController extends Controller
                 return back()->with('error', "Vui lòng nhập key tìm kiếm hoặc chọn nhóm!");
             }
         }
+    }
+
+    public function writePost(){
+        $categories=Category::all();
+        return view('pages.backend.post.write',compact('categories'));
+    }
+    public function postWritePost(Request $request){
+
+        $request->validate(
+            [
+                "post_title" => "required|string",
+                'post_content' => "required|string",
+                'categories' => ['required', 'integer', function ($attribute, $value, $fail) {
+                    if ($value === '0') return $fail('Vui lòng chọn danh mục');
+                }]
+            ],
+            [
+                'required' => ':attribute bắt buộc phải nhập.',
+                'string' => ':attribute phải là kí tự.',
+            ],
+            [
+                "post_title" => "Tiêu đề",
+                'post_content' => "Nội dung",
+            ]
+            );
+
+            dd($request);
+            $post= new Post();
+            $post->title = $request->post_title;
+            $post->content=$request->post_content;
+            $post->category_id=$request->category;
+            $post->user_id=Auth::user()->id;
+            $post->save();
+
+        
+    }
+    public function myPost(){
+
     }
 }

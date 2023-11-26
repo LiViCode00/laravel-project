@@ -25,5 +25,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PostSeeder::class);
         $this->call(VideoSeeder::class);
         $this->call(ReviewSeeder::class);
+        $this->call(MenuSeeder::class);
+        $this->call(ChildMenuSeeder::class);
     }
 }

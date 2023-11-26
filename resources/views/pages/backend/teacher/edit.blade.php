@@ -17,23 +17,28 @@
             <div class="form-row">
                 <div class="form-group col-12 col-md-6">
                     <label for="">Họ tên</label>
-                    <input type="text" name="name" id="" class="form-control" value='{{ $teacher->name ?? old('name') }}'>
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
+                        <input type="text" name="name" id="" class="form-control"
+                            value='{{ $teacher->name ?? old('name') }}'>
+                    </div>
                     @error('name')
                         <span style="color: red">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="form-group col-12 col-md-6">
                     <label for="">Mô tả</label>
-                    <textarea rows="5" type="textarea" name="description" id="" class="form-control"
-                    
-                        value=''>{{ $teacher->description ?? old('description') }}</textarea>
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
+                        <textarea rows="8" type="textarea" name="description" id="" class="form-control" value=''>{{ $teacher->description ?? old('description') }}</textarea>
+                    </div>
 
                     @error('description')
                         <span style="color: red">{{ $message }}</span>
                     @enderror
 
                 </div>
-               
+
                 <div class="form-group col-12 col-md-6">
                     <label for="">Hình ảnh</label>
                     <br>
@@ -46,7 +51,11 @@
 
                 <div class="form-group col-12 col-md-6">
                     <label for="">Kinh nghiệm</label>
-                    <input type="text" name="exp" id="" class="form-control" value='{{ $teacher->exp ?? old('exp') }}'>
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
+                        <input type="text" name="exp" id="" class="form-control"
+                            value='{{ $teacher->exp ?? old('exp') }}'>
+                    </div>
 
                     @error('exp')
                         <span style="color: red">{{ $message }}</span>

@@ -33,8 +33,6 @@
                                 <div>
                                     <a href={{ route('student.view-profile', Auth::guard('student')->user()->id) }}>Xem
                                         thông tin cá nhân</a>
-                                    <a href="">Viết blog</a>
-                                    <a href="">Bài viết của tôi</a>
                                     <a href="">Khóa học của tôi</a>
                                     <a class="logout-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
