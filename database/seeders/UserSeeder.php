@@ -24,6 +24,7 @@ class UserSeeder extends Seeder
                 "email" => "linhnhat@gmail.com",
                 "group_id" => "3",
                 "password" => Hash::make("123456"),
+                "img_path" => "client/images/review/r-1.jpg"
                  
             ],
             [
@@ -32,6 +33,7 @@ class UserSeeder extends Seeder
                 "email" => "linhnhat01@gmail.com",
                 "group_id" => "1",
                 "password" => Hash::make("123456"),
+                "img_path" => "client/images/review/r-2.jpg"
             ],
             [
 
@@ -39,6 +41,7 @@ class UserSeeder extends Seeder
                 "email" => "linhnhat02@gmail.com",
                 "group_id" => "2",
                 "password" => Hash::make("123456"),
+                "img_path" => "client/images/review/r-3.jpg"
             ],
             [
 
@@ -46,6 +49,7 @@ class UserSeeder extends Seeder
                 "email" => "linhnhat03@gmail.com",
                 "group_id" => "1",
                 "password" => Hash::make("123456"),
+                "img_path" => "client/images/review/r-1.jpg"
             ],
             [
 
@@ -53,6 +57,7 @@ class UserSeeder extends Seeder
                 "email" => "linhnhat04@gmail.com",
                 "group_id" => "3",
                 "password" => Hash::make("123456"),
+                "img_path" => "client/images/review/r-2.jpg"
             ],
         ];
 

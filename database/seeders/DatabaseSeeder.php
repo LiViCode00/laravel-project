@@ -21,5 +21,9 @@ class DatabaseSeeder extends Seeder
         $this->call(CategorySeeder::class);
         $this->call(CourseSeeder::class);
         $this->call(OrderSeeder::class);
+        $this->call(LessonSeeder::class);
+        $this->call(PostSeeder::class);
+        $this->call(ReviewSeeder::class);
+        $this->call(VideoSeeder::class);
     }
 }

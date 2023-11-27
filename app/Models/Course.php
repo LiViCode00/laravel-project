@@ -4,38 +4,37 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-<<<<<<< HEAD
 use Illuminate\Support\Facades\DB;
-=======
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
->>>>>>> a78391d907f695b439e3f10debbcf1e9b0a28ab7
 
 class Course extends Model
 {
     use HasFactory;
     protected $table = 'courses';
 
-<<<<<<< HEAD
-    public function teacher()
+    public function course()
     {
-        return $this->belongsTo(Teacher::class);
+        return $this->belongsTo(Category::class);
     }
 
-    public static function getCoursePaginated($perPage){
-        $courses = DB::table('courses')
-        ->join('categories', 'courses.category_id', '=', 'categories.id')
-        ->join('teachers', 'courses.teacher_id', '=', 'teachers.id')
-        ->select('courses.*', 'categories.name AS cate_name', 'teachers.name AS teacher_name', 'teachers.description AS teacher_des', 'teachers.image_path AS teacher_img')
-        ->paginate($perPage);
+    
 
+    public static function getCoursePaginated($query, $perPage)
+    {
+        // Use the provided $query instance instead of creating a new one
+        $courses = $query
+            ->join('categories', 'courses.category_id', '=', 'categories.id')
+            ->join('teachers', 'courses.teacher_id', '=', 'teachers.id')
+            ->select('courses.*', 'categories.name AS cate_name', 'teachers.name AS teacher_name', 'teachers.description AS teacher_des', 'teachers.image_path AS teacher_img')
+            ->paginate($perPage);
+    
         return $courses;
-=======
+    }
     public function category(): BelongsTo{
      return $this->belongsTo(Category::class);
     }
     public function teacher(): BelongsTo{
      return $this->belongsTo(Teacher::class);
->>>>>>> a78391d907f695b439e3f10debbcf1e9b0a28ab7
     }
 
    public static function getCoursesForFree(){
@@ -81,6 +80,7 @@ class Course extends Model
     public static function getCourseRandom($id_course){
         $courses = Course::where('id', '!=', $id_course)->take(3)->get();
         return $courses;
+        
     }
 
     public static function getCountCourse(){
@@ -97,5 +97,21 @@ class Course extends Model
         ->get();
 
         return $lessons;
+    }
+
+    public static function getCouserAjax(){
+        $couses = Course::select('name')->get();
+        return $couses;
+    }
+
+    public static function getCourseByName($name){
+        $courses = DB::table('courses')
+        ->join('categories', 'courses.category_id', '=', 'categories.id')
+        ->join('teachers', 'courses.teacher_id', '=', 'teachers.id')
+        ->select('courses.*', 'categories.name AS cate_name', 'teachers.name AS teacher_name', 'teachers.description AS teacher_des', 'teachers.image_path AS teacher_img')
+        ->where('courses.name', 'like', '%' . $name . '%')
+        ->get();
+
+        return $courses;
     }
 }

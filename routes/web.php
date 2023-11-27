@@ -7,6 +7,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LessonController;
+use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -16,6 +17,9 @@ Auth::routes();
 
 Route::get('/home' , [HomeController::class,'index'])->name('home');
 Route::get('/' , [HomeController::class,'index'])->name('home');
+
+Route::get('/search', [SearchController::class, 'search'])->name('search');
+Route::post('/search_product', [SearchController::class, 'search_product'])->name('search');
 
 Route::get('/login' , function(){
     return view('pages.client.login');
@@ -37,10 +41,10 @@ Route::prefix('teachers')->name('teachers.')->group(function () {
 
 Route::prefix('posts')->name('posts.')->group(function () {
     Route::get('/', [PostController::class,'index'])->name('view');
-    Route::get('/posts-detail' , [PostController::class,'postDetail'])->name('postDetail');
+    Route::get('/posts-detail/{id}', [PostController::class,'postDetail'])->name('postDetail');
 });
 
-Route::get('/lesson' , [LessonController::class,'index'])->name('lesson');
+Route::get('/lesson/{id_course}' , [LessonController::class,'index'])->name('lesson');
 
 Route::prefix('admin')->group(function () {
         Route::get('' , function(){

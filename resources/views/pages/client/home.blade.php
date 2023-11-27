@@ -258,7 +258,7 @@
                                 </div>
                                 <div class="cont">
                                     <span>(20 Reviews)</span>
-                                    <a href="{{ route('posts.postDetail') }}">
+                                    <a href="{{ route('posts.postDetail', ['id' => $post->id]) }}">
                                         <h4 class="course-content col-9"> {{ $post->title }}</h4>
                                     </a>
                                     <div class="course-teacher" style="padding: 5px;">

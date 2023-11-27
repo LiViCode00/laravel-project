@@ -25,13 +25,10 @@ class AppServiceProvider extends ServiceProvider
      * @return void
      */
     public function boot()
-    
     {
-        Paginator::useBootstrap();
         Blade::directive('truncate', function ($expression) {
-            list($string, $length) = explode(',', $expression);
-            return "<?php echo e(Str::limit($string, $length, '...')); ?>";
+            list($string, $length, $end) = explode(',', $expression);
+            return "echo e(Str::limit(strip_tags($string), $length, $end));";
         });
-        
     }
 }

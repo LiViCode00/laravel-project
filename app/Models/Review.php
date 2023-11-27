@@ -17,7 +17,7 @@ class Review extends Model
             ->join('lessons', 'reviews.lesson_id', '=', 'lessons.id')
             ->join('courses', 'courses.id', '=', 'lessons.course_id')
             ->join('users', 'users.id', '=', 'reviews.user_id')
-            ->select('reviews.*', 'courses.id AS course_id', 'users.name AS user_name')
+            ->select('reviews.*', 'courses.id AS course_id', 'users.name AS user_name', 'users.img_path AS user_img')
             ->where('course_id', '=', $id_course)
             ->paginate($perPage);
     

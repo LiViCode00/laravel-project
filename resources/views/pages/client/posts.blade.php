@@ -1,63 +1,61 @@
+@php
+    use Carbon\Carbon;
+@endphp
+
 @extends('layouts.clients.client')
 @section('title')
 Các bài viết
 @endsection
 @section('content')
-<section id="blog-page" class="pt-40 pb-120">
+<section id="blog-page" class="pt-80 pb-120">
     <div class="container container-edit">
        <div class="row">
-
-
            <div class="col-lg-8">
+
+                @foreach ($posts as $post)
                <div class="singel-blog mt-80 row">  
                    <div class="blog-cont col-md-8">
-                       <a href="{{ route('posts.postDetail') }}"><h3>Few tips for get better results in examination</h3></a>
+                       <a href="{{ route('posts.postDetail', ['id' => $post->id]) }}"><h3>{{$post->title}}</h3></a>
                        <ul>
-                           <li><a href="#"><i class="fa fa-calendar"></i>25 Dec 2018</a></li>
-                           <li><a href="#"><i class="fa fa-user"></i>Mark anthem</a></li>
+                           <li><a href="#"><i class="fa fa-calendar"></i>{{ Carbon::parse($post->created_at)->format('F d, Y') }}</a></li>
+                           <li><a href="#"><i class="fa fa-user"></i>{{$post->user_name}}</a></li>
                            <li><a href="#"><i class="fa fa-tags"></i>Education</a></li>
                        </ul>
-                       <p>@truncate("Lorem gravida nibh vel velit auctor aliquetn sollicitudirem quibibendum auci elit cons equat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus", 120, '...')</p>
-                       <span class="categories-post-tag mt-3">dfasdfasdfasd</span>
+                       <p>{!! substr(htmlspecialchars($post->content), 0, 122) !!}...</p>
+                       <span class="categories-post-tag mt-3">{{$post->cate_name}}</span>
                    </div>
                    <div class="blog-thum col-md-4 pr-6 d-flex align-items-center justify-content-center">
-                       <img src="{{asset('client/images/blog/b-1.jpg')}}" alt="Blog">
+                       <img src="/{{$post->image_path}}" alt="Blog">
                    </div>
                </div> <!-- singel blog -->
+               @endforeach
 
+               <div class="row">
+                    <div class="col-lg-12">
+                        <nav class="courses-pagination mt-50">
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item">
+                                    <a href="{{$posts->previousPageUrl()}}" aria-label="Previous">
+                                        <i class="fa fa-angle-left"></i>
+                                    </a>
+                                </li>
+                                <li class="page-item"><a class="{{ $posts->currentPage() == 1 ? 'active' : '' }}" href="{{$posts->url(1)}}">1</a></li>
 
-               <div class="singel-blog mt-30">
-                   <div class="blog-thum">
-                       <img src="{{asset('client/images/blog/b-2.jpg')}}" alt="Blog">
-                   </div>
-                   <div class="blog-cont">
-                       <a href={{ route('posts.postDetail') }}><h3>Few tips for get better results in examination</h3></a>
-                       <ul>
-                           <li><a href="#"><i class="fa fa-calendar"></i>25 Dec 2018</a></li>
-                           <li><a href="#"><i class="fa fa-user"></i>Mark anthem</a></li>
-                           <li><a href="#"><i class="fa fa-tags"></i>Education</a></li>
-                       </ul>
-                       <p>Lorem ipsum gravida nibh vel velit auctor aliquetn sollicitudirem quibibendum auci elit cons equat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus .</p>
-                       <p>dfasdfasdfasd</p>
-                   </div>
-               </div> <!-- singel blog -->
-               <nav class="courses-pagination mt-50">
-                    <ul class="pagination d-flex justify-content-lg-end justify-content-center">
-                        <li class="page-item">
-                            <a href="#" aria-label="Previous">
-                                <i class="fa fa-angle-left"></i>
-                            </a>
-                        </li>
-                        <li class="page-item"><a class="active" href="#">1</a></li>
-                        <li class="page-item"><a href="#">2</a></li>
-                        <li class="page-item"><a href="#">3</a></li>
-                        <li class="page-item">
-                            <a href="#" aria-label="Next">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>  <!-- courses pagination -->
+                                @for ($i = 2; $i <= $posts->lastPage(); $i++)
+                                    <li class="page-item">
+                                        <a href="{{ $posts->url($i) }}" class="{{ $posts->currentPage() == $i ? 'active' : '' }}">{{ $i }}</a>
+                                    </li>
+                                @endfor
+                                <li class="page-item">
+                                    <a href="{{$posts->nextPageUrl()}}" aria-label="Next">
+                                        <i class="fa fa-angle-right"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav> <!-- courses pagination -->
+                    </div>
+                </div> <!-- row -->
+
            </div>
            <div class="col-lg-4 mt-50">
                <div class="saidbar">
@@ -66,14 +64,9 @@ Các bài viết
                            <div class="categories mt-30 ">
                                <h4  class="d-flex align-items-center justify-content-center">Categories</h4>
                                <ul>
-                                   <li><a href="#">Fronted</a></li>
-                                   <li><a href="#">Backend</a></li>
-                                   <li><a href="#">Photography</a></li>
-                                   <li><a href="#">Teachnology</a></li>
-                                   <li><a href="#">GMET</a></li>
-                                   <li><a href="#">Language</a></li>
-                                   <li><a href="#">Science</a></li>
-                                   <li><a href="#">Accounting</a></li>
+                                    @foreach ($categories as $category)
+                                        <li><a href="#">{{$category->name}}</a></li>
+                                    @endforeach
                                </ul>
                            </div>
                        </div> <!-- categories -->
@@ -82,43 +75,19 @@ Các bài viết
                                <h4 class="d-flex align-items-center justify-content-center">Popular Posts</h4>
                                <ul>
                                    <li>
-                                        <a href="#">
+                                        @foreach ($postLike as $post)
+                                        <a href="#" class="mb-6">
                                             <div class="singel-post">
                                                <div class="thum">
-                                                   <img src="{{asset('client/images/blog/blog-post/bp-1.jpg')}}" alt="Blog">
+                                                   <img src="/{{$post->image_path}}" alt="Blog">
                                                </div>
                                                <div class="cont">
-                                                   <h6>Introduction to languages</h6>
-                                                   <span>20 Dec 2018</span>
+                                                   <h6>{{$post->title}}</h6>
+                                                   <span>{{ Carbon::parse($post->created_at)->format('F d, Y') }}</span>
                                                </div>
                                            </div> <!-- singel post -->
                                         </a>
-                                   </li>
-                                   <li>
-                                        <a href="#">
-                                            <div class="singel-post">
-                                               <div class="thum">
-                                                   <img src="{{asset('client/images/blog/blog-post/bp-2.jpg')}}" alt="Blog">
-                                               </div>
-                                               <div class="cont">
-                                                   <h6>How to build a game with java</h6>
-                                                   <span>10 Dec 2018</span>
-                                               </div>
-                                           </div> <!-- singel post -->
-                                        </a>
-                                   </li>
-                                   <li>
-                                        <a href="#">
-                                            <div class="singel-post">
-                                               <div class="thum">
-                                                   <img src="{{asset('client/images/blog/blog-post/bp-1.jpg')}}" alt="Blog">
-                                               </div>
-                                               <div class="cont">
-                                                   <h6>Basic accounting from primary</h6>
-                                                   <span>07 Dec 2018</span>
-                                               </div>
-                                           </div> <!-- singel post -->
-                                        </a>
+                                        @endforeach
                                    </li>
                                </ul>
                            </div> <!-- saidbar post -->

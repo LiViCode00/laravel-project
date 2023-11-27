@@ -18,4 +18,8 @@ class Category extends Model
     public function courses(): HasMany{
         return $this->hasMany(Course::class);
     }
+
+    public static function getAllCate(){
+        return Category::all();
+    }
 }
