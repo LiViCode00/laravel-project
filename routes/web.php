@@ -9,8 +9,15 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LessonController;
+<<<<<<< HEAD
 use App\Http\Controllers\OrderController as ControllersOrderController;
+=======
+<<<<<<< HEAD
+use App\Http\Controllers\SearchController;
+=======
+>>>>>>> a18ab52fcda1eabb00cf59e98efe00b54a891042
 use App\Http\Controllers\StudentController;
+>>>>>>> 08266ac52810bf86e5c738331907da71ebeb9109
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -34,6 +41,15 @@ Route::post('/logout', [StudentController::class, 'logout'])->name('logout');
 Route::get('/logout', [StudentController::class, 'logout']);
 
 
+<<<<<<< HEAD
+Route::get('/search', [SearchController::class, 'search'])->name('search');
+Route::post('/search_product', [SearchController::class, 'search_product'])->name('search');
+
+Route::get('/login' , function(){
+    return view('pages.client.login');
+})->name('login');
+=======
+>>>>>>> 08266ac52810bf86e5c738331907da71ebeb9109
 
 
 Route::prefix('courses')->name('courses.')->group(function () {
@@ -47,11 +63,19 @@ Route::prefix('teachers')->name('teachers.')->group(function () {
 });
 
 Route::prefix('posts')->name('posts.')->group(function () {
+<<<<<<< HEAD
+    Route::get('/', [PostController::class,'index'])->name('view');
+    Route::get('/posts-detail/{id}', [PostController::class,'postDetail'])->name('postDetail');
+});
+
+Route::get('/lesson/{id_course}' , [LessonController::class,'index'])->name('lesson');
+=======
     Route::get('/', [PostController::class, 'index'])->name('view');
     Route::get('/posts-detail', [PostController::class, 'postDetail'])->name('postDetail');
 });
 
 Route::get('/lesson', [LessonController::class, 'index'])->name('lesson');
+>>>>>>> 08266ac52810bf86e5c738331907da71ebeb9109
 
 Route::prefix('admin')->group(function () {
     Route::get('', function () {

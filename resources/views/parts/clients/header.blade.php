@@ -11,13 +11,23 @@
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-8  d-none d-sm-block">
-                    <div class="search_box">
-                        <input type="text" name="" id=""
-                            placeholder="Tìm kiếm khóa học, bài viết, video ...">
-                        <i class="fa fa-search" aria-hidden="true"></i>
-                    </div>
+                <div class="search_box-total col-lg-4 col-md-8  d-none d-sm-block">
+                       <form class="search_box" action="{{url('search_product')}}" method="POST">
+                            @csrf
+                           <input type="text" name="search" id="search_input"
+                                placeholder="Tìm kiếm khóa học, bài viết, video ...">
+                           <button type="submit"><i class="fa fa-search search_box-btn" aria-hidden="true"></i></button>
+                       </form>
                 </div>
+
+                <div id="result" class="panel panel-default" style="display: none;">
+                    <ul class="list-group" id="list-result">
+                        
+                    </ul>
+                </div>
+
+                
+              
 
                 <div class="col-lg-4 col-md-4 col-12 d-flex justify-content-end align-items-center">
 
@@ -139,6 +149,8 @@
 
 </header>
 
+<<<<<<< HEAD
+=======
 
 <script>
     let isBoxVisible = false;
@@ -160,3 +172,4 @@
         }
     });
 </script>
+>>>>>>> 08266ac52810bf86e5c738331907da71ebeb9109

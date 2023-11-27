@@ -10,7 +10,7 @@ class TeacherController extends Controller
     public function index(){
         $teachers = Teacher::getAllTeacherPag(8);
         return view("pages.client.teachers", [
-            'teachers' => $teachers
+            'teachers' => $teachers,
         ]);
     }
 

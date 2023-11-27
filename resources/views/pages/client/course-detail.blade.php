@@ -1,3 +1,7 @@
+@php
+    use Carbon\Carbon;
+@endphp
+
 @extends('layouts.clients.client')
 @section('title')
     Chi tiết khóa học
@@ -88,53 +92,30 @@
                                 <div class="curriculam-cont">
                                     <div class="title">
                                         <h6>Dưới đây là tất cả lessons của khóa học này</h6>
+                                        <a href="{{ route('lesson', ['id_course' => $course->id]) }}">click vao day de hoc</a>
                                     </div>
                                     <div class="accordion" id="accordionExample">
 
                                         @for ($i = 0; $i < count($lessons); $i++)
-                                            @if ($i ==0)
-                                                <div class="card">
-                                                    <div class="card-header" id="">
-                                                        <a href="#" class="collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="headingOne">
-                                                            <ul>
-                                                                <li><i class="fa fa-file-o"></i></li>
-                                                                <li><span class="lecture">Lecture {{$i+1}}.</span></li>
-                                                                <li><span class="head">{{$lessons[$i]->name}}</span></li>
-                                                                <li><span class="time d-none d-md-block"><i class="fa fa-clock-o"></i> <span> {{number_format($lessons[$i]->durations, 2, '.', '')}}</span></span></li>
-                                                            </ul>
-                                                        </a>
-                                                    </div>
+                                            <div class="card">
+                                                <div class="card-header" id="heading-{{$lessons[$i]->id}}">
+                                                    <a href="#" class="collapsed" data-toggle="collapse" data-target="#collapse-{{$lessons[$i]->id}}" aria-expanded="false" aria-controls="collapse-{{$lessons[$i]->id}}">
+                                                        <ul>
+                                                            <li><i class="fa fa-file-o"></i></li>
+                                                            <li><span class="lecture">Lecture {{$i+1}}.</span></li>
+                                                            <li><span class="head">{{$lessons[$i]->name}}</span></li>
+                                                            <li><span class="time d-none d-md-block"><i class="fa fa-clock-o"></i> <span>{{number_format($lessons[$i]->durations, 2, '.', '')}}</span></span></li>
+                                                        </ul>
+                                                    </a>
+                                                </div>
 
-                                                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                                                        <div class="card-body pt-3">
-                                                            <p>{{$lessons[$i]->description}}</p>
-                                                        </div>
+                                                <div id="collapse-{{$lessons[$i]->id}}" class="collapse" aria-labelledby="heading-{{$lessons[$i]->id}}" data-parent="#accordionExample">
+                                                    <div class="card-body pt-3">
+                                                        <p>{{$lessons[$i]->description}}</p>
                                                     </div>
                                                 </div>
-                                            
-                                        
-                                            @else
-                                                <div class="card">
-                                                    <div class="card-header" id="headingTow">
-                                                        <a href="#" data-toggle="collapse" class="collapsed" data-target="#collapseTow" aria-expanded="true" aria-controls="collapseTow">
-                                                            <ul>
-                                                                <li><i class="fa fa-file-o"></i></li>
-                                                                <li><span class="lecture">Lecture {{$i+1}},</span></li>
-                                                                <li><span class="head">{{$lessons[$i]->name}}</span></li>
-                                                                <li><span class="time d-none d-md-block"><i class="fa fa-clock-o"></i> <span> {{number_format($lessons[$i]->durations, 2, '.', '')}}</span></span></li>
-                                                            </ul>
-                                                        </a>
-                                                    </div>
-
-                                                    <div id="collapseTow" class="collapse" aria-labelledby="headingTow" data-parent="#accordionExample">
-                                                        <div class="card-body">
-                                                            <p>{{$lessons[$i]->description}}</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                @endif
+                                            </div>
                                         @endfor
-                                        
                                     </div>
                                 </div> <!-- curriculam cont -->
                             </div>
@@ -175,11 +156,12 @@
                                            <div class="singel-reviews">
                                                 <div class="reviews-author">
                                                     <div class="author-thum">
-                                                        <img src="{{asset('client/images/review/r-1.jpg')}}" alt="Reviews">
+                                                        <img src="/{{$review->user_img}}" alt="Reviews">
                                                     </div>
                                                     <div class="author-name">
                                                         <h6>{{$review->user_name}}</h6>
-                                                        <span>April 03, 2019</span>
+                                                        <span>{{ Carbon::parse($review->created_at)->format('F d, Y') }}</span>
+
                                                     </div>
                                                 </div>
                                                 <div class="reviews-description pt-20">
@@ -326,7 +308,7 @@
             <div class="col-lg-8">
                 <div class="releted-courses pt-95">
                     <div class="title">
-                        <h3 style="color: orangered;">Các khóa học có liên quan </h3>
+                        <h3 style="color: #4D2DB7;">Khóa học liên quan </h3>
                     </div>
                     <div class="row">
 
@@ -382,7 +364,4 @@
         </div> <!-- row -->
     </div> <!-- container container-edit -->
 </section>
-
-
-<p>hello</p>
 @endsection

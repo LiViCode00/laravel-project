@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
                 "email" => "user@gmail.com",
                 "group_id" => "3",
                 "password" => Hash::make("123456"),
-
+                "img_path" => "client/images/review/r-3.jpg"
             ],
             [
 
@@ -32,6 +32,7 @@ class UserSeeder extends Seeder
                 "email" => "user02@gmail.com",
                 "group_id" => "1",
                 "password" => Hash::make("123456"),
+                "img_path" => "client/images/review/r-2.jpg"
             ],
             [
 
@@ -39,6 +40,7 @@ class UserSeeder extends Seeder
                 "email" => "user03@gmail.com",
                 "group_id" => "2",
                 "password" => Hash::make("123456"),
+                "img_path" => "client/images/review/r-3.jpg"
             ],
             [
 
@@ -46,6 +48,7 @@ class UserSeeder extends Seeder
                 "email" => "user04@gmail.com",
                 "group_id" => "1",
                 "password" => Hash::make("123456"),
+                "img_path" => "client/images/review/r-1.jpg"
             ],
             [
 
@@ -53,6 +56,7 @@ class UserSeeder extends Seeder
                 "email" => "user05@gmail.com",
                 "group_id" => "3",
                 "password" => Hash::make("123456"),
+                "img_path" => "client/images/review/r-2.jpg"
             ],
         ];
 

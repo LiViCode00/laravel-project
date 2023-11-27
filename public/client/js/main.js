@@ -447,13 +447,85 @@ $(function() {
     });
 
 
+    // search bar
+
+    $( function() {
+      $.widget( "custom.catcomplete", $.ui.autocomplete, {
+        _create: function() {
+          this._super();
+          this.widget().menu( "option", "items", "> :not(.ui-autocomplete-category)" );
+        },
+        _renderMenu: function( ul, items ) {
+          var that = this,
+            currentCategory = "";
+          $.each( items, function( index, item ) {
+            var li;
+            if ( item.category != currentCategory ) {
+              ul.append( "<li class='ui-autocomplete-category'>" + item.category + "</li>" );
+              currentCategory = item.category;
+            }
+            li = that._renderItemData( ul, item );
+            if ( item.category ) {
+              li.attr( "aria-label", item.category + " : " + item.label );
+            }
+          });
+        }
+      });
+      var dataAvailable = [];
+
+      $.ajax({
+            method: 'GET',
+            url: '/search', 
+            success: function (response){
+                console.log(response)
+                startAutoComplete(response)
+            }
+        });
+   
+      function startAutoComplete (dataAvailable){
+          $( "#search_input" ).catcomplete({
+            delay: 0,
+            source: dataAvailable
+          });
+      }
+     
+    });
+
+  
+  
+  
+
+  
+  
+
+  
+
+
    
 
     
     
+        //file button box (cho ho so)
     
+    let isBoxVisible = false;
     
+    document.getElementById('showBoxButton').addEventListener('click', function(event) {
+        if (isBoxVisible) {
+            document.getElementById('hiddenBox').style.display = 'none';
+        } else {
+            document.getElementById('hiddenBox').style.display = 'block';
+        }
+        isBoxVisible = !isBoxVisible; // Chuyển đổi trạng thái
+        event.stopPropagation(); // Ngăn sự kiện click từ việc lan truyền đến body
+    });
     
+    document.body.addEventListener('click', function() {
+        if (isBoxVisible) {
+            document.getElementById('hiddenBox').style.display = 'none';
+            isBoxVisible = false; // Cập nhật trạng thái
+        }
+    });
+
     
     
 });

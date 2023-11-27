@@ -7,7 +7,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
+
     <!--====== Title ======-->
     <title>@yield('title')</title>
     
@@ -90,8 +90,11 @@
     
     
     <!--====== jquery js ======-->
+
     <script src="{{asset('client/js/vendor/modernizr-3.6.0.min.js')}}"></script>
     <script src="{{asset('client/js/vendor/jquery-1.12.4.min.js')}}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
     <!--====== Bootstrap js ======-->
     <script src="{{asset('client/js/bootstrap.min.js')}}"></script>

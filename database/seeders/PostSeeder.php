@@ -32,11 +32,11 @@ class PostSeeder extends Seeder
         [
             'id' => '2',
             'title' => 'Ưu điểm của ReactJS trong Phát triển Web', 
-            'content' => '<p>So với nhiều khung công việc khác, ReactJS là một lựa chọn mạnh mẽ cho việc phát triển ứng dụng web hiện đại. Việc sử dụng các thành phần tái sử dụng giúp tạo ra một cấu trúc mã nguồn dễ bảo trì và mở rộng.</p>
+            'content' => 'So với nhiều khung công việc khác, ReactJS là một lựa chọn mạnh mẽ cho việc phát triển ứng dụng web hiện đại. Việc sử dụng các thành phần tái sử dụng giúp tạo ra một cấu trúc mã nguồn dễ bảo trì và mở rộng.
 
-            <p>ReactJS không chỉ giúp tối ưu hóa hiệu suất của ứng dụng mà còn mang lại trải nghiệm người dùng mượt mà hơn thông qua cơ chế làm mới linh hoạt. Việc sử dụng Virtual DOM giúp giảm tải cho máy chủ và tăng tốc độ render, đặc biệt quan trọng khi xây dựng các ứng dụng phức tạp.</p>
+            ReactJS không chỉ giúp tối ưu hóa hiệu suất của ứng dụng mà còn mang lại trải nghiệm người dùng mượt mà hơn thông qua cơ chế làm mới linh hoạt. Việc sử dụng Virtual DOM giúp giảm tải cho máy chủ và tăng tốc độ render, đặc biệt quan trọng khi xây dựng các ứng dụng phức tạp.
 
-            <p>Ngoài ra, cộng đồng đông đảo và tính tương thích tốt với nhiều thư viện và công nghệ khác nhau làm cho ReactJS trở thành sự lựa chọn lý tưởng cho các dự án phát triển web đa dạng.</p>',
+            Ngoài ra, cộng đồng đông đảo và tính tương thích tốt với nhiều thư viện và công nghệ khác nhau làm cho ReactJS trở thành sự lựa chọn lý tưởng cho các dự án phát triển web đa dạng.',
             'slug' => 'uu-diem-reactjs-phat-trien-web',
             'image_path' => 'client/images/news/ns-2.jpg',
             'category_id' =>'4',
@@ -46,11 +46,11 @@ class PostSeeder extends Seeder
         [
             'id' => '3',
             'title' => 'Tích hợp Redux trong Ứng dụng ReactJS', 
-            'content' => '<p>Đối với các ứng dụng ReactJS lớn và phức tạp, việc quản lý trạng thái có thể trở nên khó khăn. Đây là nơi mà Redux đến cứu rỗi, cung cấp một quy trình quản lý trạng thái đơn giản và hiệu quả.</p>
+            'content' => 'Đối với các ứng dụng ReactJS lớn và phức tạp, việc quản lý trạng thái có thể trở nên khó khăn. Đây là nơi mà Redux đến cứu rỗi, cung cấp một quy trình quản lý trạng thái đơn giản và hiệu quả.
 
-            <p>Redux giúp tổ chức trạng thái của ứng dụng một cách rõ ràng thông qua việc sử dụng một nguồn dữ liệu duy nhất. Điều này không chỉ làm cho việc theo dõi trạng thái dễ dàng mà còn tạo ra tính dự đoán và nhất quán trong quá trình phát triển.</p>
+            Redux giúp tổ chức trạng thái của ứng dụng một cách rõ ràng thông qua việc sử dụng một nguồn dữ liệu duy nhất. Điều này không chỉ làm cho việc theo dõi trạng thái dễ dàng mà còn tạo ra tính dự đoán và nhất quán trong quá trình phát triển.
 
-            <p>Sự tích hợp giữa ReactJS và Redux mang lại một mô hình kiến trúc mạnh mẽ, giúp phát triển ứng dụng linh hoạt và mở rộng một cách dễ dàng. Nhờ vào việc quản lý trạng thái hiệu quả, Redux trở thành một công cụ quan trọng cho những dự án ReactJS lớn và phức tạp.</p>',
+            Sự tích hợp giữa ReactJS và Redux mang lại một mô hình kiến trúc mạnh mẽ, giúp phát triển ứng dụng linh hoạt và mở rộng một cách dễ dàng. Nhờ vào việc quản lý trạng thái hiệu quả, Redux trở thành một công cụ quan trọng cho những dự án ReactJS lớn và phức tạp.',
             'slug' => 'redux-trong-ung-dung-reactjs',
             'image_path' => 'client/images/news/ns-3.jpg',
             'category_id' =>'1',
@@ -60,11 +60,11 @@ class PostSeeder extends Seeder
         [
             'id' => '4',
             'title' => 'GraphQL: Tương lai của Giao thức Truy vấn Dữ liệu', 
-            'content' => '<p>GraphQL đã nhanh chóng trở thành một lựa chọn phổ biến trong cộng đồng phát triển web, thay vì REST API truyền thống. Khả năng truy vấn linh hoạt, tiết kiệm băng thông, và khả năng tự mô tả của GraphQL giúp tối ưu hóa quá trình truyền tải dữ liệu giữa máy khách và máy chủ.</p>
+            'content' => 'GraphQL đã nhanh chóng trở thành một lựa chọn phổ biến trong cộng đồng phát triển web, thay vì REST API truyền thống. Khả năng truy vấn linh hoạt, tiết kiệm băng thông, và khả năng tự mô tả của GraphQL giúp tối ưu hóa quá trình truyền tải dữ liệu giữa máy khách và máy chủ.
 
-            <p>Sự mở rộng của GraphQL cho phép người phát triển chỉ lấy những dữ liệu cần thiết, giảm lượng dữ liệu không cần thiết được truyền tải qua mạng. Điều này không chỉ tăng hiệu suất ứng dụng mà còn tạo ra một trải nghiệm người dùng tốt hơn.</p>
+            Sự mở rộng của GraphQL cho phép người phát triển chỉ lấy những dữ liệu cần thiết, giảm lượng dữ liệu không cần thiết được truyền tải qua mạng. Điều này không chỉ tăng hiệu suất ứng dụng mà còn tạo ra một trải nghiệm người dùng tốt hơn.
 
-            <p>Với khả năng tương tác mạnh mẽ, GraphQL đang dần trở thành xu hướng quan trọng và có thể là giao thức chủ đạo trong tương lai của phát triển web.</p>',
+            Với khả năng tương tác mạnh mẽ, GraphQL đang dần trở thành xu hướng quan trọng và có thể là giao thức chủ đạo trong tương lai của phát triển web.',
             'slug' => 'graphql-tuong-lai-giao-thuc-truy-van-du-lieu',
             'image_path' => 'client/images/news/ns-4.jpg',
             'category_id' =>'4',
@@ -74,11 +74,11 @@ class PostSeeder extends Seeder
         [
             'id' => '5',
             'title' => 'Sự Ra Đời và Phát Triển của Docker trong Hệ Sinh Thái DevOps', 
-            'content' => '<p>Docker đã đưa đến một cuộc cách mạng trong quá trình triển khai và quản lý ứng dụng. Việc sử dụng containerization giúp đơn giản hóa quá trình triển khai và đảm bảo rằng môi trường phát triển được giữ nguyên từ máy tính cá nhân đến máy chủ.</p>
+            'content' => 'Docker đã đưa đến một cuộc cách mạng trong quá trình triển khai và quản lý ứng dụng. Việc sử dụng containerization giúp đơn giản hóa quá trình triển khai và đảm bảo rằng môi trường phát triển được giữ nguyên từ máy tính cá nhân đến máy chủ.
 
-            <p>Với sự linh hoạt và tương thích rộng rãi, Docker trở thành một phần không thể thiếu trong hệ sinh thái DevOps. Khả năng tạo ra môi trường đồng nhất giữa các giai đoạn của quy trình phát triển giúp tăng tốc độ và chất lượng của dự án.</p>
+            Với sự linh hoạt và tương thích rộng rãi, Docker trở thành một phần không thể thiếu trong hệ sinh thái DevOps. Khả năng tạo ra môi trường đồng nhất giữa các giai đoạn của quy trình phát triển giúp tăng tốc độ và chất lượng của dự án.
 
-            <p>DevOps không chỉ là một xu hướng, mà còn là một sự thay đổi cách tiếp cận phát triển phần mềm, và Docker chính là một công cụ quan trọng trong hành trang của các nhà phát triển và quản trị hệ thống.</p>',
+            DevOps không chỉ là một xu hướng, mà còn là một sự thay đổi cách tiếp cận phát triển phần mềm, và Docker chính là một công cụ quan trọng trong hành trang của các nhà phát triển và quản trị hệ thống.',
             'slug' => 'docker-trong-he-sinh-thai-devops',
             'image_path' => 'client/images/news/ns-5.jpg',
             'category_id' =>'4',
@@ -89,9 +89,9 @@ class PostSeeder extends Seeder
         [
             'id' => '6',
             'title' => 'Sự Tăng Trưởng Của Ngôn Ngữ Lập Trình Python', 
-            'content' => '<p>Python đã trở thành một trong những ngôn ngữ lập trình phổ biến nhất trên thế giới. Được biết đến với cú pháp đơn giản và dễ đọc, Python không chỉ thuận tiện cho người mới học lập trình mà còn được ưa chuộng trong cộng đồng phát triển chuyên nghiệp.</p>
+            'content' => 'Python đã trở thành một trong những ngôn ngữ lập trình phổ biến nhất trên thế giới. Được biết đến với cú pháp đơn giản và dễ đọc, Python không chỉ thuận tiện cho người mới học lập trình mà còn được ưa chuộng trong cộng đồng phát triển chuyên nghiệp.
 
-            <p>Sự đa nhiệm của Python giúp nó trở thành một công cụ linh hoạt cho nhiều ứng dụng, từ phân tích dữ liệu đến phát triển web và trí tuệ nhân tạo. Cộng đồng lớn và tính tương thích với nhiều thư viện và framework khác nhau giúp Python duy trì sức hút của mình trong cả cộng đồng lập trình viên và doanh nghiệp.</p>',
+            Sự đa nhiệm của Python giúp nó trở thành một công cụ linh hoạt cho nhiều ứng dụng, từ phân tích dữ liệu đến phát triển web và trí tuệ nhân tạo. Cộng đồng lớn và tính tương thích với nhiều thư viện và framework khác nhau giúp Python duy trì sức hút của mình trong cả cộng đồng lập trình viên và doanh nghiệp.',
             'slug' => 'tang-truong-python-ngon-ngu-lap-trinh',
             'image_path' => 'client/images/news/ns-6.jpg',
             'category_id' =>'4',

@@ -2,16 +2,40 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Course;
 use App\Models\Review;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
 {
-    public function index(){
-        $courses = Course::getCoursePaginated(8);
-        $countCourse = Course::getCountCourse();
-        return view("pages.client.courses", ['courses' => $courses, 'count' => $countCourse, compact('courses')]);
+    public function index(Request $request){
+
+        $query = Course::query();
+
+        if ($request->filled('category')) {
+            $query->whereHas('category', function ($q) use ($request) {
+                $q->whereIn('id', $request->category);
+            });
+        }
+        
+        if (isset($request->min) && $request->min != null){
+            $query->where('price', '>=', $request->min);
+        }
+        if (isset($request->max) && $request->max != null){ 
+            $query->where('price', '<=', $request->max);
+        }
+
+        $courses = Course::getCoursePaginated($query, 6); 
+        $countCourse = Course::getCountCourse($query); 
+        
+        $cate = Category::getAllCate();
+        
+        return view("pages.client.courses", [
+            'courses' => $courses,
+            'count' => $countCourse,
+            'category' => $cate
+        ]);
     }
 
     public function courseDetail($id){
@@ -37,6 +61,8 @@ class CourseController extends Controller
             ]);
         }
     }
+
+   
 
    
 }
