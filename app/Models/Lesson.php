@@ -4,12 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Lesson extends Model
 {
     use HasFactory;
     protected $table = 'lessons';
 
+<<<<<<< HEAD
     public function course()
     {
         return $this->belongsTo(Course::class);
@@ -22,5 +25,13 @@ class Lesson extends Model
             ->get();
     
         return $lessons;
+=======
+    public function course(): BelongsTo{
+        return $this->belongsTo(Course::class);
+    }
+
+    public function videos(): HasMany{
+        return $this->hasMany(Video::class);
+>>>>>>> 08266ac52810bf86e5c738331907da71ebeb9109
     }
 }

@@ -1094,10 +1094,16 @@ p {
     height: 100%;
     font-size: 14px;
     border: 1px solid #ccc;
+<<<<<<< HEAD
     padding: 16px;
     border-bottom-left-radius: 20px;
     border-top-left-radius: 20px;
     position: relative;
+=======
+    padding: 0 16px;
+    border-bottom-left-radius: 30px;
+    border-top-left-radius: 30px;
+>>>>>>> 08266ac52810bf86e5c738331907da71ebeb9109
 }
 .search_box button {
     font-size: 16px;
@@ -1105,8 +1111,8 @@ p {
     border: 2px solid #ccc;
     border-left: white;
     height: 100%;
-    border-bottom-right-radius: 20px;
-    border-top-right-radius: 20px;
+    border-bottom-right-radius: 30px;
+    border-top-right-radius: 30px;
     display: flex;
     align-items: center;
 }
@@ -3048,7 +3054,7 @@ p {
     font-weight: 700;
     padding-bottom: 10px;
     font-family: 'Signika', sans-serif;
-}
+}~
 
 .overview-description .singel-description p{
     margin-bottom: 10px;
@@ -4722,6 +4728,7 @@ img.logo{
     padding: 10px 20px;
     background-color: rgb(237, 237, 237);
     border-radius: 30px;
+<<<<<<< HEAD
 
 }
 
@@ -4743,3 +4750,12 @@ img.logo{
 .form-check-input:checked {
     color: var(--violet); 
 }
+=======
+}
+
+/* Ẩn menu con mặc định */
+.hidden {
+    display: none;
+  }
+  
+>>>>>>> 08266ac52810bf86e5c738331907da71ebeb9109

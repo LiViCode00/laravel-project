@@ -109,9 +109,17 @@
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
 
-                <a href="{{ route('admin.view-profile', ['admin' => Auth::guard('admin')->user()]) }}"
+                <a href="{{ route('admin.view-profile',  Auth::user()) }}"
                     class="dropdown-item">
                     Xem hồ sơ
+                </a>
+                <a href="{{ route('admin.user.post.write') }}"
+                    class="dropdown-item">
+                    Viết blog
+                </a>
+                <a href="{{ route('admin.user.post.my-post') }}"
+                    class="dropdown-item">
+                   Bài viết của tôi
                 </a>
 
                 <div class="dropdown-divider"></div>
@@ -124,7 +132,7 @@
                 <div class="dropdown-divider"></div>
 
             </div>
-            <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" class="d-none">
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                 @csrf
             </form>
         </li>

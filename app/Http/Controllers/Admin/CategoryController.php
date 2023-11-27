@@ -31,7 +31,7 @@ class CategoryController extends Controller
         );
         $category = new Category();
         $category->name = $request->name;
-        $category->admin_id= Auth::guard('admin')->user()->id;
+        $category->user_id= Auth::user()->id;
         $category->save();
         return redirect()->route('admin.category.list')->with('success', 'Thêm mới danh mục thành công');
     }
@@ -68,7 +68,7 @@ class CategoryController extends Controller
             ]
         );
         $category->name = $request->name;
-        $category->admin_id= Auth::guard('admin')->user()->id;
+        $category->user_id= Auth::user()->id;
         $category->save();
         return redirect()->route('admin.category.list')->with('success', 'Cập nhật danh mục thành công');
     }

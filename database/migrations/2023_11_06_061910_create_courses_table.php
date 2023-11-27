@@ -27,6 +27,7 @@ return new class extends Migration
             $table->integer('teacher_id')->unsigned();
             $table->integer('category_id')->unsigned();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

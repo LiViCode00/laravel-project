@@ -17,7 +17,7 @@ return new class extends Migration
             $table->increments('id');
             $table->string('name')->nullable();
             $table->string('slug')->nullable();
-            $table->integer('admin_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
         });
     }

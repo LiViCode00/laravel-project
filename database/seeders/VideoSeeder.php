@@ -20,7 +20,7 @@ class VideoSeeder extends Seeder
 
         foreach ($lessons as $lesson) {
             for ($i = 1; $i <= 5; $i++) {
-                Video::create([
+                Video::updateOrCreate([
                     'lesson_id' => $lesson->id,
                     'name' => 'Video ' . $i . ' for Lesson ' . $lesson->id,
                     'url' => 'https://example.com/video-' . $i,

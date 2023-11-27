@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
 
-class AdminAuthenticate extends Middleware
+class AdminAuthenicate extends Middleware
 {
     /**
      * Get the path the user should be redirected to when they are not authenticated.
@@ -16,9 +16,9 @@ class AdminAuthenticate extends Middleware
     {
       
         if (! $request->expectsJson()) {
-            dd(redirect('/admin/login'));
+            dd(redirect('/student/login'));
 
-            return redirect('/admin/login');
+            return redirect('/student/login');
         }
     }
 }

@@ -16,70 +16,60 @@ class LessonSeeder extends Seeder
      */
     public function run()
     {   
-        $name1 = 'HTML và CSS';
-        for ($i = 1; $i <= 5; $i++) {
-            Lesson::create([
-                'name' => 'Băt đầu với' .$name1,
-                'slug' => Str::slug('Lesson ' . $i),
-                'description' => 'Tìm hiểu cơ bản về ' . $i,
+
+        $lessons=[
+            [
+                'name' => 'Băt đầu với HTML và CSS',
+                'slug' => Str::slug('Lesson '),
+                'description' => 'Tìm hiểu cơ bản về ' ,
                 'durations' => rand(10, 60),
-                'position' => $i,
+                'position' => rand(1,10),
                 'views' => rand(100, 1000),
                 'course_id' => 1, 
-            ]);
-        }
-
-        $name2 = 'C++';
-        for ($i = 1; $i <= 5; $i++) {
-            Lesson::create([
-                'name' => 'Băt đầu với' .$name2,
-                'slug' => Str::slug('Lesson ' . $i),
-                'description' => 'Tìm hiểu cơ bản về ' . $i,
+            ],
+            [
+                'name' => 'Băt đầu với C++',
+                'slug' => Str::slug('Lesson '),
+                'description' => 'Tìm hiểu cơ bản về ' ,
                 'durations' => rand(10, 60),
-                'position' => $i,
+                'position' => rand(1,10),
                 'views' => rand(100, 1000),
-                'course_id' => 2, 
-            ]);
-        }
-
-        $name3 = 'JavaScript và NodeJs';
-        for ($i = 1; $i <= 5; $i++) {
-            Lesson::create([
-                'name' => 'Băt đầu với' .$name3,
-                'slug' => Str::slug('Lesson ' . $i),
-                'description' => 'Tìm hiểu cơ bản về ' . $i,
+                'course_id' => 1, 
+            ],
+            [
+                'name' => 'JavaScript và NodeJs',
+                'slug' => Str::slug('Lesson '),
+                'description' => 'Tìm hiểu cơ bản về ' ,
                 'durations' => rand(10, 60),
-                'position' => $i,
+                'position' => rand(1,10),
                 'views' => rand(100, 1000),
-                'course_id' => 3, 
-            ]);
-        }
-
-        $name4 = 'NodeJS và ExpressJS';
-        for ($i = 1; $i <= 5; $i++) {
-            Lesson::create([
-                'name' => 'Băt đầu với' .$name4,
-                'slug' => Str::slug('Lesson ' . $i),
-                'description' => 'Tìm hiểu cơ bản về ' . $i,
+                'course_id' => 1, 
+            ],
+            [
+                'name' => 'Băt đầu với NodeJS và ExpressJS',
+                'slug' => Str::slug('Lesson '),
+                'description' => 'Tìm hiểu cơ bản về ' ,
                 'durations' => rand(10, 60),
-                'position' => $i,
+                'position' => rand(1,10),
                 'views' => rand(100, 1000),
-                'course_id' => 4, 
-            ]);
-        }
-
-        $name5 = 'ReactJs';
-        for ($i = 1; $i <= 5; $i++) {
-            Lesson::create([
-                'name' => 'Băt đầu với' .$name5,
-                'slug' => Str::slug('Lesson ' . $i),
-                'description' => 'Tìm hiểu cơ bản về ' . $i,
+                'course_id' => 1, 
+            ],
+            [
+                'name' => 'Băt đầu với ReactJs',
+                'slug' => Str::slug('Lesson '),
+                'description' => 'Tìm hiểu cơ bản về ' ,
                 'durations' => rand(10, 60),
-                'position' => $i,
+                'position' => rand(1,10),
                 'views' => rand(100, 1000),
-                'course_id' => 5, 
-            ]);
+                'course_id' => 1, 
+            ],
+            
+        ];
+
+        foreach ($lessons as $lesson) {
+            Lesson::updateOrCreate($lesson);
         }
+        
         
     }
 }

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->increments('id');
             $table->tinyInteger('status')->default(1);
             $table->float('total')->default(0);
-            $table->integer('user_id')->unsigned();
+            $table->integer('student_id')->unsigned();
             $table->timestamps();
         });
     }

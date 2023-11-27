@@ -20,41 +20,40 @@ class UserSeeder extends Seeder
         $users = [
             [
 
-                "name" => "Hoang Nhat Dang",
-                "email" => "linhnhat@gmail.com",
+                "name" => "user",
+                "email" => "user@gmail.com",
                 "group_id" => "3",
                 "password" => Hash::make("123456"),
-                "img_path" => "client/images/review/r-1.jpg"
-                 
+                "img_path" => "client/images/review/r-3.jpg"
             ],
             [
 
-                "name" => "Nhat Linh",
-                "email" => "linhnhat01@gmail.com",
+                "name" => "user 02",
+                "email" => "user02@gmail.com",
                 "group_id" => "1",
                 "password" => Hash::make("123456"),
                 "img_path" => "client/images/review/r-2.jpg"
             ],
             [
 
-                "name" => "Nhat Nhat",
-                "email" => "linhnhat02@gmail.com",
+                "name" => "user 03",
+                "email" => "user03@gmail.com",
                 "group_id" => "2",
                 "password" => Hash::make("123456"),
                 "img_path" => "client/images/review/r-3.jpg"
             ],
             [
 
-                "name" => "Nhat Vy",
-                "email" => "linhnhat03@gmail.com",
+                "name" => "user 04",
+                "email" => "user04@gmail.com",
                 "group_id" => "1",
                 "password" => Hash::make("123456"),
                 "img_path" => "client/images/review/r-1.jpg"
             ],
             [
 
-                "name" => "Phu Quoc",
-                "email" => "linhnhat04@gmail.com",
+                "name" => "user 05",
+                "email" => "user05@gmail.com",
                 "group_id" => "3",
                 "password" => Hash::make("123456"),
                 "img_path" => "client/images/review/r-2.jpg"
@@ -62,7 +61,15 @@ class UserSeeder extends Seeder
         ];
 
         foreach ($users as $user) {
-            User::updateOrCreate($user);
+            User::updateOrCreate(
+                ['email' => $user['email']],
+                [
+                    'name' => $user['name'],
+                    'email' => $user['email'],
+                    'group_id' => $user['group_id'],
+                    'password' => $user['password'],
+                ]
+            );
         }
     }
 }

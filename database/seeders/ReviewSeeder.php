@@ -26,7 +26,7 @@ class ReviewSeeder extends Seeder
             for ($i = 1; $i <= 5; $i++) {
                 $user = $users->random(); // Get a random user for the review
 
-                Review::create([
+                Review::updateOrCreate([
                     'comment' => 'This is a review for Lesson ' . $lesson->id,
                     'stars' => rand(1, 5),
                     'user_id' => $user->id,
