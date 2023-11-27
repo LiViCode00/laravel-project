@@ -19,4 +19,9 @@ class Lesson extends Model
     public function videos(): HasMany{
         return $this->hasMany(Video::class);
     }
+
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(LessonReviews::class);
+    }
 }

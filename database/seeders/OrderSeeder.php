@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Order;
+use App\Models\Student;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Auth;
@@ -17,17 +18,17 @@ class OrderSeeder extends Seeder
      */
     public function run(Request $request)
     {
-       
-        if (Auth::check()) {
-            // Người dùng đã đăng nhập, bạn có thể sử dụng Auth::user()
-            $userId = Auth::user()->id;
-            Order::updateOrCreate([
-                'user_id' => $userId,
-            ]);
-        } else {
-            Order::updateOrCreate([
-                'user_id' => '1',
-            ]);
+
+        $students=Student::all();
+        foreach ($students as $student) {
+            for ($i = 1; $i <= 5; $i++) {
+                $student = $students->random(); // Get a random student for the review
+
+                Order::updateOrCreate([
+                    'student_id' => $student->id,
+                    'total'=> rand(100,100000),
+                ]);
+            }
         }
         
     }

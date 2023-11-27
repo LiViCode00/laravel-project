@@ -15,10 +15,12 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
-            $table->tinyInteger('status')->default(1);
-            $table->float('total')->default(0);
+            // $table->tinyInteger('status')->default(1);
+            $table->float('total',20,2)->default(0);
             $table->integer('student_id')->unsigned();
+            $table->tinyInteger('status')->default(0);
             $table->timestamps();
+            
         });
     }
 

@@ -425,3 +425,19 @@ form label{
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
 }
+
+td a{
+    color: #666666;
+    cursor: pointer;
+   
+}
+
+td a:hover{
+    color: #000;
+}
+
+@media (min-width:1200px) {
+    .form-add{
+        padding: 0 150px;
+    }
+}

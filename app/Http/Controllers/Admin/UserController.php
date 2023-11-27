@@ -204,13 +204,13 @@ class UserController extends Controller
         $categories=Category::all();
         return view('pages.backend.post.write',compact('categories'));
     }
-    public function postWritePost(Request $request){
-
+    public function postWritePost(Request $request)
+    {
         $request->validate(
             [
                 "post_title" => "required|string",
                 'post_content' => "required|string",
-                'categories' => ['required', 'integer', function ($attribute, $value, $fail) {
+                'category' => ['required', 'integer', function ($attribute, $value, $fail) {
                     if ($value === '0') return $fail('Vui lòng chọn danh mục');
                 }]
             ],
@@ -222,18 +222,23 @@ class UserController extends Controller
                 "post_title" => "Tiêu đề",
                 'post_content' => "Nội dung",
             ]
-            );
-
-            dd($request);
-            $post= new Post();
-            $post->title = $request->post_title;
-            $post->content=$request->post_content;
-            $post->category_id=$request->category;
-            $post->user_id=Auth::user()->id;
-            $post->save();
-
+        );
+    
         
+        if (auth()->check()) {
+            $post = new Post();
+            $post->title = $request->post_title;
+            $post->content = $request->post_content;
+            $post->category_id = $request->category;
+            $post->user_id = auth()->user()->id;
+            $post->save();
+            return redirect()->route('admin.post.index')->with('success','Thêm bài viết thành công.');
+        } else {
+            // Xử lý trường hợp người dùng chưa đăng nhập
+            return redirect()->route('admin.login')->with('error', 'Bạn cần đăng nhập để đăng bài viết.');
+        }
     }
+    
     public function myPost(){
 
     }

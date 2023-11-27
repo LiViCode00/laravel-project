@@ -19,6 +19,7 @@ return new class extends Migration
             $table->float('stars')->default(0);
             $table->integer('user_id')->unsigned();
             $table->integer('lesson_id')->unsigned();
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
 
             $table->foreign('lesson_id')->references('id')->on('lessons')->onDelete('cascade')->onUpdate('cascade');

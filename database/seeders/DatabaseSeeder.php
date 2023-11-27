@@ -20,12 +20,13 @@ class DatabaseSeeder extends Seeder
         $this->call(StudentSeeder::class);
         $this->call(CategorySeeder::class);
         $this->call(CourseSeeder::class);
-        // $this->call(OrderSeeder::class);
+        $this->call(OrderSeeder::class);
         $this->call(LessonSeeder::class);
         $this->call(PostSeeder::class);
         $this->call(VideoSeeder::class);
         $this->call(ReviewSeeder::class);
         $this->call(MenuSeeder::class);
         $this->call(ChildMenuSeeder::class);
+        $this->call(OrderDetailSeeder::class);
     }
 }

@@ -17,6 +17,8 @@ return new class extends Migration
             $table->increments('id');
             $table->string('name')->nullable();
             $table->string('slug')->nullable();
+            $table->tinyInteger('status')->default(0);
+            $table->tinyInteger('public')->default(0);
             $table->integer('user_id')->unsigned();
             $table->timestamps();
         });

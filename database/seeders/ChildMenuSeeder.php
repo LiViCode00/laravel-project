@@ -19,7 +19,7 @@ class ChildMenuSeeder extends Seeder
             [
                 'name'=>'Đơn hàng',
                 'menu_id'=>'1',
-                'link'=> 'admin.course.index'
+                'link'=> 'admin.order.index'
             ],
             [
                 'name'=>'Quản lý khóa học',
@@ -34,12 +34,12 @@ class ChildMenuSeeder extends Seeder
             [
                 'name'=>'Đánh giá',
                 'menu_id'=>'3',
-                'link'=> 'admin.course.index'
+                'link'=> 'admin.review.index'
             ],
             [
                 'name'=>'Tin tức',
                 'menu_id'=>'3',
-                'link'=> 'admin.course.index'
+                'link'=> 'admin.post.index'
             ],
             [
                 'name'=>'Quản lý người dùng',
@@ -49,7 +49,7 @@ class ChildMenuSeeder extends Seeder
             [
                 'name'=>'Quản lý học viên',
                 'menu_id'=>'4',
-                'link'=> 'admin.course.index'
+                'link'=> 'admin.student.index'
             ],
             [
                 'name'=>'Quản lý giảng viên',

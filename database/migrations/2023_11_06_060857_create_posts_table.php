@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('image_path')->nullable();
             $table->integer('category_id')->unsigned();
             $table->integer('user_id')->unsigned();
+            $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });
     }

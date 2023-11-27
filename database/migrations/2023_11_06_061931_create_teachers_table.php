@@ -20,6 +20,7 @@ return new class extends Migration
             $table->float('exp')->default(0);
             $table->string('image_path')->nullable();
             $table->string('slug')->nullable();
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
     }

@@ -98,8 +98,10 @@ class CourseController extends Controller
     {
     }
 
-    public function delete()
+    public function delete(Course $course)
     {
+        $course->delete();
+        return redirect()->route('admin.course.list')->with('success', 'Xóa khóa học thành công');
     }
 
 

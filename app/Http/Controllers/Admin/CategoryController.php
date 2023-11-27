@@ -32,6 +32,12 @@ class CategoryController extends Controller
         $category = new Category();
         $category->name = $request->name;
         $category->user_id= Auth::user()->id;
+        if($request->public=='on'){
+            $category->public=1;
+        }
+        if($request->status=='on'){
+            $category->status=1;
+        }
         $category->save();
         return redirect()->route('admin.category.list')->with('success', 'Thêm mới danh mục thành công');
     }
@@ -69,6 +75,12 @@ class CategoryController extends Controller
         );
         $category->name = $request->name;
         $category->user_id= Auth::user()->id;
+        if($request->public=='on'){
+            $category->public=1;
+        }
+        if($request->status=='on'){
+            $category->status=1;
+        }
         $category->save();
         return redirect()->route('admin.category.list')->with('success', 'Cập nhật danh mục thành công');
     }
@@ -82,5 +94,20 @@ class CategoryController extends Controller
 
     public function findcategory(Request $request)
     {
+
+     
+        $search_key = $request->input('search_key');
+       
+
+      
+         
+            if ($search_key != '') {
+                $categories = Category::where('name', 'LIKE', '%' . $search_key . '%')
+                    ->paginate(6);
+                return view('pages.backend.categories.list', compact('categories'));
+            } else {
+                return back()->with('error', "Vui lòng nhập key tìm kiếm hoặc chọn nhóm!");
+            }
+        
     }
 }

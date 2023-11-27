@@ -1,12 +1,15 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\LessonController;
+use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\TeacherController;
 use Illuminate\Support\Facades\Route;
 
@@ -131,6 +134,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
                         Route::post('/add', [LessonController::class, 'postAdd'])->name('post-add');
 
+                        Route::post('/deatil/{lesson}', [LessonController::class, 'detail'])->name('detail');
+
                         Route::get('/{course}/list/', [LessonController::class, 'listLesson'])->name('list');
 
                         Route::get('/manage/{lesson}', [LessonController::class, 'manage'])->name('manage');
@@ -143,6 +148,31 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
                         Route::match(['get', 'post'], '/find-lesson', [LessonController::class, 'findLesson'])->name('find-lesson');
                 });
+
+               
+        });
+
+        Route::prefix('review')->middleware('auth')->name('review.')->group(function () {
+
+                Route::get('/', [ReviewController::class, 'listReview'])->name('index');
+                
+                Route::get('/add', [ReviewController::class, 'add'])->name('add');
+
+                Route::post('/add', [ReviewController::class, 'postAdd'])->name('post-add');
+
+                Route::post('/deatil/{review}', [ReviewController::class, 'detail'])->name('detail');
+
+                Route::get('/{course}/list/', [ReviewController::class, 'listReview'])->name('list');
+
+                Route::get('/manage/{review}', [ReviewController::class, 'manage'])->name('manage');
+
+                Route::get('/edit/{review}', [ReviewController::class, 'edit'])->name('edit');
+
+                Route::post('/edit/{review}', [ReviewController::class, 'postedit'])->name('post-edit');
+
+                Route::get('/delete/{review}', [ReviewController::class, 'delete'])->name('delete');
+
+                Route::match(['get', 'post'], '/find-review', [ReviewController::class, 'findReview'])->name('find-review');
         });
 
 
@@ -168,5 +198,56 @@ Route::prefix('admin')->name('admin.')->group(function () {
                 Route::get('/delete/{teacher}', [TeacherController::class, 'delete'])->name('delete');
 
                 Route::match(['get', 'post'], '/find-teacher', [TeacherController::class, 'findTeacher'])->name('find-teacher');
+        });
+
+        Route::prefix('post')->middleware('auth')->name('post.')->group(function () {
+
+                Route::get('/', [PostController::class, 'listPost'])->name('index');
+
+                Route::get('/add', [PostController::class, 'add'])->name('add');
+
+                Route::post('/add', [PostController::class, 'postAdd'])->name('post-add');
+
+                Route::get('/list', [PostController::class, 'listPost'])->name('list');
+
+                Route::get('/post/{post}', [PostController::class, 'detail'])->name('detail');
+
+                Route::get('/edit/{post}', [PostController::class, 'edit'])->name('edit');
+
+                Route::post('/edit/{post}', [PostController::class, 'postedit'])->name('post-edit');
+
+                Route::get('/delete/{post}', [PostController::class, 'delete'])->name('delete');
+
+                Route::match(['get', 'post'], '/find-post', [PostController::class, 'findPost'])->name('find-post');
+        });
+
+        Route::prefix('order')->middleware('auth')->name('order.')->group(function () {
+
+                Route::get('/', [OrderController::class, 'listOrder'])->name('index');
+
+                Route::get('/add', [OrderController::class, 'add'])->name('add');
+
+                Route::post('/add', [OrderController::class, 'postAdd'])->name('post-add');
+
+                Route::get('/list', [OrderController::class, 'listOrder'])->name('list');
+
+                Route::get('/confirm/{order}', [OrderController::class, 'confirm'])->name('confirm');
+
+                Route::get('/order/detail/{order}', [OrderController::class, 'detail'])->name('detail');
+
+                Route::get('/delete/{order}', [OrderController::class, 'delete'])->name('delete');
+
+                Route::match(['get', 'order'], '/find-order', [OrderController::class, 'findOrder'])->name('find-order');
+        });
+
+        Route::prefix('student')->middleware('auth')->name('student.')->group(function () {
+
+                Route::get('/', [OrderController::class, 'listOrder'])->name('index');
+
+              
+        });
+
+        Route::prefix('menu')->name('menu.')->group(function () {
+                Route::get('/' , [AdminController::class, 'menu'])->name('index');
         });
 });

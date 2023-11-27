@@ -14,8 +14,8 @@
         <form action={{ route('admin.user.post-edit', ['user' => $user]) }} method="post" enctype="multipart/form-data">
             @csrf
             <h4 style="text-align: center;margin-bottom: 20px">Thông tin người dùng</h4>
-            <div class="form-row">
-                <div class="form-group col-12 col-md-6">
+            <div class="form-row form-add">
+                <div class="form-group col-12 ">
                     <label for="">Họ tên</label>
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
@@ -26,7 +26,7 @@
                         <span style="color: red">{{ $message }}</span>
                     @enderror
                 </div>
-                <div class="form-group col-12 col-md-6">
+                <div class="form-group col-12 ">
                     <label for="">Email</label>
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
@@ -37,7 +37,7 @@
                         <span style="color: red">{{ $message }}</span>
                     @enderror
                 </div>
-                <div class="form-group col-12 col-md-6">
+                <div class="form-group col-12 ">
                     <label for="">Mật khẩu</label>
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
@@ -48,7 +48,7 @@
                         <span style="color: red">{{ $message }}</span>
                     @enderror
                 </div>
-                <div class="form-group col-12 col-md-6">
+                <div class="form-group col-12 ">
                     <label for="">Nhóm</label>
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
@@ -69,7 +69,7 @@
 
                 </div>
 
-                <div class="form-group col-12 col-md-6">
+                <div class="form-group col-12 ">
                     <label for="">Hình ảnh</label>
                     <br>
 

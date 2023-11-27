@@ -14,8 +14,8 @@
         <form action={{ route('admin.user.post-add') }} method="post" enctype="multipart/form-data">
             @csrf
             <h4 style="text-align: center;margin-bottom: 20px">Thông tin người dùng</h4>
-            <div class="form-row">
-                <div class="form-group col-12 col-md-6">
+            <div class="form-row form-add">
+                <div class="form-group col-12 ">
                     <label for="">Họ tên</label>
 
                     <div class="input-group-prepend">
@@ -29,7 +29,7 @@
                         <span style="color: red">{{ $message }}</span>
                     @enderror
                 </div>
-                <div class="form-group col-12 col-md-6">
+                <div class="form-group col-12 ">
                     <label for="">Email</label>
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
@@ -40,7 +40,7 @@
                         <span style="color: red">{{ $message }}</span>
                     @enderror
                 </div>
-                <div class="form-group col-12 col-md-6">
+                <div class="form-group col-12 ">
                     <label for="">Mật khẩu</label>
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
@@ -51,7 +51,7 @@
                         <span style="color: red">{{ $message }}</span>
                     @enderror
                 </div>
-                <div class="form-group col-12 col-md-6">
+                <div class="form-group col-12 ">
                     <label for="">Nhóm</label>
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
@@ -72,7 +72,7 @@
 
                 </div>
 
-                <div class="form-group col-12 col-md-6">
+                <div class="form-group col-12 ">
                     <label for="">Hình ảnh</label>
                     <br>
                   
@@ -85,7 +85,7 @@
                     @enderror
                 </div>
 
-                <button style="margin: 30px 6px" class="btn btn-primary " type="submit">Thêm người dùng</button>
+                <button style="margin: 30px 6px;text-align: center" class="btn btn-primary " type="submit">Thêm người dùng</button>
             </div>
         </form>
     </div>

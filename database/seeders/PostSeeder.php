@@ -106,7 +106,12 @@ class PostSeeder extends Seeder
     {
       
         foreach ($this->posts as $post) {
-            Post::updateOrCreate($post);
+            Post::updateOrCreate(
+                [
+                    'title' => $post['title'],
+                ],
+                $post
+            );
         }
     }
 }

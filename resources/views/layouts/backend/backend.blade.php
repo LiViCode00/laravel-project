@@ -49,7 +49,7 @@
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
-            
+
             @yield('content')
         </div>
 
@@ -104,12 +104,17 @@
 
     <script>
         ClassicEditor
-            .create( document.querySelector( '#post-content' ) )
-            .catch( error => {
-                console.error( error );
-            } );
+            .create(document.querySelector('#post-content'))
+            .catch(error => {
+                console.error(error);
+            });
+        ClassicEditor
+            .create(document.querySelector('#lesson-decripsion'))
+            .catch(error => {
+                console.error(error);
+            });
     </script>
-    
+
 </body>
 
 </html>
