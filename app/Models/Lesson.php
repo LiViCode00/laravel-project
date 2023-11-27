@@ -12,11 +12,6 @@ class Lesson extends Model
     use HasFactory;
     protected $table = 'lessons';
 
-<<<<<<< HEAD
-    public function course()
-    {
-        return $this->belongsTo(Course::class);
-    }
 
     public static function getLessonByCourse($id_course){
         $lessons = Lesson::join('courses', 'courses.id', '=', 'lessons.course_id')
@@ -25,13 +20,12 @@ class Lesson extends Model
             ->get();
     
         return $lessons;
-=======
+    }
     public function course(): BelongsTo{
         return $this->belongsTo(Course::class);
     }
 
     public function videos(): HasMany{
         return $this->hasMany(Video::class);
->>>>>>> 08266ac52810bf86e5c738331907da71ebeb9109
     }
 }
