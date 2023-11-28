@@ -19,17 +19,13 @@ class OrderSeeder extends Seeder
     public function run(Request $request)
     {
 
-        $students=Student::all();
+        $students = Student::all();
         foreach ($students as $student) {
-            for ($i = 1; $i <= 5; $i++) {
-                $student = $students->random(); // Get a random student for the review
 
-                Order::updateOrCreate([
-                    'student_id' => $student->id,
-                    'total'=> rand(100,100000),
-                ]);
-            }
+            Order::updateOrCreate([
+                'student_id' => $student->id,
+                'total' => rand(100, 100000),
+            ]);
         }
-        
     }
 }

@@ -24,12 +24,9 @@ class DatabaseSeeder extends Seeder
         $this->call(LessonSeeder::class);
         $this->call(PostSeeder::class);
         $this->call(ReviewSeeder::class);
-<<<<<<< HEAD
         $this->call(MenuSeeder::class);
         $this->call(ChildMenuSeeder::class);
         $this->call(OrderDetailSeeder::class);
-=======
         $this->call(VideoSeeder::class);
->>>>>>> a18ab52fcda1eabb00cf59e98efe00b54a891042
     }
 }

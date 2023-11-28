@@ -45,6 +45,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
                 Route::get('/list', [UserController::class, 'listUser'])->name('list');
 
+                Route::get('/list/ajax', [UserController::class, 'listUserAjax'])->name('list-ajax');
+
+                Route::post('/list/group', [UserController::class, 'userByGroup'])->name('list-group');
+
+                Route::post('/list/group/ajax', [UserController::class, 'userByGroupAjax'])->name('list-group-ajax');
+
                 Route::get('/profile/{user}', [UserController::class, 'profile'])->name('profile');
 
                 Route::get('/edit/{user}', [UserController::class, 'edit'])->name('edit');
@@ -82,6 +88,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
                 Route::get('/list', [CategoryController::class, 'listCategory'])->name('list');
 
+                Route::get('/list/ajax', [CategoryController::class, 'listCategoryAjax'])->name('list-ajax');
+
                 Route::get('/view/{category}', [CategoryController::class, 'view'])->name('view');
 
                 Route::get('/edit/{category}', [CategoryController::class, 'edit'])->name('edit');
@@ -103,6 +111,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
                 Route::post('/add', [CourseController::class, 'postAdd'])->name('post-add');
 
                 Route::get('/list', [CourseController::class, 'listCourse'])->name('list');
+
+                Route::get('/list/ajax', [CourseController::class, 'listCourseAjax'])->name('list-ajax');
+
+                Route::post('/list/category', [CourseController::class, 'courseByCategory'])->name('list-category');
 
                 Route::get('/view/{course}', [CourseController::class, 'view'])->name('view');
 
@@ -134,9 +146,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
                         Route::post('/add', [LessonController::class, 'postAdd'])->name('post-add');
 
-                        Route::post('/deatil/{lesson}', [LessonController::class, 'detail'])->name('detail');
+                        Route::post('/detail/{lesson}', [LessonController::class, 'detail'])->name('detail');
 
                         Route::get('/{course}/list/', [LessonController::class, 'listLesson'])->name('list');
+
+                        Route::get('/{course}/list/ajax', [LessonController::class, 'listLessonAjax'])->name('list-ajax');
 
                         Route::get('/manage/{lesson}', [LessonController::class, 'manage'])->name('manage');
 
@@ -160,9 +174,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
                 Route::post('/add', [ReviewController::class, 'postAdd'])->name('post-add');
 
-                Route::post('/deatil/{review}', [ReviewController::class, 'detail'])->name('detail');
+                Route::get('/detail/{review}', [ReviewController::class, 'detail'])->name('detail');
 
-                Route::get('/{course}/list/', [ReviewController::class, 'listReview'])->name('list');
+                Route::get('/list', [ReviewController::class, 'listReview'])->name('list');
+
+                Route::get('/list/ajax', [ReviewController::class, 'listReviewAjax'])->name('list-ajax');
+
+                Route::post('/list/category', [ReviewController::class, 'postByCategory'])->name('list-category');
 
                 Route::get('/manage/{review}', [ReviewController::class, 'manage'])->name('manage');
 
@@ -189,6 +207,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
                 Route::get('/list', [TeacherController::class, 'listTeacher'])->name('list');
 
+                Route::get('/list/ajax', [TeacherController::class, 'listTeacherAjax'])->name('list-ajax');
+
                 Route::get('/profile/{teacher}', [TeacherController::class, 'profile'])->name('profile');
 
                 Route::get('/edit/{teacher}', [TeacherController::class, 'edit'])->name('edit');
@@ -210,6 +230,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
                 Route::get('/list', [PostController::class, 'listPost'])->name('list');
 
+                Route::get('/list/ajax', [PostController::class, 'listPostAjax'])->name('list-ajax');
+
+                Route::post('/list/category', [PostController::class, 'postByCategory'])->name('list-category');
+
                 Route::get('/post/{post}', [PostController::class, 'detail'])->name('detail');
 
                 Route::get('/edit/{post}', [PostController::class, 'edit'])->name('edit');
@@ -230,6 +254,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
                 Route::post('/add', [OrderController::class, 'postAdd'])->name('post-add');
 
                 Route::get('/list', [OrderController::class, 'listOrder'])->name('list');
+
+                Route::get('/list/ajax', [OrderController::class, 'listOrderAjax'])->name('list-ajax');
+
+                Route::post('/student', [OrderController::class, 'getStudent'])->name('getStudent');
+
+                Route::post('/course', [OrderController::class, 'getCourse'])->name('getCourse');
 
                 Route::get('/confirm/{order}', [OrderController::class, 'confirm'])->name('confirm');
 

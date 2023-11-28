@@ -149,8 +149,6 @@
 
 </header>
 
-<<<<<<< HEAD
-=======
 
 <script>
     let isBoxVisible = false;
@@ -172,4 +170,3 @@
         }
     });
 </script>
->>>>>>> 08266ac52810bf86e5c738331907da71ebeb9109

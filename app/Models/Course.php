@@ -40,12 +40,7 @@ class Course extends Model
     
         return $courses;
     }
-    public function category(): BelongsTo{
-     return $this->belongsTo(Category::class);
-    }
-    public function teacher(): BelongsTo{
-     return $this->belongsTo(Teacher::class);
-    }
+  
     public function lessons(): HasMany
     {
         return $this->hasMany(Lesson::class);

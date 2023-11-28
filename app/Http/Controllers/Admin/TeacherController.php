@@ -59,8 +59,15 @@ class TeacherController extends Controller
 
     public function listTeacher()
     {
-        $teachers = Teacher::orderBy('id', 'asc')->paginate(6);
+        $teachers = Teacher::orderBy('id', 'asc')->paginate(2);
         return view("pages.backend.teacher.list", compact('teachers'));
+    }
+    public function listTeacherAjax()
+    {
+        if (request()->ajax()) {
+            $teachers = Teacher::orderBy('id', 'asc')->paginate(2);
+            return view("pages.backend.teacher.data", compact('teachers'))->render();
+        }
     }
 
     public function profile(Teacher $teacher)
@@ -96,8 +103,8 @@ class TeacherController extends Controller
             ]
         );
 
-      
-       
+
+
         if ($request->has('image')) {
             $imagePath = $request->file('image')->store('img/teachers', 'public');
             $teacher->image_path = $imagePath;
@@ -108,7 +115,7 @@ class TeacherController extends Controller
         $teacher->description = $request->input('description');
         $teacher->exp = $request->input('exp');
         $teacher->save();
-      
+
 
         return redirect()->route('admin.teacher.list')->with('success', 'Cập nhật giáo viên thành công!');
     }
@@ -136,6 +143,6 @@ class TeacherController extends Controller
             })
                 ->paginate(6);
         }
-        return view('pages.backend.teacher.list', compact('teachers'));
+        return view('pages.backend.teacher.data', compact('teachers'))->render();
     }
 }

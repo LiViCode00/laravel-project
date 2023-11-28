@@ -17,6 +17,10 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+
+    public function index()
+    {
+    }
     public function add()
     {
 
@@ -53,7 +57,7 @@ class UserController extends Controller
             ]
         );
 
-        
+
         if ($request->has('image')) {
             $imagePath = $request->file('image')->store('img/users', 'public');
         }
@@ -72,9 +76,17 @@ class UserController extends Controller
 
     public function listUser()
     {
-        $users = User::withTrashed()->orderBy('deleted_at', 'ASC')->orderBy('id', 'ASC')->paginate(6);
+        $users = User::withTrashed()->orderBy('deleted_at', 'ASC')->orderBy('id', 'ASC')->paginate(3);
         $groups = Group::all();
         return view("pages.backend.user.list", compact(["users", "groups"]));
+    }
+    public function listUserAjax()
+    {
+        if (request()->ajax()) {
+            $users = User::withTrashed()->orderBy('deleted_at', 'ASC')->orderBy('id', 'ASC')->paginate(3);
+            $groups = Group::all();
+            return view("pages.backend.user.data", compact(["users", "groups"]))->render();
+        }
     }
 
     public function profile(User $user)
@@ -115,8 +127,8 @@ class UserController extends Controller
             ]
         );
 
-      
-      
+
+
         if ($request->has('image')) {
             $imagePath = $request->file('image')->store('img/users', 'public');
             $user->image_path = $imagePath;
@@ -176,33 +188,53 @@ class UserController extends Controller
         $group = $request->input('group');
         $groupModel = Group::find($group);
 
+
         if ($groupModel) {
-            if ($search_key == '') {
-                $users = $groupModel->users()->paginate(6);
-            } else {
-                $users = $groupModel->users()
-                    ->where(function ($query) use ($search_key) {
-                        $query->where('name', 'LIKE', '%' . $search_key . '%')
-                            ->orWhere('email', 'LIKE', '%' . $search_key . '%');
-                    })
-                    ->paginate(6);
-            }
-            return view('pages.backend.user.list', compact('users', 'groups', 'groupModel'));
+            $users = $groupModel->users()
+                ->where(function ($query) use ($search_key) {
+                    $query->where('name', 'LIKE', '%' . $search_key . '%')
+                        ->orWhere('email', 'LIKE', '%' . $search_key . '%');
+                })
+                ->paginate(3);
         } else {
-            if ($search_key != '') {
-                $users = User::where('name', 'LIKE', '%' . $search_key . '%')
-                    ->orWhere('name', 'LIKE', '%' . $search_key . '%')
-                    ->paginate(6);
-                return view('pages.backend.user.list', compact('users', 'groups', 'groupModel'));
+
+            $users = User::where('name', 'LIKE', '%' . $search_key . '%')
+                ->orWhere('name', 'LIKE', '%' . $search_key . '%')
+                ->paginate(3);
+        }
+        return view('pages.backend.user.data', compact('users', 'groups', 'groupModel'))->render();
+    }
+
+    public function userByGroup(Request $request)
+    {
+        $groups = Group::all();
+        $group = $request->input('group');
+        $groupModel = Group::find($group);
+
+        if ($groupModel) {
+            $users = $groupModel->users()->paginate(3);
+            return view('pages.backend.user.list', compact('users', 'groups', 'groupModel'));
+        }
+    }
+    public function userByGroupAjax(Request $request)
+    {
+        if (request()->ajax()) {
+            $groups = Group::all();
+            $group = $request->input('group');
+            $groupModel = Group::find($group);
+            if ($groupModel) {
+                $users = $groupModel->users()->paginate(3);
             } else {
-                return back()->with('error', "Vui lòng nhập key tìm kiếm hoặc chọn nhóm!");
+                $users = User::paginate(3);
             }
+            return view('pages.backend.user.data', compact('users', 'groups', 'groupModel'))->render();
         }
     }
 
-    public function writePost(){
-        $categories=Category::all();
-        return view('pages.backend.post.write',compact('categories'));
+    public function writePost()
+    {
+        $categories = Category::all();
+        return view('pages.backend.post.write', compact('categories'));
     }
     public function postWritePost(Request $request)
     {
@@ -223,8 +255,8 @@ class UserController extends Controller
                 'post_content' => "Nội dung",
             ]
         );
-    
-        
+
+
         if (auth()->check()) {
             $post = new Post();
             $post->title = $request->post_title;
@@ -232,14 +264,14 @@ class UserController extends Controller
             $post->category_id = $request->category;
             $post->user_id = auth()->user()->id;
             $post->save();
-            return redirect()->route('admin.post.index')->with('success','Thêm bài viết thành công.');
+            return redirect()->route('admin.post.index')->with('success', 'Thêm bài viết thành công.');
         } else {
             // Xử lý trường hợp người dùng chưa đăng nhập
             return redirect()->route('admin.login')->with('error', 'Bạn cần đăng nhập để đăng bài viết.');
         }
     }
-    
-    public function myPost(){
 
+    public function myPost()
+    {
     }
 }

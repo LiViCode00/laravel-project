@@ -6,6 +6,9 @@
 
 <html>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<!-- Thêm vào phần đầu của trang HTML -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
 </html>
 
@@ -28,7 +31,7 @@
             <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
                 <div class="row">
 
-                    <div class="col-sm-12 col-md-6">
+                    <div class="col-sm-12 col-md-8">
                         <div id="example1_filter" class=" dataTables_filter">
                             <form action="{{ route('admin.order.find-order') }}" method="order"
                                 class="d-flex align-items-center">
@@ -36,29 +39,21 @@
                                 <label class="d-flex justify-content-center align-items-center">
 
 
-                                    <select name="orderBy" style="margin: 0 4px"
-                                        class="form-select form-control form-control-sm"
-                                        aria-label="Default select example">
-                                        <option value=0 {{ old('orderBy') == 0 ? 'selected' : '' }}>Sắp xếp</option>
-                                        <option value=1 {{ old('orderBy') == 0 ? 'selected' : '' }}>ID ASC</option>
-                                        <option value=2 {{ old('orderBy') == 0 ? 'selected' : '' }}>ID DESC</option>
-                                        <option value=3 {{ old('orderBy') == 0 ? 'selected' : '' }}>Name ASC</option>
-                                        <option value=4 {{ old('orderBy') == 0 ? 'selected' : '' }}>Name DESC</option>
 
+                                    
                                     </select>
-                                    <select name="category" style="margin: 0 4px"
-                                        class="form-select form-control form-control-sm"
-                                        aria-label="Default select example">
-                                        <option value=0 {{ old('category') == 0 ? 'selected' : '' }}>Danh mục</option>
-                                        {{-- @if ($categories)
-                                            @foreach ($categories as $item)
-                                                <option value={{ $item->id }}
-                                                    {{ old('category') == $item->id ? 'selected' : '' }}>
-                                                    {{ $item->name }}
-                                                </option>
-                                            @endforeach
-                                        @endif --}}
-                                    </select>
+
+                                    <input type="date" id="from_date" class="form-select form-control form-control-sm" onfocus="showCalendar()">
+                                    <input type="date" id="to_date" class="form-select form-control form-control-sm" onfocus="showCalendar()">
+
+                                    <select name="status" style="margin: 0 4px"
+                                    class="form-select form-control form-control-sm"
+                                    aria-label="Default select example">
+                                    <option value=0 {{ old('category') == 0 ? 'selected' : '' }}>Trạng thái đơn hàng
+                                    </option>
+                                    <option value=1>Chưa xác nhận</option>
+                                    <option value=2>Đã xác nhận</option>
+
                                     <input style="margin: 0 4px" name="search_key" type="search"
                                         class="form-control form-control-sm" placeholder="Search key"
                                         aria-controls="example1" value="{{ old('search_key') }}">
@@ -69,11 +64,12 @@
                                     style="border-radius: 4px;margin: 0 4px">
                                     <i class="fa fa-search" aria-hidden="true"></i>
                                 </button>
+                               
                             </form>
                         </div>
                     </div>
 
-                    <div class="col-12 col-md-6">
+                    <div class="col-12 col-md-4">
                         <a href={{ route('admin.order.add') }}> <button
                                 style="border: none;float: right;margin-bottom: 16px" class="btn-flat btn-lg btn-success"><i
                                     class="fa fa-plus" aria-hidden="true"></i></button>
@@ -86,119 +82,10 @@
                 </div>
                 <div class="row">
                     <div id="order_table" class="col-sm-12">
-                        <table id="example1" class="table table-bordered table-striped dataTable dtr-inline"
-                            aria-describedby="example1_info">
-                            <thead>
-                                <tr>
-
-                                    <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1"
-                                        colspan="1" aria-label="Rendering engine: activate to sort column descending"
-                                        aria-sort="ascending" style="">
-                                        ID</th>
-                                    <th style="width: 20%" class="sorting" tabindex="0" aria-controls="example1"
-                                        rowspan="1" colspan="1"
-                                        aria-label="Browser: activate to sort column ascending">Học viên</th>
-                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
-                                        colspan="1" aria-label="Platform(s): activate to sort column ascending"
-                                        style="">Tổng tiền</th>
-                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
-                                        colspan="1" aria-label="Platform(s): activate to sort column ascending"
-                                        style="">Thanh toán bằng</th>
-                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
-                                        colspan="1" aria-label="Platform(s): activate to sort column ascending"
-                                        style="">Date</th>
-                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
-                                        colspan="1" aria-label="Platform(s): activate to sort column ascending"
-                                        style="">Status</th>
-                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
-                                        colspan="1" aria-label="CSS grade: activate to sort column ascending"
-                                        style="">Hành động</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($orders as $order)
-                                    <tr class=''>
-                                        <td class="sorting_1 dtr-control" tabindex="0" style="">
-                                            <span class="badge badge-success">
-                                                {{ $order->id }}
-                                            </span>
-                                        </td>
-                                        <td style="">
-                                            <a href="">
-                                                <p>{{ $order->student->name }}</p>
-                                            </a>
-                                        </td>
-                                        <td> <a href="">
-                                                <p>{{ $order->total }}</p>
-                                            </a>
-                                        </td>
-                                        <td></td>
-                                        <td>
-                                            {{ $order->created_at }}
-                                        </td>
-                                        <td>
-                                            
-                                            @if ($order->status == 1)
-                                            <span class="badge badge-success">
-                                                ACTIVE
-                                            </span>
-                                        @else
-                                            <span class="badge badge-danger">
-                                                INACTIVE
-                                            </span>
-                                        @endif
-                                        </td>
-                                        <td style="width: 15%">
-
-                                            <a style="margin: 0 4px"
-                                                href='{{ route('admin.order.detail', ['order' => $order]) }}'>
-                                                <span style="border-radius: 2px" title="Link" type='button'
-                                                    class="btn btn-flat btn-sm btn-info">
-                                                    <i class="fas fa-external-link-alt    "></i>
-                                                </span>
-                                            </a>
-
-                                            <a style="margin: 0 4px; border-radius: 4px"
-                                                href='{{ route('admin.order.delete', ['order' => $order]) }}'>
-                                                <span style="border-radius: 2px" title="Delete" type='button'
-                                                    onclick="return confirmDelete() "
-                                                    class="btn btn-flat btn-sm btn-danger">
-                                                    <i class="fa fa-trash" aria-hidden="true"></i>
-                                                </span></a>
-                                            </a>
-
-                                        </td>
-                                        <td>
-                                            @if ($order->status == '0')
-                                                <a style="margin: 0 4px; border-radius: 4px"
-                                                    href='{{ route('admin.order.confirm', ['order' => $order]) }}'>
-                                                    <span style="border-radius: 2px" title="Duyệt" type='button'
-                                                       
-                                                        class="btn btn-flat btn-warning">
-                                                       <i class="fa fa-check" aria-hidden="true"></i>
-                                                    </span></a>
-                                                </a>
-                                            @endif
-                                        </td>
-
-                                    </tr>
-                                @endforeach
-
-                            </tbody>
-
-                        </table>
+                        @include('pages.backend.order.data')
                     </div>
                 </div>
-                <div class="row">
 
-                    <div class="col-sm-12 col-md-5">
-                        <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">Hiển thị
-                            {{ $orders->firstItem() }} - {{ $orders->lastItem() }} / {{ $orders->total() }} người
-                            dùng.
-                        </div>
-                    </div>
-                    {!! $orders->links() !!}
-                </div>
             </div>
         </div>
         <!-- /.card-body -->
@@ -210,6 +97,23 @@
 @endsection
 
 <script>
+    $(document).ready(function() {
+        $(document).on('click', '.pagination a', function(event) {
+            event.preventDefault();
+            var page = $(this).attr('href').split('page=')[1];
+            fetch_user_data(page);
+        });
+
+        function fetch_user_data(page) {
+            $.ajax({
+                url: "/admin/order/list/ajax?page=" + page,
+                success: function(data) {
+                    $('#order_table').html(data);
+                }
+            });
+        }
+    });
+
     function confirmDelete() {
 
         var result = confirm("Bạn có chắc chắn muốn xóa không?");
@@ -221,4 +125,12 @@
         var result = confirm("Bạn có chắc chắn muốn khôi phục không?");
         return result;
     }
+
+    function showCalendar() {
+        var calendar = new Calendar();
+        document.getElementById("myDate").autocomplete = calendar;
+    }
 </script>
+
+<!-- Thêm vào phần cuối của trang HTML trước thẻ </body> -->
+<script></script>

@@ -441,3 +441,6 @@ td a:hover{
         padding: 0 150px;
     }
 }
+.content-wrapper {
+    height: 100% !important;
+}

@@ -19,6 +19,13 @@ class PostController extends Controller
         ]);
     }
 
+    public function test(Request $request){
+        if($request->ajax() || 'NULL'){
+          $products =Post::paginate(2);
+          return view('posts.index',compact('products'));
+        }
+    }
+
     public function postDetail($id){
         $post = Post::getPostById($id);
         $user_id_post = $post->user_id;

@@ -16,18 +16,24 @@ class LessonController extends Controller
 {
     public function add()
     {
-       return view('pages.backend.lesson.add');
+        return view('pages.backend.lesson.add');
     }
     public function postAdd(Request $request)
     {
-
     }
 
     public function listLesson(Course $course)
     {
-       
-        $lessons=$course->lessons()->orderBy('id','asc')->paginate(6);
-        return view('pages.backend.lesson.list',compact(['course','lessons']));
+
+        $lessons = $course->lessons()->orderBy('id', 'asc')->paginate(2);
+        return view('pages.backend.lesson.list', compact(['course', 'lessons']));
+    }
+    public function listLessonAjax(Course $course)
+    {
+        if (request()->ajax()) {
+            $lessons = $course->lessons()->orderBy('id', 'asc')->paginate(2);
+            return view('pages.backend.lesson.data', compact(['course', 'lessons']))->render();
+        }
     }
 
     public function manage()
@@ -49,6 +55,5 @@ class LessonController extends Controller
 
     public function findLesson(Request $request)
     {
-
     }
 }
