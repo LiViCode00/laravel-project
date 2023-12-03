@@ -100,5 +100,8 @@ Route::get('pagination/ajax', [PaginationController::class, 'paginationAjax']);
 // Route::get('admin/user/list', [AdminUserController::class, 'listUser'])->name('list');
 // Route::get('admin/user/list/ajax', [AdminUserController::class, 'listUserAjax']);
 
+// routes/web.php
+
+Route::view('/403', 'errors.403')->name('403');
 
 include('admin.php');

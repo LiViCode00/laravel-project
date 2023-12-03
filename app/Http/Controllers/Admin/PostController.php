@@ -46,14 +46,14 @@ class PostController extends Controller
     public function listPost()
     {
         $categories = Category::all();
-        $posts = Post::orderBy('id', 'asc')->paginate(3);
+        $posts = Post::orderBy('id', 'asc')->paginate(6);
         return view('pages.backend.post.list', compact(['posts', 'categories']));
     }
     public function listPostAjax()
     {
         if (request()->ajax()) {
             $categories = Category::all();
-            $posts = Post::orderBy('id', 'asc')->paginate(3);
+            $posts = Post::orderBy('id', 'asc')->paginate(6);
             return view('pages.backend.post.data', compact(['posts', 'categories']))->render();
         }
     }
@@ -125,13 +125,13 @@ class PostController extends Controller
                 ->where(function ($query) use ($search_key) {
                     $query->where('title', 'LIKE', '%' . $search_key . '%');
                 })
-                ->paginate(3);
+                ->paginate(6);
 
            
         } else {
 
             $posts = Post::where('title', 'LIKE', '%' . $search_key . '%')
-                ->paginate(3);
+                ->paginate(6);
            
         }
         return view('pages.backend.post.data', compact('posts', 'categories', 'categoryModel'))->render();
@@ -144,9 +144,9 @@ class PostController extends Controller
         $categoryModel = Category::find($category);
 
         if ($categoryModel) {
-            $posts = $categoryModel->posts()->paginate(3);
+            $posts = $categoryModel->posts()->paginate(6);
         } else {
-            $posts = Post::paginate(3);
+            $posts = Post::paginate(6);
         }
         return view('pages.backend.post.data', compact('categories', 'posts', 'categoryModel'))->render();
     }

@@ -7,6 +7,8 @@ use App\Models\Admin;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class AdminController extends Controller
 {
@@ -62,5 +64,25 @@ class AdminController extends Controller
 
     public function menu(){
         return view('pages.backend.menu');
+    }
+
+    public function listRole(){
+        $roles=Role::all();
+
+
+        return view('pages.backend.permission.roleList', compact('roles'));
+    }
+
+    public function setPermissionForRole(Role $role){
+        $rolePermissions = $role->permissions->pluck('name')->toArray();
+        $permissions=Permission::all();
+        return view('pages.backend.permission.setPermissionForRole',compact('role','permissions','rolePermissions'));
+
+    }
+    public function postSetPermissionForRole(Role $role, Request $request){
+
+        $selectedPermissions = $request->input('permissions', []);
+        $role->syncPermissions($selectedPermissions);
+        return redirect()->route('admin.role.index')->with('success', "Đã đồng bộ quyền cho vai trò {$role->name} thành công.");
     }
 }

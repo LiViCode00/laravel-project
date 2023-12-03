@@ -23,13 +23,13 @@ class ReviewController extends Controller
 
     public function listReview()
     {
-        $reviews = CourseReviews::orderBy('id', 'asc')->paginate(3);
+        $reviews = CourseReviews::orderBy('id', 'asc')->paginate(6);
         return view('pages.backend.review.list', compact('reviews'));
     }
     public function listReviewAjax()
     {
         if (request()->ajax()) {
-            $reviews = CourseReviews::orderBy('id', 'asc')->paginate(3);
+            $reviews = CourseReviews::orderBy('id', 'asc')->paginate(6);
             return view('pages.backend.review.data', compact('reviews'))->render();
         }
     }
@@ -43,32 +43,32 @@ class ReviewController extends Controller
         
         switch ($category) {
             case '1': // courses
-                $reviews=CourseReviews::paginate(3);
+                $reviews=CourseReviews::paginate(6);
                 $column="Khóa học";
                 $attribute='name';
                 $table='course';
                 break;
             case '2': // teachers
-                $reviews=TeacherReviews::paginate(3);
+                $reviews=TeacherReviews::paginate(6);
                 $column="Giáo viên";
                 $attribute='name';
                 $table='teacher';
                 break;
             case '3': // posts
-                $reviews=PostReviews::paginate(3);
+                $reviews=PostReviews::paginate(6);
                 $column="Bài viết";
                 $attribute='title';
                 $table='post';
                 break;
             case '4': // lessons
-                $reviews=LessonReviews::paginate(3);
+                $reviews=LessonReviews::paginate(6);
                 $column="Bài giảng";
                 $attribute='name';
                 $table='lesson';
                 break;
             
             default:
-                $reviews=CourseReviews::paginate(3);
+                $reviews=CourseReviews::paginate(6);
                 break;
         }
 

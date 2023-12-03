@@ -53,7 +53,7 @@
                         </div>
                     </div>
                     <div class="col-12 col-md-6">
-                        <a href={{ route('admin.course.lesson.add') }}> <button
+                        <a href={{ route('admin.course.lesson.add',$course) }}> <button
                                 style="border: none;float: right;margin-bottom: 16px" class="btn-flat btn-lg btn-success"><i
                                     class="fa fa-plus" aria-hidden="true"></i></button></a>
 

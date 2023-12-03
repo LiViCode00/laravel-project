@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Group;
 use App\Models\category;
 use App\Models\Course;
+use App\Models\Menu;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -73,14 +74,21 @@ class CourseController extends Controller
     public function listCourse()
     {
         $categories = Category::all();
-        $courses = Course::orderBy('id', 'ASC')->paginate(3);
+        $courses = Course::orderBy('id', 'ASC')->paginate(6);
+       
         return view("pages.backend.course.list", compact('categories', 'courses'));
+    }
+
+    public function listRole(){
+        $menus=Menu::all();
+       
+        return view('listMenu', compact('menus'));
     }
     public function listCourseAjax()
     {
         if (request()->ajax()) {
             $categories = Category::all();
-            $courses = Course::orderBy('id', 'ASC')->paginate(3);
+            $courses = Course::orderBy('id', 'ASC')->paginate(6);
             return view("pages.backend.course.data", compact('categories', 'courses'))->render();
         }
     }
@@ -125,13 +133,13 @@ class CourseController extends Controller
                 ->where(function ($query) use ($search_key) {
                     $query->where('name', 'LIKE', '%' . $search_key . '%');
                 })
-                ->paginate(3);
+                ->paginate(6);
 
             return view('pages.backend.course.data', compact('courses', 'categories', 'categoryModel'))->render();
         } else {
 
             $courses = Course::where('name', 'LIKE', '%' . $search_key . '%')
-                ->paginate(3);
+                ->paginate(6);
             return view('pages.backend.course.data', compact('courses', 'categories', 'categoryModel'))->render();
         }
     }
@@ -143,9 +151,9 @@ class CourseController extends Controller
         $categoryModel = Category::find($category);
 
         if ($categoryModel) {
-            $courses = $categoryModel->courses()->paginate(3);
+            $courses = $categoryModel->courses()->paginate(6);
         } else {
-            $courses = Course::paginate(3);
+            $courses = Course::paginate(6);
         }
         return view('pages.backend.course.data', compact('categories', 'courses', 'categoryModel'))->render();
     }

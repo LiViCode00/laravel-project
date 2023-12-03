@@ -11,8 +11,9 @@
         @if (session('error'))
             <div class="alert alert-danger">{{ session('error') }}</div>
         @endif
-        <form action={{ route('admin.order.post-add') }} method="post" enctype="multipart/form-data">
-            @csrf
+        <form>
+
+
             <h4 style="text-align: center;margin-bottom: 20px"> Tạo đơn hàng mới</h4>
             <div class="form-row form-add">
 
@@ -179,7 +180,7 @@
 
 
 
-                <button style="margin: 30px 6px;text-align: center" class="btn btn-primary " type="submit">Thêm đơn
+                <button id="btn_order" style="margin: 30px 6px;text-align: center" class="btn btn-primary ">Thêm đơn
                     hàng</button>
             </div>
         </form>
@@ -219,6 +220,31 @@
             });
 
         });
+
+        $('#btn_order').on('click', function(event) {
+            event.preventDefault();
+            var student_id = $('#student').val();
+
+            $.ajax({
+                url: '{{ route('admin.order.post-add') }}',
+                method: 'POST',
+                data: {
+                    student_id : student_id,
+
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(data) {
+
+                    console.log(data);
+
+                   
+                },
+                error: function(error) {
+                    console.error('Error:', error);
+                },
+
+            });
+        })
 
 
 

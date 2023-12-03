@@ -18,27 +18,33 @@ class MenuSeeder extends Seeder
         $menus = [
             [
                 'name' => 'Quản lý đơn hàng',
-                'icon' => 'fa fa-cart-plus'
+                'icon' => 'fa fa-cart-plus',
+                'role'=>'admin'
             ],
             [
                 'name' => 'Khóa học & Danh mục',
-                'icon' => 'fa fa-book'
+                'icon' => 'fa fa-book',
+                'role'=>'admin,teacher'
             ],
             [
                 'name' => 'Nội dung',
-                'icon' => 'fa fa-pencil'
+                'icon' => 'fa fa-pencil',
+                'role'=>'admin,teacher,student'
             ],
             [
                 'name' => 'Học viên & Giảng viên',
-                'icon' => 'fa fa-user'
+                'icon' => 'fa fa-user',
+                'role'=>'admin'
             ],
             [
                 'name' => 'Quyền hạn người dùng',
-                'icon' => 'fa fa-lock'
+                'icon' => 'fa fa-lock',
+                'role'=>'admin'
             ],
             [
                 'name' => 'Quản lý chung',
-                'icon' => 'fa fa-bars'
+                'icon' => 'fa fa-bars',
+                'role'=>'admin'
             ],
         ];
 

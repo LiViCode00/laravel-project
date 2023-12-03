@@ -77,16 +77,16 @@
 
                     <td>
 
-                        <a style="margin: 0 4px"
+                        {{-- <a style="margin: 0 4px"
                             href='{{ route('admin.course.lesson.detail', ['lesson' => $lesson]) }}'>
                             <span style="border-radius: 2px" title="Link" type='button'
                                 class="btn btn-flat btn-sm btn-info">
                                 <i class="fas fa-external-link-alt    "></i>
                             </span>
-                        </a>
+                        </a> --}}
 
                         <a style="margin: 0 4px"
-                            href='{{ route('admin.course.lesson.manage', ['lesson' => $lesson]) }}'>
+                            href='{{ route('admin.course.lesson.edit', ['lesson' => $lesson]) }}'>
                             <span style="border-radius: 2px" title="Manage" type='button'
                                 class="btn btn-flat btn-sm btn-primary">
                                 <i class="fas fa-edit    "></i>

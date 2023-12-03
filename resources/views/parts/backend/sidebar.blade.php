@@ -25,7 +25,7 @@
                             Tổng quan
                         </p>
                     </a>
-                    
+
                 </li>
 
                 @php
@@ -33,34 +33,42 @@
                     use App\Models\ChildMenu;
 
                     $menus = Menu::all();
-                   
+
                 @endphp
                 @foreach ($menus as $item)
-                    <li class="nav-item">
-                        <a href= "" class="nav-link">
-                            <i style="margin-right: 12px" class="{{$item->icon}}" aria-hidden="true"></i>
-                            <p>
-                                {{ $item->name }}
-                                <i class="fas fa-angle-left right"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            @foreach ($item->childs as $child)
-                            
-                                <li class="nav-item">
-                                    <a href="{{ route($child->link) }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>{{ $child->name }}</p>
-                                    </a>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </li>
-                   
+                    @php
+
+                        $roles = explode(',', $item->role);
+                       
+
+                    @endphp
+
+                    @hasanyrole($roles)
+                        <li class="nav-item">
+                            <a href= "" class="nav-link">
+                                <i style="margin-right: 12px" class="{{ $item->icon }}" aria-hidden="true"></i>
+                                <p>
+                                    {{ $item->name }}
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                @foreach ($item->childs as $child)
+                                    <li class="nav-item">
+                                        <a href="{{ route($child->link) }}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>{{ $child->name }}</p>
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </li>
+                    @else
+                    @endhasanyrole
                 @endforeach
 
-                
-              
+
+
 
             </ul>
         </nav>

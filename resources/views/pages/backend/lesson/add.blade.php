@@ -11,7 +11,7 @@
         @if (session('error'))
             <div class="alert alert-danger">{{ session('error') }}</div>
         @endif
-        <form action={{ route('admin.course.post-add') }} method="post" enctype="multipart/form-data">
+        <form action={{ route('admin.course.lesson.post-add',$course) }} method="post" enctype="multipart/form-data">
             @csrf
             <h4 style="text-align: center;margin-bottom: 20px">Thông tin bài giảng</h4>
             <div class="form-row form-add">
@@ -19,7 +19,7 @@
                     <label for="">Tên bài giảng</label>
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
-                        <input type="text" name="name" id="" class="form-control" value={{ old('name') }}>
+                        <input type="text" name="name" id="" class="form-control" value='{{ old('name') }}'>
                     </div>
                     @error('name')
                         <span style="color: red">{{ $message }}</span>
@@ -30,7 +30,7 @@
                     <label for="">Mô tả</label>
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
-                        <textarea rows="8" type="text" name="detail" id="lesson-decripsion" class="form-control">{{ old('detail') }}</textarea>
+                        <textarea rows="8" type="text" name="detail" class="form-control">{{ old('detail') }}</textarea>
                     </div>
                     @error('detail')
                         <span style="color: red">{{ $message }}</span>
@@ -38,94 +38,27 @@
                 </div>
 
 
+              
+
                 <div class="form-group col-12 ">
-                    <label for="">Video bài giảng</label>
-
+                    <label for="">Tài liệu</label>
                     <br>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="card collapsed-card">
-                                <div class="table-responsive">
-                                    <table id="myTable" class="table table-hover box-body text-wrap table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <th>STT</th>
-                                                <th>Tiêu đề</th>
-                                                <th>Đường dẫn</th>
-                                                <th>Action</th>
 
-
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-12">
-                            <div class="card collapsed-card">
-
-
-
-                                <div class="form-group col-12 ">
-                                    <label for="">Tiêu đề video</label>
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
-                                        <input type="text" name="title" id="title_video" class="form-control"
-                                            value={{ old('title') }}>
-                                    </div>
-                                    <span id="error_title" style="color: red;display: none">Tiêu đề video bắt buộc </span>
-                                </div>
-
-                                <div class="form-group col-12 ">
-                                    <label for="">Đường dẫn URL</label>
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
-                                        <input type="text" name="url_video" id="url_video" class="form-control"
-                                            value={{ old('url_video') }}>
-                                    </div>
-                                    <span id="error_url" style="color: red;display: none">Đường dẫn URL bắt buộc</span>
-                                </div>
-                                <div class="form-group col-12 ">
-                                    <button id="add_video"
-                                        style="float: display: inline-block;
-                                    position: relative;
-                                    left: 50%;
-                                    transform: translateX(-50%);"
-                                        type="button" class="btn btn-flat btn-success" title="Add new"><i
-                                            class="fa fa-plus"></i>
-                                        Thêm mới video</button>
-                                </div>
-
-
-
-                            </div>
-
-
-                        </div>
-
-                    </div>
-                    <div class="form-group col-12 ">
-                        <label for="">Tài liệu</label>
-                        <br>
-
-                        <input type="file" name="doc">
-                        @error('doc')
-                            <span style="color: red">{{ $message }}</span>
-                        @enderror
-                    </div>
-                    <br>
+                    <input type="file" name="file">
+                    @error('file')
+                        <span style="color: red">{{ $message }}</span>
+                    @enderror
                 </div>
+                <br>
 
-
-
-
-                <button class="btn btn-primary " type="submit">Thêm bài giảng</button>
+                <button style="margin: 40px 0; " class="btn btn-primary " type="submit">Thêm bài giảng</button>
             </div>
         </form>
+
+     
+
+        
+
     </div>
 @endsection
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -193,9 +126,5 @@
 
 
 
-    ClassicEditor
-        .create(document.querySelector('#lesson-decripsion'))
-        .catch(error => {
-            console.error(error);
-        });
+  
 </script>

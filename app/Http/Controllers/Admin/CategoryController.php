@@ -44,7 +44,7 @@ class CategoryController extends Controller
 
     public function listCategory()
     {
-        $categories = Category::orderBy('id', 'asc')->paginate(2);
+        $categories = Category::orderBy('id', 'asc')->paginate(6);
 
         return view("pages.backend.categories.list", compact("categories"));
     }
@@ -52,7 +52,7 @@ class CategoryController extends Controller
     {
 
         if (request()->ajax()) {
-            $categories = Category::orderBy('id', 'asc')->paginate(2);
+            $categories = Category::orderBy('id', 'asc')->paginate(6);
 
             return view("pages.backend.categories.data", compact("categories"))->render();
         }

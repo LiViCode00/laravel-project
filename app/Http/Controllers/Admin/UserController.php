@@ -8,6 +8,7 @@ use App\Models\Post;
 use App\Models\User;
 use App\Models\Admin;
 use App\Models\Category;
+use App\Models\Order;
 use App\Models\Teacher;
 use App\Models\Student;
 use Illuminate\Http\Request;
@@ -76,14 +77,15 @@ class UserController extends Controller
 
     public function listUser()
     {
-        $users = User::withTrashed()->orderBy('deleted_at', 'ASC')->orderBy('id', 'ASC')->paginate(3);
+        $users = User::withTrashed()->orderBy('deleted_at', 'ASC')->orderBy('id', 'ASC')->paginate(6);
         $groups = Group::all();
+
         return view("pages.backend.user.list", compact(["users", "groups"]));
     }
     public function listUserAjax()
     {
         if (request()->ajax()) {
-            $users = User::withTrashed()->orderBy('deleted_at', 'ASC')->orderBy('id', 'ASC')->paginate(3);
+            $users = User::withTrashed()->orderBy('deleted_at', 'ASC')->orderBy('id', 'ASC')->paginate(6);
             $groups = Group::all();
             return view("pages.backend.user.data", compact(["users", "groups"]))->render();
         }
@@ -195,12 +197,12 @@ class UserController extends Controller
                     $query->where('name', 'LIKE', '%' . $search_key . '%')
                         ->orWhere('email', 'LIKE', '%' . $search_key . '%');
                 })
-                ->paginate(3);
+                ->paginate(6);
         } else {
 
             $users = User::where('name', 'LIKE', '%' . $search_key . '%')
                 ->orWhere('name', 'LIKE', '%' . $search_key . '%')
-                ->paginate(3);
+                ->paginate(6);
         }
         return view('pages.backend.user.data', compact('users', 'groups', 'groupModel'))->render();
     }
@@ -212,7 +214,7 @@ class UserController extends Controller
         $groupModel = Group::find($group);
 
         if ($groupModel) {
-            $users = $groupModel->users()->paginate(3);
+            $users = $groupModel->users()->paginate(6);
             return view('pages.backend.user.list', compact('users', 'groups', 'groupModel'));
         }
     }
@@ -223,9 +225,9 @@ class UserController extends Controller
             $group = $request->input('group');
             $groupModel = Group::find($group);
             if ($groupModel) {
-                $users = $groupModel->users()->paginate(3);
+                $users = $groupModel->users()->paginate(6);
             } else {
-                $users = User::paginate(3);
+                $users = User::paginate(6);
             }
             return view('pages.backend.user.data', compact('users', 'groups', 'groupModel'))->render();
         }

@@ -40,31 +40,33 @@
 
 
 
-                                    
+
                                     </select>
 
-                                    <input type="date" id="from_date" class="form-select form-control form-control-sm" onfocus="showCalendar()">
-                                    <input type="date" id="to_date" class="form-select form-control form-control-sm" onfocus="showCalendar()">
+                                    <input type="date" id="from_date" class="form-select form-control form-control-sm"
+                                        onfocus="showCalendar()">
+                                    <input type="date" id="to_date" class="form-select form-control form-control-sm"
+                                        onfocus="showCalendar()">
 
-                                    <select name="status" style="margin: 0 4px"
-                                    class="form-select form-control form-control-sm"
-                                    aria-label="Default select example">
-                                    <option value=0 {{ old('category') == 0 ? 'selected' : '' }}>Trạng thái đơn hàng
-                                    </option>
-                                    <option value=1>Chưa xác nhận</option>
-                                    <option value=2>Đã xác nhận</option>
+                                    <select id="order_status" name="status" style="margin: 0 4px"
+                                        class="form-select form-control form-control-sm"
+                                        aria-label="Default select example">
+                                        <option value=0 {{ old('category') == 0 ? 'selected' : '' }}>Trạng thái đơn hàng
+                                        </option>
+                                        <option value=1>Chưa xác nhận</option>
+                                        <option value=2>Đã xác nhận</option>
 
-                                    <input style="margin: 0 4px" name="search_key" type="search"
-                                        class="form-control form-control-sm" placeholder="Search key"
-                                        aria-controls="example1" value="{{ old('search_key') }}">
+                                        <input style="margin: 0 4px" name="search_key" type="search"
+                                            class="form-control form-control-sm" placeholder="Search key"
+                                            aria-controls="example1" value="{{ old('search_key') }}">
 
                                 </label>
 
-                                <button title="Search" type="submit" class="btn btn-flat btn-info"
+                                <button id="order_search" title="Search" type="submit" class="btn btn-flat btn-info"
                                     style="border-radius: 4px;margin: 0 4px">
                                     <i class="fa fa-search" aria-hidden="true"></i>
                                 </button>
-                               
+
                             </form>
                         </div>
                     </div>
@@ -112,6 +114,61 @@
                 }
             });
         }
+
+        $('#order_status').on('change', function(event) {
+            event.preventDefault();
+            var status = $(this).val();
+
+            $.ajax({
+                url: '{{ route('admin.order.find-by-status') }}',
+                method: 'POST',
+                data: {
+                    status: status,
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(data) {
+
+                    $('#order_table').html(data);
+
+
+                },
+                error: function(error) {
+                    console.error('Error:', error);
+                },
+
+            });
+
+        })
+        $('#order_search').on('click', function(event) {
+            event.preventDefault();
+            var key_search = $('#key_search').val();
+            var from_date = $('#from_date').val();
+            var to_date = $('#to_date').val();
+
+            console.log(from_date);
+
+            $.ajax({
+                url: '{{ route('admin.order.find-by-date-searchkey') }}',
+                method: 'POST',
+                data: {
+                   
+                    from_date: from_date,
+                    to_date: to_date,
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(data) {
+
+                    $('#order_table').html(data);
+
+
+                },
+                error: function(error) {
+                    console.error('Error:', error);
+                },
+
+            });
+
+        })
     });
 
     function confirmDelete() {

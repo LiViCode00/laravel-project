@@ -59,13 +59,13 @@ class TeacherController extends Controller
 
     public function listTeacher()
     {
-        $teachers = Teacher::orderBy('id', 'asc')->paginate(2);
+        $teachers = Teacher::orderBy('id', 'asc')->paginate(6);
         return view("pages.backend.teacher.list", compact('teachers'));
     }
     public function listTeacherAjax()
     {
         if (request()->ajax()) {
-            $teachers = Teacher::orderBy('id', 'asc')->paginate(2);
+            $teachers = Teacher::orderBy('id', 'asc')->paginate(6);
             return view("pages.backend.teacher.data", compact('teachers'))->render();
         }
     }
