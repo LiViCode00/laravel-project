@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('menus', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('role');
             $table->string('icon')->nullable();
             $table->timestamps();
         });

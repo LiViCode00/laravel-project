@@ -31,12 +31,12 @@ class CategoryController extends Controller
         );
         $category = new Category();
         $category->name = $request->name;
-        $category->user_id= Auth::user()->id;
-        if($request->public=='on'){
-            $category->public=1;
+        $category->user_id = Auth::user()->id;
+        if ($request->public == 'on') {
+            $category->public = 1;
         }
-        if($request->status=='on'){
-            $category->status=1;
+        if ($request->status == 'on') {
+            $category->status = 1;
         }
         $category->save();
         return redirect()->route('admin.category.list')->with('success', 'Thêm mới danh mục thành công');
@@ -48,11 +48,20 @@ class CategoryController extends Controller
 
         return view("pages.backend.categories.list", compact("categories"));
     }
+    public function listCategoryAjax()
+    {
+
+        if (request()->ajax()) {
+            $categories = Category::orderBy('id', 'asc')->paginate(6);
+
+            return view("pages.backend.categories.data", compact("categories"))->render();
+        }
+    }
 
     public function view(Category $category)
     {
-        $courses= $category->courses()->paginate(6);
-        return view("pages.backend.categories.courses-list",compact(["category","courses"]));
+        $courses = $category->courses()->paginate(6);
+        return view("pages.backend.categories.courses-list", compact(["category", "courses"]));
     }
 
 
@@ -74,12 +83,12 @@ class CategoryController extends Controller
             ]
         );
         $category->name = $request->name;
-        $category->user_id= Auth::user()->id;
-        if($request->public=='on'){
-            $category->public=1;
+        $category->user_id = Auth::user()->id;
+        if ($request->public == 'on') {
+            $category->public = 1;
         }
-        if($request->status=='on'){
-            $category->status=1;
+        if ($request->status == 'on') {
+            $category->status = 1;
         }
         $category->save();
         return redirect()->route('admin.category.list')->with('success', 'Cập nhật danh mục thành công');
@@ -92,22 +101,17 @@ class CategoryController extends Controller
     }
 
 
-    public function findcategory(Request $request)
+    public function findCategory(Request $request)
     {
 
-     
-        $search_key = $request->input('search_key');
-       
 
-      
-         
-            if ($search_key != '') {
-                $categories = Category::where('name', 'LIKE', '%' . $search_key . '%')
-                    ->paginate(6);
-                return view('pages.backend.categories.list', compact('categories'));
-            } else {
-                return back()->with('error', "Vui lòng nhập key tìm kiếm hoặc chọn nhóm!");
-            }
-        
+        $search_key = $request->input('search_key');
+        if ($search_key == '') {
+            return back()->with('error', "Vui lòng nhập key tìm kiếm hoặc chọn nhóm!");
+        } else {
+            $categories = Category::where('name', 'LIKE', '%' . $search_key . '%')
+                ->paginate(6);
+            return view('pages.backend.categories.data', compact('categories'));
+        }
     }
 }

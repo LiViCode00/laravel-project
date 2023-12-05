@@ -201,7 +201,7 @@
         // Log giá trị được chọn để kiểm tra
         console.log("Selected Course ID:", selectedValue);
 
-        // Tiếp tục xử lý với giá trị JavaScript
+        
     }
 
     function addNewRow() {

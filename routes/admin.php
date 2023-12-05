@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\LessonController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\TeacherController;
+use App\Http\Controllers\Admin\VideoController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -35,7 +36,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/edit/{id}', [AdminController::class, 'editProfile'])->middleware('auth')->name('edit-profile');
 
 
-        Route::prefix('user')->middleware('auth')->name('user.')->group(function () {
+        Route::prefix('user')->middleware(['auth', 'role:admin'])->name('user.')->group(function () {
 
                 Route::get('/', [UserController::class, 'listUser'])->name('index');
 
@@ -44,6 +45,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
                 Route::post('/add', [UserController::class, 'postAdd'])->name('post-add');
 
                 Route::get('/list', [UserController::class, 'listUser'])->name('list');
+
+                Route::get('/list/ajax', [UserController::class, 'listUserAjax'])->name('list-ajax');
+
+                Route::post('/list/group', [UserController::class, 'userByGroup'])->name('list-group');
+
+                Route::post('/list/group/ajax', [UserController::class, 'userByGroupAjax'])->name('list-group-ajax');
 
                 Route::get('/profile/{user}', [UserController::class, 'profile'])->name('profile');
 
@@ -82,6 +89,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
                 Route::get('/list', [CategoryController::class, 'listCategory'])->name('list');
 
+                Route::get('/list/ajax', [CategoryController::class, 'listCategoryAjax'])->name('list-ajax');
+
                 Route::get('/view/{category}', [CategoryController::class, 'view'])->name('view');
 
                 Route::get('/edit/{category}', [CategoryController::class, 'edit'])->name('edit');
@@ -94,15 +103,20 @@ Route::prefix('admin')->name('admin.')->group(function () {
         });
 
 
-        Route::prefix('course')->middleware('auth')->name('course.')->group(function () {
+        Route::prefix('course')->middleware(['auth', 'role:admin'])->name('course.')->group(function () {
 
                 Route::get('/', [CourseController::class, 'listCourse'])->name('index');
+              
 
                 Route::get('/add', [CourseController::class, 'add'])->name('add');
 
                 Route::post('/add', [CourseController::class, 'postAdd'])->name('post-add');
 
                 Route::get('/list', [CourseController::class, 'listCourse'])->name('list');
+
+                Route::get('/list/ajax', [CourseController::class, 'listCourseAjax'])->name('list-ajax');
+
+                Route::post('/list/category', [CourseController::class, 'courseByCategory'])->name('list-category');
 
                 Route::get('/view/{course}', [CourseController::class, 'view'])->name('view');
 
@@ -130,15 +144,16 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
                 Route::prefix('lesson')->middleware('auth')->name('lesson.')->group(function () {
 
-                        Route::get('/add', [LessonController::class, 'add'])->name('add');
+                        Route::get('/{course}/add', [LessonController::class, 'add'])->name('add');
 
-                        Route::post('/add', [LessonController::class, 'postAdd'])->name('post-add');
+                        Route::post('/{course}/add', [LessonController::class, 'postAdd'])->name('post-add');
 
-                        Route::post('/deatil/{lesson}', [LessonController::class, 'detail'])->name('detail');
 
                         Route::get('/{course}/list/', [LessonController::class, 'listLesson'])->name('list');
 
-                        Route::get('/manage/{lesson}', [LessonController::class, 'manage'])->name('manage');
+                        Route::get('/{course}/list/ajax', [LessonController::class, 'listLessonAjax'])->name('list-ajax');
+
+
 
                         Route::get('/edit/{lesson}', [LessonController::class, 'edit'])->name('edit');
 
@@ -147,22 +162,35 @@ Route::prefix('admin')->name('admin.')->group(function () {
                         Route::get('/delete/{lesson}', [LessonController::class, 'delete'])->name('delete');
 
                         Route::match(['get', 'post'], '/find-lesson', [LessonController::class, 'findLesson'])->name('find-lesson');
-                });
 
-               
+                        Route::prefix('video')->name('video.')->group(function () {
+
+                                Route::get('/{lesson}/add', [VideoController::class, 'add'])->name('add');
+
+                                Route::post('/{lesson}/add', [VideoController::class, 'postAdd'])->name('post-add');
+
+                                Route::get('/{lesson}/edit', [VideoController::class, 'postEditLesson'])->name('post-edit');
+
+                                Route::get('/delete/{video}', [VideoController::class, 'delete'])->name('delete');
+                        });
+                });
         });
 
         Route::prefix('review')->middleware('auth')->name('review.')->group(function () {
 
                 Route::get('/', [ReviewController::class, 'listReview'])->name('index');
-                
+
                 Route::get('/add', [ReviewController::class, 'add'])->name('add');
 
                 Route::post('/add', [ReviewController::class, 'postAdd'])->name('post-add');
 
-                Route::post('/deatil/{review}', [ReviewController::class, 'detail'])->name('detail');
+                Route::get('/detail/{review}', [ReviewController::class, 'detail'])->name('detail');
 
-                Route::get('/{course}/list/', [ReviewController::class, 'listReview'])->name('list');
+                Route::get('/list', [ReviewController::class, 'listReview'])->name('list');
+
+                Route::get('/list/ajax', [ReviewController::class, 'listReviewAjax'])->name('list-ajax');
+
+                Route::post('/list/category', [ReviewController::class, 'postByCategory'])->name('list-category');
 
                 Route::get('/manage/{review}', [ReviewController::class, 'manage'])->name('manage');
 
@@ -179,7 +207,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 
 
-        Route::prefix('teacher')->middleware('auth')->name('teacher.')->group(function () {
+        Route::prefix('teacher')->middleware(['auth', 'role:admin'])->name('teacher.')->group(function () {
 
                 Route::get('/', [TeacherController::class, 'listTeacher'])->name('index');
 
@@ -188,6 +216,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
                 Route::post('/add', [TeacherController::class, 'postAdd'])->name('post-add');
 
                 Route::get('/list', [TeacherController::class, 'listTeacher'])->name('list');
+
+                Route::get('/list/ajax', [TeacherController::class, 'listTeacherAjax'])->name('list-ajax');
 
                 Route::get('/profile/{teacher}', [TeacherController::class, 'profile'])->name('profile');
 
@@ -210,6 +240,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
                 Route::get('/list', [PostController::class, 'listPost'])->name('list');
 
+                Route::get('/list/ajax', [PostController::class, 'listPostAjax'])->name('list-ajax');
+
+                Route::post('/list/category', [PostController::class, 'postByCategory'])->name('list-category');
+
                 Route::get('/post/{post}', [PostController::class, 'detail'])->name('detail');
 
                 Route::get('/edit/{post}', [PostController::class, 'edit'])->name('edit');
@@ -221,7 +255,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
                 Route::match(['get', 'post'], '/find-post', [PostController::class, 'findPost'])->name('find-post');
         });
 
-        Route::prefix('order')->middleware('auth')->name('order.')->group(function () {
+        Route::prefix('order')->middleware(['auth', 'role:admin'])->name('order.')->group(function () {
 
                 Route::get('/', [OrderController::class, 'listOrder'])->name('index');
 
@@ -230,6 +264,16 @@ Route::prefix('admin')->name('admin.')->group(function () {
                 Route::post('/add', [OrderController::class, 'postAdd'])->name('post-add');
 
                 Route::get('/list', [OrderController::class, 'listOrder'])->name('list');
+
+                Route::get('/list/ajax', [OrderController::class, 'listOrderAjax'])->name('list-ajax');
+
+                Route::post('/student', [OrderController::class, 'getStudent'])->name('getStudent');
+
+                Route::post('/course', [OrderController::class, 'getCourse'])->name('getCourse');
+
+                Route::post('/find-by-status', [OrderController::class, 'findByStatus'])->name('find-by-status');
+
+                Route::post('/find-by-date-searchkey', [OrderController::class, 'findByDateSearchKey'])->name('find-by-date-searchkey');
 
                 Route::get('/confirm/{order}', [OrderController::class, 'confirm'])->name('confirm');
 
@@ -240,14 +284,42 @@ Route::prefix('admin')->name('admin.')->group(function () {
                 Route::match(['get', 'order'], '/find-order', [OrderController::class, 'findOrder'])->name('find-order');
         });
 
-        Route::prefix('student')->middleware('auth')->name('student.')->group(function () {
+        Route::prefix('student')->middleware(['auth', 'role:admin'])->name('student.')->group(function () {
 
                 Route::get('/', [OrderController::class, 'listOrder'])->name('index');
-
-              
         });
 
-        Route::prefix('menu')->name('menu.')->group(function () {
-                Route::get('/' , [AdminController::class, 'menu'])->name('index');
+        Route::prefix('menu')->middleware(['auth', 'role:admin'])->name('menu.')->group(function () {
+                Route::get('/', [AdminController::class, 'menu'])->name('index');
+        });
+
+       
+        Route::prefix('role')->name('role.')->group(function () {
+                Route::get('/' , [AdminController::class,'listRole'])->name('index');
+
+                Route::get('/setPermission/{role}' , [AdminController::class,'setPermissionForRole'])->name('set-permission');
+
+                Route::post('/setPermission/{role}' , [AdminController::class,'postSetPermissionForRole'])->name('post-set-permission');
+
+                Route::get('/add' , [AdminController::class,'addRole'])->name('add');
+
+                Route::post('/add' , [AdminController::class,'postAddRole'])->name('post-add');
+
+                Route::get('/delete{role}' , [AdminController::class,'deleteRole'])->name('delete');
+        });
+
+        Route::prefix('permission')->name('permission.')->group(function () {
+                Route::get('/' , [AdminController::class,'listPermission'])->name('index');
+
+
+                Route::get('/add' , [AdminController::class,'addPermission'])->name('add');
+
+                Route::post('/add' , [AdminController::class,'postAddPermission'])->name('post-add');
+
+                Route::get('/edit/{permission}' , [AdminController::class,'editPermission'])->name('edit');
+
+                Route::post('/edit/{permission}' , [AdminController::class,'postEditPermission'])->name('post-edit');
+
+                Route::get('/delete/{permission}' , [AdminController::class,'deletePermission'])->name('delete');
         });
 });

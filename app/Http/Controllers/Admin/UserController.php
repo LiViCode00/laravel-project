@@ -8,20 +8,28 @@ use App\Models\Post;
 use App\Models\User;
 use App\Models\Admin;
 use App\Models\Category;
+use App\Models\Course;
+use App\Models\Order;
 use App\Models\Teacher;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
+
+    public function index()
+    {
+    }
     public function add()
     {
 
         $groups = Group::all();
-        return view("pages.backend.user.add", compact('groups'));
+        $roles=Role::all();
+        return view("pages.backend.user.add", compact('groups','roles'));
     }
     public function postAdd(Request $request)
     {
@@ -53,7 +61,7 @@ class UserController extends Controller
             ]
         );
 
-        
+
         if ($request->has('image')) {
             $imagePath = $request->file('image')->store('img/users', 'public');
         }
@@ -66,6 +74,15 @@ class UserController extends Controller
         $user->group_id = $request->group;
         $user->image_path = $imagePath;
         $user->save();
+        if($user->group->name=='Quản trị viên'){
+            $user->assignRole('admin');
+        }
+        if($user->group->name=='Giáo viên'){
+            $user->assignRole('teacher');
+        }
+        if($user->group->name=='Học viên'){
+            $user->assignRole('student');
+        }
 
         return redirect()->route("admin.user.list")->with("success", "Thêm người dùng thành công");
     }
@@ -74,18 +91,38 @@ class UserController extends Controller
     {
         $users = User::withTrashed()->orderBy('deleted_at', 'ASC')->orderBy('id', 'ASC')->paginate(6);
         $groups = Group::all();
+
         return view("pages.backend.user.list", compact(["users", "groups"]));
+    }
+    public function listUserAjax()
+    {
+        if (request()->ajax()) {
+            $users = User::withTrashed()->orderBy('deleted_at', 'ASC')->orderBy('id', 'ASC')->paginate(6);
+            $groups = Group::all();
+            return view("pages.backend.user.data", compact(["users", "groups"]))->render();
+        }
     }
 
     public function profile(User $user)
     {
-        return view("pages.backend.user.profile", compact(["user"]));
+        $posts=Post::where('user_id',$user->id)->get();
+        $courses=[];
+        if($user->group->name=='Giáo viên'){
+            $courses=Course::where('teacher_id',$user->id)->get();
+        }
+        if($user->group->name=='Học viên'){
+            $courses=Course::where('teacher_id',$user->id)->get();
+        }
+       
+        return view("pages.backend.user.profile", compact(["user","posts","courses"]));
     }
 
     public function edit(User $user)
     {
         $groups = Group::all();
-        return view("pages.backend.user.edit", compact(["user", "groups"]));
+        $roles=Role::all();
+        $userRoles=$user->getRoleNames();
+        return view("pages.backend.user.edit", compact(["user", "groups",'roles','userRoles']));
     }
     public function postEdit(Request $request, User $user)
     {
@@ -115,8 +152,8 @@ class UserController extends Controller
             ]
         );
 
-      
-      
+
+
         if ($request->has('image')) {
             $imagePath = $request->file('image')->store('img/users', 'public');
             $user->image_path = $imagePath;
@@ -125,6 +162,17 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->group_id = $request->group;
         $user->save();
+
+        if($user->group->name=='Quản trị viên'){
+            $user->syncRoles(['admin']);
+        }
+        if($user->group->name=='Giáo viên'){
+            $user->syncRoles(['teacher']);
+        }
+        if($user->group->name=='Học viên'){
+            $user->syncRoles(['student']);
+        }
+       
         return redirect()->route("admin.user.list")->with("success", "Cập nhật người dùng thành công");
     }
 
@@ -176,33 +224,53 @@ class UserController extends Controller
         $group = $request->input('group');
         $groupModel = Group::find($group);
 
+
         if ($groupModel) {
-            if ($search_key == '') {
+            $users = $groupModel->users()
+                ->where(function ($query) use ($search_key) {
+                    $query->where('name', 'LIKE', '%' . $search_key . '%')
+                        ->orWhere('email', 'LIKE', '%' . $search_key . '%');
+                })
+                ->paginate(6);
+        } else {
+
+            $users = User::where('name', 'LIKE', '%' . $search_key . '%')
+                ->orWhere('name', 'LIKE', '%' . $search_key . '%')
+                ->paginate(6);
+        }
+        return view('pages.backend.user.data', compact('users', 'groups', 'groupModel'))->render();
+    }
+
+    public function userByGroup(Request $request)
+    {
+        $groups = Group::all();
+        $group = $request->input('group');
+        $groupModel = Group::find($group);
+
+        if ($groupModel) {
+            $users = $groupModel->users()->paginate(6);
+            return view('pages.backend.user.list', compact('users', 'groups', 'groupModel'));
+        }
+    }
+    public function userByGroupAjax(Request $request)
+    {
+        if (request()->ajax()) {
+            $groups = Group::all();
+            $group = $request->input('group');
+            $groupModel = Group::find($group);
+            if ($groupModel) {
                 $users = $groupModel->users()->paginate(6);
             } else {
-                $users = $groupModel->users()
-                    ->where(function ($query) use ($search_key) {
-                        $query->where('name', 'LIKE', '%' . $search_key . '%')
-                            ->orWhere('email', 'LIKE', '%' . $search_key . '%');
-                    })
-                    ->paginate(6);
+                $users = User::paginate(6);
             }
-            return view('pages.backend.user.list', compact('users', 'groups', 'groupModel'));
-        } else {
-            if ($search_key != '') {
-                $users = User::where('name', 'LIKE', '%' . $search_key . '%')
-                    ->orWhere('name', 'LIKE', '%' . $search_key . '%')
-                    ->paginate(6);
-                return view('pages.backend.user.list', compact('users', 'groups', 'groupModel'));
-            } else {
-                return back()->with('error', "Vui lòng nhập key tìm kiếm hoặc chọn nhóm!");
-            }
+            return view('pages.backend.user.data', compact('users', 'groups', 'groupModel'))->render();
         }
     }
 
-    public function writePost(){
-        $categories=Category::all();
-        return view('pages.backend.post.write',compact('categories'));
+    public function writePost()
+    {
+        $categories = Category::all();
+        return view('pages.backend.post.write', compact('categories'));
     }
     public function postWritePost(Request $request)
     {
@@ -223,8 +291,8 @@ class UserController extends Controller
                 'post_content' => "Nội dung",
             ]
         );
-    
-        
+
+
         if (auth()->check()) {
             $post = new Post();
             $post->title = $request->post_title;
@@ -232,14 +300,14 @@ class UserController extends Controller
             $post->category_id = $request->category;
             $post->user_id = auth()->user()->id;
             $post->save();
-            return redirect()->route('admin.post.index')->with('success','Thêm bài viết thành công.');
+            return redirect()->route('admin.post.index')->with('success', 'Thêm bài viết thành công.');
         } else {
             // Xử lý trường hợp người dùng chưa đăng nhập
             return redirect()->route('admin.login')->with('error', 'Bạn cần đăng nhập để đăng bài viết.');
         }
     }
-    
-    public function myPost(){
 
+    public function myPost()
+    {
     }
 }

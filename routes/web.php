@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\OrderController as UserOrderController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\TeacherController;
@@ -9,9 +11,18 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LessonController;
+<<<<<<< HEAD
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\OrderController as ControllersOrderController;
 use App\Http\Controllers\StudentController;
+=======
+
+
+use App\Http\Controllers\PaginationController;
+use App\Http\Controllers\SearchController;
+use App\Http\Controllers\StudentController;
+
+>>>>>>> 8028a0166edb5c9a3e7c633918615e2147ce6cd9
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -38,7 +49,7 @@ Route::get('/logout', [StudentController::class, 'logout']);
 Route::get('/search', [SearchController::class, 'search'])->name('search');
 Route::post('/search_product', [SearchController::class, 'search_product'])->name('search');
 
-Route::get('/login' , function(){
+Route::get('/login', function () {
     return view('pages.client.login');
 })->name('login');
 
@@ -54,11 +65,24 @@ Route::prefix('teachers')->name('teachers.')->group(function () {
 });
 
 Route::prefix('posts')->name('posts.')->group(function () {
+<<<<<<< HEAD
     Route::get('/', [PostController::class,'index'])->name('view');
     Route::get('/posts-detail/{id}', [PostController::class,'postDetail'])->name('postDetail');
 });
 
 Route::get('/lesson/{id_course}' , [LessonController::class,'index'])->name('lesson');
+=======
+    Route::get('/', [PostController::class, 'index'])->name('view');
+    Route::get('/posts-detail/{id}', [PostController::class, 'postDetail'])->name('postDetail');
+});
+
+// Route::get('/lesson/{id_course}' , [LessonController::class,'index'])->name('lesson');
+//     Route::get('/', [PostController::class, 'index'])->name('view');
+//     Route::get('/posts-detail', [PostController::class, 'postDetail'])->name('postDetail');
+// });
+
+Route::get('/lesson', [LessonController::class, 'index'])->name('lesson');
+>>>>>>> 8028a0166edb5c9a3e7c633918615e2147ce6cd9
 
 Route::prefix('admin')->group(function () {
     Route::get('', function () {
@@ -71,11 +95,29 @@ Route::prefix('student')->name('student.')->group(function () {
     Route::get('/edit/{id}', [StudentController::class, 'viewProfile'])->name('view-profile');
 
     Route::post('/edit/{id}', [StudentController::class, 'editProfile'])->name('edit-profile');
-
-  
 });
 
-Route::get('/payment/{id}' , [UserOrderController::class,'order'])->name('order');
-Route::post('/payment/{id}' , [UserOrderController::class,'postOrder'])->name('post-order');
+Route::get('/payment/{course}', [UserOrderController::class, 'order'])->name('order');
+Route::post('/payment/{course}', [UserOrderController::class, 'postOrder'])->name('post-order');
+
+
+
+
+Route::get('/ajax-example', [AjaxController::class, 'index']);
+Route::post('/ajax-example', [AjaxController::class, 'store']);
+
+Route::get('/posts/test', [PostController::class, 'test']);
+
+
+Route::get('pagination', [PaginationController::class, 'index']);
+Route::get('pagination/ajax', [PaginationController::class, 'paginationAjax']);
+
+
+// Route::get('admin/user/list', [AdminUserController::class, 'listUser'])->name('list');
+// Route::get('admin/user/list/ajax', [AdminUserController::class, 'listUserAjax']);
+
+// routes/web.php
+
+Route::view('/403', 'errors.403')->name('403');
 
 include('admin.php');

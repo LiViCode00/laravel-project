@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Course;
-
-
+use App\Models\Teacher;
 
 class CourseSeeder extends Seeder
 {
@@ -17,6 +17,8 @@ class CourseSeeder extends Seeder
      */
     public function run()
     {
+        $teachers=Teacher::all();
+        $categories=Category::all();
         $courses = [
             [   
                 "name" => 'HTML and CSS for beginer',
@@ -24,8 +26,8 @@ class CourseSeeder extends Seeder
                 "image_path" => 'client/images/course/cu-1.jpg',
                 "price" => '1000000',
                 "sale_price" => '899000',
-                "teacher_id" => '1',
-                "category_id" => '2'
+                "teacher_id" => $teachers->random()->id,
+                "category_id" => $categories->random()->id
             ],
             [    
                 "name" => 'C++ from basic to advanced',
@@ -33,8 +35,8 @@ class CourseSeeder extends Seeder
                 "image_path" => 'client/images/course/cu-2.jpg',
                 "price" => '1500000',
                 "sale_price" => '900000',
-                "teacher_id" => '2',
-                "category_id" => '6'
+                "teacher_id" => $teachers->random()->id,
+                "category_id" => $categories->random()->id
             ],
 
             [   
@@ -43,8 +45,8 @@ class CourseSeeder extends Seeder
                 "image_path" => 'client/images/course/cu-3.jpg',
                 "price" => '1700000',
                 "sale_price" => '0',
-                "teacher_id" => '1',
-                "category_id" => '1'
+                "teacher_id" => $teachers->random()->id,
+                "category_id" => $categories->random()->id
             ],
             [    
                 "name" => 'NodeJS And ExpressJS',
@@ -52,8 +54,8 @@ class CourseSeeder extends Seeder
                 "image_path" => 'client/images/course/cu-4.jpg',
                 "price" => '2000000',
                 "sale_price" => '1200000',
-                "teacher_id" => '2',
-                "category_id" => '3'
+                "teacher_id" => $teachers->random()->id,
+                "category_id" => $categories->random()->id
             ],
             [    
                 "name" => 'Mastering React.js for Frontend Web Development',
@@ -61,14 +63,15 @@ class CourseSeeder extends Seeder
                 "image_path" => 'client/images/course/cu-5.jpg',
                 "price" => '0',
                 "sale_price" => '0',
-                "teacher_id" => '2',
-                "category_id" => '1'
+                "teacher_id" => $teachers->random()->id,
+                "category_id" => $categories->random()->id
             ]
 
             
         ];
         foreach ($courses as $course) {
-            Course::updateOrCreate($course);
+            Course::updateOrCreate(['name' => $course['name']], $course);
         }
+        
     }
 }

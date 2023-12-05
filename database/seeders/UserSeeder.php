@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Group;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -17,12 +18,14 @@ class UserSeeder extends Seeder
     public function run()
     {
 
+        $groups=Group::all();
+
         $users = [
             [
 
                 "name" => "user",
                 "email" => "user@gmail.com",
-                "group_id" => "3",
+                "group_id" => $groups->random()->id,
                 "password" => Hash::make("123456"),
                 "img_path" => "client/images/review/r-3.jpg"
             ],
@@ -30,7 +33,7 @@ class UserSeeder extends Seeder
 
                 "name" => "user 02",
                 "email" => "user02@gmail.com",
-                "group_id" => "1",
+                "group_id" => $groups->random()->id,
                 "password" => Hash::make("123456"),
                 "img_path" => "client/images/review/r-2.jpg"
             ],
@@ -38,7 +41,7 @@ class UserSeeder extends Seeder
 
                 "name" => "user 03",
                 "email" => "user03@gmail.com",
-                "group_id" => "2",
+                "group_id" => $groups->random()->id,
                 "password" => Hash::make("123456"),
                 "img_path" => "client/images/review/r-3.jpg"
             ],
@@ -46,7 +49,7 @@ class UserSeeder extends Seeder
 
                 "name" => "user 04",
                 "email" => "user04@gmail.com",
-                "group_id" => "1",
+                "group_id" => $groups->random()->id,
                 "password" => Hash::make("123456"),
                 "img_path" => "client/images/review/r-1.jpg"
             ],
@@ -54,7 +57,7 @@ class UserSeeder extends Seeder
 
                 "name" => "user 05",
                 "email" => "user05@gmail.com",
-                "group_id" => "3",
+                "group_id" => $groups->random()->id,
                 "password" => Hash::make("123456"),
                 "img_path" => "client/images/review/r-2.jpg"
             ],

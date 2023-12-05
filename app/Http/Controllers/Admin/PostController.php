@@ -15,7 +15,6 @@ class PostController extends Controller
 {
     public function add()
     {
-      
     }
     public function postAdd(Request $request)
     {
@@ -41,31 +40,32 @@ class PostController extends Controller
                 'image' => 'Hình ảnh'
             ]
         );
-
-
-       
     }
 
 
     public function listPost()
     {
-        $categories=Category::all();
-        $posts=Post::orderBy('id','asc')->paginate(6);
-        return view('pages.backend.post.list',compact(['posts','categories']));
-       
+        $categories = Category::all();
+        $posts = Post::orderBy('id', 'asc')->paginate(6);
+        return view('pages.backend.post.list', compact(['posts', 'categories']));
+    }
+    public function listPostAjax()
+    {
+        if (request()->ajax()) {
+            $categories = Category::all();
+            $posts = Post::orderBy('id', 'asc')->paginate(6);
+            return view('pages.backend.post.data', compact(['posts', 'categories']))->render();
+        }
     }
 
     public function detail(Post $post)
     {
-
-      
     }
 
     public function edit(Post $post)
     {
-        $categories=Category::all();
-        return view('pages.backend.post.edit',compact(['post','categories']));
-       
+        $categories = Category::all();
+        return view('pages.backend.post.edit', compact(['post', 'categories']));
     }
     public function postEdit(Request $request, Post $post)
     {
@@ -86,15 +86,15 @@ class PostController extends Controller
                 'post_content' => "Nội dung",
             ]
         );
-    
-        
+
+
         if (auth()->check()) {
             $post->title = $request->post_title;
             $post->content = $request->post_content;
             $post->category_id = $request->category;
             $post->user_id = auth()->user()->id;
             $post->save();
-            return redirect()->route('admin.post.index')->with('success','Cập nhật bài viết thành công.');
+            return redirect()->route('admin.post.index')->with('success', 'Cập nhật bài viết thành công.');
         } else {
             // Xử lý trường hợp người dùng chưa đăng nhập
             return redirect()->route('admin.login')->with('error', 'Bạn cần đăng nhập để đăng bài viết.');
@@ -114,32 +114,40 @@ class PostController extends Controller
 
     public function findPost(Request $request)
     {
-        $categories=Category::all();
+        $categories = Category::all();
         $search_key = $request->input('search_key');
         $category = $request->input('category');
         $categoryModel = Category::find($category);
 
         if ($categoryModel) {
-            if ($search_key == '') {
-                $posts = $categoryModel->posts()->paginate(6);
-            } else {
-                $posts = $categoryModel->posts()
+
+            $posts = $categoryModel->posts()
                 ->where(function ($query) use ($search_key) {
                     $query->where('title', 'LIKE', '%' . $search_key . '%');
                 })
                 ->paginate(6);
-            }
-            return view('pages.backend.post.list', compact('posts', 'categories', 'categoryModel'));
+
+           
         } else {
-            if ($search_key != '') {
-                $posts = Post::where('title', 'LIKE', '%' . $search_key . '%')
+
+            $posts = Post::where('title', 'LIKE', '%' . $search_key . '%')
                 ->paginate(6);
-                return view('pages.backend.post.list', compact('posts', 'categories', 'categoryModel'));
-            } else {
-                return back()->with('error', "Vui lòng nhập key tìm kiếm hoặc chọn nhóm!");
-            }
-            
+           
         }
-       
+        return view('pages.backend.post.data', compact('posts', 'categories', 'categoryModel'))->render();
+    }
+
+    public function postByCategory(Request $request)
+    {
+        $categories = Category::all();
+        $category = $request->input('category');
+        $categoryModel = Category::find($category);
+
+        if ($categoryModel) {
+            $posts = $categoryModel->posts()->paginate(6);
+        } else {
+            $posts = Post::paginate(6);
+        }
+        return view('pages.backend.post.data', compact('categories', 'posts', 'categoryModel'))->render();
     }
 }

@@ -18,7 +18,7 @@ class Authenticate extends Middleware
 
         if (!$request->expectsJson()) {
             if (str_starts_with($request->path(), "student")) {
-                return route('login');
+                return route('admin.login');
             }
 
             return route('admin.login');

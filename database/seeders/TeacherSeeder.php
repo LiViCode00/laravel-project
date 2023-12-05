@@ -63,10 +63,8 @@ class TeacherSeeder extends Seeder
 
 
         foreach ($teachers as $teacher) {
-
-            Teacher::updateOrCreate(
-                $teacher
-            );
+            Teacher::updateOrCreate(['name' => $teacher['name']], $teacher);
         }
+        
     }
 }
