@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Course;
 use App\Models\Lesson;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -17,6 +18,7 @@ class LessonSeeder extends Seeder
     public function run()
     {   
 
+        $courses=Course::all();
         $lessons=[
             [
                 'name' => 'Băt đầu với HTML và CSS',
@@ -25,7 +27,7 @@ class LessonSeeder extends Seeder
                 'durations' => rand(10, 60),
                 'position' => rand(1,10),
                 'views' => rand(100, 1000),
-                'course_id' => 1, 
+                'course_id' =>$courses->random()->id 
             ],
             [
                 'name' => 'Băt đầu với C++',
@@ -34,7 +36,7 @@ class LessonSeeder extends Seeder
                 'durations' => rand(10, 60),
                 'position' => rand(1,10),
                 'views' => rand(100, 1000),
-                'course_id' => 1, 
+                 'course_id' =>$courses->random()->id 
             ],
             [
                 'name' => 'JavaScript và NodeJs',
@@ -43,7 +45,7 @@ class LessonSeeder extends Seeder
                 'durations' => rand(10, 60),
                 'position' => rand(1,10),
                 'views' => rand(100, 1000),
-                'course_id' => 1, 
+                 'course_id' =>$courses->random()->id 
             ],
             [
                 'name' => 'Băt đầu với NodeJS và ExpressJS',
@@ -52,7 +54,7 @@ class LessonSeeder extends Seeder
                 'durations' => rand(10, 60),
                 'position' => rand(1,10),
                 'views' => rand(100, 1000),
-                'course_id' => 1, 
+                 'course_id' =>$courses->random()->id 
             ],
             [
                 'name' => 'Băt đầu với ReactJs',
@@ -61,7 +63,7 @@ class LessonSeeder extends Seeder
                 'durations' => rand(10, 60),
                 'position' => rand(1,10),
                 'views' => rand(100, 1000),
-                'course_id' => 1, 
+                 'course_id' =>$courses->random()->id 
             ],
             
         ];

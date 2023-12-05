@@ -28,8 +28,9 @@ class GroupSeeder extends Seeder
             
         ];
         foreach ($groups as $group) {
-            Group::updateOrCreate($group);
+            Group::updateOrCreate(['name' => $group['name']], $group);
         }
+        
 
     }
 }

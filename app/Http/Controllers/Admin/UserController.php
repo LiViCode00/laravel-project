@@ -8,6 +8,7 @@ use App\Models\Post;
 use App\Models\User;
 use App\Models\Admin;
 use App\Models\Category;
+use App\Models\Course;
 use App\Models\Order;
 use App\Models\Teacher;
 use App\Models\Student;
@@ -15,6 +16,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -26,7 +28,8 @@ class UserController extends Controller
     {
 
         $groups = Group::all();
-        return view("pages.backend.user.add", compact('groups'));
+        $roles=Role::all();
+        return view("pages.backend.user.add", compact('groups','roles'));
     }
     public function postAdd(Request $request)
     {
@@ -71,6 +74,15 @@ class UserController extends Controller
         $user->group_id = $request->group;
         $user->image_path = $imagePath;
         $user->save();
+        if($user->group->name=='Quản trị viên'){
+            $user->assignRole('admin');
+        }
+        if($user->group->name=='Giáo viên'){
+            $user->assignRole('teacher');
+        }
+        if($user->group->name=='Học viên'){
+            $user->assignRole('student');
+        }
 
         return redirect()->route("admin.user.list")->with("success", "Thêm người dùng thành công");
     }
@@ -93,13 +105,24 @@ class UserController extends Controller
 
     public function profile(User $user)
     {
-        return view("pages.backend.user.profile", compact(["user"]));
+        $posts=Post::where('user_id',$user->id)->get();
+        $courses=[];
+        if($user->group->name=='Giáo viên'){
+            $courses=Course::where('teacher_id',$user->id)->get();
+        }
+        if($user->group->name=='Học viên'){
+            $courses=Course::where('teacher_id',$user->id)->get();
+        }
+       
+        return view("pages.backend.user.profile", compact(["user","posts","courses"]));
     }
 
     public function edit(User $user)
     {
         $groups = Group::all();
-        return view("pages.backend.user.edit", compact(["user", "groups"]));
+        $roles=Role::all();
+        $userRoles=$user->getRoleNames();
+        return view("pages.backend.user.edit", compact(["user", "groups",'roles','userRoles']));
     }
     public function postEdit(Request $request, User $user)
     {
@@ -139,6 +162,17 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->group_id = $request->group;
         $user->save();
+
+        if($user->group->name=='Quản trị viên'){
+            $user->syncRoles(['admin']);
+        }
+        if($user->group->name=='Giáo viên'){
+            $user->syncRoles(['teacher']);
+        }
+        if($user->group->name=='Học viên'){
+            $user->syncRoles(['student']);
+        }
+       
         return redirect()->route("admin.user.list")->with("success", "Cập nhật người dùng thành công");
     }
 

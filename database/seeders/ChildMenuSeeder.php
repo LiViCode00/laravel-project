@@ -56,20 +56,16 @@ class ChildMenuSeeder extends Seeder
                 'menu_id'=>'4',
                 'link'=> 'admin.teacher.index'
             ],
-            [
-                'name'=>'Người dùng',
-                'menu_id'=>'5',
-                'link'=> 'admin.course.index'
-            ],
+            
             [
                 'name'=>'Nhóm quyền',
                 'menu_id'=>'5',
-                'link'=> 'admin.course.index'
+                'link'=> 'admin.role.index'
             ],
             [
                 'name'=>'Quyền hạn',
                 'menu_id'=>'5',
-                'link'=> 'admin.course.index'
+                'link'=> 'admin.permission.index'
             ],
             [
                 'name'=>'Menu',

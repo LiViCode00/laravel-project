@@ -117,29 +117,32 @@ class OrderController extends Controller
         return view('pages.backend.order.data', compact('orders'));
     }
     public function findByDateSearchKey(Request $request)
-    {
-        $search_key = $request->search_key;
-        $from_date = $request->from_date;
-        $to_date = $request->to_date;
-    
-        $orders = Order::all();
-    
-        if ($from_date != '' && $to_date != '') {
-            $from_date = date('Y-m-d 00:00:00', strtotime($from_date));
-            $to_date = date('Y-m-d 23:59:59', strtotime($to_date));
-            $orders->whereBetween('created_at', [$from_date, $to_date]);
-        } elseif ($from_date != '') {
-            $from_date = date('Y-m-d 00:00:00', strtotime($from_date));
-            $orders->where('created_at', '>=', $from_date);
-        } elseif ($to_date != '') {
-            $to_date = date('Y-m-d 23:59:59', strtotime($to_date));
-            $orders->where('created_at', '<=', $to_date);
-        }
-    
-        $orders = $orders->paginate(6);
-    
-        return view('pages.backend.order.data', compact('orders'));
+{
+    $search_key = $request->search_key;
+    $from_date = $request->from_date;
+    $to_date = $request->to_date;
+
+    $query = Order::query(); // Bắt đầu một truy vấn mới
+
+    if ($from_date != '' && $to_date != '') {
+        $from_date = date('Y-m-d 00:00:00', strtotime($from_date));
+        $to_date = date('Y-m-d 23:59:59', strtotime($to_date));
+        $query->whereBetween('created_at', [$from_date, $to_date]);
+    } elseif ($from_date != '') {
+        $from_date = date('Y-m-d 00:00:00', strtotime($from_date));
+        $query->where('created_at', '>=', $from_date);
+    } elseif ($to_date != '') {
+        $to_date = date('Y-m-d 23:59:59', strtotime($to_date));
+        $query->where('created_at', '<=', $to_date);
     }
+
+  
+
+    $orders = $query->paginate(6);
+
+    return view('pages.backend.order.data', compact('orders'));
+}
+
     
     
 }

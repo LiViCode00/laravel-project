@@ -12,7 +12,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LessonController;
 
-use App\Http\Controllers\OrderController as ControllersOrderController;
+
 use App\Http\Controllers\PaginationController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\StudentController;
@@ -83,8 +83,10 @@ Route::prefix('student')->name('student.')->group(function () {
     Route::post('/edit/{id}', [StudentController::class, 'editProfile'])->name('edit-profile');
 });
 
-Route::get('/payment/{id}', [UserOrderController::class, 'order'])->name('order');
-Route::post('/payment/{id}', [UserOrderController::class, 'postOrder'])->name('post-order');
+Route::get('/payment/{course}', [UserOrderController::class, 'order'])->name('order');
+Route::post('/payment/{course}', [UserOrderController::class, 'postOrder'])->name('post-order');
+
+
 
 
 Route::get('/ajax-example', [AjaxController::class, 'index']);

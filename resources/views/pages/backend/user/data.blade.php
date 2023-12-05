@@ -13,14 +13,15 @@
                     colspan="1" aria-label="Browser: activate to sort column ascending">Hình ảnh</th>
                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                     aria-label="Browser: activate to sort column ascending">Nhóm</th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="Browser: activate to sort column ascending">Vai trò</th>
+               
                 <th style="width: 15%" class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
                     colspan="1" aria-label="Platform(s): activate to sort column ascending" style="">Email
                 </th>
                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                     aria-label="CSS grade: activate to sort column ascending" style="">Status</th>
-                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                    aria-label="Engine version: activate to sort column ascending">
-                    Created at</th>
+
 
                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                     aria-label="CSS grade: activate to sort column ascending" style="">Hành động</th>
@@ -43,13 +44,19 @@
                             <img style="width: 100%" src="{{ asset('storage/' . $user->image_path) }}" alt="">
                         </td>
 
+                        <td>{{$user->group->name}}</td>
                         <td style="">
-                            {{ $user->group->name }}
+                            @foreach ($user->getRoleNames() as $item)
+                                <span class="badge badge-success">{{ $item }}</span>
+                            @endforeach
+                           
                         </td>
+                       
+                        
                         <td>{{ $user->email }}</td>
 
                         <td style=""></td>
-                        <td style="">{{ $user->created_at }}</td>
+
                         <td>
                             @if ($user->trashed())
                                 <a href=>
@@ -107,7 +114,7 @@
 
     <div class="container">
         <div class="row">
-    
+
             <div class="col-sm-12 col-md-5">
                 <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">Hiển thị
                     {{ $users->firstItem() }} - {{ $users->lastItem() }} / {{ $users->total() }} người dùng.

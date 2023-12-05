@@ -93,7 +93,7 @@
 
 @endsection
 <!-- Bạn có thể sử dụng CDN -->
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https:code.jquery.com/jquery-3.6.4.min.js"></script>
 
 <script>
     $(document).ready(function() {
@@ -115,56 +115,56 @@
             });
         }
 
-        $('#btn_search').on('click', function() {
-            event.preventDefault();
-            var search_key = $('#search_key').val();
-            var group = $('#select_group').val();
-            var csrfToken = $('meta[name="csrf-token"]').attr('content');
+         $('#btn_search').on('click', function() {
+             event.preventDefault();
+             var search_key = $('#search_key').val();
+             var group = $('#select_group').val();
+             var csrfToken = $('meta[name="csrf-token"]').attr('content');
 
-            $.ajax({
-                // url: '/admin/user/list/group/ajax',
-                url: ' {{ route('admin.user.find-user') }}',
-                type: 'POST',
-                data: {
-                    search_key: search_key,
-                    group: group,
-                    _token: csrfToken
-                },
-                success: function(data) {
+             $.ajax({
+                  url: '/admin/user/list/group/ajax',
+                 url: ' {{ route('admin.user.find-user') }}',
+                 type: 'POST',
+                 data: {
+                     search_key: search_key,
+                     group: group,
+                     _token: csrfToken
+                 },
+                 success: function(data) {
 
-                     console.log('Server response:', data);
-                    $('#user_table').html(data);
-                },
-                error: function(error) {
-                    console.error('Error:', error);
-                }
-            });
+                      console.log('Server response:', data);
+                     $('#user_table').html(data);
+                 },
+                 error: function(error) {
+                     console.error('Error:', error);
+                 }
+             });
            
-        })
+         })
 
-        //////
-        $('#select_group').on('change', function() {
-            var group = $(this).val();
-            var csrfToken = $('meta[name="csrf-token"]').attr('content');
-            $.ajax({
-                // url: '/admin/user/list/group/ajax',
-                url: ' {{ route('admin.user.list-group-ajax') }}',
-                type: 'POST',
-                data: {
-                    group: group,
-                    _token: csrfToken
-                },
-                success: function(data) {
+        
+         $('#select_group').on('change', function() {
+             var group = $(this).val();
+             var csrfToken = $('meta[name="csrf-token"]').attr('content');
+             $.ajax({
+                  url: '/admin/user/list/group/ajax',
+                 url: ' {{ route('admin.user.list-group-ajax') }}',
+                 type: 'POST',
+                 data: {
+                     group: group,
+                     _token: csrfToken
+                 },
+                 success: function(data) {
 
-                    // console.log('Server response:', response);
-                    $('#user_table').html(data);
-                },
-                error: function(error) {
-                    console.error('Error:', error);
-                }
-            });
+                      //console.log('Server response:', data);
+                     $('#user_table').html(data);
+                 },
+                 error: function(error) {
+                     console.error('Error:', error);
+                 }
+             });
 
-        })
+         })
 
 
     });

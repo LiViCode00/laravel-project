@@ -1,3 +1,9 @@
+<html>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastr@2.1.4/dist/toastr.min.css">
+
+
+</html>
+
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
@@ -13,7 +19,7 @@
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
         <!-- Navbar Search -->
-       
+
 
         <!-- Messages Dropdown Menu -->
         <li class="nav-item dropdown">
@@ -74,32 +80,48 @@
             </div>
         </li>
 
-        <li class="nav-item dropdown">
+
+        @php
+            use App\Models\Notification;
+            $notifications = Notification::orderBy('created_at', 'desc')->get();
+            $count = Notification::count();
+        @endphp
+
+        <li style="position: relative" class="nav-item dropdown dropdown-notifications">
+            <div id="notification-container"></div>
             <a class="nav-link" data-toggle="dropdown" href="#">
                 <i class="far fa-bell"></i>
-                <span class="badge badge-warning navbar-badge">15</span>
+                <span id="count" class="badge badge-warning navbar-badge">{{ $count }}</span>
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                <span class="dropdown-item dropdown-header">15 Notifications</span>
+                <span id="count2" class="dropdown-item dropdown-header">{{ $count }} Notifications</span>
                 <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                    <i class="fas fa-envelope mr-2"></i> 4 new messages
-                    <span class="float-right text-muted text-sm">3 mins</span>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                    <i class="fas fa-users mr-2"></i> 8 friend requests
-                    <span class="float-right text-muted text-sm">12 hours</span>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                    <i class="fas fa-file mr-2"></i> 3 new reports
-                    <span class="float-right text-muted text-sm">2 days</span>
-                </a>
+
+                <div id="noti-body">
+
+
+                    @foreach ($notifications->take(4) as $item)
+                        <a style="color: #232323;" href="{{ route('admin.order.index') }}">
+                            <div class="notification-list notification-list--unread">
+                                <div class="notification-list_detail">
+                                    <p>{{ $item->content }}</p>
+                                    <p><small>10 mins ago</small></p>
+                                </div>
+                                <div class="notification-list_feature-img">
+                                    <img src="https://i.imgur.com/AbZqFnR.jpg" alt="Feature image">
+                                </div>
+                            </div>
+                        </a>
+                    @endforeach
+
+
+                </div>
+
                 <div class="dropdown-divider"></div>
                 <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
             </div>
         </li>
+
 
         <!-- Notifications Dropdown Menu -->
         <li class="nav-item dropdown">
@@ -109,18 +131,16 @@
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
 
-                <a href="{{ route('admin.view-profile',  Auth::user()) }}"
-                    class="dropdown-item">
+                <a href="{{ route('admin.view-profile', Auth::user()) }}" class="dropdown-item">
+                    Thông tin cá nhân
+                </a>
+                <a href="{{ route('admin.user.profile', Auth::user()) }}" class="dropdown-item">
                     Xem hồ sơ
                 </a>
-                <a href="{{ route('admin.user.post.write') }}"
-                    class="dropdown-item">
+                <a href="{{ route('admin.user.post.write') }}" class="dropdown-item">
                     Viết blog
                 </a>
-                <a href="{{ route('admin.user.post.my-post') }}"
-                    class="dropdown-item">
-                   Bài viết của tôi
-                </a>
+                
 
                 <div class="dropdown-divider"></div>
                 <a href={{ route('admin.logout') }} class="dropdown-item"
@@ -136,7 +156,73 @@
                 @csrf
             </form>
         </li>
+       
+
+
+
+
 
 
     </ul>
 </nav>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//js.pusher.com/3.1/pusher.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
+</script>
+<script type="text/javascript">
+    var pusher = new Pusher('0aef58ddf643ab532717', {
+        encrypted: true,
+        cluster: "ap1"
+    });
+
+    var channel = pusher.subscribe('order-channel');
+
+    channel.bind('App\\Events\\NewOrderReceived', function(data) {
+        var notificationMessage = data.student.name + ' vừa mua khóa học ' + data.course.name;
+      
+      
+    console.log(notificationMessage);
+        var notiBody = document.getElementById('noti-body'); 
+        var count = document.getElementById('count');
+        var count2 = document.getElementById('count2');
+        var newNoti = ` <a style="color: #232323;" href="{{ route('admin.order.index') }}"><div class="notification-list notification-list--unread">
+                            <div class="notification-list_detail">
+                                <p>${data.student.name} vừa mua khóa học ${data.course.name}</p>
+                                <p><small>10 mins ago</small></p>
+                            </div>
+                            <div class="notification-list_feature-img">
+                                <img src="https://i.imgur.com/AbZqFnR.jpg" alt="Feature image">
+                            </div>
+                        </div></a>`;
+
+        // Chèn vào đầu danh sách
+        notiBody.insertAdjacentHTML('afterbegin', newNoti);
+        count.innerHTML=parseInt(count.innerHTML) + 1;
+        count2.innerHTML=parseInt(count2.innerHTML) + 1 + ' Notifications';
+        showNotification(notificationMessage);
+
+    });
+
+    function showNotification(message) {
+        var notificationContainer = document.getElementById('notification-container');
+        notificationContainer.innerHTML = message;
+        notificationContainer.style.display = 'block';
+
+        setTimeout(function() {
+            notificationContainer.style.display = 'none';
+        }, 4500); // 3 seconds, adjust as needed
+    }
+
+    // Example usage
+</script>
+<!-- Sử dụng CDN -->
+
+<script src="https://cdn.jsdelivr.net/npm/toastr@2.1.4/dist/toastr.min.js"></script>
+
+
+
+
+</body>
+
+</html>

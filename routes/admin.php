@@ -106,7 +106,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::prefix('course')->middleware(['auth', 'role:admin'])->name('course.')->group(function () {
 
                 Route::get('/', [CourseController::class, 'listCourse'])->name('index');
-                Route::get('/listRole', [CourseController::class, 'listRole'])->name('index');
+              
 
                 Route::get('/add', [CourseController::class, 'add'])->name('add');
 
@@ -300,5 +300,26 @@ Route::prefix('admin')->name('admin.')->group(function () {
                 Route::get('/setPermission/{role}' , [AdminController::class,'setPermissionForRole'])->name('set-permission');
 
                 Route::post('/setPermission/{role}' , [AdminController::class,'postSetPermissionForRole'])->name('post-set-permission');
+
+                Route::get('/add' , [AdminController::class,'addRole'])->name('add');
+
+                Route::post('/add' , [AdminController::class,'postAddRole'])->name('post-add');
+
+                Route::get('/delete{role}' , [AdminController::class,'deleteRole'])->name('delete');
+        });
+
+        Route::prefix('permission')->name('permission.')->group(function () {
+                Route::get('/' , [AdminController::class,'listPermission'])->name('index');
+
+
+                Route::get('/add' , [AdminController::class,'addPermission'])->name('add');
+
+                Route::post('/add' , [AdminController::class,'postAddPermission'])->name('post-add');
+
+                Route::get('/edit/{permission}' , [AdminController::class,'editPermission'])->name('edit');
+
+                Route::post('/edit/{permission}' , [AdminController::class,'postEditPermission'])->name('post-edit');
+
+                Route::get('/delete/{permission}' , [AdminController::class,'deletePermission'])->name('delete');
         });
 });
