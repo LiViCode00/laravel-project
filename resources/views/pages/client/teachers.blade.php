@@ -8,23 +8,8 @@
     <div class="container container-edit">
        <div class="row">
 
-
+<!-- ===========noi thay doi ================= -->
             @foreach($teachers as $teacher)
-<<<<<<< HEAD
-            <div class="col-lg-3 col-sm-6">
-                <div class="singel-teachers mt-30 text-center">
-                        <div class="image">
-                            <img src="/{{$teacher->image_path}}" alt="Teachers">
-                        </div>
-                        <div class="cont">
-                            <a href="{{ route('teachers.teacherDetail',  ['id' => $teacher->id] )}}"><h6>{{$teacher->name}}</h6></a>
-                            <span>Phần mềm máy tính</span>
-                        </div>
-                    </div> <!-- singel teachers -->
-            </div>
-            @endforeach
-
-=======
            <div class="col-lg-3 col-sm-6">
                <div class="singel-teachers mt-30 text-center">
                     <div class="image">
@@ -37,7 +22,7 @@
                 </div> <!-- singel teachers -->
            </div>
            @endforeach
->>>>>>> 08266ac52810bf86e5c738331907da71ebeb9109
+           <!-- ===========noi thay doi ================= -->
        </div> <!-- row -->
         <div class="row">
             <div class="col-lg-12">

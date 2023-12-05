@@ -151,54 +151,66 @@ p {
 
 :root {
     --pink: #EC53B0;
-    --violet:#9D44C0;
-    --violet_bolder: #4D2DB7;
-    --navy: #0E21A0
-    ;
+    --violet:#ffc107;
+    --violet_bolder: #674d00;
+    --navy: #0E21A0;
   }
 
 
 /*===== All Button Style =====*/
 
 .main-btn {
+   
     display: inline-block;
-    font-weight: 500;
     text-align: center;
     white-space: nowrap;
     vertical-align: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
     user-select: none;
     padding: 5px 25px;
     font-size: 14px;
     font-family: "Montserrat", sans-serif;
     font-weight: 700;
-    line-height: 40px;
-    border-radius: 5px;
-    color: #e3f4f4;
+    color: var(--navy);
     cursor: pointer;
     position: relative;
     overflow: hidden;
     z-index: 5;
-    -webkit-transition: 0.4s ease-in-out;
     transition: 0.4s ease-in-out;
     background: linear-gradient(
         180deg,
-        #4D2DB7 60%,
-        #9D44C0 100%
+        #ffc107 60%,
+        #d87e0e 100%
         
     );
     margin: 0 6px;
     border-radius: 30px;
-}
+    line-height: 40px;
+   }
+
+   .btn-phu{
+        padding: 15px 35px; 
+        font-size: 14px;
+        color: var(--navy);
+        font-weight: 700;
+        font-family: "Montserrat", sans-serif;
+        background: linear-gradient(
+        180deg,
+        #f0c135 60%,
+        #d87e0e 100%
+        
+        );
+        border: 1px solid lightgray;
+        border-radius: 30px;
+        cursor: pointer;
+   }
+.btn-phu:hover,
 .main-btn:hover {
     background: linear-gradient(
         180deg,
-        #9D44C0 60%,
+        #fac321 60%,
         #EC53B0 100%
     );
-    color: #e3f4f4;
+    color: var(--navy);
 }
 
 .login-btn{
@@ -272,7 +284,7 @@ p {
     align-items: center;
 }
 .section-title h5 {
-    color: #e3f4f4;
+    color: var(--navy);
     position: relative;
     padding-bottom: 12px;
 }
@@ -327,7 +339,7 @@ p {
     z-index: 9999;
 }
 .preloader .color-1 {
-    background-color: #395b64 !important;
+    background-color: var(--violet) !important;
 }
 .rubix-cube {
     border: 1px solid #fff;
@@ -343,8 +355,8 @@ p {
 .rubix-cube .layer {
     width: 14px;
     height: 14px;
-    background-color: #e3f4f4;
-    border: 1px solid #fff;
+    background-color: var;
+    border: 1px solid lightgray;
     position: absolute;
 }
 .rubix-cube .layer-1 {
@@ -743,7 +755,7 @@ p {
     z-index: 100;
 }
 .header-top {
-    background-color: #e3f4f4;
+    background-color: var(--navy);
     padding-top: 10px;
     padding-bottom: 10px;
 }
@@ -833,7 +845,7 @@ p {
 }
 .support-button .support .cont span {
     font-size: 18px;
-    color: #e3f4f4;
+    color: var(--navy);
     font-family: "Montserrat", sans-serif;
     font-weight: 700;
 }
@@ -901,7 +913,7 @@ p {
     font-size: 14px;
     font-family: "Montserrat", sans-serif;
     font-weight: 700;
-    color: #e3f4f4;
+    color: var(--navy);
     text-transform: uppercase;
     -webkit-transition: all 0.4s linear;
     transition: all 0.4s linear;
@@ -917,7 +929,7 @@ p {
     position: absolute;
     top: 110%;
     left: 0;
-    background-color: #e3f4f4;
+    background-color: var(--navy);
     width: 200px;
     opacity: 0;
     visibility: hidden;
@@ -964,7 +976,7 @@ p {
 .navbar .navbar-toggler .icon-bar {
     width: 30px;
     height: 2px;
-    background-color: #e3f4f4;
+    background-color: var(--navy);
     display: block;
     margin: 5px 0;
     position: relative;
@@ -999,7 +1011,7 @@ p {
 
 .right-icon ul li a {
     font-size: 18px;
-    color: #e3f4f4;
+    color: var(--navy);
     position: relative;
     padding-right: 7px;
 }
@@ -1064,7 +1076,7 @@ p {
 
 .navigation-3.sticky .navbar .navbar-nav li a,
 .navigation-3.sticky .right-icon ul li a {
-    color: #e3f4f4;
+    color: var(--navy);
 }
 .navigation-3.sticky .navbar .navbar-nav > li > a.active,
 .navigation-3.sticky .navbar .navbar-nav > li > a:hover {
@@ -1075,7 +1087,7 @@ p {
     background-color: #fff;
 }
 .navigation-3.sticky .navbar .navbar-toggler .icon-bar {
-    background-color: #e3f4f4;
+    background-color: var(--navy);
 }
 
 /*===== SEARCH BOX =====*/
@@ -1094,16 +1106,13 @@ p {
     height: 100%;
     font-size: 14px;
     border: 1px solid #ccc;
-<<<<<<< HEAD
     padding: 16px;
     border-bottom-left-radius: 20px;
     border-top-left-radius: 20px;
     position: relative;
-=======
     padding: 0 16px;
     border-bottom-left-radius: 30px;
     border-top-left-radius: 30px;
->>>>>>> 08266ac52810bf86e5c738331907da71ebeb9109
 }
 .search_box button {
     font-size: 16px;
@@ -1284,7 +1293,7 @@ p {
 .slider-search .nice-select span {
     font-size: 16px;
     font-family: "Poppins", sans-serif;
-    color: #e3f4f4;
+    color: var(--navy);
     font-weight: 400;
 }
 .slider-search .nice-select .list {
@@ -1294,7 +1303,7 @@ p {
 }
 .slider-search .nice-select::after {
     border-bottom: 0;
-    border-right: 8px solid #e3f4f4;
+    border-right: 8px solid var(--navy);
     border-top: 8px solid transparent;
     height: 0px;
     margin-top: -4px;
@@ -1317,7 +1326,7 @@ p {
     padding: 0;
 }
 .slider-search .main-btn:hover {
-    border-color: #e3f4f4;
+    border-color: var(--navy);
 }
 
 .slider-feature {
@@ -1528,7 +1537,7 @@ p {
 }
 
 .apply-color-1 {
-    background-color: #e3f4f4;
+    background-color: var(--navy);
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
 }
@@ -1562,6 +1571,8 @@ p {
     border-radius: 5px;
     overflow: hidden;
     margin-bottom: 30px;
+    min-width: 293px;
+    min-height: 180px;
 }
 .singel-course > .thum {
     position: relative;
@@ -1576,8 +1587,9 @@ p {
     width: 100%;
     -webkit-transition: all 0.4s linear;
     transition: all 0.4s linear;
-    height:180px ;
     object-fit: cover;
+    height: 164px;
+   
 }
 .singel-course:hover .thum .image img {
     -webkit-transform: scale(1.1);
@@ -1591,7 +1603,7 @@ p {
 }
 .singel-course .thum .price span {
     font-size: 14px;
-    color: #e3f4f4;
+    color: var(--navy);
     font-family: "Montserrat", sans-serif;
     font-weight: 700;
     height: 30px;
@@ -1639,7 +1651,7 @@ p {
 }
 
 .singel-course .cont .price span{
-    color: white;
+    color: var(--navy);
     background-color: var(--violet);
     padding:5px 20px;
     border-radius: 20px;
@@ -1673,7 +1685,7 @@ p {
 }
 .singel-course .course-teacher .name a h6 {
     font-size: 15px;
-    color: var(--violet);
+    color: var(--navy);
     -webkit-transition: all 0.4s linear;
     transition: all 0.4s linear;
 }
@@ -1767,7 +1779,7 @@ p {
     text-align: center;
     font-size: 24px;
     background-color: var(--navy);
-    color: #e3f4f4;
+    color: var(--navy);
     border-radius: 50%;
 }
 
@@ -1832,7 +1844,7 @@ p {
     top: 100%;
     bottom: 0;
     left: 0;
-    background-color:  violet;
+    background-color:  var(--violet);
     opacity: .3;
     width: 100%;
     height: 100%;
@@ -1885,7 +1897,7 @@ p {
     font-size: 15px;
     -webkit-transition: all 0.4s linear;
     transition: all 0.4s linear;
-    color: white;
+    color: var(--navy);
 }
 .singel-teachers .cont a:hover h6 {
     color: rgb(255, 220, 155);
@@ -1895,7 +1907,7 @@ p {
     font-size: 14px;
     letter-spacing: 2px;
     font-weight: lighter;
-    color: bisque;
+    color: var(--violet_bolder);
 }
 
 /*=====================================================
@@ -1951,7 +1963,7 @@ p {
 }
 .singel-publication .image .add-cart ul li a:hover {
     background-color: var(--navy);
-    color: #e3f4f4;
+    color: var(--navy);
 }
 
 .singel-publication .cont {
@@ -2042,7 +2054,7 @@ p {
     text-align: center;
     background-color: var(--navy);
     border-radius: 50%;
-    color: #e3f4f4;
+    color: var(--navy);
     font-size: 18px;
 }
 .singel-testimonial .testimonial-cont {
@@ -2115,7 +2127,7 @@ p {
     margin-right: 8px;
 }
 .singel-news .news-cont ul li a span {
-    color: #e3f4f4;
+    color: var(--navy);
 }
 .singel-news .news-cont a {
     display: block;
@@ -2180,7 +2192,7 @@ p {
     transition: all 0.4s linear;
 }
 .footer-about ul li a:hover {
-    background-color: #e3f4f4;
+    background-color: var(--navy);
     color: var(--navy);
     -webkit-transition: all 0.4s linear;
     transition: all 0.4s linear;
@@ -2336,7 +2348,7 @@ p {
     margin-top: -154px;
 }
 .category-form .form-title {
-    background-color: #e3f4f4;
+    background-color: var(--navy);
     padding-top: 35px;
     padding-bottom: 40px;
 }
@@ -2348,6 +2360,18 @@ p {
     font-size: 24px;
     color: #fff;
     font-family: "Montserrat", sans-serif;
+}
+
+
+.write-post{
+    height: 700px ;
+}
+
+.form-title{
+    width: 100%;
+    padding: 15px 10px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
 }
 .category-form .main-form {
     padding-top: 20px;
@@ -2395,7 +2419,7 @@ p {
 }
 .singel-course-2 > .thum .price span {
     font-size: 14px;
-    color: #e3f4f4;
+    color: var(--navy);
     font-family: "Montserrat", sans-serif;
     font-weight: 700;
     width: 55px;
@@ -2492,7 +2516,7 @@ p {
 .counter-3 {
 }
 .counter-3 p {
-    color: #e3f4f4;
+    color: var(--navy);
     font-weight: 600;
 }
 
@@ -2540,7 +2564,7 @@ p {
 }
 .teachers-2 .teachers-2-singel .cont span {
     font-size: 14px;
-    color: #e3f4f4;
+    color: var(--navy);
 }
 .teachers-2 .teachers-2-singel .cont span i {
     margin-right: 5px;
@@ -2552,7 +2576,7 @@ p {
 }
 
 .happy-student {
-    background-color: #e3f4f4;
+    background-color: var(--navy);
     padding-top: 65px;
     padding-left: 80px;
     padding-right: 80px;
@@ -2561,7 +2585,7 @@ p {
     position: relative;
 }
 .happy-student {
-    background-color: #e3f4f4;
+    background-color: var(--navy);
     padding-top: 65px;
     padding-left: 80px;
     padding-right: 80px;
@@ -2632,7 +2656,7 @@ p {
         rgba(7, 41, 77, 0.3) 10%,
         rgba(7, 41, 77, 1) 100%
     );
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4d07294d', endColorstr='#E3F4F4',GradientType=1 );
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4d07294d', endColorstr='var(--navy)',GradientType=1 );
 }
 
 .event-2 .event-title h3 {
@@ -2734,7 +2758,7 @@ p {
     border-top-right-radius: 5px;
 }
 .category-form-3 .form-title h3 {
-    color: #e3f4f4;
+    color: var(--navy);
 }
 .category-form-3 .form-title span {
     font-weight: 600;
@@ -2744,7 +2768,7 @@ p {
 }
 .category-form-3 .main-btn:hover {
     color: var(--navy);
-    border-color: #e3f4f4;
+    border-color: var(--navy);
 }
 
 /*=====================================================
@@ -2816,10 +2840,10 @@ p {
 .content-edit{
     height: 70vh; 
     overflow-y: auto;  
-    min-width: 430px;
+    margin-top: 20px;
 }
 
-..content-edit1{
+.content-edit1{
     height: auto;
 }
 .tab-content .singel-course .course-teacher .name {
@@ -2895,7 +2919,7 @@ p {
     width: 40px;
     height: 40px;
     line-height: 36px;
-    border: 2px solid #aaa;
+    border: 2px solid var(--violet) ;
     border-radius: 5px;
     text-align: center;
     -webkit-transition: all 0.4s linear;
@@ -2904,8 +2928,9 @@ p {
 .courses-pagination .pagination .page-item a.active,
 .courses-pagination .pagination .page-item a:hover {
     background-color: var(--violet_bolder);
-    color: white;
-   var(--violet) lightgray;
+    color:  var(--navy);
+    background-color:  var(--violet) ;
+    
 }
 
 
@@ -2930,7 +2955,7 @@ p {
 .title .lesson-course a,
 .title .lesson-course{
     background-color: #22092C;
-    color: white;
+    color:var(--navy);
     font-size: 15px;
     border-radius: 9px;
 }
@@ -3017,18 +3042,18 @@ p {
 }
 .corses-tab .nav .nav-item a {
     font-size: 16px;
-    color: var(--violet);
+    color: black;
     font-weight: 600;
     font-family: "Montserrat", sans-serif;
     padding: 20px 0;
     display: block;
-    background-color: #fff2f5;
+    background-color: white;
     border-bottom: 1px solid lightgray;
     border-right: 1px solid lightgray;
 }
 .corses-tab .nav .nav-item a.active {
-    background-color: white;
-    color: var(--violet);
+    background-color: var(--violet);
+    color: black;
 }
 
 .singel-dashboard .tick,
@@ -3054,7 +3079,7 @@ p {
     font-weight: 700;
     padding-bottom: 10px;
     font-family: 'Signika', sans-serif;
-}~
+}
 
 .overview-description .singel-description p{
     margin-bottom: 10px;
@@ -3075,6 +3100,7 @@ p {
     font-weight: 600;
     color: #000;
     padding-bottom: 30px;
+    padding-top: 30px;
 }
 
 .curriculam-cont .accordion {
@@ -3122,7 +3148,7 @@ p {
    background-color: var(--violet);
    letter-spacing: 2px;
    border-radius: 8px;
-   color: white;
+   color: var(--navy);
    font-weight: 600;
    padding-top: 10px;
    padding-bottom: 10px;
@@ -3490,7 +3516,7 @@ p {
 .You-makelike .singel-makelike .cont ul li {
     display: inline-block;
     margin-right: 15px;
-    color: white;
+    color: var(--navy);
 }
 .You-makelike .singel-makelike .cont ul li a {
     font-size: 14px;
@@ -3644,7 +3670,7 @@ p {
 }
 .events-address ul li .singel-address .cont h6 {
     font-size: 15px;
-    color: #e3f4f4;
+    color: var(--navy);
 }
 .events-address ul li .singel-address .cont span {
     font-size: 14px;
@@ -4142,6 +4168,10 @@ p {
     border: 0;
 }
 
+.form-select{
+    width: 100%;
+}
+
 #shop-list .singel-publication .cont {
     display: block;
     padding-top: 0;
@@ -4224,7 +4254,6 @@ p {
     height: 40px;
     border-radius: 5px;
     border: 1px solid lightgray;
-    padding-right: 20px;
 }
 .nice-number button {
     position: absolute;
@@ -4294,7 +4323,7 @@ p {
 }
 .releted-item .title h3 {
     font-size: 30px;
-    color: #e3f4f4;
+    color: var(--navy);
 }
 
 /*=====================================================
@@ -4372,8 +4401,8 @@ p.form-message.error {
     width: 50px;
     line-height: 50px;
     border-radius: 50%;
-    border: 1px solid #e3f4f4;
-    color: #e3f4f4;
+    border: 1px solid var(--navy);
+    color: var(--navy);
     font-size: 24px;
     text-align: center;
 }
@@ -4641,17 +4670,19 @@ ul.user-detail a:hover{
 .cart-shop::after{
     content: '14';
     position: absolute;
-    background: #395b64;
+    background: var(--violet);
     left: 12px;
-    top: -6px;
+    top: -15px;
     border-radius: 50%;
-    color: white;
-    font-family: 'Montserrat';
+    color: var(--navy);
+    font-weight: 600;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 16px;
-    font-weight: 700;
-    text-align: center;
-    line-height: 20px;
-    padding: 0 8px;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -4671,8 +4702,8 @@ img.logo{
     padding: 5px 0 5px 0;
     width: 60px;
     border-radius: 50%;
-    background-color: #0086cf;
-    color: white;
+    background-color: var(--violet);
+    color: var(--navy);
     transition: 2s;
     margin: 12px;
     font-size: 35px;
@@ -4681,7 +4712,7 @@ img.logo{
 }
 
 .write-blog span{
-    color: wheat;
+    color: black;
     transition: all 0.2s linear;
 }
 
@@ -4723,12 +4754,30 @@ img.logo{
     height: 70%;
     border-radius: 20px;
 }
+.lesson-frame .dieu_huong{
+    position: absolute;
+    bottom: 10%;
+    float: right;
+    width: 90%;
+    display: flex;
+    justify-content: right;
+
+}
+
+.lesson-frame .dieu_huong .main-btn{
+    border: 1px solid lightgray;
+    margin: 0 25px;
+}
+
+.lesson-frame .dieu_huong button a{
+    color: var(--navy);
+}
+
 
 .categories-post-tag{
     padding: 10px 20px;
     background-color: rgb(237, 237, 237);
     border-radius: 30px;
-<<<<<<< HEAD
 
 }
 
@@ -4743,19 +4792,81 @@ img.logo{
 }
 
 .form-check-input {
-    background-color: white;
+    background-color: var(--navy);
     border: 1px solid #ccc; 
 }
 
 .form-check-input:checked {
     color: var(--violet); 
 }
-=======
-}
 
-/* Ẩn menu con mặc định */
 .hidden {
     display: none;
   }
+
+  .btn-dieu-huong{
+    border: 1px solid lightgray;
+  }
   
->>>>>>> 08266ac52810bf86e5c738331907da71ebeb9109
+  .disabled {
+    pointer-events: none;
+    opacity: 0.5; /* Optional: You can reduce the opacity to visually indicate it's disabled */
+}
+
+
+.form-title:focus{
+    border: 1px solid gray;
+}
+
+.course-ctn{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-top: 20px;
+    overflow: hidden;
+    width: 390px;
+}
+
+.cardStyle {
+    width:340px;
+    border-radius:12px;
+  }
+
+  .selectBox {
+    border:1px solid #222;
+    width:24px;
+    height:24px;
+    text-align:center;
+    border-radius:50%;
+    line-height:22px;
+    font-size:12px;
+  }
+  .selected {
+    color:#fff;
+    border:1px solid #f7f7f7 !important;
+  }
+  small {
+    font-size:12px;
+    letter-spacing:1px;
+  }
+  label,
+  h6 {
+    font-size:12px;
+    text-transform : uppercase;
+    color:#aaaaaa
+  }
+  a.btn {
+    line-height:32px;
+  }
+  a.btn,
+  button.btn,
+  select.form-control,
+  input.form-control {
+    height:48px;
+    border-radius:2px;
+  }
+
+.btn-delete{
+    font-size: 20px;
+    height: 50px;
+    width: 50px;
+}

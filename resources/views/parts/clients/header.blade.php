@@ -33,7 +33,7 @@
 
                     @if (Auth::guard('student')->check())
                         <div class="d-flex justify-content-between align-items-center">
-                            <i class="fa fa-shopping-cart cart-shop" aria-hidden="true"></i>
+                            <a href="{{route('cart', Auth::guard('student')->user()->id)}}"><i class="fa fa-shopping-cart cart-shop" aria-hidden="true"></i></a>
                             <p id='showBoxButton' class="auth-user" href="">
                                 {{ Auth::guard('student')->user()->name }}
 
@@ -41,7 +41,7 @@
                             </p>
                             <ul id="hiddenBox" class="user-detail">
                                 <div>
-                                    <a href={{ route('student.view-profile', Auth::guard('student')->user()->id) }}>Xem
+                                    <a href="{{ route('student.view-profile', Auth::guard('student')->user()->id) }}">Xem
                                         thông tin cá nhân</a>
                                     <a href="">Khóa học của tôi</a>
                                     <a class="logout-item" href="{{ route('logout') }}"

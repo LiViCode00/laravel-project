@@ -11,18 +11,12 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LessonController;
-<<<<<<< HEAD
-use App\Http\Controllers\SearchController;
-use App\Http\Controllers\OrderController as ControllersOrderController;
-use App\Http\Controllers\StudentController;
-=======
 
 
 use App\Http\Controllers\PaginationController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\StudentController;
 
->>>>>>> 8028a0166edb5c9a3e7c633918615e2147ce6cd9
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -65,24 +59,24 @@ Route::prefix('teachers')->name('teachers.')->group(function () {
 });
 
 Route::prefix('posts')->name('posts.')->group(function () {
-<<<<<<< HEAD
+
     Route::get('/', [PostController::class,'index'])->name('view');
     Route::get('/posts-detail/{id}', [PostController::class,'postDetail'])->name('postDetail');
 });
 
 Route::get('/lesson/{id_course}' , [LessonController::class,'index'])->name('lesson');
-=======
-    Route::get('/', [PostController::class, 'index'])->name('view');
-    Route::get('/posts-detail/{id}', [PostController::class, 'postDetail'])->name('postDetail');
-});
-
-// Route::get('/lesson/{id_course}' , [LessonController::class,'index'])->name('lesson');
+// ======= cai thay doi ==================
 //     Route::get('/', [PostController::class, 'index'])->name('view');
-//     Route::get('/posts-detail', [PostController::class, 'postDetail'])->name('postDetail');
+//     Route::get('/posts-detail/{id}', [PostController::class, 'postDetail'])->name('postDetail');
 // });
 
+// // Route::get('/lesson/{id_course}' , [LessonController::class,'index'])->name('lesson');
+// //     Route::get('/', [PostController::class, 'index'])->name('view');
+// //     Route::get('/posts-detail', [PostController::class, 'postDetail'])->name('postDetail');
+// // });
+
 Route::get('/lesson', [LessonController::class, 'index'])->name('lesson');
->>>>>>> 8028a0166edb5c9a3e7c633918615e2147ce6cd9
+// ======= cai thay doi ==================
 
 Route::prefix('admin')->group(function () {
     Route::get('', function () {
@@ -98,7 +92,7 @@ Route::prefix('student')->name('student.')->group(function () {
 });
 
 Route::get('/payment/{course}', [UserOrderController::class, 'order'])->name('order');
-Route::post('/payment/{course}', [UserOrderController::class, 'postOrder'])->name('post-order');
+// Route::post('/payment/{course}', [UserOrderController::class, 'postOrder'])->name('post-order');
 
 
 
@@ -119,5 +113,10 @@ Route::get('pagination/ajax', [PaginationController::class, 'paginationAjax']);
 // routes/web.php
 
 Route::view('/403', 'errors.403')->name('403');
+// Route::get('/payment/{id}' , [UserOrderController::class,'order'])->name('order');
+Route::match(['get', 'post'], '/cart/{student_id}',  [UserOrderController::class,'cart'])->name('cart');
 
+
+Route::get('/write_post', [PostController::class, 'write_post'])->name('write-post');
+Route::post('/create-post', [PostController::class, 'store'])->name('store-post');
 include('admin.php');

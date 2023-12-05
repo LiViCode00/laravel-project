@@ -44,6 +44,10 @@
     <!--====== Responsive css ======-->
     <link rel="stylesheet" href="{{asset('client/css/responsive.css')}}">
 
+        <!-- ======CKEditor============= -->
+        <script src="ckeditor/ckeditor.js"></script>
+    <script src="ckeditor/ckfinder/ckfinder.js"></script>
+
 </head>
 
 <body>

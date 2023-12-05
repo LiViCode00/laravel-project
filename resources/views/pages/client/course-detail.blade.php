@@ -309,10 +309,17 @@
                                         </b></span>
 
                                 </div>
-                                <div class="d-flex justify-content-center">
-                                    <a href="#" class="main-btn pr-4">Thêm vào giỏ hàng</a>
-                                    <a href='{{ route('order', $course->id) }}' class="main-btn pr-4">Mua khóa học</a>
-                                </div>
+                                <div class="d-flex flex-wrap justify-content-center align-items-center">
+                                <a href="{{route ('cart', Auth::guard('student')->user()->id)}}" class="main-btn p-2">Thêm vào giỏ hàng</a>
+                                @if ($course->sale_price == 0)
+                                    <a href="{{ route('lessonByCourse', ['id_course' => $course->id]) }}" class="main-btn p-2" >Đăng ký</a>
+
+                                @else
+                                    <a href="{{ route('order', ['course' => $course->id]) }}" class="main-btn p-2" >Mua khóa học</a>
+                                @endif
+
+
+                            </div>
                             </div> <!-- course features -->
                         </div>
                         <div class="col-lg-12 col-md-6">

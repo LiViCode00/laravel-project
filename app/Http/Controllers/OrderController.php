@@ -41,10 +41,23 @@ class OrderController extends Controller
         $notification->save();
 
 
-        event(new NewOrderReceived(Auth::user(),$course));
-       
+        event(new NewOrderReceived(Auth::user(),$course)); 
+    }
+
+    public function cart($student_id){
+
+        $cart = Order::getCart($student_id);
+
+        return view('pages.client.order', [
+            'courses' => $cart
+        ]);
+    }
+
+    public function payment (){
+        return view('pages.client.payment');
     }
     public function postOrder(Course $course)
     {
+
     }
 }
