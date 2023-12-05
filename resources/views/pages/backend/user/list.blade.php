@@ -113,8 +113,10 @@
                                     <tr class=''>
 
                                         <td class="sorting_1 dtr-control" tabindex="0" style="">
+                                            <span class="badge badge-success">
 
-                                            {{ $user->id }}
+                                                {{ $user->id }}
+                                            </span>
                                         </td>
                                         <td class="">{{ $user->name }}</td>
                                         <td class="">

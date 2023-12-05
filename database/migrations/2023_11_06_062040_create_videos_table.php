@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('lesson_id')->unsigned();
             $table->string('name')->nullable();
             $table->string('url')->nullable();
+            $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });
     }

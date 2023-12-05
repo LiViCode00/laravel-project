@@ -276,7 +276,8 @@
                                
                             </div>
                             <div class="d-flex justify-content-center">
-                                <a href="#" class="main-btn pr-4">Đăng ký</a>
+                                <a href="#" class="main-btn pr-4">Thêm vào giỏ hàng</a>
+                                <a href={{ route('order', $course->id) }} class="main-btn pr-4">Mua khóa học</a>
                             </div>
                         </div> <!-- course features -->
                     </div>

@@ -18,8 +18,13 @@ class Category extends Model
     public function courses(): HasMany{
         return $this->hasMany(Course::class);
     }
+<<<<<<< HEAD
+    public function posts(): HasMany{
+        return $this->hasMany(Post::class);
+=======
 
     public static function getAllCate(){
         return Category::all();
+>>>>>>> a18ab52fcda1eabb00cf59e98efe00b54a891042
     }
 }

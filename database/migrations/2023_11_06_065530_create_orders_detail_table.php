@@ -17,8 +17,11 @@ return new class extends Migration
             $table->increments('id');
             $table->integer('order_id')->unsigned();
             $table->integer('course_id')->unsigned();
-            $table->float('price')->default(0);
+            $table->float('price',15,2)->default(0);
             $table->timestamps();
+
+            $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade')->onUpdate('cascade');
+
         });
     }
 

@@ -53,16 +53,10 @@ class User extends Authenticatable
     public function group(): BelongsTo{
         return $this->belongsTo(Group::class);
     }
-
-    public function admin(): HasOne{
-        return $this->hasOne(Admin::class);
+    public function posts(): HasMany{
+        return $this->hasMany(Post::class);
     }
-    public function teacher(): HasOne{
-        return $this->hasOne(Teacher::class);
-    }
-    public function student(): HasOne{
-        return $this->hasOne(Student::class);
-    }
+  
 
     
 

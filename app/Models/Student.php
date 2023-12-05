@@ -26,6 +26,26 @@ class Student extends Authenticatable
         'image_path',
         'slug'
     ];
+    public function lessonReviews(): HasMany
+    {
+        return $this->hasMany(LessonReviews::class);
+    }
+    public function courseReviews(): HasMany
+    {
+        return $this->hasMany(CourseReviews::class);
+    }
+    public function teacherReviews(): HasMany
+    {
+        return $this->hasMany(TeacherReviews::class);
+    }
+    public function postReviews(): HasMany
+    {
+        return $this->hasMany(PostReviews::class);
+    }
+    public function orders(): HasMany
+    {
+        return $this->hasMany(Order::class);
+    }
 
 
    

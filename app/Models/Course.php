@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Course extends Model
@@ -49,6 +50,13 @@ class Course extends Model
     {
         return $this->hasMany(Lesson::class);
     }
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(CourseReviews::class);
+    }
+    public function detail(): HasOne{
+        return $this->hasOne(OrderDetail::class);
+       }
 
 
     public static function getCoursesForFree()

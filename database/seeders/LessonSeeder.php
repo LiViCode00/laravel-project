@@ -67,7 +67,12 @@ class LessonSeeder extends Seeder
         ];
 
         foreach ($lessons as $lesson) {
-            Lesson::updateOrCreate($lesson);
+            Lesson::updateOrCreate(
+                [
+                    'name' => $lesson['name'],
+                ],
+                $lesson
+            );
         }
         
         

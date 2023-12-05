@@ -60,4 +60,8 @@ class Teacher extends Authenticatable
     public function user(): BelongsTo{
         return $this->BelongsTo(User::class);
     }
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(TeacherReviews::class);
+    }
 }

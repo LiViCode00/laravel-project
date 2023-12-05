@@ -9,7 +9,7 @@
 @section('content')
     <form action="{{ route('admin.user.post.post-write') }}" method="POST">
         @csrf
-        <div class="form-group col-16 col-md-3">
+        <div class="form-add form-group col-16 col-md-3">
             <select class="form-select form-control" name="category" aria-label="Default select example">
                 <option value=0 {{ old('category') == 0 ? 'selected' : '' }}>Danh mục bài viết</option>
                 @if ($categories)
@@ -25,7 +25,7 @@
 
         </div>
         <div class="wrapper">
-            <div class="form-group col-12 ">
+            <div class="form-add form-group col-12 ">
                 <input
                     style=" 
             width: 100%;
@@ -45,7 +45,7 @@
                     <span style="color: red">{{ $message }}</span>
                 @enderror
             </div>
-            <button style="margin: 30px" class="btn btn-primary  ">Xuất bản</button>
+            <button type="submit" style="margin: 30px" class="btn btn-primary  ">Xuất bản</button>
 
         </div>
     </form>

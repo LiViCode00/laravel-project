@@ -14,7 +14,7 @@
         <form action={{ route('admin.teacher.post-add') }} method="post" enctype="multipart/form-data">
             @csrf
             <h4 style="text-align: center;margin-bottom: 20px">Thông tin giáo viên</h4>
-            <div class="form-row">
+            <div class="form-row form-add">
                 <div class="form-group col-12 col-md-6">
                     <label for="">Họ tên</label>
                     <div class="input-group-prepend">

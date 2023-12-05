@@ -14,8 +14,8 @@
         <form action={{ route('admin.course.post-add') }} method="post" enctype="multipart/form-data">
             @csrf
             <h4 style="text-align: center;margin-bottom: 20px">Thông tin khóa học</h4>
-            <div class="form-row">
-                <div class="form-group col-12 col-md-6">
+            <div class="form-row form-add">
+                <div class="form-group col-12">
                     <label for="">Tên khóa học</label>
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
@@ -25,7 +25,7 @@
                         <span style="color: red">{{ $message }}</span>
                     @enderror
                 </div>
-                <div class="form-group col-16 col-md-3">
+                <div class="form-group col-12 col-md-6">
                     <label for="">Danh mục</label>
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
@@ -45,7 +45,7 @@
                     @enderror
 
                 </div>
-                <div class="form-group col-16 col-md-3">
+                <div class="form-group col-16 col-md-6">
                     <label for="">Giáo viên</label>
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
@@ -65,7 +65,7 @@
                     @enderror
 
                 </div>
-                <div class="form-group col-12 col-md-6">
+                <div class="form-group col-12 col-md-12">
                     <label for="">Hình ảnh</label>
                     <br>
 
@@ -74,7 +74,7 @@
                         <span style="color: red">{{ $message }}</span>
                     @enderror
                 </div>
-                <div class="form-group col-12 col-md-6">
+                <div class="form-group col-12 col-md-12">
                     <label for="">Mô tả</label>
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
@@ -103,6 +103,26 @@
                             value={{ old('sale_price') }}>
                     </div>
                     @error('sale_price')
+                        <span style="color: red">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="form-group col-12 col-md-6">
+                    <label for="">Public</label>
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
+                       <input style="width: 30px" type="checkbox" name="public" id="public">
+                    </div>
+                    @error('public')
+                        <span style="color: red">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="form-group col-12 col-md-6">
+                    <label for="">Trạng thái</label>
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
+                        <input style="width: 30px" type="checkbox" name="status" id="status">
+                    </div>
+                    @error('status')
                         <span style="color: red">{{ $message }}</span>
                     @enderror
                 </div>

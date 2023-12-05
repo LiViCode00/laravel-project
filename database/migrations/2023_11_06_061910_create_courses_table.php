@@ -22,10 +22,10 @@ return new class extends Migration
             $table->float('price',15,2)->default(0);
             $table->float('sale_price',15,2)->default(0);
             $table->float('durations')->default(0);
-            $table->tinyInteger('status')->default(0);
             $table->tinyInteger('is_document')->default(0);
             $table->integer('teacher_id')->unsigned();
             $table->integer('category_id')->unsigned();
+            $table->tinyInteger('status')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

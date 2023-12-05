@@ -22,6 +22,7 @@ return new class extends Migration
             $table->integer('position')->default(0);
             $table->integer('views')->default(0);
             $table->integer('course_id')->unsigned();
+            $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });
     }

@@ -4,12 +4,30 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+<<<<<<< HEAD
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
+=======
 use Illuminate\Support\Facades\DB;
+>>>>>>> a18ab52fcda1eabb00cf59e98efe00b54a891042
 
 class Post extends Model
 {
     use HasFactory;
     protected $table = 'posts';
+
+    public function category(): BelongsTo{
+        return $this->belongsTo(Category::class);
+    }
+    public function user(): BelongsTo{
+        return $this->belongsTo(User::class);
+    }
+
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(PostReviews::class);
+    }
 
     public static function getPostsAtHome(){
         return self::orderBy('created_at', 'desc')->limit(8)->get();

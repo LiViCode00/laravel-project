@@ -59,4 +59,8 @@ class AdminController extends Controller
         return back()->with('notice', 'Cập nhật thông tin thành công');
 
     }
+
+    public function menu(){
+        return view('pages.backend.menu');
+    }
 }

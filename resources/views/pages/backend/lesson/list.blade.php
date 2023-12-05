@@ -22,9 +22,7 @@
 
         <div class="d-flex align-items-center card-header">
             <h3 class="card-title">Danh sách bài giảng</h3>
-            <div class="action-header">
-                <a href={{ route('admin.course.lesson.add') }}> <button class="btn btn-primary">Thêm mới</button></a>
-            </div>
+
         </div>
 
         <!-- /.card-header -->
@@ -33,33 +31,32 @@
             <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
                 <div class="row">
 
-                    <div class="col-sm-12 col-md-8">
+                    <div class="col-sm-12 col-md-6">
                         <div id="example1_filter" class=" dataTables_filter">
                             <form action="{{ route('admin.course.lesson.find-lesson') }}" method="POST"
                                 class="d-flex align-items-center">
                                 @csrf
                                 <label class="d-flex justify-content-center align-items-center">
-                                    Search:
-                                    <input name="search_key" style="margin: 0 8px" type="search"
-                                        class="form-control form-control-sm" placeholder="" aria-controls="example1"
+
+                                    <input name="search_key" style="margin: 0 4px" type="search"
+                                        class="form-control form-control-sm" placeholder="Key word" aria-controls="example1"
                                         value="{{ old('search_key') }}">
 
-                                    {{-- <select name="category" style="margin: 0 8px" class="form-select form-control form-control-sm"
-                                        aria-label="Default select example">
-                                        <option value=0 {{ old('category') == 0 ? 'selected' : '' }}>Danh mục</option>
-                                        @if ($categories)
-                                            @foreach ($categories as $item)
-                                                <option value={{ $item->id }}
-                                                    {{ old('category') == $item->id ? 'selected' : '' }}>{{ $item->name }}
-                                                </option>
-                                            @endforeach
-                                        @endif
-                                    </select> --}}
+
 
                                 </label>
-                                <button type="submit" style="margin: 0 8px" class="btn btn-primary btn-sm">Tìm </button>
+                                <button title="Search" type="submit" class="btn btn-flat btn-info"
+                                    style="border-radius: 4px;margin: 0 4px">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                </button>
                             </form>
                         </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <a href={{ route('admin.course.lesson.add') }}> <button
+                                style="border: none;float: right;margin-bottom: 16px" class="btn-flat btn-lg btn-success"><i
+                                    class="fa fa-plus" aria-hidden="true"></i></button></a>
+
                     </div>
 
                 </div>
@@ -104,45 +101,77 @@
                                     <tr class=''>
 
                                         <td class="sorting_1 dtr-control" tabindex="0" style="">
+                                            <span class="badge badge-success">
 
-                                            {{ $lesson->id }}
+                                                {{ $lesson->id }}
+                                            </span>
                                         </td>
                                         <td class="lesson-cell">
                                             <p class="lesson" style="font-weight: 600"> {{ $lesson->name }}
                                             <div class="list-video">
-                                               @foreach ($lesson->videos as $item)
-                                                   <div>
-                                                    
-                                                    <a href="">{{$item->name}}</a>
-                                                   
-                                                   </div>
-                                               @endforeach
+                                                @foreach ($lesson->videos as $item)
+                                                    <div>
+
+                                                        <a href="">{{ $item->name }}</a>
+
+                                                    </div>
+                                                @endforeach
                                             </div>
                                             </p>
 
                                         </td>
 
                                         <td style="">
-                                            {{ $lesson->position }}
+                                            
+                                            <span class="badge badge-pill badge-info">
+
+                                                {{ $lesson->position }}
+                                            </span>
 
                                         </td>
                                         <td>{{ $lesson->description }}</td>
 
-                                        <td style="">{{ $lesson->durations }}</td>
+                                        <td style="">
+                                            <span class="badge badge-pill badge-secondary">
 
-                                        <td style="">{{ $lesson->views }}</td>
+                                            {{ $lesson->durations }}
+                                        </span>
+                                        </td>
+
+                                        <td style="">
+                                            <span class="badge badge-pill badge-primary">
+
+                                                {{ $lesson->views }}
+                                            </span>
+                                        </td>
 
                                         <td>
 
-
-                                            <a href='{{ route('admin.course.lesson.manage', ['lesson' => $lesson]) }}'><button
-                                                    class="btn btn-info btn-sm">Quản lý</button></a>
-
-
-                                            <a href='{{ route('admin.course.lesson.delete', ['lesson' => $lesson]) }}'>
-                                                <button onclick="return confirmDelete()"
-                                                    class="btn btn-danger btn-sm">Xóa</button>
+                                            <a style="margin: 0 4px"
+                                                href='{{ route('admin.course.lesson.detail', ['lesson' => $lesson]) }}'>
+                                                <span style="border-radius: 2px" title="Link" type='button'
+                                                    class="btn btn-flat btn-sm btn-info">
+                                                    <i class="fas fa-external-link-alt    "></i>
+                                                </span>
                                             </a>
+
+                                            <a style="margin: 0 4px"
+                                                href='{{ route('admin.course.lesson.manage', ['lesson' => $lesson]) }}'>
+                                                <span style="border-radius: 2px" title="Manage" type='button'
+                                                    class="btn btn-flat btn-sm btn-primary">
+                                                    <i class="fas fa-edit    "></i>
+                                                </span>
+                                            </a>
+
+                                            <a style="margin: 0 4px; border-radius: 4px"
+                                                href='{{ route('admin.course.lesson.delete', ['lesson' => $lesson]) }}'>
+                                                <span style="border-radius: 2px" title="Delete" type='button'
+                                                    onclick="return confirmDelete() "
+                                                    class="btn btn-flat btn-sm btn-danger">
+                                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                                </span></a>
+                                            </a>
+
 
                                         </td>
 
@@ -196,14 +225,16 @@
         $('.lesson-name-cell').click(function() {
             const listVideo = $(this).find('.list-video');
             if (listVideo.is(':hidden')) {
-                listVideo.css('display', 'block').animate({maxHeight: '300px'}, 300);
+                listVideo.css('display', 'block').animate({
+                    maxHeight: '300px'
+                }, 300);
             } else {
-                listVideo.animate({maxHeight: '0'}, 300, function() {
+                listVideo.animate({
+                    maxHeight: '0'
+                }, 300, function() {
                     $(this).css('display', 'none');
                 });
             }
         });
     });
 </script>
-
-

@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="{{asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
 </html> --}}
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+</html>
 
 @section('content')
     <div class="card">
@@ -23,7 +27,7 @@
         <div class="d-flex align-items-center card-header">
             <h3 class="card-title">Danh sách khóa học</h3>
             <div class="action-header">
-               
+
             </div>
         </div>
 
@@ -41,15 +45,15 @@
 
 
                                     <select name="orderBy" style="margin: 0 4px"
-                                    class="form-select form-control form-control-sm"
-                                    aria-label="Default select example">
-                                    <option value=0 {{ old('orderBy') == 0 ? 'selected' : '' }}>Sắp xếp</option>
-                                    <option value=1 {{ old('orderBy') == 0 ? 'selected' : '' }}>ID ASC</option>
-                                    <option value=2 {{ old('orderBy') == 0 ? 'selected' : '' }}>ID DESC</option>
-                                    <option value=3 {{ old('orderBy') == 0 ? 'selected' : '' }}>Name ASC</option>
-                                    <option value=4 {{ old('orderBy') == 0 ? 'selected' : '' }}>Name DESC</option>
+                                        class="form-select form-control form-control-sm"
+                                        aria-label="Default select example">
+                                        <option value=0 {{ old('orderBy') == 0 ? 'selected' : '' }}>Sắp xếp</option>
+                                        <option value=1 {{ old('orderBy') == 0 ? 'selected' : '' }}>ID ASC</option>
+                                        <option value=2 {{ old('orderBy') == 0 ? 'selected' : '' }}>ID DESC</option>
+                                        <option value=3 {{ old('orderBy') == 0 ? 'selected' : '' }}>Name ASC</option>
+                                        <option value=4 {{ old('orderBy') == 0 ? 'selected' : '' }}>Name DESC</option>
 
-                                </select>
+                                    </select>
                                     <select name="category" style="margin: 0 4px"
                                         class="form-select form-control form-control-sm"
                                         aria-label="Default select example">
@@ -57,17 +61,20 @@
                                         @if ($categories)
                                             @foreach ($categories as $item)
                                                 <option value={{ $item->id }}
-                                                    {{ old('category') == $item->id ? 'selected' : '' }}>{{ $item->name }}
+                                                    {{ old('category') == $item->id ? 'selected' : '' }}>
+                                                    {{ $item->name }}
                                                 </option>
                                             @endforeach
                                         @endif
                                     </select>
-                                    <input style="margin: 0 4px" name="search_key" type="search" class="form-control form-control-sm"
-                                    placeholder="Search key" aria-controls="example1" value="{{ old('search_key') }}" >
+                                    <input style="margin: 0 4px" name="search_key" type="search"
+                                        class="form-control form-control-sm" placeholder="Search key"
+                                        aria-controls="example1" value="{{ old('search_key') }}">
 
                                 </label>
-                               
-                                <button title="Search" type="submit" class="btn btn-flat btn-info" style="border-radius: 4px;margin: 0 4px">
+
+                                <button title="Search" type="submit" class="btn btn-flat btn-info"
+                                    style="border-radius: 4px;margin: 0 4px">
                                     <i class="fa fa-search" aria-hidden="true"></i>
                                 </button>
                             </form>
@@ -75,20 +82,22 @@
                     </div>
 
                     <div class="col-12 col-md-6">
-                        <a href={{ route('admin.course.add') }}> <button style="border: none;float: right;margin-bottom: 16px" class="btn-flat btn-lg btn-success"><i class="fa fa-plus" aria-hidden="true"></i></button></a>
-                       
+                        <a href={{ route('admin.course.add') }}> <button
+                                style="border: none;float: right;margin-bottom: 16px" class="btn-flat btn-lg btn-success"><i
+                                    class="fa fa-plus" aria-hidden="true"></i></button></a>
+
                     </div>
 
 
 
                 </div>
                 <div class="row">
-                    <div class="col-sm-12">
+                    <div id="course_table" class="col-sm-12">
                         <table id="example1" class="table table-bordered table-striped dataTable dtr-inline"
                             aria-describedby="example1_info">
                             <thead>
                                 <tr>
-                                   
+
                                     <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1"
                                         colspan="1" aria-label="Rendering engine: activate to sort column descending"
                                         aria-sort="ascending" style="">
@@ -126,11 +135,14 @@
                             <tbody>
                                 @foreach ($courses as $course)
                                     <tr class=''>
-                                       
+
 
                                         <td class="sorting_1 dtr-control" tabindex="0" style="">
 
-                                            {{ $course->id }}
+                                            <span class="badge badge-success">
+
+                                                {{ $course->id }}
+                                            </span>
                                         </td>
                                         <td class="">{{ $course->name }}</td>
 
@@ -143,8 +155,8 @@
                                         <td style="">{{ $course->teacher->name }}</td>
                                         <td style="">
                                             60
-                                            <span  style="margin-left: 10px;border-radius: 2px" title="Link" type='button'
-                                                class="btn btn-flat btn-sm btn-info">
+                                            <span style="margin-left: 10px;border-radius: 2px" title="Link"
+                                                type='button' class="btn btn-flat btn-sm btn-info">
                                                 <i class="fas fa-external-link-alt    "></i>
                                             </span>
                                         </td>
@@ -154,8 +166,9 @@
                                         <td style="width: 15%">
 
                                             <a style="margin: 0 4px"
-                                                href='{{ route('admin.course.detail', ['course' => $course]) }}'>
-                                                <span style="border-radius: 2px" title="Link" type='button' class="btn btn-flat btn-sm btn-info" >
+                                                href='{{ route('courses.courseDetail', ['id' => $course->id]) }}'>
+                                                <span style="border-radius: 2px" title="Link" type='button'
+                                                    class="btn btn-flat btn-sm btn-info">
                                                     <i class="fas fa-external-link-alt    "></i>
                                                 </span>
                                             </a>
@@ -163,14 +176,15 @@
                                             <a style="margin: 0 4px"
                                                 href='{{ route('admin.course.manage', ['course' => $course]) }}'>
                                                 <span style="border-radius: 2px" title="Edit" type='button'
-                                                    class="btn btn-flat btn-sm btn-primary" >
+                                                    class="btn btn-flat btn-sm btn-primary">
                                                     <i class="fas fa-edit    "></i>
                                                 </span>
                                             </a>
 
                                             <a style="margin: 0 4px; border-radius: 4px"
                                                 href='{{ route('admin.course.delete', ['course' => $course]) }}'>
-                                                <span style="border-radius: 2px" title="Delete" type='button' onclick="return confirmDelete() "
+                                                <span style="border-radius: 2px" title="Delete" type='button'
+                                                    onclick="return confirmDelete() "
                                                     class="btn btn-flat btn-sm btn-danger">
                                                     <i class="fa fa-trash" aria-hidden="true"></i>
                                                 </span></a>
@@ -209,6 +223,39 @@
 @endsection
 
 <script>
+    // $(document).ready(function() {
+    //     // Khi tài liệu đã sẵn sàng
+
+    //     $(document).on('click', '.pagination a', function(event) {
+    //         // Khi một liên kết phân trang bên trong một phần tử với lớp 'pagination' được nhấp chuột
+    //         event.preventDefault(); // Ngăn chặn hành vi mặc định của liên kết
+
+    //         // Trích xuất số trang từ thuộc tính 'href' của liên kết đã nhấp chuột
+    //         var page = $(this).attr('href').split('page=')[1];
+
+    //         // Gọi hàm fetch_user_data với số trang đã trích xuất
+    //         fetch_user_data(page);
+    //     });
+
+    //     function fetch_user_data(page) {
+    //         // Hàm để lấy dữ liệu người dùng bằng AJAX
+
+    //         $.ajax({
+    //             // Cấu hình yêu cầu AJAX
+    //             url: "/admin/course?page=" + page, // URL để gửi yêu cầu đến
+    //             success: function(data) {
+    //                 // Hàm được gọi nếu yêu cầu thành công
+
+    //                 // Thay thế nội dung của phần tử có id 'user_table' bằng dữ liệu nhận được
+    //                 $('#course_table').html(data);
+    //             }
+    //         });
+    //     }
+    // });
+
+
+
+
     function confirmDelete() {
 
         var result = confirm("Bạn có chắc chắn muốn xóa không?");

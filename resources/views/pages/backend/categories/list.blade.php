@@ -32,7 +32,7 @@
                                 @csrf
                                 <label class="d-flex justify-content-center align-items-center">
 
-                                    
+
                                     <select name="orderBy" style="margin: 0 4px"
                                         class="form-select form-control form-control-sm"
                                         aria-label="Default select example">
@@ -113,8 +113,11 @@
                                     <tr class=''>
 
                                         <td class="sorting_1 dtr-control" tabindex="0" style="">
+                                            <span class="badge badge-success">
+                                                {{ $category->id }}
+                                            </span>
 
-                                            {{ $category->id }}
+
                                         </td>
                                         <td class="">{{ $category->name }}</td>
                                         <td>
@@ -124,8 +127,33 @@
                                             </a>
 
                                         </td>
-                                        <td style="">{{ $category->created_at }}</td>
-                                        <td style="">{{ $category->updated_at }}</td>
+                                        <td style="">
+
+                                            @if ($category->public == 1)
+                                                <span class="badge badge-success">
+                                                    ON
+                                                </span>
+                                            @else
+                                                <span class="badge badge-danger">
+                                                    OFF
+                                                </span>
+                                            @endif
+
+
+
+                                        </td>
+                                        <td style="">
+
+                                            @if ($category->status == 1)
+                                                <span class="badge badge-success">
+                                                    ON
+                                                </span>
+                                            @else
+                                                <span class="badge badge-danger">
+                                                    OFF
+                                                </span>
+                                            @endif
+                                        </td>
                                         <td style="width: 10%">{{ $category->courses->count() }}</td>
 
                                         <td style="width: 15%">

@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\OrderController as UserOrderController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\PostController;
@@ -8,6 +10,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\OrderController as ControllersOrderController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -16,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->middleware('auth:student')->name('home');
+Route::get('/home', [HomeController::class, 'index'])->middleware('auth')->name('home');
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/login', [StudentController::class, 'showFormLogin'])->name('login');
@@ -71,5 +74,8 @@ Route::prefix('student')->name('student.')->group(function () {
 
   
 });
+
+Route::get('/payment/{id}' , [UserOrderController::class,'order'])->name('order');
+Route::post('/payment/{id}' , [UserOrderController::class,'postOrder'])->name('post-order');
 
 include('admin.php');
