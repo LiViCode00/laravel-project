@@ -25,7 +25,7 @@ class OrderController extends Controller
         //     return view('pages.client.order', compact('course'));
         // }
         $order=new Order();
-        $order->student_id=Auth::user()->id;
+        $order->student_id=Auth::guard('student')->user()->id;
         $order->total=$course->sale_price;
         $order->save();
 
@@ -36,12 +36,12 @@ class OrderController extends Controller
         $order_detail->save();
 
         $notification= new Notification();
-        $notification->content= Auth::user()->name. '      vừa mua khóa học      ' .$course->name;
+        $notification->content= Auth::guard('student')->user()->name. '      vừa mua khóa học      ' .$course->name;
         $notification->image_path=$course->image_path;
         $notification->save();
 
 
-        event(new NewOrderReceived(Auth::user(),$course));
+        event(new NewOrderReceived(Auth::guard('student')->user(),$course));
        
     }
     public function postOrder(Course $course)

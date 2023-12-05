@@ -74,7 +74,7 @@
                                                 style="display: -webkit-box;
                                           -webkit-box-orient: vertical;
                                           overflow: hidden;
-                                          -webkit-line-clamp: 2;">
+                                          -webkit-line-clamp: 2;margin-bottom: 30px;">
                                                 {{ $item->content }}</p>
                                             <span
                                                 style="padding: 10px 20px;
@@ -82,9 +82,24 @@
                                             border-radius: 30px;"
                                                 class="categories-post-tag mt-3">{{ $item->category->name }}</span>
 
-                                                {{-- @if ($item->user_id==)
-                                                    
-                                                @endif --}}
+                                                @if ($item->user_id==Auth::user()->id)
+                                                    <div style="margin-top: 30px" class="d-flex align-items-center">
+                                                        <a style="margin: 0 4px" href='{{ route('admin.post.edit', $item) }}'>
+                                                            <span style="border-radius: 2px" title="Edit" type='button'
+                                                                class="btn btn-flat btn-sm btn-primary">
+                                                                <i class="fas fa-edit    "></i>
+                                                            </span>
+                                                        </a>
+                        
+                                                        <a style="margin: 0 4px; border-radius: 4px"
+                                                            href='{{ route('admin.post.delete', $item) }}'>
+                                                            <span style="border-radius: 2px" title="Delete" type='button'
+                                                                onclick="return confirmDelete() " class="btn btn-flat btn-sm btn-danger">
+                                                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                                            </span></a>
+                                                        </a>
+                                                    </div>
+                                                @endif
                                         </div>
                                         <div class="blog-thum col-md-3 d-flex align-items-center justify-content-center">
                                             <img src="/client/images/news/ns-2.jpg" alt="Blog">
