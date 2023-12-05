@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\OrderConfirmation;
+use App\Models\CourseStudent;
 use App\Models\Group;
 use App\Models\category;
 use App\Models\Course;
@@ -13,6 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -83,6 +86,22 @@ class OrderController extends Controller
     {
         $order->status = 1;
         $order->save();
+        $email=$order->student->email;
+        Mail::to($email)->send(new OrderConfirmation($order));
+
+       
+        $details=$order->details;
+        $student=$order->student;
+
+        foreach ($details as $detail) {
+            $course_student=new CourseStudent();
+            $course_student->student_id=$student->id;
+           
+             $course_student->course_id=$detail->course_id;
+             $course_student->save();
+        }
+
+
         return back()->with('success', 'Xác nhận đơn hàng ID = ' . $order->id . ' thành công.');
     }
 

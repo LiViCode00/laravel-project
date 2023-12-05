@@ -140,7 +140,7 @@
                 <a href="{{ route('admin.user.post.write') }}" class="dropdown-item">
                     Viết blog
                 </a>
-                
+
 
                 <div class="dropdown-divider"></div>
                 <a href={{ route('admin.logout') }} class="dropdown-item"
@@ -156,7 +156,7 @@
                 @csrf
             </form>
         </li>
-       
+
 
 
 
@@ -179,11 +179,12 @@
     var channel = pusher.subscribe('order-channel');
 
     channel.bind('App\\Events\\NewOrderReceived', function(data) {
+        console.log(data);
         var notificationMessage = data.student.name + ' vừa mua khóa học ' + data.course.name;
-      
-      
-    console.log(notificationMessage);
-        var notiBody = document.getElementById('noti-body'); 
+
+
+        console.log(notificationMessage);
+        var notiBody = document.getElementById('noti-body');
         var count = document.getElementById('count');
         var count2 = document.getElementById('count2');
         var newNoti = ` <a style="color: #232323;" href="{{ route('admin.order.index') }}"><div class="notification-list notification-list--unread">
@@ -198,8 +199,8 @@
 
         // Chèn vào đầu danh sách
         notiBody.insertAdjacentHTML('afterbegin', newNoti);
-        count.innerHTML=parseInt(count.innerHTML) + 1;
-        count2.innerHTML=parseInt(count2.innerHTML) + 1 + ' Notifications';
+        count.innerHTML = parseInt(count.innerHTML) + 1;
+        count2.innerHTML = parseInt(count2.innerHTML) + 1 + ' Notifications';
         showNotification(notificationMessage);
 
     });
@@ -218,7 +219,6 @@
 </script>
 <!-- Sử dụng CDN -->
 
-<script src="https://cdn.jsdelivr.net/npm/toastr@2.1.4/dist/toastr.min.js"></script>
 
 
 
