@@ -1,4 +1,4 @@
-{{-- @extends('layouts.clients.client')
+ @extends('layouts.clients.client')
 @section('title')
     Giáo viên
 @endsection
@@ -53,4 +53,4 @@
         </div>  <!-- row -->
     </div> <!--  container-edit -->
 </section>
-@endsection --}}
+@endsection

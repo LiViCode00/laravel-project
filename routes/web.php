@@ -21,7 +21,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
-
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->middleware('auth')->name('home');
@@ -64,19 +63,11 @@ Route::prefix('posts')->name('posts.')->group(function () {
     Route::get('/posts-detail/{id}', [PostController::class,'postDetail'])->name('postDetail');
 });
 
-Route::get('/lesson/{id_course}' , [LessonController::class,'index'])->name('lesson');
-// ======= cai thay doi ==================
-//     Route::get('/', [PostController::class, 'index'])->name('view');
-//     Route::get('/posts-detail/{id}', [PostController::class, 'postDetail'])->name('postDetail');
-// });
 
-// // Route::get('/lesson/{id_course}' , [LessonController::class,'index'])->name('lesson');
-// //     Route::get('/', [PostController::class, 'index'])->name('view');
-// //     Route::get('/posts-detail', [PostController::class, 'postDetail'])->name('postDetail');
-// // });
+Route::get('/lesson/{id}', [LessonController::class, 'index'])->name('lesson');
+Route::get('/lessonByCourse/{id_course}', [LessonController::class, 'lessonByIdCourse'])->name('lessonByCourse');
 
-Route::get('/lesson', [LessonController::class, 'index'])->name('lesson');
-// ======= cai thay doi ==================
+// Route::get('/cart/{id}', [CartController::class, 'index'])->name('cart');
 
 Route::prefix('admin')->group(function () {
     Route::get('', function () {
@@ -92,9 +83,6 @@ Route::prefix('student')->name('student.')->group(function () {
 });
 
 Route::get('/payment/{course}', [UserOrderController::class, 'order'])->name('order');
-// Route::post('/payment/{course}', [UserOrderController::class, 'postOrder'])->name('post-order');
-
-
 
 
 Route::get('/ajax-example', [AjaxController::class, 'index']);
@@ -113,9 +101,6 @@ Route::get('pagination/ajax', [PaginationController::class, 'paginationAjax']);
 // routes/web.php
 
 Route::view('/403', 'errors.403')->name('403');
-// Route::get('/payment/{id}' , [UserOrderController::class,'order'])->name('order');
-Route::match(['get', 'post'], '/cart/{student_id}',  [UserOrderController::class,'cart'])->name('cart');
-
 
 Route::get('/write_post', [PostController::class, 'write_post'])->name('write-post');
 Route::post('/create-post', [PostController::class, 'store'])->name('store-post');

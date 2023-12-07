@@ -136,4 +136,13 @@ class Course extends Model
 
         return $courses;
     }
+
+    public static function getCourseName($id){
+        $course_name = DB::table('courses')
+        ->select('courses.name')
+        ->where('courses.id','=',$id)
+        ->first();
+
+        return $course_name;
+    }
 }

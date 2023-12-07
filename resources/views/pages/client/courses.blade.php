@@ -90,13 +90,6 @@
                                     <li class="nav-item">Hiển thị {{$count}} kết quả </li>
                                 </div>
                             </ul> <!-- nav -->
-
-                            <div class="courses-search float-right d-inline pb-3 ">
-                                <form action="#" >
-                                    <input type="text" placeholder="Search" class="p-3">
-                                    <button type="button" class="fa fa-search align-middle""></button>
-                                </form>
-                            </div> <!-- courses search -->
                         </div> <!-- courses top search -->
                     </div>
                 </div>
@@ -194,7 +187,7 @@
                                                 <div class="course-teacher">
                                                     <div class="thum">
                                                         <a href="#"><img
-                                                                src="/{{ $course->teacher_img }}"
+                                                                src="{{asset('storage/'.$course->teacher_img)}}"
                                                                 alt="teacher"></a>
                                                     </div>
                                                     <div class="name pr-3 pt-2">

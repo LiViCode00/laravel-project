@@ -2955,7 +2955,7 @@ p {
 .title .lesson-course a,
 .title .lesson-course{
     background-color: #22092C;
-    color:var(--navy);
+    color:white;
     font-size: 15px;
     border-radius: 9px;
 }
@@ -2985,6 +2985,7 @@ p {
     height: 50px;
     width: 50px;
     object-fit: contain;
+    border: 1px solid lightgray;
 }
 .corses-singel-left .course-terms ul li .teacher-name .name {
     padding-left: 60px;
@@ -4784,6 +4785,7 @@ img.logo{
 .cate-name-edit{
     color: gray;
     transition: 0.1s ease-in-out;
+    white-space: nowrap;
 }
 
 .cate-name-edit:hover{

@@ -16,7 +16,7 @@ class RolesAndPermissionsSeeder extends Seeder
         $adminRole = Role::firstOrCreate(['name' => 'admin']);
         $teacherRole = Role::firstOrCreate(['name' => 'teacher']);
         $studentRole = Role::firstOrCreate(['name' => 'student']);
-
+        
         // Tạo các permissions
         $permissions = [
             'create_course', 'edit_course', 'delete_course', 'publish_course',
@@ -49,10 +49,9 @@ class RolesAndPermissionsSeeder extends Seeder
             'create_post', 'edit_post', 'delete_post'
         ]);
 
-        $admins=User::where('group_id','1')->get();
-        $teachers=User::where('group_id','2')->get();
-        $students=User::where('group_id','3')->get();
-
+        $admins=User::where('group_id','=', '1')->get();
+        $teachers=User::where('group_id','=','2')->get();
+        $students=User::where('group_id','=','3')->get();
         foreach ($admins as $admin) {
             $admin->assignRole('admin');
         }
@@ -61,9 +60,6 @@ class RolesAndPermissionsSeeder extends Seeder
         }
         foreach ($students as $student) {
             $student->assignRole('student');
-        }
-       
-
-       
+        } 
     }
 }

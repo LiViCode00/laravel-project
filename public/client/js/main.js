@@ -492,26 +492,6 @@ $(function() {
     });
 
     
-    function submitForm() {
-      // Lấy nội dung từ #editor
-      var content = document.querySelector('#editor').innerHTML;
-
-      // Lấy đoạn văn bản đầu tiên làm title
-      var title = content.split('<')[0].trim();
-
-      // Lấy tất cả các đường dẫn hình ảnh
-      var regex = /<img.*?src=["'](.*?)["']/g;
-      var matches = content.match(regex);
-      var image_paths = matches ? matches.map(match => match.replace(/<img.*?src=["'](.*?)["']/, '$1')) : [];
-
-      // Gán giá trị vào các trường input ẩn
-      document.getElementById('postTitle').value = title;
-      document.getElementById('postImagePaths').value = JSON.stringify(image_paths);
-
-      // Submit form
-      document.querySelector('form').submit();
-  }
-
 
   
   

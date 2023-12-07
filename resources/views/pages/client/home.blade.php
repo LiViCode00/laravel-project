@@ -90,7 +90,7 @@
                                     </a>
                                     <div class="course-teacher">
                                         <div class="thum">
-                                            <a href="#"><img src="{{ $course->teacher_img}}"
+                                            <a href="#"><img src="{{asset('storage/'.$course->teacher_img)}}"
                                                     alt="teacher"></a>
                                         </div>
                                         <div class="name">
@@ -155,7 +155,7 @@
                                     </a>
                                     <div class="course-teacher">
                                         <div class="thum">
-                                            <a href="#"><img src="{{ $course->teacher_img }}"
+                                            <a href="#"><img src="{{asset('storage/'.$course->teacher_img)}}"
                                                     alt="teacher"></a>
                                         </div>
                                         <div class="name">
@@ -209,7 +209,7 @@
                                 <div class="col-sm-6 ">
                                     <div class="singel-teachers mt-30 text-center">
                                         <div class="image  card-teacher">
-                                            <img src="{{ $teacher->image_path }}" alt="Teachers">
+                                            <img src="{{asset('storage/'.$teacher->image_path)}}" alt="Teachers">
                                         </div>
                                         <div class="cont">
                                             <a href="{{ route('teachers.teacherDetail', ['id' => $teacher->id] )}}">

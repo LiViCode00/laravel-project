@@ -21,7 +21,7 @@
                                 <li>
                                     <div class="teacher-name">
                                         <div class="thum">
-                                            <img src="/{{ $course->teacher_img }}" alt="Teacher">
+                                            <img src="{{asset('storage/'.$course->teacher_img) }}" alt="Teacher">
                                         </div>
                                         <div class="name">
                                             <span>Teacher</span>
@@ -101,8 +101,6 @@
                                     <div class="curriculam-cont">
                                         <div class="title">
                                             <h6>Dưới đây là tất cả lessons của khóa học này</h6>
-                                            <a href="{{ route('lesson', ['id_course' => $course->id]) }}">click vao day de
-                                                hoc</a>
                                         </div>
                                         <div class="accordion" id="accordionExample">
 
@@ -144,7 +142,7 @@
                                     <div class="instructor-cont">
                                         <div class="instructor-author">
                                             <div class="author-thum">
-                                                <img src="/{{ $course->teacher_img }}" alt="Instructor">
+                                                <img src="{{asset('storage/'.$course->teacher_img )}}" alt="Instructor">
                                             </div>
                                             <div class="author-name">
                                                 <a href="#">
@@ -152,7 +150,7 @@
                                                 </a>
                                                 <span>Senior WordPress Developer</span>
                                                 <ul class="social">
-                                                    <li><a href="#"><i class="fa fa-facebook-f"></i></a></li>
+                                                    <li><a href="#"><i class="dfa fa-facebook-f"></i></a></li>
                                                     <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                                                     <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
                                                     <li><a href="#"><i class="fa fa-instagram"></i></a></li>
@@ -310,10 +308,13 @@
 
                                 </div>
                                 <div class="d-flex flex-wrap justify-content-center align-items-center">
-                                <a href="{{route ('cart', Auth::guard('student')->user()->id)}}" class="main-btn p-2">Thêm vào giỏ hàng</a>
+                                @if(Auth::guard('student')->check())
+                                        <a href="{{ route('cart', ['id' => Auth::guard('student')->user()->id]) }}" class="main-btn p-2">Thêm vào giỏ hàng</a>
+                                @else
+                                        <a href="{{route ('login')}}" class="main-btn p-2">Thêm vào giỏ hàng</a>
+                                @endif
                                 @if ($course->sale_price == 0)
                                     <a href="{{ route('lessonByCourse', ['id_course' => $course->id]) }}" class="main-btn p-2" >Đăng ký</a>
-
                                 @else
                                     <a href="{{ route('order', ['course' => $course->id]) }}" class="main-btn p-2" >Mua khóa học</a>
                                 @endif
@@ -385,7 +386,7 @@
                                             </a>
                                             <div class="course-teacher">
                                                 <div class="thum">
-                                                    <a href="#"><img src="/{{ $course->teacher_img }}"
+                                                    <a href="#"><img src="{{asset('storage/'.$course->teacher_img )}}"
                                                             alt="teacher"></a>
                                                 </div>
                                                 <div class="name">

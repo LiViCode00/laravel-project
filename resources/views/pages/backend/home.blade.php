@@ -5,5 +5,5 @@
 
 
 @section('content')
-    @include('pages.client.teachers')
+   
 @endsection
