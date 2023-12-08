@@ -52,35 +52,46 @@ class PostController extends Controller
         }
     }
 
+
+    public function add(Request $request){
+            $request->validate(
+                [
+                    'image' => 'image',
+                    'title' => 'required|string',
+                    'content' => 'required|string',
+                    'category_id' => ['required', 'integer', function ($attribute, $value, $fail) {
+                        if ($value === '0') return $fail('Vui lòng chọn danh mục khóa học');
+                    }],
+                ],
+                [
+                    'required' => ':attribute bắt buộc phải nhập.',
+                    'string' => ':attribute phải là kí tự.',
+                    'numeric' => ':attribute phải là kiểu dữ liệu số',
+                    'image' => 'File không hợp lệ. Vui lòng thử lại'
+                ],
+                [
+                    'title' => 'Nội dung chính',
+                    'category_id' => "Danh mục khóa học",
+                    "image" => ' Hình ảnh',
+                    'content' => 'Nội dung'
+
+                ]
+            );
     
-        public function store(Request $request)
-    {
-        // Nhận dữ liệu từ frontend
-        $title = $request->input('title');
-        $category_id = $request->input('category_id');
-        $image_paths = json_decode($request->input('image_paths'));
+            if ($request->has('image')) {
+                $imagePath = $request->file('image')->store('img/news', 'public');
+            }
+    
+            $post = new Post();
+            $post->title = $request->title;
+            $post->category_id = $request->category_id;
+            $post->content = $request->content;
+            $post->image_path = $imagePath;
+            $post->user_id = Auth::guard('student')->user()->id;
 
-        // Lưu tất cả các hình ảnh vào thư mục public/images/news
-        $saved_image_paths = [];
-        foreach ($image_paths as $image_path) {
-            $imageFilename = 'news_image_' . time() . '.' . pathinfo($image_path, PATHINFO_EXTENSION);
-            $imagePath = public_path('images/news') . '/' . $imageFilename;
-            file_put_contents($imagePath, file_get_contents($image_path));
-            $saved_image_paths[] = 'images/news/' . $imageFilename;
-        }
-
-        // Tạo mới bài viết
-        $post = new Post();
-        $post->title = $title;
-        $post->category_id = $category_id;
-        $post->image_paths = json_encode($saved_image_paths);
-        // Thêm các trường dữ liệu khác nếu cần
-
-        // Lưu bài viết
-        $post->save();
-
-        // Trả về kết quả nếu cần
-        return response()->json(['message' => 'Bài viết đã được đăng thành công']);
+            $post->save();
+    
+            return redirect()->route('posts.view');
     }
 
   

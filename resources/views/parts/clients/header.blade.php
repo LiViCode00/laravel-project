@@ -1,3 +1,16 @@
+
+<?php 
+    use App\Models\Cart;
+    use Illuminate\Support\Facades\Auth;
+
+    $numberCart = Cart::countCourseFromCart(Auth::guard('student')->user()->id);
+?>
+
+<style>
+    .cart-shop::after{
+        content: '{{ $numberCart }}';
+    }
+</style>
 <header id="header-part" class="border-bottom">
     <div class="header-logo-support pt-3 pb-4">
         <div class="container-fluid ">
@@ -33,7 +46,8 @@
 
                     @if (Auth::guard('student')->check())
                         <div class="d-flex justify-content-between align-items-center">
-                            <a href="{{route('cart', Auth::guard('student')->user()->id)}}"><i class="fa fa-shopping-cart cart-shop" aria-hidden="true"></i></a>
+                        <a href="{{ route('cart', ['id' => Auth::guard('student')->user()->id] ) }}"><i class="fa fa-shopping-cart cart-shop" data-number-cart="{{ $numberCart }} aria-hidden="true"></i></a>
+
                             <p id='showBoxButton' class="auth-user" href="">
                                 {{ Auth::guard('student')->user()->name }}
 

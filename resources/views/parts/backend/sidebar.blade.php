@@ -45,13 +45,13 @@
 
                     @hasanyrole($roles)
                         <li class="nav-item">
-                            <div style="color:#c2c7d0;cursor: pointer;" class="nav-link">
+                            <a href= "" class="nav-link">
                                 <i style="margin-right: 12px" class="{{ $item->icon }}" aria-hidden="true"></i>
                                 <p>
                                     {{ $item->name }}
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
-                            </div>
+                            </a>
                             <ul class="nav nav-treeview">
                                 @foreach ($item->childs as $child)
                                     <li class="nav-item">

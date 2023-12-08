@@ -9,6 +9,7 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LessonController;
 
@@ -61,13 +62,17 @@ Route::prefix('posts')->name('posts.')->group(function () {
 
     Route::get('/', [PostController::class,'index'])->name('view');
     Route::get('/posts-detail/{id}', [PostController::class,'postDetail'])->name('postDetail');
+    Route::post('/posts/add', [PostController::class,'add'])->name('postAdd');
 });
 
 
 Route::get('/lesson/{id}', [LessonController::class, 'index'])->name('lesson');
 Route::get('/lessonByCourse/{id_course}', [LessonController::class, 'lessonByIdCourse'])->name('lessonByCourse');
 
-// Route::get('/cart/{id}', [CartController::class, 'index'])->name('cart');
+Route::get('/cart/{id}', [CartController::class, 'index'])->name('cart');
+Route::get('/cart/remove_cart/{courseId}', [CartController::class, 'removeCartItem'])->name('removeCart');
+Route::get('/cart/add_cart/{courseId}', [CartController::class, 'addToCart'])->name('addToCart');
+
 
 Route::prefix('admin')->group(function () {
     Route::get('', function () {

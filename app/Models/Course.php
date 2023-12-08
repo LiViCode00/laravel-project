@@ -25,9 +25,11 @@ class Course extends Model
     {
         return $this->belongsTo(Teacher::class); // Corrected to reference the Teacher model
     }
-    
 
-    
+    public function carts()
+    {
+        return $this->hasMany(Cart::class);
+    }
 
     public static function getCoursePaginated($query, $perPage)
     {

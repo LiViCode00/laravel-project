@@ -4,29 +4,41 @@
 
 @extends('layouts.clients.client')
 @section('title')
-    Chi tiết khóa học
+    Giỏ hàng
 @endsection
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 @section('content')
 <section>
-     <form action="{{ route('cart', ['student_id' => Auth::guard('student')->user()->id)]) }}">
+     <form action="{{ route('cart', ['id' => Auth::guard('student')->user()->id]) }}" >
         <div class="container mt-100">
-          <table id="cart" class="table table-hover table-condensed">
-                    <thead>
+          <table id="cart" class="table table-condensed">
+                  <thead>
                     <tr>
                       <th style="width:50%; font-size: 20px;">Khóa học</th>
                       <th style="width:10%">Giá</th>
-                      <th style="width:8%">Số lượng</th>
                       <th style="width:22%" class="text-center">Số tiền</th>
                       <th style="width:10%"></th>
                     </tr>
                   </thead>
                   <tbody>
+                    @foreach ($courses as $course)
                     <tr>
                       <td data-th="Product">
                         <div class="row my-4">
-                          <div class="col-sm-3 hidden-xs d-flex justify-content-center align-items-center"><img src="/{{$course->image_path}}" alt="img_course" class="img-responsive"/></div>
-                          <div class="col-sm-9">
+                          <div class="checkbox-wrapper-31">
+                            <!-- Thêm data-price vào checkbox để lưu giá của khóa học -->
+                            <input type="checkbox" class="course-checkbox" id="course_{{ $course->id }}" data-price="{{ $course->sale_price }}" value="{{ $course->sale_price }}">
+
+                              <svg viewBox="0 0 35.6 35.6">
+                                <circle class="background" cx="17.8" cy="17.8" r="17.8"></circle>
+                                <circle class="stroke" cx="17.8" cy="17.8" r="14.37"></circle>
+                                <polyline class="check" points="11.78 18.12 15.55 22.23 25.17 12.87"></polyline>
+                              </svg>
+                          </div>
+                          <div class="col-sm-3 hidden-xs d-flex justify-content-center align-items-center"><img style="border-radius: 8px;" src="/{{$course->image_path}}" alt="img_course" class="img-responsive"/ ></div>
+                          <div class="col-sm-8">
                             <h4 class="nomargin">{{$course->name}}</h4>
                             <p class="course-ctn">{{$course->detail}}</p>
                           </div>
@@ -36,27 +48,37 @@
                                         <span><del style="color: gray;">{{number_format($course->price, 0, '', '.') }} đ </del> 
                                         {{number_format($course->sale_price, 0, '', '.')}} đ</span>
                                     </div></p></td>
-                      <td data-th="Quantity my-4">
-                        <input type="number" class="form-control text-center my-4" value="1">
-                      </td>
                       <td data-th="Subtotal" class="text-center my-4"><p class="my-4"><span style="color: red;">{{number_format($course->sale_price, 0, '', '.')}} đ</span></p></td>
                       <td class="actions" data-th="">
-                        <button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
-                        <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>								
+                      <a href="{{route('removeCart', ['courseId' => $course->id] )}}">
+                          <button class="noselect button_edit mt-4" type="button" >
+                            <span class="text">Xóa</span>
+                            <span class="icon">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                <path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z">
+                                </path>
+                              </svg>
+                            </span>
+                          </button>			
+                      </a>					
                       </td>
                     </tr>
+                    @endforeach
                   </tbody>
                   <tfoot>
                     <tr>
-                      <td><a href="#" class="btn btn-warning p-3"><i class="fa fa-angle-left pr-3"></i>Tiếp tục xem khóa học</a></td>
+                      <td><a href="{{route('courses.view')}}" class="btn btn-warning"><i class="fa fa-angle-left pr-3"></i>Tiếp tục xem khóa học</a></td>
                       <td colspan="2" class="hidden-xs"></td>
-                      <td class="hidden-xs text-center pt-4"><b >Total: {{number_format($course->sale_price, 0, '', '.')}} đ</b></td>
-                      <td><a href="#" class="btn btn-success btn-block p-3 ">Mua khóa học <i class="fa fa-angle-right"></i></a></td>
+                      <td class="hidden-xs text-center pt-4">
+                          <b>Total: <span id="totalAmount">{{ number_format($total, 0, '', '.') }} đ</span></b>
+                            </td>
+                      <td><a href="#" class="btn btn-success btn-block">Mua khóa học <i class="fa fa-angle-right"></i></a></td>
                     </tr>
                   </tfoot>
             </table>
         </div>
-     </form>     
+     </form>  
+
 
 </section>
 @endsection

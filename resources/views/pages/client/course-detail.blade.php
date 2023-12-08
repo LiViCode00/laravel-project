@@ -309,7 +309,7 @@
                                 </div>
                                 <div class="d-flex flex-wrap justify-content-center align-items-center">
                                 @if(Auth::guard('student')->check())
-                                        <a href="{{ route('cart', ['id' => Auth::guard('student')->user()->id]) }}" class="main-btn p-2">Thêm vào giỏ hàng</a>
+                                        <a href="{{ route('addToCart', ['courseId' => $course->id]) }}" class="main-btn p-2">Thêm vào giỏ hàng</a>
                                 @else
                                         <a href="{{route ('login')}}" class="main-btn p-2">Thêm vào giỏ hàng</a>
                                 @endif

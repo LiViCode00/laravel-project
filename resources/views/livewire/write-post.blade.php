@@ -4,9 +4,7 @@
 @endsection
 
 @section('content')
-        <form method="POST" action="{{ route('posts.postAdd') }}" enctype="multipart/form-data" >
-            @csrf
-
+        <form wire:submit.prevent = "storePost">
             <div class="container">
                 @if (Session::has('message'))
                     <div class="alert alert-success" role="alert">{{Session::get('message')}}
@@ -17,7 +15,7 @@
                         <select name="category_id" class="form-select" aria-label="Default select example">
                             <option selected>Chọn thể loại phù hợp với bài viết</option>
                             @foreach($categories as $cate)
-                            <option name="category_id" value="{{$cate->id}} {{ old('category') == $cate->id ? 'selected' : '' }}">{{$cate->name}}</option>
+                            <option name="category" value="{{$cate->id}} {{ old('category') == $cate->id ? 'selected' : '' }}">{{$cate->name}}</option>
                             @endforeach
                         </select>
                     </div>  
@@ -25,13 +23,13 @@
                 <div class="row mt-5">
                     <div class="col-lg-12">
                         <div class="mb-2">Title <span style="color: red;">(*) </span>:</div>
-                        <input name="title" value="{{ old('title') }}" class="form-title" type="text" placeholder="Nhập title" aria-label="default input example">
+                        <input name="title" value="{{ old('title') }}" wire:keyup="generateSlug" class="form-title" type="text" placeholder="Nhập title" aria-label="default input example">
                     </div>
                 </div>
                 <div class="row mt-5">
                     <div class="col-lg-12">
                         <div class="mb-2">Hình ảnh: <span style="color: red;">(*) </span>:</div>
-                        <input name="image" class="form-title" type="file" >
+                        <input name="image" wire:model="image" class="form-title" type="file" >
                     </div>
                 </div>
                 <div class="row mt-5">
@@ -40,6 +38,12 @@
                         <textarea id="editor" name="content" wire:model="content">
                             Viết bài post ở đây 
                         </textarea>
+
+                          <!-- Thêm trường ẩn cho title -->
+                        <input type="hidden" name="title" id="postTitle" value="">
+
+                        <!-- Thêm trường ẩn cho image_paths -->
+                        <input type="hidden" name="image_paths" id="postImagePaths" value="">
 
                         <div style="float: right;"><button type="submit" class="btn-phu mt-5" style=" border: 1px solod">Đăng bài</button></div>
                                 
