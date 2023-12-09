@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
+use App\Models\ChildMenu;
+use App\Models\Menu;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -60,10 +62,7 @@ class AdminController extends Controller
         return back()->with('notice', 'Cập nhật thông tin thành công');
     }
 
-    public function menu()
-    {
-        return view('pages.backend.menu');
-    }
+   
 
     public function listRole()
     {
@@ -197,5 +196,64 @@ class AdminController extends Controller
         }
         $permission->delete();
         return redirect()->route('admin.permission.index')->with('success', 'Quyền hạn đã được xóa thành công.');
+    }
+
+    public function menu()
+    {
+        $menus=Menu::all();
+        return view('pages.backend.menu',compact('menus'));
+    }
+    public function setting(Request $request){
+        $request->validate(
+            [
+                "name" => "required|string|unique:menus",
+                'uri' => 'required|string',
+                
+            ],
+            [
+                'required' => ':attribute bắt buộc phải nhập.',
+                'string' => ':attribute phải là kí tự.',
+                'unique' => ':attribute đã tồn tại',
+                
+            ],
+            [
+                'name' => 'Tiêu đề',
+                'uri' => 'Đường dẫn route',
+               
+            ]
+        );
+
+        $name=$request->name;
+        $uri=$request->uri;
+        
+        $parent_id=$request->parent_id;
+        if($parent_id==0){
+            $menu=new Menu();
+            $menu->name=$name;
+            $menu->role=$uri;
+            $menu->save();
+        } else {
+            $child_menu=new ChildMenu();
+            $child_menu->name=$name;
+            $child_menu->link=$uri;
+            $child_menu->menu_id=$parent_id;
+            $child_menu->save();
+        }
+
+        return back()->with('success',"Thêm mới menu thành công");
+
+       
+
+    }
+
+    public function deleteMenu($id){
+        $menu=Menu::find($id);
+        $menu->delete();
+        return back()->with('success',"Xóa menu thành công");
+    }
+    public function deleteChildMenu($id){
+        $child=ChildMenu::find($id);
+        $child->delete();
+        return back()->with('success',"Xóa menu thành công");
     }
 }

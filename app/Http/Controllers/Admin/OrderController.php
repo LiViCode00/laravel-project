@@ -9,6 +9,7 @@ use App\Models\Group;
 use App\Models\category;
 use App\Models\Course;
 use App\Models\Order;
+use App\Models\OrderDetail;
 use App\Models\Student;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
@@ -23,6 +24,7 @@ class OrderController extends Controller
     {
         $students = Student::all();
         $courses = Course::all();
+        
         return view('pages.backend.order.add', compact(['students', 'courses']));
     }
     public function postAdd(Request $request, Order $order)
@@ -30,18 +32,43 @@ class OrderController extends Controller
         $request->validate(
             [
                 'student' => ['required', 'integer', function ($attribute, $value, $fail) {
-                    if ($value === 0) {
+                    if ($value == 0) {
                         return $fail('Vui lòng chọn học viên');
                     }
                 }]
             ],
-            []
+            [
+
+            ]
         );
+
+       
 
         $student_id = $request->student;
         $order = new Order();
         $order->student_id = $student_id;
-        return response()->json(['status' => 'success', 'data' => $order]);
+        $order->save();
+
+
+        $courses_id=$request->input('courses',[]);
+        $total=0;
+        foreach ($courses_id as $id) {
+           
+            $course=Course::find($id);
+            $detail=new OrderDetail();
+            $detail->order_id= $order->id;
+            $detail->course_id=$id;
+            $detail->price=$course->sale_price;
+            $detail->save();
+            $total+=$detail->price;
+        }
+
+        $order->total=$total;
+        $order->save();
+
+        return redirect()->route('admin.order.index')->with('success',"Thêm đơn hàng thành công");
+
+       
     }
 
 
@@ -117,6 +144,8 @@ class OrderController extends Controller
 
     public function delete(Order $order)
     {
+        $order->delete();
+        return back()->with('success',"Xóa đơn hàng thành công");
     }
 
 

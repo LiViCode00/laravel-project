@@ -66,6 +66,6 @@ class Cart extends Model
         ->groupBy('student_id')
         ->first();
 
-        return $result->number_of_courses;
+        return ($result->number_of_courses ?? 0);
     }
 }

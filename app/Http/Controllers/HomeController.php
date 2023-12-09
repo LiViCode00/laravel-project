@@ -5,8 +5,7 @@ use App\Models\Course;
 use App\Models\Post;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
-
-
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 
@@ -45,11 +44,19 @@ class HomeController extends Controller
     public function index()
 
     {
+
+        $coursesOfStudent=[];
+        if(Auth::guard('student')->user()){
+            $coursesOfStudent=Auth::guard('student')->user()->courses;
+          
+        }
+       
         return view('pages.client.home', [
             'coursesFree' => $this->coursesForFree,
             'coursePaid' => $this->paidCourse,
             'teachers' => $this->teacherAtHome,
             'posts' => $this->postAtHome,
+            'coursesOfStudent'=>$coursesOfStudent
             
         ]);
     }

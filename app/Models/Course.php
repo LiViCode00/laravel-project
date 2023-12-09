@@ -55,6 +55,11 @@ class Course extends Model
         return $this->hasOne(OrderDetail::class);
        }
 
+       public function students()
+    {
+        return $this->belongsToMany(Student::class, 'courses_students', 'course_id', 'student_id');
+    }
+
 
     public static function getCoursesForFree()
     {

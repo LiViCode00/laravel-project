@@ -1,13 +1,17 @@
+<?php
+use App\Models\Cart;
+use Illuminate\Support\Facades\Auth;
 
-<?php 
-    use App\Models\Cart;
-    use Illuminate\Support\Facades\Auth;
-
+if (Auth::guard('student')->user()) {
     $numberCart = Cart::countCourseFromCart(Auth::guard('student')->user()->id);
+} else {
+    $numberCart='';
+}
+
 ?>
 
 <style>
-    .cart-shop::after{
+    .cart-shop::after {
         content: '{{ $numberCart }}';
     }
 </style>
@@ -25,28 +29,30 @@
                 </div>
 
                 <div class="search_box-total col-lg-4 col-md-8  d-none d-sm-block">
-                       <form class="search_box" action="{{url('search_product')}}" method="POST">
-                            @csrf
-                           <input type="text" name="search" id="search_input"
-                                placeholder="Tìm kiếm khóa học, bài viết, video ...">
-                           <button type="submit"><i class="fa fa-search search_box-btn" aria-hidden="true"></i></button>
-                       </form>
+                    <form class="search_box" action="{{ url('search_product') }}" method="POST">
+                        @csrf
+                        <input type="text" name="search" id="search_input"
+                            placeholder="Tìm kiếm khóa học, bài viết, video ...">
+                        <button type="submit"><i class="fa fa-search search_box-btn" aria-hidden="true"></i></button>
+                    </form>
                 </div>
 
                 <div id="result" class="panel panel-default" style="display: none;">
                     <ul class="list-group" id="list-result">
-                        
+
                     </ul>
                 </div>
 
-                
-              
+
+
 
                 <div class="col-lg-4 col-md-4 col-12 d-flex justify-content-end align-items-center">
 
                     @if (Auth::guard('student')->check())
                         <div class="d-flex justify-content-between align-items-center">
-                        <a href="{{ route('cart', ['id' => Auth::guard('student')->user()->id] ) }}"><i class="fa fa-shopping-cart cart-shop" data-number-cart="{{ $numberCart }} aria-hidden="true"></i></a>
+                            <a href="{{ route('cart', ['id' => Auth::guard('student')->user()->id]) }}"><i
+                                    class="fa fa-shopping-cart cart-shop"
+                                    data-number-cart="{{ $numberCart->number_of_courses ?? '0' }} aria-hidden="true"></i></a>
 
                             <p id='showBoxButton' class="auth-user" href="">
                                 {{ Auth::guard('student')->user()->name }}
@@ -78,7 +84,7 @@
                             <a href="{{ route('register') }}" class="main-btn">Đăng ký</a>
                         </div>
                     @endif
-                   
+
 
                 </div>
 

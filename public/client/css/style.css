@@ -1572,7 +1572,7 @@ p {
     overflow: hidden;
     margin-bottom: 30px;
     min-width: 293px;
-    min-height: 180px;
+    /* min-height: 180px; */
 }
 .singel-course > .thum {
     position: relative;

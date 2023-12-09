@@ -32,7 +32,7 @@ class MenuSeeder extends Seeder
                 'role'=>'admin,teacher,student'
             ],
             [
-                'name' => 'Học viên & Giảng viên',
+                'name' => 'Người dùng hệ thống',
                 'icon' => 'fa fa-user',
                 'role'=>'admin'
             ],

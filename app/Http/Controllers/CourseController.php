@@ -6,10 +6,12 @@ use App\Models\Category;
 use App\Models\Course;
 use App\Models\Review;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
 {
-    public function index(Request $request){
+    public function index(Request $request)
+    {
 
         $query = Course::query();
 
@@ -18,19 +20,19 @@ class CourseController extends Controller
                 $q->whereIn('id', $request->category);
             });
         }
-        
-        if (isset($request->min) && $request->min != null){
+
+        if (isset($request->min) && $request->min != null) {
             $query->where('price', '>=', $request->min);
         }
-        if (isset($request->max) && $request->max != null){ 
+        if (isset($request->max) && $request->max != null) {
             $query->where('price', '<=', $request->max);
         }
 
-        $courses = Course::getCoursePaginated($query, 6); 
-        $countCourse = Course::getCountCourse($query); 
-        
+        $courses = Course::getCoursePaginated($query, 6);
+        $countCourse = Course::getCountCourse($query);
+
         $cate = Category::getAllCate();
-        
+
         return view("pages.client.courses", [
             'courses' => $courses,
             'count' => $countCourse,
@@ -38,18 +40,25 @@ class CourseController extends Controller
         ]);
     }
 
-    public function courseDetail($id){
-        $course = Course::getCourseById($id);
-       
+    public function courseDetail($id)
+    {
+        $course = Course::find($id);
+        $coursesOfStudent = [];
 
-        if(!$course) {
-            abort(404, "Page not found");
+        $firstLesson = $course->lessons->first()->videos->first();
+
+
+
+        if (Auth::guard('student')->user()) {
+            $coursesOfStudent = Auth::guard('student')->user()->courses;
         }
-        else{
+        if (!$course) {
+            abort(404, "Page not found");
+        } else {
             $course_id_cate = $course->category_id;
             $coursesCate = Course::getCourseByCategories($course_id_cate);
             $courseLatest = Course::getCourseRandom($course->id);
-            $lesson = Course::getLessonByCourse($id);
+            $lesson = $course->lessons;
             $reviews = Review::getReviewByCourse($id, 5);
 
             return view('pages.client.course-detail', [
@@ -57,12 +66,10 @@ class CourseController extends Controller
                 'coursesCate' => $coursesCate,
                 'courseLatest' => $courseLatest,
                 'lessons' => $lesson,
-                'reviews' => $reviews
+                'reviews' => $reviews,
+                'coursesOfStudent' => $coursesOfStudent,
+                'firstLesson' => $firstLesson
             ]);
         }
     }
-
-   
-
-   
 }

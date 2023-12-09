@@ -16,68 +16,25 @@ class LessonSeeder extends Seeder
      * @return void
      */
     public function run()
-    {   
+    {
+        $courses = Course::all();
 
-        $courses=Course::all();
-        $lessons=[
-            [
-                'name' => 'Băt đầu với HTML và CSS',
-                'slug' => Str::slug('Lesson '),
-                'description' => 'Tìm hiểu cơ bản về ' ,
-                'durations' => rand(10, 60),
-                'position' => rand(1,10),
-                'views' => rand(100, 1000),
-                'course_id' =>$courses->random()->id 
-            ],
-            [
-                'name' => 'Băt đầu với C++',
-                'slug' => Str::slug('Lesson '),
-                'description' => 'Tìm hiểu cơ bản về ' ,
-                'durations' => rand(10, 60),
-                'position' => rand(1,10),
-                'views' => rand(100, 1000),
-                 'course_id' =>$courses->random()->id 
-            ],
-            [
-                'name' => 'JavaScript và NodeJs',
-                'slug' => Str::slug('Lesson '),
-                'description' => 'Tìm hiểu cơ bản về ' ,
-                'durations' => rand(10, 60),
-                'position' => rand(1,10),
-                'views' => rand(100, 1000),
-                 'course_id' =>$courses->random()->id 
-            ],
-            [
-                'name' => 'Băt đầu với NodeJS và ExpressJS',
-                'slug' => Str::slug('Lesson '),
-                'description' => 'Tìm hiểu cơ bản về ' ,
-                'durations' => rand(10, 60),
-                'position' => rand(1,10),
-                'views' => rand(100, 1000),
-                 'course_id' =>$courses->random()->id 
-            ],
-            [
-                'name' => 'Băt đầu với ReactJs',
-                'slug' => Str::slug('Lesson '),
-                'description' => 'Tìm hiểu cơ bản về ' ,
-                'durations' => rand(10, 60),
-                'position' => rand(1,10),
-                'views' => rand(100, 1000),
-                 'course_id' =>$courses->random()->id 
-            ],
-            
-        ];
+        foreach ($courses as $course) {
+            for ($i = 1; $i < 5; $i++) {
+                $lessonName = 'Bắt đầu với ' . $course->name . ' - Lesson ' . $i;
 
-        foreach ($lessons as $lesson) {
-            Lesson::updateOrCreate(
-                [
-                    'name' => $lesson['name'],
-                ],
-                $lesson
-            );
+                Lesson::updateOrCreate(
+                    ['name' => $lessonName],
+                    [
+                        'name' => $lessonName,
+                        'description' => 'Tìm hiểu cơ bản về ' . $course->name . ' - Lesson ' . $i,
+                        'durations' => rand(10, 60),
+                        'position' => rand(1, 10),
+                        'views' => rand(100, 1000),
+                        'course_id' => $course->id
+                    ]
+                );
+            }
         }
-        
-        
     }
 }
-

@@ -1,3 +1,4 @@
+<html>
 <div class="table-responsive">
     <table id="example1" class="table table-bordered table-striped dataTable dtr-inline" aria-describedby="example1_info">
         <thead>
@@ -15,7 +16,7 @@
                     aria-label="Browser: activate to sort column ascending">Nhóm</th>
                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                     aria-label="Browser: activate to sort column ascending">Vai trò</th>
-               
+
                 <th style="width: 15%" class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
                     colspan="1" aria-label="Platform(s): activate to sort column ascending" style="">Email
                 </th>
@@ -44,15 +45,15 @@
                             <img style="width: 100%" src="{{ asset('storage/' . $user->image_path) }}" alt="">
                         </td>
 
-                        <td>{{$user->group->name}}</td>
+                        <td>{{ $user->group->name }}</td>
                         <td style="">
                             @foreach ($user->getRoleNames() as $item)
                                 <span class="badge badge-success">{{ $item }}</span>
                             @endforeach
-                           
+
                         </td>
-                       
-                        
+
+
                         <td>{{ $user->email }}</td>
 
                         <td style=""></td>
@@ -92,13 +93,18 @@
                                     </span>
                                 </a>
 
-                                <a style="margin: 0 4px; border-radius: 4px"
-                                    href='{{ route('admin.user.delete', ['user' => $user]) }}'>
-                                    <span style="border-radius: 2px" title="Delete" type='button'
-                                        onclick="return confirmDelete() " class="btn btn-flat btn-sm btn-danger">
-                                        <i class="fa fa-trash" aria-hidden="true"></i>
-                                    </span></a>
-                                </a>
+                                @if (Auth::user())
+                                    @if ($user->id != Auth::user()->id)
+                                        <a style="margin: 0 4px; border-radius: 4px"
+                                            href='{{ route('admin.user.delete', ['user' => $user]) }}'>
+                                            <span style="border-radius: 2px" title="Delete" type='button'
+                                                onclick="return confirmDelete() "
+                                                class="btn btn-flat btn-sm btn-danger">
+                                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                            </span></a>
+                                        </a>
+                                    @endif
+                                @endif
                             @endif
                         </td>
 
@@ -124,3 +130,19 @@
         </div>
     </div>
 </div>
+
+</html>
+
+<script>
+    function confirmDelete() {
+
+        var result = confirm("Bạn có chắc chắn muốn xóa không?");
+        return result;
+    }
+
+    function confirmRestore() {
+
+        var result = confirm("Bạn có chắc chắn muốn khôi phục không?");
+        return result;
+    }
+</script>

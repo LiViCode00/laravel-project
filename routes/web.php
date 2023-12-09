@@ -64,10 +64,20 @@ Route::prefix('posts')->name('posts.')->group(function () {
     Route::get('/posts-detail/{id}', [PostController::class,'postDetail'])->name('postDetail');
     Route::post('/posts/add', [PostController::class,'add'])->name('postAdd');
 });
+Route::get('/payment/{course}', [UserOrderController::class, 'payment'])->name('payment');
 
+Route::get('/cart/payment/', [UserOrderController::class, 'cartPayment'])->name('cart-payment');
 
-Route::get('/lesson/{id}', [LessonController::class, 'index'])->name('lesson');
-Route::get('/lessonByCourse/{id_course}', [LessonController::class, 'lessonByIdCourse'])->name('lessonByCourse');
+Route::post('/payment{course}', [UserOrderController::class, 'postPayment'])->name('post-payment');
+
+Route::post('/cart/payment', [UserOrderController::class, 'postCartPayment'])->name('post-cart-payment');
+
+Route::post('/cart/control/payment', [UserOrderController::class, 'cartControlPayment'])->name('cart-control-payment');
+
+// Route::get('/lesson/{id}', [LessonController::class, 'index'])->name('lesson');
+// Route::get('/lessonByCourse/{id_course}', [LessonController::class, 'lessonByIdCourse'])->name('lessonByCourse');
+
+ Route::get('/lesson/{id_video}', [LessonController::class, 'index'])->name('lesson');
 
 Route::get('/cart/{id}', [CartController::class, 'index'])->name('cart');
 Route::get('/cart/remove_cart/{courseId}', [CartController::class, 'removeCartItem'])->name('removeCart');
@@ -87,7 +97,7 @@ Route::prefix('student')->name('student.')->group(function () {
     Route::post('/edit/{id}', [StudentController::class, 'editProfile'])->name('edit-profile');
 });
 
-Route::get('/payment/{course}', [UserOrderController::class, 'order'])->name('order');
+
 
 
 Route::get('/ajax-example', [AjaxController::class, 'index']);

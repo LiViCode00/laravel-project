@@ -93,8 +93,10 @@ class ReviewController extends Controller
     {
     }
 
-    public function delete()
+    public function delete(Review $review)
     {
+        $review->delete();
+        return redirect()->route('admin.review.list')->with('Xóa đánh giá thành công.');
     }
 
 

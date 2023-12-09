@@ -290,7 +290,14 @@ Route::prefix('admin')->name('admin.')->group(function () {
         });
 
         Route::prefix('menu')->middleware(['auth', 'role:admin'])->name('menu.')->group(function () {
+
                 Route::get('/', [AdminController::class, 'menu'])->name('index');
+
+                Route::post('/', [AdminController::class, 'setting'])->name('setting');
+
+                Route::get('/delete/{id}' , [AdminController::class, 'deleteMenu'])->name('delete');
+
+                Route::get('/child-delete/{id}' , [AdminController::class, 'deleteChildMenu'])->name('child-delete');
         });
 
        

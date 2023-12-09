@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\ChildMenu;
+use App\Models\Menu;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -15,64 +16,67 @@ class ChildMenuSeeder extends Seeder
      */
     public function run()
     {
-        $childs_menu=[
+
+        $menu_cart = Menu::where('name', 'Quản lý đơn hàng')->first()->id;
+        $menu_course = Menu::where('name', 'Khóa học & Danh mục')->first()->id;
+        $menu_post = Menu::where('name', 'Nội dung')->first()->id;
+        $menu_user = Menu::where('name', 'Người dùng hệ thống')->first()->id;
+        $menu_permission = Menu::where('name', 'Quyền hạn người dùng')->first()->id;
+        $menu_menu = Menu::where('name', 'Quản lý chung')->first()->id;
+        $childs_menu = [
             [
-                'name'=>'Đơn hàng',
-                'menu_id'=>'1',
-                'link'=> 'admin.order.index'
+                'name' => 'Đơn hàng',
+                'menu_id' => $menu_cart,
+                'link' => 'admin.order.index'
             ],
             [
-                'name'=>'Quản lý khóa học',
-                'menu_id'=>'2',
-                'link'=> 'admin.course.index'
+                'name' => 'Quản lý khóa học',
+                'menu_id' => $menu_course,
+                'link' => 'admin.course.index'
             ],
             [
-                'name'=>'Quản lý danh mục',
-                'menu_id'=>'2',
-                'link'=> 'admin.category.index'
+                'name' => 'Quản lý danh mục',
+                'menu_id' => $menu_course,
+                'link' => 'admin.category.index'
             ],
             [
-                'name'=>'Đánh giá',
-                'menu_id'=>'3',
-                'link'=> 'admin.review.index'
+                'name' => 'Đánh giá',
+                'menu_id' => $menu_post,
+                'link' => 'admin.review.index'
             ],
             [
-                'name'=>'Tin tức',
-                'menu_id'=>'3',
-                'link'=> 'admin.post.index'
+                'name' => 'Tin tức',
+                'menu_id' => $menu_post,
+                'link' => 'admin.post.index'
             ],
             [
-                'name'=>'Quản lý người dùng',
-                'menu_id'=>'4',
-                'link'=>'admin.user.index'
+                'name' => 'Quản lý người dùng',
+                'menu_id' => $menu_user,
+                'link' => 'admin.user.index'
+            ],
+
+            [
+                'name' => 'Quản lý giảng viên',
+                'menu_id' => $menu_user,
+                'link' => 'admin.teacher.index'
+            ],
+
+            [
+                'name' => 'Nhóm quyền',
+                'menu_id' => $menu_permission,
+                'link' => 'admin.role.index'
             ],
             [
-                'name'=>'Quản lý học viên',
-                'menu_id'=>'4',
-                'link'=> 'admin.student.index'
+                'name' => 'Quyền hạn',
+                'menu_id' => $menu_permission,
+                'link' => 'admin.permission.index'
             ],
             [
-                'name'=>'Quản lý giảng viên',
-                'menu_id'=>'4',
-                'link'=> 'admin.teacher.index'
+                'name' => 'Menu',
+                'menu_id' => $menu_menu,
+                'link' => 'admin.menu.index'
             ],
-            
-            [
-                'name'=>'Nhóm quyền',
-                'menu_id'=>'5',
-                'link'=> 'admin.role.index'
-            ],
-            [
-                'name'=>'Quyền hạn',
-                'menu_id'=>'5',
-                'link'=> 'admin.permission.index'
-            ],
-            [
-                'name'=>'Menu',
-                'menu_id'=>'6',
-                'link'=> 'admin.course.index'
-            ],
-           
+
         ];
         foreach ($childs_menu as $child) {
             ChildMenu::updateOrCreate(['name' => $child['name']], $child);

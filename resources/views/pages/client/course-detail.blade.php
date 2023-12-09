@@ -7,6 +7,7 @@
     Chi tiết khóa học
 @endsection
 
+
 @section('content')
     <section id="corses-singel" class="pt-40 pb-120">
         <div class="container container-edit">
@@ -21,7 +22,7 @@
                                 <li>
                                     <div class="teacher-name">
                                         <div class="thum">
-                                            <img src="{{asset('storage/'.$course->teacher_img) }}" alt="Teacher">
+                                            <img src="/{{ $course->teacher_img }}" alt="Teacher">
                                         </div>
                                         <div class="name">
                                             <span>Teacher</span>
@@ -100,40 +101,78 @@
                                 <div class="tab-pane fade" id="curriculam" role="tabpanel" aria-labelledby="curriculam-tab">
                                     <div class="curriculam-cont">
                                         <div class="title">
-                                            <h6>Dưới đây là tất cả lessons của khóa học này</h6>
+                                            {{-- <h6>Dưới đây là tất cả lessons của khóa học này</h6> --}}
+                                            {{-- <a href="{{ route('lesson', ['id_course' => $course->id]) }}">click vao day de
+                                                hoc</a> --}}
                                         </div>
                                         <div class="accordion" id="accordionExample">
 
-                                            @for ($i = 0; $i < count($lessons); $i++)
+                                            @foreach ($lessons as $item)
                                                 <div class="card">
-                                                    <div class="card-header" id="heading-{{ $lessons[$i]->id }}">
+                                                    <div class="card-header" id="heading-{{ $item->id }}">
                                                         <a href="#" class="collapsed" data-toggle="collapse"
-                                                            data-target="#collapse-{{ $lessons[$i]->id }}"
+                                                            data-target="#collapse-{{ $item->id }}"
                                                             aria-expanded="false"
-                                                            aria-controls="collapse-{{ $lessons[$i]->id }}">
+                                                            aria-controls="collapse-{{ $item->id }}">
                                                             <ul>
                                                                 <li><i class="fa fa-file-o"></i></li>
                                                                 <li><span class="lecture">Lecture
-                                                                        {{ $i + 1 }}.</span></li>
-                                                                <li><span class="head">{{ $lessons[$i]->name }}</span>
+                                                                        .</span></li>
+                                                                <li><span class="head">{{ $item->name }}</span>
                                                                 </li>
                                                                 <li><span class="time d-none d-md-block"><i
                                                                             class="fa fa-clock-o"></i>
-                                                                        <span>{{ number_format($lessons[$i]->durations, 2, '.', '') }}</span></span>
+                                                                        <span>{{ number_format($item->durations, 2, '.', '') }}</span></span>
                                                                 </li>
                                                             </ul>
                                                         </a>
                                                     </div>
 
-                                                    <div id="collapse-{{ $lessons[$i]->id }}" class="collapse"
-                                                        aria-labelledby="heading-{{ $lessons[$i]->id }}"
+                                                    <div id="collapse-{{ $item->id }}" class="collapse"
+                                                        aria-labelledby="heading-{{ $item->id }}"
                                                         data-parent="#accordionExample">
-                                                        <div class="card-body pt-3">
-                                                            <p>{{ $lessons[$i]->description }}</p>
+                                                        <div style="border: 1px solid #ccc;
+                                                        border-radius: 5px;
+                                                        padding:  0;"
+                                                            class="card-body ">
+                                                            <ul class="lectures_lists">
+                                                                @foreach ($item->videos as $video)
+                                                                    <div class="lectures_lists_title">
+
+                                                                        @if (!Auth::guard('student')->user())
+                                                                            <a href="{{ route('login') }}">
+                                                                                <i style="margin: 0 8px"
+                                                                                    class="fa fa-play"
+                                                                                    aria-hidden="true"></i>
+                                                                                {{ $video->name }}</a>
+                                                                        @else
+                                                                            @if ($coursesOfStudent->contains('id', $course->id))
+                                                                                <a
+                                                                                    href="{{ route('lesson', ['id_video' => $video->id]) }}">
+                                                                                    <i style="margin: 0 8px"
+                                                                                        class="fa fa-play"
+                                                                                        aria-hidden="true"></i>
+                                                                                    {{ $video->name }}</a>
+                                                                            @else
+                                                                                <p> <i style="margin: 0 8px"
+                                                                                        class="fa fa-play"
+                                                                                        aria-hidden="true"></i>{{ $video->name }}</a>
+                                                                                </p>
+                                                                            @endif
+                                                                        @endif
+
+
+                                                                    </div>
+                                                                @endforeach
+                                                            </ul>
+
+
                                                         </div>
                                                     </div>
                                                 </div>
-                                            @endfor
+                                            @endforeach
+
+
                                         </div>
                                     </div> <!-- curriculam cont -->
                                 </div>
@@ -142,7 +181,7 @@
                                     <div class="instructor-cont">
                                         <div class="instructor-author">
                                             <div class="author-thum">
-                                                <img src="{{asset('storage/'.$course->teacher_img )}}" alt="Instructor">
+                                                <img src="/{{ $course->teacher_img }}" alt="Instructor">
                                             </div>
                                             <div class="author-name">
                                                 <a href="#">
@@ -150,7 +189,7 @@
                                                 </a>
                                                 <span>Senior WordPress Developer</span>
                                                 <ul class="social">
-                                                    <li><a href="#"><i class="dfa fa-facebook-f"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-facebook-f"></i></a></li>
                                                     <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                                                     <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
                                                     <li><a href="#"><i class="fa fa-instagram"></i></a></li>
@@ -307,20 +346,18 @@
                                         </b></span>
 
                                 </div>
-                                <div class="d-flex flex-wrap justify-content-center align-items-center">
-                                @if(Auth::guard('student')->check())
-                                        <a href="{{ route('addToCart', ['courseId' => $course->id]) }}" class="main-btn p-2">Thêm vào giỏ hàng</a>
-                                @else
-                                        <a href="{{route ('login')}}" class="main-btn p-2">Thêm vào giỏ hàng</a>
-                                @endif
-                                @if ($course->sale_price == 0)
-                                    <a href="{{ route('lessonByCourse', ['id_course' => $course->id]) }}" class="main-btn p-2" >Đăng ký</a>
-                                @else
-                                    <a href="{{ route('order', ['course' => $course->id]) }}" class="main-btn p-2" >Mua khóa học</a>
-                                @endif
+                                <div class="d-flex justify-content-center">
+
+                                    @if ($coursesOfStudent->contains('id', $course->id))
+                                        <a href='{{ route('lesson', $firstLesson->id) }}' class="main-btn pr-4">Vào học ngay</a>
+                                    @else
+                                        <a href="#" class="main-btn pr-4">Thêm vào giỏ hàng</a>
+                                        <a href='{{ route('payment', $course->id) }}' class="main-btn pr-4">Mua khóa
+                                            học</a>
+                                    @endif
 
 
-                            </div>
+                                </div>
                             </div> <!-- course features -->
                         </div>
                         <div class="col-lg-12 col-md-6">
@@ -386,7 +423,7 @@
                                             </a>
                                             <div class="course-teacher">
                                                 <div class="thum">
-                                                    <a href="#"><img src="{{asset('storage/'.$course->teacher_img )}}"
+                                                    <a href="#"><img src="/{{ $course->teacher_img }}"
                                                             alt="teacher"></a>
                                                 </div>
                                                 <div class="name">
