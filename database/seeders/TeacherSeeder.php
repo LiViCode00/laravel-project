@@ -11,6 +11,7 @@ class TeacherSeeder extends Seeder
 {
     public function run()
     {
+        $users=User::where('group_id','2')->get();
         $teachers = [
             [
                 'id' => '1',
@@ -26,6 +27,7 @@ class TeacherSeeder extends Seeder
                 
                 Hiểu rõ triết lý phát triển phần mềm theo mô hình Devops, DevSecOps, Agile,... ',
                 'exp' => '1.5',
+                'user_id'=>$users->random()->id,
 
             ],
             [
@@ -36,6 +38,7 @@ class TeacherSeeder extends Seeder
                 
                 * Có chứng chỉ quốc tế: MCSE Cloud Platform and Infrastructure, MCSE Server Infrastructure, LPIC-2 (Linux Professinal Institute), AWS Certified Solutions Architect, AWS Certified SysOps Administrator, Linux Academy Red Hat Certified Engineer  ',
                 'exp' => '1.5',
+                'user_id'=>$users->random()->id,
 
             ],
             [
@@ -46,6 +49,7 @@ class TeacherSeeder extends Seeder
                 
                 * Có chứng chỉ quốc tế: MCSE Cloud Platform and Infrastructure, MCSE Server Infrastructure, LPIC-2 (Linux Professinal Institute), AWS Certified Solutions Architect, AWS Certified SysOps Administrator, Linux Academy Red Hat Certified Engineer  ',
                 'exp' => '1.5',
+                'user_id'=>$users->random()->id,
 
             ],
             [
@@ -56,6 +60,7 @@ class TeacherSeeder extends Seeder
                 
                 * Có chứng chỉ quốc tế: MCSE Cloud Platform and Infrastructure, MCSE Server Infrastructure, LPIC-2 (Linux Professinal Institute), AWS Certified Solutions Architect, AWS Certified SysOps Administrator, Linux Academy Red Hat Certified Engineer',
                 'exp' => '1.5',
+                'user_id'=>$users->random()->id,
             ]
 
 

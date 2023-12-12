@@ -108,7 +108,7 @@
                                     <p><small>10 mins ago</small></p>
                                 </div>
                                 <div class="notification-list_feature-img">
-                                    <img src="https://i.imgur.com/AbZqFnR.jpg" alt="Feature image">
+                                    <img src="{{asset('storage/'.$item->image_path)}}" alt="Feature image">
                                 </div>
                             </div>
                         </a>
@@ -193,7 +193,8 @@
                                 <p><small>10 mins ago</small></p>
                             </div>
                             <div class="notification-list_feature-img">
-                                <img src="https://i.imgur.com/AbZqFnR.jpg" alt="Feature image">
+                                
+
                             </div>
                         </div></a>`;
 

@@ -71,7 +71,7 @@ form label {
     width: 100%;
     -webkit-transition: all 0.4s linear;
     transition: all 0.4s linear;
-   
+
     object-fit: cover;
 }
 .singel-course .thum .price {
@@ -117,7 +117,7 @@ form label {
     width: 100%;
     -webkit-transition: all 0.4s linear;
     transition: all 0.4s linear;
-   
+
     object-fit: cover;
 }
 .singel-course .course-teacher > .thum img {
@@ -183,7 +183,7 @@ form label {
     width: 100%;
     -webkit-transition: all 0.4s linear;
     transition: all 0.4s linear;
-   
+
     object-fit: cover;
 }
 .singel-course:hover .thum .image img {
@@ -391,8 +391,6 @@ form label {
     transition: all 0.3s ease;
     max-height: 0;
 }
-
-
 
 @keyframes slideInRight {
     from {
@@ -721,8 +719,8 @@ td a:hover {
 }
 
 .notification-list .notification-list_feature-img img {
-    height: 48px;
-    width: 48px;
+  
+    width: 100px;
     border-radius: 5px;
     margin-left: 20px;
 }
@@ -1112,4 +1110,11 @@ a.notification:hover {
     background: #fafafa;
     border-radius: 3px;
     box-sizing: border-box;
+}
+
+.container-login {
+    background-image: url("https://img.freepik.com/free-vector/winter-blue-pink-gradient-background-vector_53876-117276.jpg?w=996&t=st=1702111433~exp=1702112033~hmac=a865fe4c8a70e262bf3e584fbe4443cb7e0167727d2c3fac03688c559b9768a5");
+    background-size: cover;
+    background-position: center;
+    /* Các thuộc tính khác cho phần tử container-login */
 }

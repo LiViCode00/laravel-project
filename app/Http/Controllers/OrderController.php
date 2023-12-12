@@ -25,11 +25,15 @@ class OrderController extends Controller
     //         return redirect()->route('login');
     //     }
     // }
-    // public function payment(Course $course)
-    // {
-    //     checkAuth();
-    //     return view('pages.client.payment', compact('course'));
-    // }
+    public function payment(Course $course)
+    {
+        $user = Auth::guard('student')->user();
+    
+        if (!$user) {
+            return redirect()->route('login');
+        }
+        return view('pages.client.payment', compact('course'));
+    }
 
 
     public function cartControlPayment(Request $request)

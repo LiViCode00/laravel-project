@@ -33,9 +33,9 @@ class CourseController extends Controller
                 'category' => ['required', 'integer', function ($attribute, $value, $fail) {
                     if ($value === '0') return $fail('Vui lòng chọn danh mục khóa học');
                 }],
-                'teacher' => ['required', 'integer', function ($attribute, $value, $fail) {
-                    if ($value === '0') return $fail('Vui lòng chọn giáo viên của khóa học');
-                }]
+                // 'teacher' => ['required', 'integer', function ($attribute, $value, $fail) {
+                //     if ($value === '0') return $fail('Vui lòng chọn giáo viên của khóa học');
+                // }]
             ],
             [
                 'required' => ':attribute bắt buộc phải nhập.',
@@ -65,7 +65,15 @@ class CourseController extends Controller
         $course->sale_price = $request->sale_price;
         $course->image_path = $imagePath;
         $course->category_id = $request->category;
-        $course->teacher_id = $request->teacher;
+
+        $teacher_id = Auth::user()->id;
+        $teacher = Teacher::where('user_id', $teacher_id)->first();
+        if ($request->has('teacher')) {
+            $course->teacher_id = $request->teacher;
+        } else {
+            $course->teacher_id = $teacher->id;
+        }
+
         $course->save();
 
         return redirect()->route('admin.course.lesson.list', compact('course'));
@@ -75,13 +83,14 @@ class CourseController extends Controller
     {
         $categories = Category::all();
         $courses = Course::orderBy('id', 'ASC')->paginate(6);
-       
+
         return view("pages.backend.course.list", compact('categories', 'courses'));
     }
 
-    public function listRole(){
-        $menus=Menu::all();
-       
+    public function listRole()
+    {
+        $menus = Menu::all();
+
         return view('listMenu', compact('menus'));
     }
     public function listCourseAjax()
@@ -115,7 +124,7 @@ class CourseController extends Controller
     public function delete(Course $course)
     {
         $course->delete();
-        return redirect()->route('admin.course.list')->with('success', 'Xóa khóa học thành công');
+        return back()->with('success', 'Xóa khóa học thành công');
     }
 
 

@@ -349,9 +349,11 @@
                                 <div class="d-flex justify-content-center">
 
                                     @if ($coursesOfStudent->contains('id', $course->id))
-                                        <a href='{{ route('lesson', $firstLesson->id) }}' class="main-btn pr-4">Vào học ngay</a>
+                                        <a href='{{ route('lesson', $firstLesson->id) }}' class="main-btn pr-4">Vào học
+                                            ngay</a>
                                     @else
-                                        <a href="#" class="main-btn pr-4">Thêm vào giỏ hàng</a>
+                                        <a href="{{ route('addToCart', $course->id) }}"
+                                            class="main-btn p-2">Thêm vào giỏ hàng</a>
                                         <a href='{{ route('payment', $course->id) }}' class="main-btn pr-4">Mua khóa
                                             học</a>
                                     @endif

@@ -24,12 +24,12 @@ class MenuSeeder extends Seeder
             [
                 'name' => 'Khóa học & Danh mục',
                 'icon' => 'fa fa-book',
-                'role'=>'admin,teacher'
+                'role'=>'admin'
             ],
             [
                 'name' => 'Nội dung',
                 'icon' => 'fa fa-pencil',
-                'role'=>'admin,teacher,student'
+                'role'=>'admin'
             ],
             [
                 'name' => 'Người dùng hệ thống',
@@ -46,6 +46,17 @@ class MenuSeeder extends Seeder
                 'icon' => 'fa fa-bars',
                 'role'=>'admin'
             ],
+            [
+                'name' => 'Khóa học',
+                'icon' => 'fa fa-book',
+                'role'=>'teacher'
+            ],
+            [
+                'name' => 'Học viên',
+                'icon' => 'fa fa-user',
+                'role'=>'teacher'
+            ],
+            
         ];
 
         foreach ($menus as $menu) {

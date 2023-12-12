@@ -15,8 +15,7 @@
                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                         aria-label="Browser: activate to sort column ascending">Kinh nghiệm
                     </th>
-                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                        aria-label="CSS grade: activate to sort column ascending" style="">Status</th>
+                    
                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                         aria-label="CSS grade: activate to sort column ascending" style="">Khóa học</th>
                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
@@ -41,9 +40,7 @@
     
                         <td>{{ $teacher->exp }} năm</td>
     
-                        <td>
-    
-                        </td>
+                       
                         <td>
                             {{ $teacher->courses->count() }} khóa học
                         </td>

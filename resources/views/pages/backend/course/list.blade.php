@@ -27,52 +27,55 @@
         <!-- /.card-header -->
         <div class="card-body">
             <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                <div class="row">
+              
+                    <div class="row">
+                        @hasrole('admin')
+                        <div class="col-sm-12 col-md-6">
+                            <div id="example1_filter" class=" dataTables_filter">
+                                <form class="d-flex align-items-center">
+                                    @csrf
+                                    <label class="d-flex justify-content-center align-items-center">
 
-                    <div class="col-sm-12 col-md-6">
-                        <div id="example1_filter" class=" dataTables_filter">
-                            <form class="d-flex align-items-center">
-                                @csrf
-                                <label class="d-flex justify-content-center align-items-center">
 
+                                        <select id="select_category" name="category" style="margin: 0 4px"
+                                            class="form-select form-control form-control-sm"
+                                            aria-label="Default select example">
+                                            <option value=0 {{ old('category') == 0 ? 'selected' : '' }}>Danh mục</option>
+                                            @if ($categories)
+                                                @foreach ($categories as $item)
+                                                    <option value={{ $item->id }}
+                                                        {{ old('category') == $item->id ? 'selected' : '' }}>
+                                                        {{ $item->name }}
+                                                    </option>
+                                                @endforeach
+                                            @endif
+                                        </select>
+                                        <input id="search_key" style="margin: 0 4px" name="search_key" type="search"
+                                            class="form-control form-control-sm" placeholder="Search key"
+                                            aria-controls="example1" value="{{ old('search_key') }}">
 
-                                    <select id="select_category" name="category" style="margin: 0 4px"
-                                        class="form-select form-control form-control-sm"
-                                        aria-label="Default select example">
-                                        <option value=0 {{ old('category') == 0 ? 'selected' : '' }}>Danh mục</option>
-                                        @if ($categories)
-                                            @foreach ($categories as $item)
-                                                <option value={{ $item->id }}
-                                                    {{ old('category') == $item->id ? 'selected' : '' }}>
-                                                    {{ $item->name }}
-                                                </option>
-                                            @endforeach
-                                        @endif
-                                    </select>
-                                    <input id="search_key" style="margin: 0 4px" name="search_key" type="search"
-                                        class="form-control form-control-sm" placeholder="Search key"
-                                        aria-controls="example1" value="{{ old('search_key') }}">
+                                    </label>
 
-                                </label>
-
-                                <button id="btn_search" title="Search" type="submit" class="btn btn-flat btn-info"
-                                    style="border-radius: 4px;margin: 0 4px">
-                                    <i class="fa fa-search" aria-hidden="true"></i>
-                                </button>
-                            </form>
+                                    <button id="btn_search" title="Search" type="submit" class="btn btn-flat btn-info"
+                                        style="border-radius: 4px;margin: 0 4px">
+                                        <i class="fa fa-search" aria-hidden="true"></i>
+                                    </button>
+                                </form>
+                            </div>
                         </div>
+                        @endhasrole
+
+                        <div class="col-12 col-md-6">
+                            <a href={{ route('admin.course.add') }}> <button
+                                    style="border: none;float: right;margin-bottom: 16px" class="btn-flat btn-lg btn-success"><i
+                                        class="fa fa-plus" aria-hidden="true"></i></button></a>
+
+                        </div>
+
+
+
                     </div>
-
-                    <div class="col-12 col-md-6">
-                        <a href={{ route('admin.course.add') }}> <button
-                                style="border: none;float: right;margin-bottom: 16px" class="btn-flat btn-lg btn-success"><i
-                                    class="fa fa-plus" aria-hidden="true"></i></button></a>
-
-                    </div>
-
-
-
-                </div>
+               
                 <div class="row">
                     <div id="course_table" class="col-sm-12">
                         @include('pages.backend.course.data')
@@ -147,7 +150,7 @@
                 },
                 success: function(data) {
 
-                  //   console.log('Server response:', data);
+                    //   console.log('Server response:', data);
                     $('#course_table').html(data);
                 },
                 error: function(error) {

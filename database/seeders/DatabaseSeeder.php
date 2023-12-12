@@ -31,5 +31,6 @@ class DatabaseSeeder extends Seeder
         $this->call(VideoSeeder::class);
         $this->call(CartSeeder::class);
         $this->call(RolesAndPermissionsSeeder::class);
+        $this->call(NotificationSeeder::class);
     }
 }

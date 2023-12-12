@@ -16,17 +16,20 @@ class VideoSeeder extends Seeder
      */
     public function run()
     {
-        $lessons = Lesson::all(); 
+        $lessons = Lesson::all();
 
         foreach ($lessons as $lesson) {
             for ($i = 1; $i <= 5; $i++) {
-                Video::updateOrCreate([
-                    'lesson_id' => $lesson->id,
-                    'name' => 'Video ' . $i . '- ' . $lesson->name,
-                    'url' => 'https://example.com/video-' . $i,
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ]);
+                Video::updateOrCreate(
+                    ['name' => 'Video ' . $i . '- ' . $lesson->name],
+                    [
+                        'lesson_id' => $lesson->id,
+                        'name' => 'Video ' . $i . '- ' . $lesson->name,
+                        'url' => 'https://example.com/video-' . $i,
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ]
+                );
             }
         }
     }
