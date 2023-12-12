@@ -46,7 +46,7 @@
 /*===========================
     1. Theme default css 
 ===========================*/
-@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@500;600;700&family=Signika:wght@500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@500;600;700&family=Signika:wght@500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700|Roboto:300,400,500,700");
 
 body {
@@ -133,36 +133,34 @@ p {
     background-repeat: no-repeat;
     width: 100%;
     height: 350px;
-    border-radius:50px;
+    border-radius: 50px;
     object-fit: cover;
     position: relative;
 }
 
-.bg_cover::after{
-    content: '';
+.bg_cover::after {
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     z-index: 2;
-    opacity: .8;
+    opacity: 0.8;
     background: linear-gradient(to right, rgb(40, 119, 250), rgb(103, 23, 205));
-    border-radius:50px;
+    border-radius: 50px;
 }
 
 :root {
-    --pink: #EC53B0;
-    --violet:#ffc107;
+    --pink: #ec53b0;
+    --violet: #ffc107;
     --violet_bolder: #674d00;
-    --navy: #0E21A0;
-  }
-
+    --navy: #0e21a0;
+}
 
 /*===== All Button Style =====*/
 
 .main-btn {
-   
     display: inline-block;
     text-align: center;
     white-space: nowrap;
@@ -178,16 +176,11 @@ p {
     overflow: hidden;
     z-index: 5;
     transition: 0.4s ease-in-out;
-    background: linear-gradient(
-        180deg,
-        #ffc107 60%,
-        #d87e0e 100%
-        
-    );
+    background: linear-gradient(180deg, #ffc107 60%, #d87e0e 100%);
     margin: 0 6px;
     border-radius: 30px;
     line-height: 40px;
-   }
+}
 
    .btn-phu{
         padding: 15px 35px; 
@@ -207,15 +200,11 @@ p {
    }
 .btn-phu:hover,
 .main-btn:hover {
-    background: linear-gradient(
-        180deg,
-        #fac321 60%,
-        #EC53B0 100%
-    );
+    background: linear-gradient(180deg, #fac321 60%, #ec53b0 100%);
     color: var(--navy);
 }
 
-.login-btn{
+.login-btn {
     font-size: 15px;
     font-weight: 700;
     color: var(--violet);
@@ -223,7 +212,7 @@ p {
     letter-spacing: 1px;
 }
 
-.login-btn:hover{
+.login-btn:hover {
     color: var(--pink);
 }
 
@@ -274,7 +263,7 @@ p {
     color: #000000;
     text-align: center;
     font-size: 13px;
-    font-family: 'Hind Siliguri';
+    font-family: "Hind Siliguri";
 }
 
 /*===== All Section Title Style =====*/
@@ -291,8 +280,8 @@ p {
     padding-bottom: 12px;
 }
 
-.section-title h3{
-    font-family: 'Signika';
+.section-title h3 {
+    font-family: "Signika";
     font-weight: bolder;
     font-size: 35px;
 }
@@ -810,11 +799,11 @@ p {
     color: white !important ;
 }
 
-.border-bottom{
+.border-bottom {
     border-bottom: 1px solid #cecece;
 }
 
-.header-logo-support { 
+.header-logo-support {
     display: flex;
     align-items: center;
     /* box-shadow: 0 2px 4px rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.08); */
@@ -1093,8 +1082,7 @@ p {
 }
 
 /*===== SEARCH BOX =====*/
-.search_box-total{
-    
+.search_box-total {
 }
 .search_box {
     display: flex;
@@ -1135,31 +1123,28 @@ p {
 .ui-autocomplete {
     position: absolute !important;
     max-height: 400px;
-    overflow-y: auto; 
+    overflow-y: auto;
     background-color: white;
     z-index: 10000 !important;
     border: 1px solid lightgray;
     float: right;
     border-radius: 20px;
     padding: 20px;
-   
-  }
-  
-  .ui-menu-item {
+}
 
+.ui-menu-item {
     padding: 10px 0 10px 30px;
-  }
-  
-  .ui-autocomplete-category {
+}
+
+.ui-autocomplete-category {
     font-weight: bold;
     font-size: 22px;
-    padding: 20px 4px; 
-  }
-
+    padding: 20px 4px;
+}
 
 .ui-menu-item:hover {
     border: 1px solid var(--violet);
-    cursor: pointer; 
+    cursor: pointer;
     border-radius: 5px;
 }
 
@@ -1183,13 +1168,12 @@ p {
     font-weight: 700;
     color: #fff;
     margin-bottom: 20px;
-   
 }
 .slider-cont p {
     font-size: 18px;
     color: #fff;
     padding-bottom: 30px;
-    font-family: 'Hind Siliguri';
+    font-family: "Hind Siliguri";
     letter-spacing: 1px;
 }
 .slider-cont ul {
@@ -1258,7 +1242,7 @@ p {
     background-color: rgba(0, 0, 0, 0.4);
 }
 
-#slider-part{
+#slider-part {
     padding-top: 130px;
     padding-bottom: 80px;
 }
@@ -1591,7 +1575,6 @@ p {
     transition: all 0.4s linear;
     object-fit: cover;
     height: 164px;
-   
 }
 .singel-course:hover .thum .image img {
     -webkit-transform: scale(1.1);
@@ -1619,7 +1602,7 @@ p {
     /* padding: 24px; */
     padding-top: 20px;
     width: 100%;
-    padding: 20px 10px ;
+    padding: 20px 10px;
 }
 .singel-course .cont > ul {
     display: inline-block;
@@ -1660,17 +1643,15 @@ p {
     color: var(--violet_bolder);
 }
 
-.singel-course .cont .price span{
+.singel-course .cont .price span {
     color: var(--navy);
     background-color: var(--violet);
-    padding:5px 20px;
+    padding: 5px 20px;
     border-radius: 20px;
     font-weight: 700;
     font-size: 14px;
     margin-bottom: 20px;
 }
-
-
 
 .singel-course .course-teacher {
     border-top: 1px solid #e0e0e0;
@@ -1834,7 +1815,6 @@ p {
 ======================================================*/
 
 .teachers-cont {
-
 }
 .teachers-cont p {
     padding-top: 30px;
@@ -1845,25 +1825,23 @@ p {
     overflow: hidden;
     border: 1px solid lightgray;
     border-radius: 20px;
-   
 }
 
-.singel-teachers::after{
+.singel-teachers::after {
     position: absolute;
-    content: '';
+    content: "";
     top: 100%;
     bottom: 0;
     left: 0;
-    background-color:  var(--violet);
-    opacity: .3;
+    background-color: var(--violet);
+    opacity: 0.3;
     width: 100%;
     height: 100%;
     z-index: 3;
     border-radius: 20px;
-    transition: all .2s linear;
-    
+    transition: all 0.2s linear;
 }
-.singel-teachers:hover::after{
+.singel-teachers:hover::after {
     top: 0;
 }
 .singel-teachers .image {
@@ -1895,7 +1873,7 @@ p {
     color: var(--violet);
     border-radius: 10px;
     margin: 0 auto;
-    padding:5px 10px 5px 10px;
+    padding: 5px 10px 5px 10px;
     z-index: 5;
 }
 
@@ -2375,12 +2353,11 @@ p {
     font-family: "Montserrat", sans-serif;
 }
 
-
-.write-post{
-    height: 700px ;
+.write-post {
+    height: 700px;
 }
 
-.form-title{
+.form-title {
     width: 100%;
     padding: 15px 10px;
     border: 1px solid lightgray;
@@ -2847,16 +2824,15 @@ p {
 ======================================================*/
 
 .tab-content {
-   
 }
 
-.content-edit{
-    height: 70vh; 
-    overflow-y: auto;  
+.content-edit {
+    height: 70vh;
+    overflow-y: auto;
     margin-top: 20px;
 }
 
-.content-edit1{
+.content-edit1 {
     height: auto;
 }
 .tab-content .singel-course .course-teacher .name {
@@ -2898,7 +2874,7 @@ p {
     font-size: 14px;
     border-radius: 5px;
     padding: 10px 20px;
-    border: 1px solid lightgray
+    border: 1px solid lightgray;
 }
 .courses-search button {
     position: absolute;
@@ -2911,7 +2887,6 @@ p {
     background: none;
     cursor: pointer;
 }
-
 
 #courses-list .singel-course .thum .price {
     right: -25px;
@@ -2932,7 +2907,7 @@ p {
     width: 40px;
     height: 40px;
     line-height: 36px;
-    border: 2px solid var(--violet) ;
+    border: 2px solid var(--violet);
     border-radius: 5px;
     text-align: center;
     -webkit-transition: all 0.4s linear;
@@ -2941,11 +2916,9 @@ p {
 .courses-pagination .pagination .page-item a.active,
 .courses-pagination .pagination .page-item a:hover {
     background-color: var(--violet_bolder);
-    color:  var(--navy);
-    background-color:  var(--violet) ;
-    
+    color: var(--navy);
+    background-color: var(--violet);
 }
-
 
 /*=====================================================
     23. COURSE SINGEl PAGE css 
@@ -2961,14 +2934,14 @@ p {
 .corses-singel-left .title h3 {
     font-size: 42px;
     padding-bottom: 42px;
-    font-family: 'Signika', sans-serif;
+    font-family: "Signika", sans-serif;
     font-weight: 700;
 }
 
 .title .lesson-course a,
-.title .lesson-course{
-    background-color: #22092C;
-    color:white;
+.title .lesson-course {
+    background-color: #22092c;
+    color: white;
     font-size: 15px;
     border-radius: 9px;
 }
@@ -3010,7 +2983,7 @@ p {
     font-size: 17px;
     font-family: "Montserrat", sans-serif;
     font-weight: 400;
-    font-family: 'Hind Siliguri', sans-serif;
+    font-family: "Hind Siliguri", sans-serif;
     letter-spacing: 1px;
 }
 
@@ -3071,14 +3044,14 @@ p {
 }
 
 .singel-dashboard .tick,
-.instructor-description .tick{
+.instructor-description .tick {
     color: var(--violet);
     font-size: 24px;
     margin-right: 15px;
     display: inline-block;
 }
 
-.singel-dashboard p{
+.singel-dashboard p {
     padding-bottom: 10px;
 }
 
@@ -3092,14 +3065,14 @@ p {
     font-family: "Poppins", sans-serif;
     font-weight: 700;
     padding-bottom: 10px;
-    font-family: 'Signika', sans-serif;
+    font-family: "Signika", sans-serif;
 }
 
-.overview-description .singel-description p{
+.overview-description .singel-description p {
     margin-bottom: 10px;
 }
 
-.overview-description .singel-description p span{
+.overview-description .singel-description p span {
     color: var(--violet);
     margin-right: 18px;
     font-size: 20px;
@@ -3140,35 +3113,35 @@ p {
     padding: 15px 0;
 }
 
-.curriculam-cont .accordion .card .card-header .card-edit{
+.curriculam-cont .accordion .card .card-header .card-edit {
     width: 100%;
 }
 
-.curriculam-cont .accordion .card .card-header .card-edit2{
+.curriculam-cont .accordion .card .card-header .card-edit2 {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: white;
 }
 
-.curriculam-cont .accordion .card .card-header .card-edit2 ul{
-    margin: 0; 
-    padding: 0; 
-    list-style: none; 
+.curriculam-cont .accordion .card .card-header .card-edit2 ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
-.btn-edit{
-   border: none;
-   background-color: var(--violet);
-   letter-spacing: 2px;
-   border-radius: 8px;
-   color: var(--navy);
-   font-weight: 600;
-   padding-top: 10px;
-   padding-bottom: 10px;
+.btn-edit {
+    border: none;
+    background-color: var(--violet);
+    letter-spacing: 2px;
+    border-radius: 8px;
+    color: var(--navy);
+    font-weight: 600;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
-.curriculam-cont .accordion .card .card-header .card-edit2 ul li{
+.curriculam-cont .accordion .card .card-header .card-edit2 ul li {
     margin-right: 10px;
 }
 
@@ -3245,7 +3218,7 @@ p {
     float: left;
     margin-right: 30px;
 }
-.instructor-cont .instructor-author .author-thum img{
+.instructor-cont .instructor-author .author-thum img {
     object-fit: contain;
     border-radius: 50%;
     border: 1px solid lightgray;
@@ -3263,8 +3236,7 @@ p {
     font-size: 22px;
     color: 35px;
     font-weight: 700;
-    font-family: 'Signika', sans-serif;
-
+    font-family: "Signika", sans-serif;
 }
 .instructor-cont .instructor-author .author-name span {
     font-size: 15px;
@@ -3429,19 +3401,18 @@ p {
 .You-makelike h4 {
     font-size: 26px;
     padding-bottom: 15px;
-    font-family: 'Signika', sans-serif;
+    font-family: "Signika", sans-serif;
     font-weight: 700;
 }
 
-.You-makelike .youMakeLike-course-name{
+.You-makelike .youMakeLike-course-name {
     font-size: 18px;
 }
 
-.You-makelike h4:hover{
-    color:var(--violet);
+.You-makelike h4:hover {
+    color: var(--violet);
 }
 .course-features ul {
-
 }
 .course-features ul li {
     font-size: 15px;
@@ -3471,8 +3442,9 @@ p {
     font-family: "Montserrat", sans-serif;
     font-weight: 700;
     margin-top: 12px;
-}.course-features .price-button span b del{
-    color: lightslategray;
+}
+.course-features .price-button span b del {
+    color: var(--violet_bolder);
 }
 
 .course-features .price-button span b {
@@ -3499,7 +3471,7 @@ p {
     min-width: 340px;
     object-fit: cover;
 }
-.You-makelike .singel-makelike .image:hover::before{
+.You-makelike .singel-makelike .image:hover::before {
     top: 0;
 }
 
@@ -3721,7 +3693,7 @@ p {
 }
 .teachers-left .name h6 {
     font-size: 20px;
-    color: var(--violet) ;
+    color: var(--violet);
 }
 .teachers-left .name span {
     font-size: 15px;
@@ -3773,7 +3745,7 @@ p {
     font-weight: 600;
     -webkit-transition: all 0.4s linear;
     transition: all 0.4s linear;
-    font-family: 'Signika', sans-serif;
+    font-family: "Signika", sans-serif;
     letter-spacing: 1px;
     border-right: 1px solid lightgoldenrodyellow;
 }
@@ -3781,7 +3753,7 @@ p {
 .teachers-right .nav .nav-item a:hover {
     background-color: #fff;
     color: var(--violet);
-    font-family: 'Signika', sans-serif;
+    font-family: "Signika", sans-serif;
 }
 
 .teachers-right .tab-content {
@@ -3898,12 +3870,11 @@ p {
 .saidbar .categories {
     background-color: #fff;
     padding: 30px 35px 25px;
-
 }
 .saidbar .categories h4,
 .saidbar .saidbar-post h4 {
     font-size: 29px;
-    font-family: 'Hind Siliguri', sans-serif;
+    font-family: "Hind Siliguri", sans-serif;
 }
 .saidbar .categories ul {
     padding-top: 15px;
@@ -3915,7 +3886,7 @@ p {
 }
 .saidbar .categories ul li a {
     color: #9e9e9e;
-    font-family: 'Hind Siliguri', sans-serif;
+    font-family: "Hind Siliguri", sans-serif;
     font-weight: 15;
     -webkit-transition: all 0.4s linear;
     transition: all 0.2s linear;
@@ -3953,10 +3924,10 @@ p {
 .saidbar .saidbar-post ul li a .singel-post .thum img {
     border-radius: 5px;
     height: 150px;
-    width: 100%; 
+    width: 100%;
     object-fit: cover;
     border: 1px solid lightgray;
-    border-radius: 20px ;
+    border-radius: 20px;
     margin: 15px 0;
 }
 
@@ -4074,7 +4045,7 @@ p {
     padding-bottom: 0;
 }
 
-.blog-details .thum img{
+.blog-details .thum img {
     width: 100%;
     border-radius: 20px;
     height: 350px;
@@ -4186,7 +4157,7 @@ p {
     border: 0;
 }
 
-.form-select{
+.form-select {
     width: 100%;
 }
 
@@ -4653,11 +4624,11 @@ header login */
     transition: all 0.2s ease-in-out;
 }
 .auth-user:hover {
-   color: #404040;
-   cursor: pointer;
+    color: #404040;
+    cursor: pointer;
 }
-ul.user-detail{
-    display: none ;
+ul.user-detail {
+    display: none;
     position: absolute;
     top: 50px;
     background: white;
@@ -4665,14 +4636,14 @@ ul.user-detail{
     right: 20px;
     width: 190px;
     border: 1px solid #ccc;
-    box-shadow: 1px 1px rgba(0,0,0,0.2);
+    box-shadow: 1px 1px rgba(0, 0, 0, 0.2);
     transition: all 0.4s linear;
 }
-ul.user-detail div{
+ul.user-detail div {
     display: flex;
     flex-direction: column;
 }
-ul.user-detail a{
+ul.user-detail a {
     font-size: 14px;
     color: #333333a1;
     font-weight: 500;
@@ -4680,24 +4651,21 @@ ul.user-detail a{
     padding: 12px;
     border-bottom: 1px solid #ccc;
     transition: all 0.3s ease-in-out;
-   
 }
-ul.user-detail a:hover{
-   
+ul.user-detail a:hover {
     color: #333333fa;
     cursor: pointer;
-   
 }
-.cart-shop{
+.cart-shop {
     position: relative;
     margin: 0 24px;
 }
-.cart-shop:hover{
+.cart-shop:hover {
     cursor: pointer;
     position: relative;
 }
-.cart-shop::after{
-    content: '14';
+.cart-shop::after {
+    content: "14";
     position: absolute;
     background: var(--violet);
     left: 12px;
@@ -4714,20 +4682,17 @@ ul.user-detail a:hover{
     align-items: center;
 }
 
-
-img.logo{
+img.logo {
     width: 100px;
     height: 40px;
     object-fit: cover;
 }
 
-.content-logo{
+.content-logo {
     font-weight: 700;
 }
 
-
-
-.write-blog{
+.write-blog {
     padding: 5px 0 5px 0;
     width: 60px;
     border-radius: 50%;
@@ -4736,35 +4701,35 @@ img.logo{
     transition: 2s;
     margin: 12px;
     font-size: 35px;
-   
+
     cursor: pointer;
 }
 
-.write-blog span{
+.write-blog span {
     color: black;
     transition: all 0.2s linear;
 }
 
-.write-blog:hover span{
+.write-blog:hover span {
     transform: scale(1.3);
 }
 
-.cont .course-content{
-    font-family: 'Hind Siliguri';
+.cont .course-content {
+    font-family: "Hind Siliguri";
     white-space: nowrap;
     font-size: 16px;
     text-overflow: ellipsis;
     overflow: hidden;
-    width: 100%; 
+    width: 100%;
     text-align: left;
 }
 
-.price del{
+.price del {
     color: var(--navy);
     font-weight: lighter;
 }
 
-.card-teacher{
+.card-teacher {
     height: 200px;
 }
 
@@ -4783,72 +4748,68 @@ img.logo{
     height: 70%;
     border-radius: 20px;
 }
-.lesson-frame .dieu_huong{
+.lesson-frame .dieu_huong {
     position: absolute;
     bottom: 10%;
     float: right;
     width: 90%;
     display: flex;
     justify-content: right;
-
 }
 
-.lesson-frame .dieu_huong .main-btn{
+.lesson-frame .dieu_huong .main-btn {
     border: 1px solid lightgray;
     margin: 0 25px;
 }
 
-.lesson-frame .dieu_huong button a{
+.lesson-frame .dieu_huong button a {
     color: var(--navy);
 }
 
-
-.categories-post-tag{
+.categories-post-tag {
     padding: 10px 20px;
     background-color: rgb(237, 237, 237);
     border-radius: 30px;
-
 }
 
-.cate-name-edit{
+.cate-name-edit {
     color: gray;
     transition: 0.1s ease-in-out;
     white-space: nowrap;
 }
 
-.cate-name-edit:hover{
+.cate-name-edit:hover {
     color: var(--violet);
     font-weight: 600;
 }
 
 .form-check-input {
     background-color: var(--navy);
-    border: 1px solid #ccc; 
+    border: 1px solid #ccc;
 }
 
 .form-check-input:checked {
-    color: var(--violet); 
+    color: var(--violet);
 }
 
 .hidden {
     display: none;
-  }
+}
 
-  .btn-dieu-huong{
+.btn-dieu-huong {
     border: 1px solid lightgray;
-  }
-  
-  .disabled {
+}
+
+.disabled {
     pointer-events: none;
     opacity: 0.5; /* Optional: You can reduce the opacity to visually indicate it's disabled */
 }
 
-
-.form-title:focus{
+.form-title:focus {
     border: 1px solid gray;
 }
 
-.course-ctn{
+.course-ctn {
     text-overflow: ellipsis;
     white-space: nowrap;
     margin-top: 20px;
@@ -4894,31 +4855,63 @@ img.logo{
     border-radius:2px;
   }
 
-.btn-delete{
+.selectBox {
+    border: 1px solid #222;
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    border-radius: 50%;
+    line-height: 22px;
+    font-size: 12px;
+}
+.selected {
+    color: #fff;
+    border: 1px solid #f7f7f7 !important;
+}
+small {
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+label,
+h6 {
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #aaaaaa;
+}
+a.btn {
+    line-height: 32px;
+}
+a.btn,
+button.btn,
+select.form-control,
+input.form-control {
+    height: 48px;
+    border-radius: 2px;
+}
+
+.btn-delete {
     font-size: 20px;
     height: 50px;
     width: 50px;
 }
 
-
-
 .checkbox-wrapper-31:hover .check {
     stroke-dashoffset: 0;
-  }
+}
 
-  .checkbox-wrapper-31 {
+.checkbox-wrapper-31 {
     position: relative;
     display: inline-block;
     width: 30px;
     height: 30px;
     margin-top: 20px;
-  }
-  .checkbox-wrapper-31 .background {
+}
+.checkbox-wrapper-31 .background {
     fill: #ccc;
     transition: ease all 0.6s;
     -webkit-transition: ease all 0.6s;
-  }
-  .checkbox-wrapper-31 .stroke {
+}
+.checkbox-wrapper-31 .stroke {
     fill: none;
     stroke: #fff;
     stroke-miterlimit: 10;
@@ -4927,8 +4920,8 @@ img.logo{
     stroke-dasharray: 100;
     transition: ease all 0.6s;
     -webkit-transition: ease all 0.6s;
-  }
-  .checkbox-wrapper-31 .check {
+}
+.checkbox-wrapper-31 .check {
     fill: none;
     stroke: #fff;
     stroke-linecap: round;
@@ -4938,8 +4931,8 @@ img.logo{
     stroke-dasharray: 22;
     transition: ease all 0.6s;
     -webkit-transition: ease all 0.6s;
-  }
-  .checkbox-wrapper-31 input[type=checkbox] {
+}
+.checkbox-wrapper-31 input[type="checkbox"] {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -4949,21 +4942,21 @@ img.logo{
     opacity: 0;
     -appearance: none;
     -webkit-appearance: none;
-  }
-  .checkbox-wrapper-31 input[type=checkbox]:hover {
+}
+.checkbox-wrapper-31 input[type="checkbox"]:hover {
     cursor: pointer;
-  }
-  .checkbox-wrapper-31 input[type=checkbox]:checked + svg .background {
+}
+.checkbox-wrapper-31 input[type="checkbox"]:checked + svg .background {
     fill: #6cbe45;
-  }
-  .checkbox-wrapper-31 input[type=checkbox]:checked + svg .stroke {
+}
+.checkbox-wrapper-31 input[type="checkbox"]:checked + svg .stroke {
     stroke-dashoffset: 0;
-  }
-  .checkbox-wrapper-31 input[type=checkbox]:checked + svg .check {
+}
+.checkbox-wrapper-31 input[type="checkbox"]:checked + svg .check {
     stroke-dashoffset: 0;
-  }
+}
 
-  .button_edit {
+.button_edit {
     width: 150px;
     height: 50px;
     cursor: pointer;
@@ -4972,21 +4965,22 @@ img.logo{
     background: red;
     border: none;
     border-radius: 5px;
-    box-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
     background: #e62222;
-   }
-   
-   .button_edit, .button_edit span {
+}
+
+.button_edit,
+.button_edit span {
     transition: 200ms;
-   }
-   
-   .button_edit .text {
+}
+
+.button_edit .text {
     transform: translateX(35px);
     color: white;
     font-weight: bold;
-   }
-   
-   .button_edit .icon {
+}
+
+.button_edit .icon {
     position: absolute;
     border-left: 1px solid #c41b1b;
     transform: translateX(110px);
@@ -4995,32 +4989,32 @@ img.logo{
     display: flex;
     align-items: center;
     justify-content: center;
-   }
-   
-   .button_edit svg {
+}
+
+.button_edit svg {
     width: 15px;
     fill: #eee;
-   }
-   
-   .button_edit:hover {
+}
+
+.button_edit:hover {
     background: #ff3636;
-   }
-   
-   .button_edit:hover .text {
+}
+
+.button_edit:hover .text {
     color: transparent;
-   }
-   
-   .button_edit:hover .icon {
+}
+
+.button_edit:hover .icon {
     width: 150px;
     border-left: none;
     transform: translateX(0);
-   }
-   
-   .button_edit:focus {
+}
+
+.button_edit:focus {
     outline: none;
-   }
-   
-   .button_edit:active .icon svg {
+}
+
+.button_edit:active .icon svg {
     transform: scale(0.8);
    }
 
@@ -5028,7 +5022,6 @@ img.logo{
     position: relative;
     background-color: transparent;
     cursor: pointer;
-    border: 1px solid #474103;
     overflow: hidden;
     border-radius: 30px;
     color: #333;
@@ -5254,13 +5247,7 @@ img.logo{
   transition: .2s linear;
 }
 
-
-
-
-
-
-
-.btn {
+.btn-1 {
     cursor: pointer;
     width: 50px;
     height: 50px;

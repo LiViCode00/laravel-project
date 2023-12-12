@@ -23,6 +23,8 @@ class ChildMenuSeeder extends Seeder
         $menu_user = Menu::where('name', 'Người dùng hệ thống')->first()->id;
         $menu_permission = Menu::where('name', 'Quyền hạn người dùng')->first()->id;
         $menu_menu = Menu::where('name', 'Quản lý chung')->first()->id;
+        $teacher_courses = Menu::where('name', 'Khóa học')->first()->id;
+        $teacher_students = Menu::where('name', 'Học viên')->first()->id;
         $childs_menu = [
             [
                 'name' => 'Đơn hàng',
@@ -75,6 +77,16 @@ class ChildMenuSeeder extends Seeder
                 'name' => 'Menu',
                 'menu_id' => $menu_menu,
                 'link' => 'admin.menu.index'
+            ],
+            [
+                'name' => 'Khóa học của tôi',
+                'menu_id' => $teacher_courses,
+                'link' => 'admin.gv.myCourses'
+            ],
+            [
+                'name' => 'Học viên của tôi',
+                'menu_id' => $teacher_students,
+                'link' => 'admin.gv.myStudents'
             ],
 
         ];

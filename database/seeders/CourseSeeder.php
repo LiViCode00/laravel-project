@@ -32,7 +32,7 @@ class CourseSeeder extends Seeder
             [    
                 "name" => 'C++ from basic to advanced',
                 "detail" => 'This course will help you learn the steps to improve argorithm and structure in C++',
-                "image_path" => 'img/courses/course/cu-2.jpg',
+                "image_path" => 'img/courses/cu-2.jpg',
                 "price" => '1500000',
                 "sale_price" => '900000',
                 "teacher_id" => $teachers->random()->id,
@@ -42,7 +42,7 @@ class CourseSeeder extends Seeder
             [   
                 "name" => 'Web Development with JavaScript and Node.js',
                 "detail" => 'Learn to build robust and scalable web applications using JavaScript.This is a popular web development stack.',
-                "image_path" => 'img/courses/course/cu-3.jpg',
+                "image_path" => 'img/courses/cu-3.jpg',
                 "price" => '1700000',
                 "sale_price" => '0',
                 "teacher_id" => $teachers->random()->id,
@@ -51,7 +51,7 @@ class CourseSeeder extends Seeder
             [    
                 "name" => 'NodeJS And ExpressJS',
                 "detail" => 'Learn to how to use NodeJS And ExpressJS and built the project',
-                "image_path" => 'img/courses/course/cu-4.jpg',
+                "image_path" => 'img/courses/cu-4.jpg',
                 "price" => '2000000',
                 "sale_price" => '1200000',
                 "teacher_id" => $teachers->random()->id,
@@ -60,7 +60,7 @@ class CourseSeeder extends Seeder
             [    
                 "name" => 'Mastering React.js for Frontend Web Development',
                 "detail" => 'Learn to build fast and efficient web applications with React.js, a popular JavaScript library for building user interfaces.',
-                "image_path" => 'img/courses/course/cu-5.jpg',
+                "image_path" => 'img/courses/cu-5.jpg',
                 "price" => '0',
                 "sale_price" => '0',
                 "teacher_id" => $teachers->random()->id,

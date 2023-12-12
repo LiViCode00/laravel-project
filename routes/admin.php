@@ -18,6 +18,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->name('admin.')->group(function () {
 
+        
+        Route::get('/admin', [HomeController::class, 'dashboard_admin'])->middleware('auth')->name('dashboard_admin');
+
+        Route::get('/gv', [HomeController::class, 'dashboard_teacher'])->middleware('auth')->name('dashboard_teacher');
 
         Route::get('/', [HomeController::class, 'index'])->middleware('auth')->name('dashboard');
 
@@ -52,8 +56,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
                 Route::post('/list/group/ajax', [UserController::class, 'userByGroupAjax'])->name('list-group-ajax');
 
-                Route::get('/profile/{user}', [UserController::class, 'profile'])->name('profile');
-
                 Route::get('/edit/{user}', [UserController::class, 'edit'])->name('edit');
 
                 Route::post('/edit/{user}', [UserController::class, 'postedit'])->name('post-edit');
@@ -78,8 +80,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
                 });
         });
 
+        Route::get('/user/profile/{user}', [UserController::class, 'profile'])->name('user.profile');
 
-        Route::prefix('category')->middleware('auth')->name('category.')->group(function () {
+
+
+        Route::prefix('category')->middleware(['auth', 'role:admin'])->name('category.')->group(function () {
 
                 Route::get('/', [CategoryController::class, 'listCategory'])->name('index');
 
@@ -103,7 +108,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         });
 
 
-        Route::prefix('course')->middleware(['auth', 'role:admin'])->name('course.')->group(function () {
+        Route::prefix('course')->middleware(['auth'])->name('course.')->group(function () {
 
                 Route::get('/', [CourseController::class, 'listCourse'])->name('index');
               
@@ -176,7 +181,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
                 });
         });
 
-        Route::prefix('review')->middleware('auth')->name('review.')->group(function () {
+        Route::prefix('review')->middleware(['auth', 'role:admin'])->name('review.')->group(function () {
 
                 Route::get('/', [ReviewController::class, 'listReview'])->name('index');
 
@@ -230,7 +235,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
                 Route::match(['get', 'post'], '/find-teacher', [TeacherController::class, 'findTeacher'])->name('find-teacher');
         });
 
-        Route::prefix('post')->middleware('auth')->name('post.')->group(function () {
+        Route::prefix('post')->middleware(['auth', 'role:admin'])->name('post.')->group(function () {
 
                 Route::get('/', [PostController::class, 'listPost'])->name('index');
 
@@ -301,7 +306,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         });
 
        
-        Route::prefix('role')->name('role.')->group(function () {
+        Route::prefix('role')->name('role.')->middleware(['auth', 'role:admin'])->group(function () {
                 Route::get('/' , [AdminController::class,'listRole'])->name('index');
 
                 Route::get('/setPermission/{role}' , [AdminController::class,'setPermissionForRole'])->name('set-permission');
@@ -315,7 +320,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
                 Route::get('/delete{role}' , [AdminController::class,'deleteRole'])->name('delete');
         });
 
-        Route::prefix('permission')->name('permission.')->group(function () {
+        Route::prefix('permission')->name('permission.')->middleware(['auth', 'role:admin'])->group(function () {
                 Route::get('/' , [AdminController::class,'listPermission'])->name('index');
 
 
@@ -328,5 +333,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
                 Route::post('/edit/{permission}' , [AdminController::class,'postEditPermission'])->name('post-edit');
 
                 Route::get('/delete/{permission}' , [AdminController::class,'deletePermission'])->name('delete');
+        });
+
+        Route::prefix('gv')->name('gv.')->group(function () {
+                Route::get('myCourses' , [TeacherController::class, 'myCourses'])->name('myCourses');
+                Route::get('myStudents' , [TeacherController::class, 'myStudents'])->name('myStudents');
         });
 });

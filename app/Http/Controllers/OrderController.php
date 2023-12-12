@@ -20,14 +20,19 @@ class OrderController extends Controller
 
     public function checkAuth(){
         $user = Auth::guard('student')->user();
+    }
+    
+    //     if (!$user) {
+    //         return redirect()->route('login');
+    //     }
+    // }
+    public function payment(Course $course)
+    {
+        $user = Auth::guard('student')->user();
     
         if (!$user) {
             return redirect()->route('login');
         }
-    }
-    public function payment($course_id)
-    {   
-        $course = Course::getCourseById($course_id);
         return view('pages.client.payment', compact('course'));
     }
 

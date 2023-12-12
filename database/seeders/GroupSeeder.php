@@ -22,9 +22,7 @@ class GroupSeeder extends Seeder
             [
                 "name"=> "Giáo viên",
             ],
-            [
-                "name"=> "Học viên",
-            ],
+           
             
         ];
         foreach ($groups as $group) {

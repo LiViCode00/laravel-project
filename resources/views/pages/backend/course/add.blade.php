@@ -45,6 +45,7 @@
                     @enderror
 
                 </div>
+                @hasrole('admin')
                 <div class="form-group col-16 col-md-6">
                     <label for="">Giáo viên</label>
                     <div class="input-group-prepend">
@@ -65,6 +66,7 @@
                     @enderror
 
                 </div>
+                @endhasrole
                 <div class="form-group col-12 col-md-12">
                     <label for="">Hình ảnh</label>
                     <br>

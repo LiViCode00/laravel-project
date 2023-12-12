@@ -15,7 +15,7 @@ class RolesAndPermissionsSeeder extends Seeder
         // Tạo các roles
         $adminRole = Role::firstOrCreate(['name' => 'admin']);
         $teacherRole = Role::firstOrCreate(['name' => 'teacher']);
-        $studentRole = Role::firstOrCreate(['name' => 'student']);
+      
         
         // Tạo các permissions
         $permissions = [
@@ -43,23 +43,17 @@ class RolesAndPermissionsSeeder extends Seeder
             'upload_documentary', 'edit_documentary', 'delete_documentary',
             'create_review', 'edit_review', 'delete_review',
         ]);
-        $studentRole->givePermissionTo([
-            'enroll_in_course',
-            'create_review', 'edit_review', 'delete_review',
-            'create_post', 'edit_post', 'delete_post'
-        ]);
+        
 
         $admins=User::where('group_id','=', '1')->get();
         $teachers=User::where('group_id','=','2')->get();
-        $students=User::where('group_id','=','3')->get();
+       
         foreach ($admins as $admin) {
             $admin->assignRole('admin');
         }
         foreach ($teachers as $teacher) {
             $teacher->assignRole('teacher');
         }
-        foreach ($students as $student) {
-            $student->assignRole('student');
-        } 
+        
     }
 }
