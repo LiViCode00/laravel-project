@@ -66,7 +66,7 @@
                    
 
                     <div class="field button-field">
-                        <button type="submit" class="btn btn-primary">Đăng ký</button>
+                        <button type="submit" class="">Đăng ký</button>
                     </div>
                 </form>
 

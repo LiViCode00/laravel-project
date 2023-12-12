@@ -64,11 +64,11 @@ Route::prefix('posts')->name('posts.')->group(function () {
     Route::get('/posts-detail/{id}', [PostController::class,'postDetail'])->name('postDetail');
     Route::post('/posts/add', [PostController::class,'add'])->name('postAdd');
 });
-Route::get('/payment/{course_id}', [UserOrderController::class, 'payment'])->name('payment');
+Route::get('/payment/{course}', [UserOrderController::class, 'payment'])->name('payment');
 
 Route::get('/cart/payment/', [UserOrderController::class, 'cartPayment'])->name('cart-payment');
 
-Route::post('/payment{course_id}', [UserOrderController::class, 'postPayment'])->name('post-payment');
+Route::post('/payment{course}', [UserOrderController::class, 'postPayment'])->name('post-payment');
 
 Route::post('/cart/payment', [UserOrderController::class, 'postCartPayment'])->name('post-cart-payment');
 

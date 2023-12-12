@@ -51,7 +51,7 @@
                 
 
                 <div class="field button-field" >
-                    <button  type="submit" class="btn btn-primary">Đăng nhập</button>
+                    <button  type="submit" class="">Đăng nhập</button>
                 </div>
             </form>
 

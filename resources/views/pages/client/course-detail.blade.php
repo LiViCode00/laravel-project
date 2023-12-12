@@ -341,16 +341,16 @@
                                         </b></span>
 
                                 </div>
-                                <div class="d-flex flex-wrap justify-content-center align-items-center">
-                                @if(Auth::guard('student')->check())
-                                        <a href="{{ route('addToCart', ['courseId' => $course->id]) }}" class="main-btn p-2">Thêm vào giỏ hàng</a>
-                                @else
-                                        <a href="{{route ('login')}}" class="main-btn p-2">Thêm vào giỏ hàng</a>
-                                @endif
-                                @if ($course->sale_price == 0)
-                                    <a href="{{ route('lesson', ['id_video' => 1]) }}" class="main-btn p-2" >Đăng ký</a>
-                                @else
-                                    <a href="{{ route('payment', ['course_id' => $course->id]) }}" class="main-btn p-2" >Mua khóa học</a>
+                                <div class="d-flex justify-content-center">
+
+                                    @if ($coursesOfStudent->contains('id', $course->id))
+                                        <a href="{{ route('lesson', $firstLesson->id) }}" class="main-btn pr-4">Vào học
+                                            ngay</a>
+                                    @else
+                                        <a href="{{ route('addToCart', $course->id) }}"
+                                            class="main-btn p-2">Thêm vào giỏ hàng</a>
+                                        <a href="{{ route('payment', $course->id) }}" class="main-btn pr-4">Mua khóa
+                                            học</a>
                                     @endif
 
 

@@ -7,6 +7,8 @@
     Giỏ hàng
 @endsection
 
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
 @section('content')
     <section>
         <form action="{{ route('post-cart-payment') }}" method="POST">
@@ -35,6 +37,18 @@
                         </div>
                         @foreach ($courses as $course)
                         <div class="row d-flex justify-content-center border-top">
+                            <div class="col-1">
+                                <div class="checkbox-wrapper-31">
+                                    <!-- Thêm data-price vào checkbox để lưu giá của khóa học -->
+                                    <input type="checkbox" class="course-checkbox" id="course_{{ $course->id }}" data-price="{{ $course->sale_price }}" value="{{ $course->id }}">
+
+                                    <svg viewBox="0 0 35.6 35.6">
+                                        <circle class="background" cx="17.8" cy="17.8" r="17.8"></circle>
+                                        <circle class="stroke" cx="17.8" cy="17.8" r="14.37"></circle>
+                                        <polyline class="check" points="11.78 18.12 15.55 22.23 25.17 12.87"></polyline>
+                                    </svg>
+                                </div>
+                            </div>
                             <div class="col-5"> 
                                 <div class="row d-flex">
                                     <div class="my-auto flex-column d-flex pad-left pl-3 pt-5" style="width: 100%;">
@@ -46,7 +60,7 @@
                                    
                                 </div>
                             </div>
-                            <div class="my-auto col-7">
+                            <div class="my-auto col-6">
                                 <div class="row text-right">
                                     <div class="col-4">
                                         <p class="mob-text">Giáo dục</p>

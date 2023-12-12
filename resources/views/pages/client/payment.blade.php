@@ -137,7 +137,7 @@ align-items: center;" class="container mt-4 p-0">
 
                 </div>
             </div>
-            <form style="display: block;margin: 0 auto;margin-top: 30px;"  action="{{ route('post-payment',  ['course_id' => $course->id]) }}" method="POST">
+            <form style="display: block;margin: 0 auto;margin-top: 30px;"  action="{{ route('post-cart-payment', ['course'=> $course]) }}" method="POST">
                 @csrf
                 <button class="Btn1" type="submit">
                     Thanh toán 
