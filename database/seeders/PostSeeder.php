@@ -37,7 +37,7 @@ class PostSeeder extends Seeder
                 Tổng cộng, việc tích hợp Authentication và Authorization không chỉ tạo ra một trải nghiệm an toàn cho người dùng mà còn giúp bảo vệ thông tin quan trọng của họ trong môi trường trực tuyến ngày nay.',
     
                 'slug' => 'Authentication-&-uthorization-trong-ReactJS',
-                'image_path' => 'client/images/news/ns-1.jpg',
+                'image_path' => 'img/news/ns-1.jpg',
                 'category_id' =>$categories->random()->id,
                 'user_id' =>$users->random()->id,
             ],
@@ -50,7 +50,7 @@ class PostSeeder extends Seeder
     
                 Ngoài ra, cộng đồng đông đảo và tính tương thích tốt với nhiều thư viện và công nghệ khác nhau làm cho ReactJS trở thành sự lựa chọn lý tưởng cho các dự án phát triển web đa dạng.',
                 'slug' => 'uu-diem-reactjs-phat-trien-web',
-                'image_path' => 'client/images/news/ns-2.jpg',
+                'image_path' => 'img/news/ns-2.jpg',
                  'category_id' =>$categories->random()->id,
                 'user_id' =>$users->random()->id,
             ],
@@ -64,7 +64,7 @@ class PostSeeder extends Seeder
     
                 Sự tích hợp giữa ReactJS và Redux mang lại một mô hình kiến trúc mạnh mẽ, giúp phát triển ứng dụng linh hoạt và mở rộng một cách dễ dàng. Nhờ vào việc quản lý trạng thái hiệu quả, Redux trở thành một công cụ quan trọng cho những dự án ReactJS lớn và phức tạp.',
                 'slug' => 'redux-trong-ung-dung-reactjs',
-                'image_path' => 'client/images/news/ns-3.jpg',
+                'image_path' => 'img/news/ns-3.jpg',
                 'category_id' =>$categories->random()->id,
                 'user_id' =>$users->random()->id,
             ],
@@ -78,7 +78,7 @@ class PostSeeder extends Seeder
     
                 Với khả năng tương tác mạnh mẽ, GraphQL đang dần trở thành xu hướng quan trọng và có thể là giao thức chủ đạo trong tương lai của phát triển web.',
                 'slug' => 'graphql-tuong-lai-giao-thuc-truy-van-du-lieu',
-                'image_path' => 'client/images/news/ns-4.jpg',
+                'image_path' => 'img/news/ns-4.jpg',
                  'category_id' =>$categories->random()->id,
                 'user_id' =>$users->random()->id,
             ],
@@ -92,7 +92,7 @@ class PostSeeder extends Seeder
     
                 DevOps không chỉ là một xu hướng, mà còn là một sự thay đổi cách tiếp cận phát triển phần mềm, và Docker chính là một công cụ quan trọng trong hành trang của các nhà phát triển và quản trị hệ thống.',
                 'slug' => 'docker-trong-he-sinh-thai-devops',
-                'image_path' => 'client/images/news/ns-5.jpg',
+                'image_path' => 'img/news/ns-5.jpg',
                  'category_id' =>$categories->random()->id,
                 'user_id' =>$users->random()->id,
     
@@ -105,7 +105,7 @@ class PostSeeder extends Seeder
     
                 Sự đa nhiệm của Python giúp nó trở thành một công cụ linh hoạt cho nhiều ứng dụng, từ phân tích dữ liệu đến phát triển web và trí tuệ nhân tạo. Cộng đồng lớn và tính tương thích với nhiều thư viện và framework khác nhau giúp Python duy trì sức hút của mình trong cả cộng đồng lập trình viên và doanh nghiệp.',
                 'slug' => 'tang-truong-python-ngon-ngu-lap-trinh',
-                'image_path' => 'client/images/news/ns-6.jpg',
+                'image_path' => 'img/news/ns-6.jpg',
                  'category_id' =>$categories->random()->id,
                 'user_id' =>$users->random()->id,
     

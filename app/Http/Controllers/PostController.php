@@ -85,7 +85,7 @@ class PostController extends Controller
             $post = new Post();
             $post->title = $request->title;
             $post->category_id = $request->category_id;
-            $post->content = $request->content;
+            $post->content =  strip_tags($request->content, '<p><img>');
             $post->image_path = $imagePath;
             $post->user_id = Auth::guard('student')->user()->id;
 

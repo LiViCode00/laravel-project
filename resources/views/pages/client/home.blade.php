@@ -73,8 +73,8 @@
                                     <div class="singel-course">
 
                                         <div class="thum">
-                                            <div class="image">
-                                                <img src="/{{ $course->image_path }}" alt="Course">
+                                            <div class="image mr-4">
+                                                <img src="{{asset('storage/'. $course->image_path )}}" alt="Course">
 
                                             </div>
                                             <div class="price">
@@ -95,7 +95,7 @@
                                             </a>
                                             <div class="course-teacher">
                                                 <div class="thum">
-                                                    <a href="#"><img src="{{ $course->teacher_img }}"
+                                                    <a href="#"><img src="{{asset('storage/'. $course->teacher_img) }}"
                                                             alt="teacher"></a>
                                                 </div>
                                                 <div class="name">
@@ -147,7 +147,7 @@
 
                                 <div class="thum">
                                     <div class="image">
-                                        <img src="/{{ $course->image_path }}" alt="Course">
+                                        <img src="{{asset('storage/'.$course->image_path )}}" alt="Course">
 
                                     </div>
                                     <div class="price">
@@ -168,7 +168,7 @@
                                     </a>
                                     <div class="course-teacher">
                                         <div class="thum">
-                                            <a href="#"><img src="{{ $course->teacher_img }}" alt="teacher"></a>
+                                            <a href="#"><img src="{{asset('storage/'. $course->teacher_img) }}" alt="teacher"></a>
                                         </div>
                                         <div class="name">
                                             <a href="#">
@@ -212,7 +212,7 @@
                             <div class="singel-course">
                                 <div class="thum">
                                     <div class="image">
-                                        <img src="{{ $course->image_path }}" alt="Course">
+                                        <img src="{{asset('storage/'.$course->image_path )}}" alt="Course">
                                     </div>
                                     <div class="price">
                                         <span><del>{{ number_format($course->price, 0, '', '.') }} đ </del>
@@ -233,7 +233,7 @@
                                     </a>
                                     <div class="course-teacher">
                                         <div class="thum">
-                                            <a href="#"><img src="{{ $course->teacher_img }}" alt="teacher"></a>
+                                            <a href="#"><img src="{{asset('storage/'. $course->teacher_img )}}" alt="teacher"></a>
                                         </div>
                                         <div class="name">
                                             <a href="#">
@@ -291,7 +291,7 @@
                                     <div class="col-sm-6 ">
                                         <div class="singel-teachers mt-30 text-center">
                                             <div class="image  card-teacher">
-                                                <img src="{{ $teacher->image_path }}" alt="Teachers">
+                                                <img src="{{asset('storage/'. $teacher->image_path )}}" alt="Teachers">
                                             </div>
                                             <div class="cont">
                                                 <a href="{{ route('teachers.teacherDetail', ['id' => $teacher->id]) }}">
@@ -334,7 +334,7 @@
 
                                 <div class="thum">
                                     <div class="image">
-                                        <img src="/{{ $post->image_path }}" alt="Course">
+                                        <img src="{{asset('storage/'. $post->image_path )}}" alt="Course">
 
                                     </div>
                                 </div>

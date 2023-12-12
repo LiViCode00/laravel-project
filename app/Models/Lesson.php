@@ -18,6 +18,7 @@ class Lesson extends Model
         $result = Lesson::with('course')
             ->join('courses', 'courses.id', '=', 'lessons.course_id')
             ->select('lessons.*', 'courses.name as course_name')
+            ->where('lessons.course_id',$id_course )
             ->get();
 
         // Hiển thị kết quả

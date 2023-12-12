@@ -1,5 +1,5 @@
 
-<div class="sidebar">
+<div class="sidebar" >
     <ul class="cate-list cate-item">
         <li class="write-blog" style="text-align: center;">
             <a href="{{ route('write-post') }}"><span >+</span></a>

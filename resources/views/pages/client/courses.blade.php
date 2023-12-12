@@ -3,14 +3,17 @@
     Khóa học online
 @endsection
 
+<?php 
+    $count =0;
+    foreach($courses as $course){
+        $count++;
+    }
+?>
+
 @section('content')
     <section id="courses-part" class="pt-70 pb-60 pl-2 ">
         <div class="row">
-
-            
-            <div class="category col-lg-2 pt-2 mt-4 pl-3">
-                
-
+            <div class="category col-lg-3 pt-2 mt-4 pl-3 " style="padding-right: 100px;">
                 <div class="corses-singel-left mt-30 p-0">
                         <div class="corses-tab mt-30">
                             <ul class="nav nav-justified" id="myTab" role="tablist">
@@ -21,18 +24,18 @@
                             
                             <div class="tab-content content-edit1" id="myTabContent">
                                 <div class="tab-pane fade  show active" id="curriculam" role="tabpanel" aria-labelledby="curriculam-tab">
-                                    <div class="curriculam-cont">
+                                    <div class="curriculam-cont" style="padding-left: 40px ;">
                                         <form action="{{url('/courses/')}}" method="GET">
                                         <div class="accordion" id="accordionExample">
                                             <div class="card">
                                                 <div class="card-header" id="heading-2">
                                                     <a class="card-edit card-edit2"  href="" data-toggle="collapse" data-target="#collapse-2" aria-expanded="true" aria-controls="collapse-2">
                                                         <ul>
-                                                            <li><h6>Theo danh mục</h6></li>
+                                                            <li><h5 style="color: black; padding-bottom: 20px;">Theo danh mục</h5></li>
                                                         </ul>
                                                     </a>
                                                 </div>
-
+                                                            
                                                 <div id="collapse-2" class="collapse show" aria-labelledby="heading-2" data-parent="#accordionExample">
                                                     @foreach ($category as $cate)
                                                     <div class="card-body">
@@ -46,12 +49,14 @@
                                             </div>
 
 
-                                            <div class="card mt-4">
-                                                <h6 >Khoảng giá</h6>
-                                                <div class="mt-4">
-                                                    <input class="input-price" type="number" id="min" name="min" placeholder="đ Từ">
-                                                    <div class="mt-3">
-                                                        <input class="input-price" type="number" id="max" name="max" placeholder="đ Đến">
+                                            <div class="card mt-4"> 
+                                                <h5>Khoảng giá</h5>
+                                                <div class="mt-4 " style="display: flex; justify-content: center; align-items: center;" >
+                                                    <div>
+                                                        <input class="input-price" type="number" id="min" name="min" placeholder="đ Từ" style="width: 100%;">
+                                                        <div class="mt-3" >
+                                                            <input class="input-price" type="number" id="max" name="max" placeholder="đ Đến">
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <br>
@@ -103,7 +108,7 @@
                                 <div class="singel-course mt-30">
                                     <div class="thum">
                                         <div class="image">
-                                        <a href="{{ route('courses.courseDetail',  ['id' => $course->id]) }}" style="width: 100%; height: 100%;"> <img src="/{{$course->image_path }}" alt="Course"></a>
+                                        <a href="{{ route('courses.courseDetail',  ['id' => $course->id]) }}" style="width: 100%; height: 100%;"> <img src="{{asset('storage/'.$course->image_path) }}" alt="Course"></a>
                                         </div>
                                         <div class="price">
                                             @if($course->sale_price == 0)
@@ -128,7 +133,7 @@
                                         <div class="course-teacher">
                                             <div class="thum">
                                                 <a href="{{ route('courses.courseDetail',  ['id' => $course->id]) }}">
-                                                    <img src="/{{$course->teacher_img }}" alt="teacher">
+                                                    <img src="{{asset('storage/'.$course->teacher_img )}}" alt="teacher">
                                                 </a>
                                             </div>
                                             <div class="name">
@@ -155,16 +160,16 @@
 
                             @foreach ($courses as $course)
                             <div class="col-lg-12">
-                                <div class="singel-course mt-30">
-                                    <div class="row no-gutters">
-                                        <div class="col-md-3 mr-5">
-                                            <div class="thum">
-                                                <div class="image">
-                                                    <img src="/{{$course->image_path}}" alt="Course" style="height: 100%;">
+                                <div class="singel-course mt-30" style="width: 100%;">
+                                    <div class="row" style="display: flex;">
+                                        <div class=" mx-5">
+                                          
+                                                <div class="image" style="width: 300px;">
+                                                    <img src="{{asset('storage/'.$course->image_path)}}" alt="Course" style="height: 195px; border-radius: 30px;">
                                                 </div>
-                                            </div>
+                                  
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="">
                                             <div class="cont p-0">
                                                 <a href="#">
                                                     <h4 class="pt-0 pb-3">{{$course->name}} </h4>

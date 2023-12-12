@@ -21,11 +21,11 @@ Các bài viết
                            <li><a href="#"><i class="fa fa-user"></i>{{$post->user_name}}</a></li>
                            <li><a href="#"><i class="fa fa-tags"></i>Education</a></li>
                        </ul>
-                       <p>{!! substr(htmlspecialchars($post->content), 0, 122) !!}...</p>
+                       <p>{!! substr($post->content, 0, 122) !!}...</p>
                        <span class="categories-post-tag mt-3">{{$post->cate_name}}</span>
                    </div>
                    <div class="blog-thum col-md-4 pr-6 d-flex align-items-center justify-content-center">
-                       <img src="/{{$post->image_path}}" alt="Blog">
+                       <img src="{{asset('storage/'.$post->image_path)}}" alt="Blog">
                    </div>
                </div> <!-- singel blog -->
                @endforeach
@@ -71,18 +71,18 @@ Các bài viết
                            </div>
                        </div> <!-- categories -->
                        <div class="col-lg-12 col-md-6">
-                           <div class="saidbar-post mt-30">
+                           <div class="saidbar-post mt-30 ml-5  ">
                                <h4 class="d-flex align-items-center justify-content-center">Popular Posts</h4>
-                               <ul>
+                               <ul >
                                    <li>
                                         @foreach ($postLike as $post)
-                                        <a href="#" class="mb-6">
+                                        <a href="{{ route('posts.postDetail', ['id' => $post->id]) }}" class="mb-6">
                                             <div class="singel-post">
                                                <div class="thum">
-                                                   <img src="/{{$post->image_path}}" alt="Blog">
+                                                   <img src="{{asset('storage/'.$post->image_path)}}" alt="Blog">
                                                </div>
                                                <div class="cont">
-                                                   <h6>{{$post->title}}</h6>
+                                                   <h6 style="text-overflow: ellipsis;">{{$post->title}}</h6>
                                                    <span>{{ Carbon::parse($post->created_at)->format('F d, Y') }}</span>
                                                </div>
                                            </div> <!-- singel post -->

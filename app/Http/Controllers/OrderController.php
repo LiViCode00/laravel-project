@@ -18,18 +18,18 @@ class OrderController extends Controller
 {
 
 
-    // public function checkAuth(){
-    //     $user = Auth::guard('student')->user();
+    public function checkAuth(){
+        $user = Auth::guard('student')->user();
     
-    //     if (!$user) {
-    //         return redirect()->route('login');
-    //     }
-    // }
-    // public function payment(Course $course)
-    // {
-    //     checkAuth();
-    //     return view('pages.client.payment', compact('course'));
-    // }
+        if (!$user) {
+            return redirect()->route('login');
+        }
+    }
+    public function payment($course_id)
+    {   
+        $course = Course::getCourseById($course_id);
+        return view('pages.client.payment', compact('course'));
+    }
 
 
     public function cartControlPayment(Request $request)
@@ -115,7 +115,7 @@ class OrderController extends Controller
       
 
 
-        event(new NewOrderReceived(Auth::guard('student')->user(), $course));
+        event(new NewOrderReceived(Auth::guard('student')->user(), $courses));
         return view('pages.client.thankyou');
     }
 }

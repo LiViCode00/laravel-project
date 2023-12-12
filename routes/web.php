@@ -64,18 +64,18 @@ Route::prefix('posts')->name('posts.')->group(function () {
     Route::get('/posts-detail/{id}', [PostController::class,'postDetail'])->name('postDetail');
     Route::post('/posts/add', [PostController::class,'add'])->name('postAdd');
 });
-Route::get('/payment/{course}', [UserOrderController::class, 'payment'])->name('payment');
+Route::get('/payment/{course_id}', [UserOrderController::class, 'payment'])->name('payment');
 
 Route::get('/cart/payment/', [UserOrderController::class, 'cartPayment'])->name('cart-payment');
 
-Route::post('/payment{course}', [UserOrderController::class, 'postPayment'])->name('post-payment');
+Route::post('/payment{course_id}', [UserOrderController::class, 'postPayment'])->name('post-payment');
 
 Route::post('/cart/payment', [UserOrderController::class, 'postCartPayment'])->name('post-cart-payment');
 
 Route::post('/cart/control/payment', [UserOrderController::class, 'cartControlPayment'])->name('cart-control-payment');
 
 // Route::get('/lesson/{id}', [LessonController::class, 'index'])->name('lesson');
-// Route::get('/lessonByCourse/{id_course}', [LessonController::class, 'lessonByIdCourse'])->name('lessonByCourse');
+
 
  Route::get('/lesson/{id_video}', [LessonController::class, 'index'])->name('lesson');
 
@@ -97,6 +97,8 @@ Route::prefix('student')->name('student.')->group(function () {
     Route::post('/edit/{id}', [StudentController::class, 'editProfile'])->name('edit-profile');
 });
 
+Route::post('/payment/{course}', [UserOrderController::class, 'postOrder'])->name('post-order');
+
 
 
 
@@ -109,9 +111,9 @@ Route::get('/posts/test', [PostController::class, 'test']);
 Route::get('pagination', [PaginationController::class, 'index']);
 Route::get('pagination/ajax', [PaginationController::class, 'paginationAjax']);
 
-
+Route::get('/payment/{id}' , [UserOrderController::class,'cartControlPayment'])->name('order');
 // Route::get('admin/user/list', [AdminUserController::class, 'listUser'])->name('list');
-// Route::get('admin/user/list/ajax', [AdminUserController::class, 'listUserAjax']);
+Route::get('admin/user/list/ajax', [AdminUserController::class, 'listUserAjax']);
 
 // routes/web.php
 

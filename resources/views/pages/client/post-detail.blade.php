@@ -8,22 +8,22 @@ Bài viết
 @endsection
 @section('content')
 
-<section id="blog-singel" class="pt-80 pb-120 gray-bg">
+<section id="blog-singel" class="pt-80 pb-120">
     <div class="container container-edit">
        <div class="row d-flex align-items-center justify-content-center">
           <div class="col-lg-10 ">
               <div class="blog-details mt-30">
                   <div class="thum">
-                      <img src="/{{$post->image_path}}" alt="Blog Details">
+                      <img src="{{asset('storage/'. $post->image_path)}}" alt="Blog Details">
                   </div>
                   <div class="cont">
                       <h3>{{$post->title}}</h3>
-                      <ul>
-                           <li><a href="#"><i class="fa fa-calendar"></i>{{ Carbon::parse($post->created_at)->format('F d, Y') }}</a></li>
-                           <li><a href="#"><i class="fa fa-user"></i>{{$post->user_name}}</a></li>
-                           <li><a href="#"><i class="fa fa-tags"></i>Education</a></li>
+                      <ul style="margin: 30px 0; ">
+                           <li><a href="#" style="font-size: 20px;"><i class="fa fa-calendar"></i>{{ Carbon::parse($post->created_at)->format('F d, Y') }}</a></li>
+                           <li><a href="#" style="font-size: 20px;"><i class="fa fa-user"></i>{{$post->user_name}}</a></li>
+                           <li><a href="#" style="font-size: 20px;"><i class="fa fa-tags"></i>Education</a></li>
                        </ul>
-                       <p>{!! nl2br($post->content) !!} </p>
+                       <p style="line-height: 30px; font-size: 18px; margin-bottom: 40px;">{!! nl2br($post->content) !!} </p>
                        <ul class="share">
                            <li class="title">Share :</li>
                            <li><a href="#"><i class="fa fa-facebook-f"></i></a></li>
@@ -38,7 +38,7 @@ Bài viết
                     <div class="col-lg-12">
                         <div class="releted-courses pt-95">
                             <div class="title">
-                                <h3 style="color: #4D2DB7;">Các bài viết cùng tác giả </h3>
+                                <h3>Các bài viết cùng tác giả </h3>
                             </div>
                             <div class="row">
 
@@ -47,14 +47,14 @@ Bài viết
                                     <div class="singel-course mt-30">
                                         <div class="thum">
                                             <div class="image">
-                                                <img src="/{{$post->image_path}}" alt="Course">
+                                                <img src="{{asset('storage/'. $post->image_path)}}" alt="Course">
                                             </div>
                                         </div>
                                         <div class="cont">
                                             <a href="{{ route('posts.postDetail', ['id' => $post->id]) }}"><h4>{{$post->title}}</h4></a>
                                             <div class="course-teacher">
                                                 <div class="thum">
-                                                    <a href="#"><img src="/{{$post->user_img}}" alt="user"></a>
+                                                    <a href="#"><img src="{{asset('storage/'. $post->user_img)}}" alt="user"></a>
                                                 </div>
                                                 <div class="name">
                                                     <a href="#">
@@ -82,7 +82,7 @@ Bài viết
                     <div class="col-lg-12">
                         <div class="releted-courses pt-95">
                             <div class="title">
-                                <h3 style="color: #4D2DB7;">Bài viết phổ biến</h3>
+                                <h3>Bài viết phổ biến</h3>
                             </div>
                             <div class="row">
 
@@ -91,14 +91,14 @@ Bài viết
                                     <div class="singel-course mt-30">
                                         <div class="thum">
                                             <div class="image">
-                                                <img src="/{{$post->image_path}}" alt="Course">
+                                                <img src="{{asset('storage/'. $post->image_path)}}" alt="Course">
                                             </div>
                                         </div>
                                         <div class="cont">
                                             <a href="{{ route('posts.postDetail', ['id' => $post->id]) }}"><h4>{{$post->title}}</h4></a>
                                             <div class="course-teacher">
                                                 <div class="thum">
-                                                    <a href="#"><img src="/{{$post->user_img}}" alt="user"></a>
+                                                    <a href="#"><img src="{{asset('storage/'. $post->user_img)}}" alt="user"></a>
                                                 </div>
                                                 <div class="name">
                                                     <a href="#">

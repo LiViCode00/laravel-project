@@ -29,8 +29,8 @@
             <form method="POST" action="{{ route('post-login') }}">
                 @csrf
                 <div class="field input-field">
-                    <input id="email" type="text" placeholder="Email"
-                        class="input @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}">
+                    <input id="email" type="text" placeholder="Email" style="padding: 8px 20px; border-radius: 35px; background: transparent; border: 1px solid black; color: black;"
+                        class="input @error('email') is-invalid @enderror " name="email" value="{{ old('email') }}">
                     @error('email')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -39,7 +39,7 @@
                 </div>
 
                 <div class="field input-field">
-                    <input type="password" placeholder="Create password"
+                    <input type="password" placeholder="Create password" style="padding: 8px 20px; border-radius: 35px; background: transparent; border: 1px solid black; color: black;"
                         class="password @error('password') is-invalid @enderror" name="password">
                     @error('password')
                         <span class="invalid-feedback" role="alert">
@@ -48,18 +48,19 @@
                     @enderror
                 </div>
 
+                
+
+                <div class="field button-field" >
+                    <button  type="submit" class="btn btn-primary">Đăng nhập</button>
+                </div>
+            </form>
+
+            <div class="form-link" style="margin-top: 30px;">
                 <div class="form-link">
                     @if (Route::has('password.request'))
                         <a href="{{ route('password.request') }}" class="forgot-pass">Quên mật khẩu?</a>
                     @endif
                 </div>
-
-                <div class="field button-field">
-                    <button type="submit" class="btn btn-primary">Đăng nhập</button>
-                </div>
-            </form>
-
-            <div class="form-link">
                 <span>Bạn chưa có tài khoản ? <a href={{ route('register') }} class="link signup-link">Đăng
                         ký</a></span>
             </div>
@@ -75,8 +76,8 @@
         </div>
 
         <div class="media-options">
-            <a href="#" class="field google">
-                <img src="images/google.png" alt="" class="google-img">
+            <a href="#" class="field google" >
+                <img src="/client/images/about/google.png" alt="" class="google-img">
                 <span>Đăng nhập với Google</span>
             </a>
         </div>

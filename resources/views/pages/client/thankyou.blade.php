@@ -2,7 +2,37 @@
 @section('title')
     Khóa học online
 @endsection
+<style>
+    .button1 {
+  padding: 17px 40px;
+  border-radius: 50px;
+  cursor: pointer;
+  border: 1px solod lightgray;
+  background-color: white;
+  box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-size: 15px;
+  transition: all 0.5s ease;
+}
 
+.button1:hover {
+  letter-spacing: 3px;
+  background-color: green;
+  color: hsl(0, 0%, 100%);
+  box-shadow: lightgreen 0px 7px 29px 0px;
+  border: none;
+}
+
+.button1:active {
+  letter-spacing: 3px;
+  background-color: hsl(261deg 80% 48%);
+  color: hsl(0, 0%, 100%);
+  box-shadow: lightgreen 0px 0px 0px 0px;
+  transform: translateY(10px);
+  transition: 100ms;
+}
+</style>
 @section('content')
     <div style="height: 100%" class="vh-100 d-flex justify-content-center align-items-center">
         <div class="col-md-6">
@@ -19,7 +49,7 @@
                 <div class="text-center">
                     <h1>Thanh toán thành công !</h1>
                     <p style="margin: 16px 0">Cảm ơn bạn đã tin tưởng LIVIcode. Hãy check mail để nhận thông tin về khóa học nhé.</p>
-                    <a href="{{ route('home') }}"><button class="btn btn-outline-success">Trang chủ</button></a>
+                    <a href="{{ route('home') }}"><button class="button1">Trang chủ</button></a>
                 </div>
             </div>
         </div>

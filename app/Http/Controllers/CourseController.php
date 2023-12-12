@@ -29,13 +29,11 @@ class CourseController extends Controller
         }
 
         $courses = Course::getCoursePaginated($query, 6);
-        $countCourse = Course::getCountCourse($query);
-
+     
         $cate = Category::getAllCate();
 
         return view("pages.client.courses", [
             'courses' => $courses,
-            'count' => $countCourse,
             'category' => $cate
         ]);
     }
@@ -43,6 +41,7 @@ class CourseController extends Controller
     public function courseDetail($id)
     {
         $course = Course::find($id);
+        $course1 = Course::getCourseById($id);
         $coursesOfStudent = [];
 
         $firstLesson = $course->lessons->first()->videos->first();
@@ -62,7 +61,7 @@ class CourseController extends Controller
             $reviews = Review::getReviewByCourse($id, 5);
 
             return view('pages.client.course-detail', [
-                'course' => $course,
+                'course' => $course1,
                 'coursesCate' => $coursesCate,
                 'courseLatest' => $courseLatest,
                 'lessons' => $lesson,
